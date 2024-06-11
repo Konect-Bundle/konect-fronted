@@ -7,7 +7,6 @@ export default class ContactPage extends React.Component<IContactPageProps> {
   public render() {
     return (
       <div>
-        
       </div>
     );
   }

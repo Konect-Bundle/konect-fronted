@@ -3,7 +3,7 @@ import { Onest } from "next/font/google";
 import "./globals.scss";
 
 const inter = Onest({
-  weight: ["400", "600","700"],
+  weight: ["300", "600"],
   subsets: ["latin"],
 });
 
