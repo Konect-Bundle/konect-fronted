@@ -6,15 +6,30 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {
+  theme:{
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
+        colors: {
+            main: {
+                jaune: "#fdf41d",
+                orange: "#f96340",
+                gray: '#e1e1e1',
+                noir:"#252525"
+            },
+            noir: {
+
+                light: '#f2f2f2',
+                medium: '#8c8c8c',
+                normal: '#737373',
+                semibold: '#262626',
+                bold: '#0d0d0d',
+
+            },
+            lighting: {
+                main: '#f8f9fa'
+            }
+        }
     },
-  },
-  plugins: [],
+},
+  plugins: [require("flowbite/plugin")],
 };
 export default config;
