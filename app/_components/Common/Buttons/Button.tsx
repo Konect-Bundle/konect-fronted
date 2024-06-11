@@ -1,13 +1,12 @@
 import React, {ReactElement, ReactNode} from 'react';
 
-interface ButtonProps {
+interface ButtonProps extends React.PropsWithChildren {
     onClick: () => void;
     outlined: boolean;
-    children : ReactNode
 }
 
 
-const Button: React.FC<ButtonProps> = ({onClick, outlined, children }):ReactElement => {
+const Button: React.FC<ButtonProps> = ({children, onClick, outlined }) => {
     return (
         <button>
             {children}
