@@ -4,6 +4,7 @@ import ContainerLayout from "@/app/_components/Layouts/Container";
 import {Button} from "flowbite-react";
 import {TbArrowForwardUpDouble} from "react-icons/tb";
 import {DiHtml5Connectivity} from "react-icons/di";
+import {MdOutlineConnectWithoutContact} from "react-icons/md";
 
 export default function Home() {
   return (
@@ -21,7 +22,7 @@ export default function Home() {
                                         className="mb-8 inline-flex items-center space-x-2 rounded-full bg-gray-100 p-1 pe-6">
                                         <span
                                             className="h-12 w-12 rounded-full bg-orange-700 flex justify-center items-center">
-                                                              <DiHtml5Connectivity className="w-6 h-6 text-gray-50" />
+                                                              <MdOutlineConnectWithoutContact className="w-6 h-6 text-gray-50" />
                                         </span>
                                         <span>
                                             {'Networking taken to the next level'}

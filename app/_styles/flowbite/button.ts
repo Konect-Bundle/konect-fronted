@@ -1,10 +1,10 @@
 import type { CustomFlowbiteTheme } from "flowbite-react";
 
 export const customButtonTheme : CustomFlowbiteTheme["button"] = {
-    "base": "group relative flex items-stretch justify-center md:p-1 p-0.5 text-center font-normal transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow] focus:z-10 focus:outline-none",
+    "base": "group relative flex items-stretch justify-center md:p-2 p-1.5 text-center font-normal transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow] focus:z-10 focus:outline-none",
     "fullSized": "w-full",
     "color": {
-      "primary": "bg-yellow-700 hover:bg-yellow-800",
+      "primary": "bg-yellow-700 hover:bg-yellow-800 text-black-normal",
       "primary-light": "bg-white text-gray-900 focus:ring-4 focus:bg-yellow-700 enabled:hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-600 dark:text-white dark:focus:ring-gray-700 dark:enabled:hover:border-gray-700 dark:enabled:hover:bg-gray-700",
       "dark": "border border-transparent bg-gray-800 text-white focus:ring-4 focus:ring-gray-300 enabled:hover:bg-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:focus:ring-gray-800 dark:enabled:hover:bg-gray-700"
     },

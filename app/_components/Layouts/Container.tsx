@@ -7,15 +7,14 @@ interface ContainerLayoutProps extends React.PropsWithChildren {
 const defaultContainerLayoutProps: ContainerLayoutProps = {
     className : ""
 }
-const ContainerLayout: React.FC<ContainerLayoutProps> = (props) => {
+const ContainerLayout: React.FC<ContainerLayoutProps> = ({className="", children}: ContainerLayoutProps) => {
     return (
-        <div className={"md:px-24 px-4 "+ props.className}>
-            {props.children}
+        <div className={"md:px-24 px-4 "+ className}>
+            {children}
         </div>
     );
 }
 
-ContainerLayout.defaultProps = defaultContainerLayoutProps;
 export default ContainerLayout;
 
 
