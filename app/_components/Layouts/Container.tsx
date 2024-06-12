@@ -1,15 +1,22 @@
-import * as React from 'react';
+import React, {ReactElement, ReactNode} from 'react';
 
-export interface IContainerLayoutProps {
-    
+interface ContainerLayoutProps extends React.PropsWithChildren {
+    className?: string
 }
 
-export default class ContainerLayout extends React.Component<IContainerLayoutProps> {
-  public render() {
+const defaultContainerLayoutProps: ContainerLayoutProps = {
+    className : ""
+}
+const ContainerLayout: React.FC<ContainerLayoutProps> = (props) => {
     return (
-      <div>
-        
-      </div>
+        <div className={"md:px-24 px-4 "+ props.className}>
+            {props.children}
+        </div>
     );
-  }
 }
+
+ContainerLayout.defaultProps = defaultContainerLayoutProps;
+export default ContainerLayout;
+
+
+

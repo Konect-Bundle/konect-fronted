@@ -57,7 +57,7 @@ export const customButtonTheme : CustomFlowbiteTheme["button"] = {
     "label": "ml-2 inline-flex h-4 w-4 items-center justify-center rounded-full bg-cyan-200 text-xs font-semibold text-cyan-800",
     "outline": {
       "color": {
-        "gray": "border border-gray-900 dark:border-white",
+        "gray": "border border-gray-700 dark:border-white",
         "default": "border-0",
         "light": ""
       },
