@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { Button, Alert } from "flowbite-react";
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
 import { customAlertTheme } from "@/app/_styles/flowbite/alert";
@@ -7,7 +7,12 @@ import { customAlertTheme } from "@/app/_styles/flowbite/alert";
 export interface IAppProps {}
 
 const KuserHeader: React.FC<IAppProps> = (props) => {
-  const [showAlert, setShowAlert] = useState<boolean>(true);
+  const [showAlert, setShowAlert] = useState<boolean>(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setShowAlert(true);
+    }, 4500)
+  }, []);
   const dissmissAlert = () => {
     setShowAlert(false);
     console.log(showAlert);

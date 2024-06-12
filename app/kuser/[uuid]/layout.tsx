@@ -1,3 +1,5 @@
+import type { Metadata, ResolvingMetadata } from 'next'
+
 export default function KuserLayout({
     children, // will be a page or nested layout
   }: {
