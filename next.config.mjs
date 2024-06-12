@@ -6,8 +6,13 @@ const nextConfig = {
         protocol: "https",
         hostname: "upload.wikimedia.org",
       },
+      {
+        protocol: "https",
+        hostname: "ikonect.info",
+      },
     ],
   },
 };
 
 export default nextConfig;
+
