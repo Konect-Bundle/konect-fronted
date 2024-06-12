@@ -132,7 +132,7 @@ export default function KuserPage({params}: { params: { uuid: string } }) {
                       </span>
                                         ) : (
                                             <a
-                                                href="mailto:{{ $vcard->email->text }}"
+                                                href={"mailto:"+vinfo.email.text}
                                                 className="hover:underline text-gray-700 break-words"
                                             >
                                                 {vinfo.email.text}
@@ -157,7 +157,7 @@ export default function KuserPage({params}: { params: { uuid: string } }) {
                       </span>
                                         ) : (
                                             <a
-                                                href="tel:{{ $vcard->phone->text }}"
+                                                href={"tel:"+vinfo.phone.text}
                                                 className="hover:underline text-gray-700"
                                             >
                                                 {vinfo.phone.text}
