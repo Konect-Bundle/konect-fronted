@@ -23,6 +23,7 @@ export default function KuserPage({ params }: { params: { uuid: string } }) {
 
   useEffect(() => {
     UserService.getUser(params.uuid).then((rs) => {
+
       setKuser(rs.data);
       setLoading(false);
     });
