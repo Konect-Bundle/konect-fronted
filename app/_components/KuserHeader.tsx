@@ -43,7 +43,7 @@ const KuserHeader: React.FC<IAppProps> = (props) => {
           </div>
           <div className="md:space-x-4 space-x-2 flex items-center">
             <a href="/gadgets-list" className="pl-1">
-              <Button theme={customButtonTheme} color="primary">
+              <Button theme={customButtonTheme} color="primary" className="w-max">
                 Get card
               </Button>
             </a>
