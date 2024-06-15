@@ -3,7 +3,6 @@ import KuserHeader from "@/app/_components/KuserHeader";
 import {UserService} from "@/app/_core/api/services/UserService";
 import {esser, ucfirst} from "@/app/_core/utils/functions";
 import Image from "next/image";
-import {kuser} from "../../_core/config/routes";
 import Link from "next/link";
 import {TbArrowForwardUpDouble, TbExternalLink, TbMail, TbPhone, TbShape3, TbShare3, TbUsersPlus} from "react-icons/tb";
 import {MdLocationPin} from "react-icons/md";
