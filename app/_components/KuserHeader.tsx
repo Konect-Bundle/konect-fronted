@@ -11,7 +11,7 @@ const KuserHeader: React.FC<IAppProps> = (props) => {
   useEffect(() => {
     setTimeout(() => {
       setShowAlert(true);
-    }, 4500)
+    }, 6500)
   }, []);
   const dissmissAlert = () => {
     setShowAlert(false);

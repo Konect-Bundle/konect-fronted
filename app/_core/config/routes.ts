@@ -3,24 +3,40 @@ import { RouteNameInterface } from "../types/routesTypes"
 /* =======================
  Guest Routes
 ========================= */
-export var home : RouteNameInterface = {
+export const homeRoute : RouteNameInterface = {
     name: 'home',
     path: '/'
 }
 
-export var kuser : RouteNameInterface = {
+export const kuserRoute : RouteNameInterface = {
     name: 'kuser',
     path: '/ku'
 }
+
+export const howItRoute : RouteNameInterface = {
+    name: 'how-it',
+    path: '/how-it'
+}
+
 // Auth proccess
-export var login : RouteNameInterface = {
+export const loginRoute : RouteNameInterface = {
     name: 'login',
     path: '/auth/login'
 }
 
-export var register : RouteNameInterface = {
+export const registerRoute : RouteNameInterface = {
     name: 'register',
     path: '/auth/register'
+}
+
+export const productsRoute : RouteNameInterface = {
+    name: 'products',
+    path: '/products'
+}
+
+export const productItemRoute : RouteNameInterface = {
+    name: 'product-item',
+    path: '/product-item'
 }
 
 /* =======================

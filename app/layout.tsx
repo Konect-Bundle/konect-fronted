@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Onest } from "next/font/google";
+import { Onest, Figtree } from "next/font/google";
 import "./globals.scss";
 
 const inter = Onest({
-  weight: ["300", "600"],
   subsets: ["latin"],
 });
 

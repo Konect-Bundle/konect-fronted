@@ -27,7 +27,7 @@ export default function KuserPage({params}: { params: { uuid: string } }) {
             setKuser(rs.data);
             setTimeout(() => {
                 setLoading(false);
-            }, 500)
+            }, 700)
         });
     }, []);
 
