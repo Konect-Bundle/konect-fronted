@@ -1,20 +1,36 @@
 import {SERVER_API_URL} from "../constants";
+import {serialize} from "object-to-formdata";
 
-export class UserService {
+export class GadgetService {
 
-    static async getAll() {
-        const res = await fetch(SERVER_API_URL + "/kwidget", {cache: 'force-cache'})
+    static async getAll(filter = "all") {
+        const
+            res = await fetch(SERVER_API_URL + "/gadget/filter", {
+                method: "POST",
+                body: serialize({"filter": filter}),
+                cache: 'force-cache'
+            })
 
-        if (!res.ok) {
+        if (
+
+            !
+                res
+                    .ok
+        ) {
             // This will activate the closest `error.js` Error Boundary
-            throw new Error('Failed to fetch data')
+            throw new Error(
+                'Failed to fetch data'
+            )
         }
 
         return res.json()
     }
 
-    static async getKwidget(name: string) {
-        const res = await fetch(SERVER_API_URL + "/kwidget/" + name, {cache: 'force-cache'})
+    static async getKwidget(code
+                                :
+                                string
+    ) {
+        const res = await fetch(SERVER_API_URL + "/gadget/" + code, {cache: 'force-cache'})
 
         if (!res.ok) {
             // This will activate the closest `error.js` Error Boundary

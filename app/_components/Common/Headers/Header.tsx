@@ -14,7 +14,8 @@ import {usePathname} from 'next/navigation'
 import {customNavbarTheme} from "@/app/_styles/flowbite/navbar";
 import {customButtonTheme} from "@/app/_styles/flowbite/button";
 import {ROOT_ASSETS_URL} from "@/app/_core/config/constants";
-import {homeRoute, howItRoute} from "@/app/_core/config/routes";
+import {homeRoute, howItRoute, loginRoute, productsRoute} from "@/app/_core/config/routes";
+import Link from "next/link";
 
 
 export interface IAppProps {
@@ -41,8 +42,14 @@ export default function Header(props: IAppProps) {
                 <div
                     className="bg-gray-900 w-[inherit] py-3 rounded-xl flex md:items-center items-end justify-end md:order-2 md:flex-row flex-col space-x-4 rtl:space-x-reverse md:pe-6 pe-2">
                     <div className="ml-4 flex md:order-2 md:space-x-4 space-x-3">
-                        <Button theme={customButtonTheme} color="primary" size="md">Get started</Button>
-                        <Button theme={customButtonTheme} color="primary-light" size="md">Get started</Button>
+                        <Link href={productsRoute.path}>
+                            <Button theme={customButtonTheme} color="primary" size="md">{("Get Card")}</Button>
+                        </Link>
+
+                        <Link href={loginRoute.path}>
+                            <Button theme={customButtonTheme} color="primary-light" size="md">{("Login")}</Button>
+
+                        </Link>
                         <NavbarToggle/>
                     </div>
                     <NavbarCollapse className="">
@@ -50,14 +57,14 @@ export default function Header(props: IAppProps) {
                             {"Home"}
                         </NavbarLink>
                         <NavbarLink className="uppercase"
-                            href={howItRoute.path}
-                            active={pathname == "/howit" ? true : false}
+                                    href={howItRoute.path}
+                                    active={pathname == "/howit" ? true : false}
                         >
                             {"How it works"}
                         </NavbarLink>
                         <NavbarLink className="uppercase"
-                            href="/contact"
-                            active={pathname == "/contact" ? true : false}
+                                    href="/contact"
+                                    active={pathname == "/contact" ? true : false}
                         >
                             {"Contact Us"}
                         </NavbarLink>

@@ -28,7 +28,7 @@ export default function KuserPage({params}: { params: { uuid: string } }) {
                 setLoading(false);
             }, 700)
         });
-    }, []);
+    }, [params.uuid]);
 
     var vinfo = kuser && kuser.vinfo;
     // Object.keys(vinfo.socialProfils).map((so) => {

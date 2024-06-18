@@ -21,12 +21,12 @@ export const howItRoute : RouteNameInterface = {
 // Auth proccess
 export const loginRoute : RouteNameInterface = {
     name: 'login',
-    path: '/auth/login'
+    path: '/login'
 }
 
 export const registerRoute : RouteNameInterface = {
     name: 'register',
-    path: '/auth/register'
+    path: '/register'
 }
 
 export const productsRoute : RouteNameInterface = {
@@ -38,6 +38,7 @@ export const productItemRoute : RouteNameInterface = {
     name: 'product-item',
     path: '/product-item'
 }
+
 
 /* =======================
  Auth Routes

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Onest, Figtree } from "next/font/google";
 import "./globals.scss";
+import StoreProvider from "@/app/_components/Store/StoreProvider";
 
 const inter = Onest({
   subsets: ["latin"],
@@ -19,9 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <main className="bg-gray-50 min-h-screen w-screen">
-        {children}
-      </main>
+      <StoreProvider>
+          <main className="bg-gray-50 min-h-screen w-screen">
+              {children}
+          </main>
+      </StoreProvider>
+
       </body>
     </html>
   );

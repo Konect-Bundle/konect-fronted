@@ -12,6 +12,7 @@ import {MdOutlineConnectWithoutContact} from "react-icons/md";
 import {useEffect} from "react";
 import {customButtonTheme} from "@/app/_styles/flowbite/button";
 import {productsRoute} from "@/app/_core/config/routes";
+import Link from "next/link";
 
 export default function Home() {
     useEffect(() => {
@@ -44,13 +45,13 @@ export default function Home() {
                                             {'app.bannerText01'}</h2>
                                         <p className="max-w-2xl mb-6 font-light text-gray-500  lg:mb-8 md:text-lg lg:text-xl ">
                                             {'app.bannerText02'}.</p>
-                                        <a href={productsRoute.path} className="">
+                                        <Link href={productsRoute.path} className="">
                                             <Button theme={customButtonTheme} outline color="gray" size="md"
                                                     className="px-6 text-md uppercase">
                                                 <TbArrowForwardUpDouble className={"w-6 h-6 mr-2"}/>
                                                 {('Order now')}
                                             </Button>
-                                        </a>
+                                        </Link>
                                     </div>
                                     <div data-aos="fade-up-left" data-aos-duration="1000"
                                          className="hidden lg:mt-0 lg:col-span-6 lg:flex relative -right-54 top-20">
