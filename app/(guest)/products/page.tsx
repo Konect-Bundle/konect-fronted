@@ -25,7 +25,7 @@ export interface KwidgetListProps {
 
 export default function KwidgetListPage(props: KwidgetListProps) {
     const [filter, setFilter] = useState<string>("all");
-    const gadgetFilters: Array<string> = ["card", "ring", "watch"]
+    const gadgetFilters: Array<string> = ["all", "card", "ring", "watch"]
     const [gadgets, setGadgets] = useState<Array<KoGadgetItem> | null>(null);
     const [isLoading, setLoading] = useState<boolean>(false);
     useEffect(() => {

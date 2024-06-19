@@ -1,5 +1,5 @@
 "use client";
-import KuserHeader from "@/app/_components/KuserHeader";
+import KuserHeader from "@/app/_components/Common/Headers/KuserHeader";
 import {UserService} from "@/app/_core/api/services/UserService";
 import {esser, ucfirst} from "@/app/_core/utils/functions";
 import Image from "next/image";
@@ -7,22 +7,22 @@ import Link from "next/link";
 import {TbArrowForwardUpDouble, TbExternalLink, TbMail, TbPhone, TbShape3, TbShare3, TbUsersPlus} from "react-icons/tb";
 import {MdLocationPin} from "react-icons/md";
 import {MdOutlineConnectWithoutContact} from "react-icons/md";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import ImageSkeleton from "@/app/_components/Common/Skeleton/ImageSkeleton";
 import TextSkeleton from "@/app/_components/Common/Skeleton/TextSkeleton";
 import VideoSkeleton from "@/app/_components/Common/Skeleton/VideoSkeleton";
 import ExternalLinkSkeleton from "@/app/_components/Common/Skeleton/ExternalLinkSkeleton";
 import {Button} from "flowbite-react";
 import {customButtonTheme} from "@/app/_styles/flowbite/button";
+import {ROOT_FILES_URL} from "@/app/_core/config/constants";
 
 
 export default function KuserPage({params}: { params: { uuid: string } }) {
     const [kuser, setKuser] = useState<any>(null);
     const [isLoading, setLoading] = useState(true);
-
+    const aRef = useRef<HTMLAnchorElement>(null);
     useEffect(() => {
         UserService.getUser(params.uuid).then((rs) => {
-
             setKuser(rs.data);
             setTimeout(() => {
                 setLoading(false);
@@ -36,6 +36,25 @@ export default function KuserPage({params}: { params: { uuid: string } }) {
     // })
     // if (isLoading) return <p>Loading...</p>;
     // if (!data) return <p>No profile data</p>
+
+    const handleShareContact = (e: any) => {
+        e.preventDefault();
+        if (navigator.share) {
+            navigator.share({
+                url: window.location.href,
+            })
+                .then(() => console.log('Successful share'))
+                .catch(error => console.log('Error sharing:', error));
+        } else {
+            console.log('Can not share')
+        }
+    }
+
+    const handleSaveContact = (e: any) => {
+        e.preventDefault()
+        console.log(e.target)
+        aRef.current?.click();
+    }
     return (
         <div className="h-screen py-4">
             <KuserHeader/>
@@ -51,15 +70,18 @@ export default function KuserPage({params}: { params: { uuid: string } }) {
                       animated={false}
                   />
               ) : (
-                  <Image
-                      alt="Kuser Image"
-                      src={
-                          "https://www.logo.wine/a/logo/Instagram/Instagram-Glyph-Color-Logo.wine.svg"
-                      }
-                      width={400}
-                      height={400}
-                      className="rounded-xl w-52 h-52"
-                  />
+                  <span className="rounded-xl max-w-52 min-h-52 overflow-hidden flex justify-center items-center">
+                      <Image
+                          alt="Kuser Image"
+                          src={
+                              ROOT_FILES_URL + "/" + kuser.profile_photo_path
+                          }
+                          width={500}
+                          height={500}
+                          className="w-full"
+                      />
+                  </span>
+
               )}
             </span>
 
@@ -131,7 +153,7 @@ export default function KuserPage({params}: { params: { uuid: string } }) {
                       </span>
                                         ) : (
                                             <a
-                                                href={"mailto:"+vinfo.email.text}
+                                                href={"mailto:" + vinfo.email.text}
                                                 className="hover:underline text-gray-700 break-words"
                                             >
                                                 {vinfo.email.text}
@@ -156,7 +178,7 @@ export default function KuserPage({params}: { params: { uuid: string } }) {
                       </span>
                                         ) : (
                                             <a
-                                                href={"tel:"+vinfo.phone.text}
+                                                href={"tel:" + vinfo.phone.text}
                                                 className="hover:underline text-gray-700"
                                             >
                                                 {vinfo.phone.text}
@@ -207,11 +229,13 @@ export default function KuserPage({params}: { params: { uuid: string } }) {
 
                         <div
                             className="flex space-x-3 md:pb-2 md:relative md:w-full md:shadow-none shadow py-4 fixed z-30 md:bg-white bg-black-light justify-center items-center bottom-0 left-0 w-screen">
-                            <Button theme={customButtonTheme} color="primary">
-                                <TbUsersPlus className={"w-8"}/>
-                                {('Save')}
-                            </Button>
-                            <Button theme={customButtonTheme} color="gray">
+                            <Link href={kuser ? ROOT_FILES_URL + "/vcards/" + kuser.uuid + ".vcf" : ""} ref={aRef}>
+                                <Button theme={customButtonTheme} color="primary" >
+                                    <TbUsersPlus className={"w-8"}/>
+                                    {('Save')}
+                                </Button>
+                            </Link>
+                            <Button theme={customButtonTheme} onClick={handleShareContact} color="gray">
                                 <TbShare3 className={"w-8"}/>
                                 {('Share')}
                             </Button>
