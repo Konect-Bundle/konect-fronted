@@ -6,7 +6,7 @@ export const customButtonTheme: CustomFlowbiteTheme["button"] = {
     "color": {
         "primary": "bg-yellow-700 hover:bg-yellow-800 text-black-normal",
         "primary-light": "bg-white text-gray-900 focus:ring-4 focus:bg-yellow-700 enabled:hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-600 dark:text-white dark:focus:ring-gray-700 dark:enabled:hover:border-gray-700 dark:enabled:hover:bg-gray-700",
-        "dark": "border border-transparent bg-gray-700 hover:bg-gray-900 text-yellow-700 focus:ring-4 focus:ring-gray-300 enabled:hover:bg-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:focus:ring-gray-800 dark:enabled:hover:bg-gray-700"
+        "dark": "border border-transparent bg-gray-800 hover:bg-gray-900 text-yellow-700 focus:ring-4 focus:ring-gray-300 enabled:hover:bg-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:focus:ring-gray-800 dark:enabled:hover:bg-gray-700"
     },
     "disabled": "cursor-not-allowed opacity-50",
     "isProcessing": "cursor-wait",
@@ -62,7 +62,7 @@ export const customButtonTheme: CustomFlowbiteTheme["button"] = {
             "light": ""
         },
         "off": "",
-        "on": "flex w-full justify-center bg-white text-gray-900 transition-all duration-75 ease-in group-enabled:group-hover:bg-opacity-0 group-enabled:group-hover:text-inherit dark:bg-gray-900 dark:text-white",
+        "on": "flex w-full  justify-center bg-white text-gray-900 transition-all duration-75 ease-in group-enabled:group-hover:bg-opacity-0 group-enabled:group-hover:text-inherit dark:bg-gray-900 dark:text-white",
         "pill": {
             "off": "rounded-md",
             "on": "rounded-full"
