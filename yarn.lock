@@ -707,6 +707,11 @@ concat-map@0.0.1:
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
   integrity sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==
 
+country-flag-icons@^1.5.12:
+  version "1.5.12"
+  resolved "https://registry.yarnpkg.com/country-flag-icons/-/country-flag-icons-1.5.12.tgz#78931a368705f27b4397f9a45692433799722fab"
+  integrity sha512-ksBaQqQEFSvSFg1NV8tlAk4IjgDRNMu5ImjnCac0C409CiN6ObTI0vCFaNfaPusxLrr5O9pueT1R3G4XMMwErg==
+
 cross-spawn@^7.0.0, cross-spawn@^7.0.2:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"

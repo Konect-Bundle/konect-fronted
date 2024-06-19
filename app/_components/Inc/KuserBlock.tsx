@@ -15,16 +15,18 @@ import {Button} from "flowbite-react";
 import {customButtonTheme} from "@/app/_styles/flowbite/button";
 import {ROOT_FILES_URL} from "@/app/_core/config/constants";
 import {HiSave} from "react-icons/hi";
+import KuserFeedback from "@/app/_components/Inc/KuserFeedback";
+import {KonectService} from "@/app/_core/api/services/KonectService";
 
 interface KuserBlockProps {
     kuser: any,
     isLoading: boolean
 }
 
-export default function KuserBlock({kuser, isLoading= false}: KuserBlockProps ) {
+export default function KuserBlock({kuser, isLoading = false}: KuserBlockProps) {
 
     const aRef = useRef<HTMLAnchorElement>(null);
-
+    const [isCompleted, setIsCompleted] = useState<boolean>(false);
     var vinfo = kuser && kuser.vinfo;
 
 
@@ -43,12 +45,27 @@ export default function KuserBlock({kuser, isLoading= false}: KuserBlockProps ) 
 
     const handleSaveContact = (e: any) => {
         e.preventDefault()
-        window.location.href= aRef.current?.href!
+        if (kuser) {
+            console.log(kuser.uuid)
+            KonectService.makeConnect(kuser.uuid, 1).then((rs) => {
+                console.log(rs)
+                if (rs.state) {
+                    setIsCompleted(true)
+                }
+
+                window.location.href = aRef.current?.href!
+
+            })
+
+        }
         // aRef.current?.click();
         // setIsSaved(true)
     }
     return (
         <div className="h-screen py-4">
+            {isCompleted && <KuserFeedback callback={() => {
+                setIsCompleted(false)
+            }} kuser={kuser}/>}
             <KuserHeader/>
 
             <div className="grid grid-cols-12 gap-2 h-full w-screen bg-gray-100">
