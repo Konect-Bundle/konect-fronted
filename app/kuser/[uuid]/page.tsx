@@ -2,6 +2,7 @@ import KuserBlock from "@/app/_components/Inc/KuserBlock";
 import {UserService} from "@/app/_core/api/services/UserService";
 import type {Metadata, ResolvingMetadata} from 'next'
 import {ROOT_FILES_URL} from "@/app/_core/config/constants";
+import {ucfirst} from "@/app/_core/utils/functions";
 
 export async function generateMetadata(
     {params}: { params: { uuid: string } },
@@ -21,9 +22,9 @@ export async function generateMetadata(
         title: "Kuser",
         openGraph: {
             url: "https://www.ikonect.me/kuser/" + kuser.uuid,
-            title:"Kuser - " + kuser.firstname + " " + kuser.name,
+            title:"Kuser - " + ucfirst(kuser.firstname) + " " + ucfirst(kuser.name),
             siteName: "Konect",
-            description: kuser.vinfo.note,
+            description: kuser.vinfo.note.text,
             images: [ROOT_FILES_URL + "/compressed-photo/" + kuser.uuid + ".jpg", ...previousImages],
         },
     }
