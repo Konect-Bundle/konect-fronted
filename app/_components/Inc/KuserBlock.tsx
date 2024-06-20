@@ -17,7 +17,7 @@ import {ROOT_FILES_URL} from "@/app/_core/config/constants";
 import {HiSave} from "react-icons/hi";
 import KuserFeedback from "@/app/_components/Inc/KuserFeedback";
 import {KonectService} from "@/app/_core/api/services/KonectService";
-import { motion } from "framer-motion"
+import {motion} from "framer-motion"
 
 interface KuserBlockProps {
     kuser: any,
@@ -50,8 +50,12 @@ export default function KuserBlock({kuser, isLoading = false}: KuserBlockProps) 
         if (kuser) {
             KonectService.makeConnect(kuser.uuid, 1).then((rs) => {
                 if (rs.state) {
-                    setIsCompleted(true)
                     setKonectCount(konectsCount + 1)
+
+                    const int = setInterval(() => {
+                        setIsCompleted(true)
+                        clearInterval(int)
+                    }, 2000)
                 }
                 window.location.href = aRef.current?.href!
             })
@@ -122,23 +126,24 @@ export default function KuserBlock({kuser, isLoading = false}: KuserBlockProps) 
                   {isLoading ? (
                       <TextSkeleton className="w-16" bgClass="bg-gray-300/25"/>
                   ) : (
-                      <motion.div initial={{ opacity: 0, scale: 0.5 }}
-                                  animate={{ opacity: 1, scale: 1 }}
-                                  transition={{
-                                      duration: 0.1,
-                                      ease: [0, 0.71, 0.2, 1.01],
-                                      scale: {
-                                          type: "spring",
-                                          damping: 5,
-                                          stiffness: 100,
-                                          restDelta: 0.001
-                                      }
-                                  }}>
                       <span className="text-sm text-gray-700 space-x-1">
-                    <span id="konect-stat">{konectsCount}</span>
+                     <motion.div initial={{opacity: 0, scale: 0.5}}
+                                 animate={{opacity: 1, scale: 1}}
+                                 transition={{
+                                     duration: 0.1,
+                                     ease: [0, 0.71, 0.2, 1.01],
+                                     scale: {
+                                         type: "spring",
+                                         damping: 5,
+                                         stiffness: 100,
+                                         restDelta: 0.001
+                                     }
+                                 }}>
+                         <span id="konect-stat">{konectsCount}</span>
+                     </motion.div>
                     <span>{esser("konect", konectsCount)}</span>
                   </span>
-                      </motion.div>
+
                   )}
               </span>
 
