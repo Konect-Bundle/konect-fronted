@@ -17,6 +17,7 @@ import {ROOT_FILES_URL} from "@/app/_core/config/constants";
 import {HiSave} from "react-icons/hi";
 import KuserFeedback from "@/app/_components/Inc/KuserFeedback";
 import {KonectService} from "@/app/_core/api/services/KonectService";
+import { motion } from "framer-motion"
 
 interface KuserBlockProps {
     kuser: any,
@@ -27,6 +28,7 @@ export default function KuserBlock({kuser, isLoading = false}: KuserBlockProps) 
 
     const aRef = useRef<HTMLAnchorElement>(null);
     const [isCompleted, setIsCompleted] = useState<boolean>(false);
+    const [konectsCount, setKonectCount] = useState<number>(kuser.konect_count);
     var vinfo = kuser && kuser.vinfo;
 
 
@@ -46,21 +48,19 @@ export default function KuserBlock({kuser, isLoading = false}: KuserBlockProps) 
     const handleSaveContact = (e: any) => {
         e.preventDefault()
         if (kuser) {
-            console.log(kuser.uuid)
             KonectService.makeConnect(kuser.uuid, 1).then((rs) => {
-                console.log(rs)
                 if (rs.state) {
                     setIsCompleted(true)
+                    setKonectCount(konectsCount + 1)
                 }
-
                 window.location.href = aRef.current?.href!
-
             })
 
         }
         // aRef.current?.click();
         // setIsSaved(true)
     }
+
     return (
         <div className="h-screen py-4">
             {isCompleted && <KuserFeedback callback={() => {
@@ -122,10 +122,23 @@ export default function KuserBlock({kuser, isLoading = false}: KuserBlockProps) 
                   {isLoading ? (
                       <TextSkeleton className="w-16" bgClass="bg-gray-300/25"/>
                   ) : (
+                      <motion.div initial={{ opacity: 0, scale: 0.5 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  transition={{
+                                      duration: 0.1,
+                                      ease: [0, 0.71, 0.2, 1.01],
+                                      scale: {
+                                          type: "spring",
+                                          damping: 5,
+                                          stiffness: 100,
+                                          restDelta: 0.001
+                                      }
+                                  }}>
                       <span className="text-sm text-gray-700 space-x-1">
-                    <span id="konect-stat">{kuser.konect_count}</span>
-                    <span>{esser("konect", kuser.konect_count)}</span>
+                    <span id="konect-stat">{konectsCount}</span>
+                    <span>{esser("konect", konectsCount)}</span>
                   </span>
+                      </motion.div>
                   )}
               </span>
 

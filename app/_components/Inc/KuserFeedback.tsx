@@ -11,13 +11,14 @@ import {Button, Checkbox, type CustomFlowbiteTheme, Label, TextInput} from "flow
 import {customTextInputTheme} from "@/app/_styles/flowbite/form";
 import {customButtonTheme} from "@/app/_styles/flowbite/button";
 import CountryCode from "@/app/_components/Common/CountryCode";
+import Swal from 'sweetalert2'
 
 import $ from "jquery";
 import {KonectService} from "@/app/_core/api/services/KonectService";
 
 interface KuserBlockProps {
     kuser: any,
-    callback: ()=> void
+    callback: () => void
 }
 
 customTextInputTheme!["addon"] = "inline-flex items-center rounded-l-md border border-r-0 border-gray-300/45 bg-gray-200 px-1.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-400"
@@ -30,12 +31,21 @@ export default function KuserFeedback({kuser, callback}: KuserBlockProps) {
     const [phone, setPhone] = useState("");
 
     const handleShareInfo = (e: any) => {
+        console.log(name, firstname, email, phone)
         e.preventDefault();
-        if(!name ||!firstname ||!email ||!phone) {
-            var tel : string = $("#countryCode").val() + phone;
+        if (name || firstname || email || phone) {
+            var tel: string = $("#countryCode").val() + phone;
             KonectService.makeFeed(kuser.uuid, kuser.name, kuser.firstname, kuser.email, kuser.vinfo.phone.text).then((rs) => {
-               console.log(rs)
-                callback()
+                Swal.fire({
+                    title: "Sent!",
+                    text: "You successfully sent your informations",
+                    icon: "success",
+                    timer: 1500
+
+                }).then(() => {
+                    callback()
+                })
+
             })
         }
     }
@@ -49,11 +59,11 @@ export default function KuserFeedback({kuser, callback}: KuserBlockProps) {
                     className="w-full h-full md:w-2/4 bg-white md:rounded-md min-w-fit overflow-hidden overflow-y-scroll p-8 md:p-14">
             <span className="flex justify-between py-4  md:mb-24 mb-5">
                 <Link href={homeRoute.path} className="flex items-center space-x-1 rtl:space-x-reverse">
-                    <Image src={ROOT_ASSETS_URL + "/images/logo.png"} width={500} height={500} className="w-7"
+                    <Image src={ROOT_ASSETS_URL + "/images/logo.png"} width={500} height={500} className="w-8"
                            alt="Flowbite Logo"/>
-                    <span className="ml-1 font-bold text-xl">nect</span>
+                    <span className="ml-1 font-semibold text-3xl">nect</span>
                 </Link>
-                <span className="cursor-pointer" id="closeSendContact" onClick={()=>{
+                <span className="cursor-pointer" id="closeSendContact" onClick={() => {
                     callback()
                 }}>
 <TbX className="'w-7 h-7 text-gray-800'"/>
@@ -66,9 +76,9 @@ export default function KuserFeedback({kuser, callback}: KuserBlockProps) {
                             {("Tell me about you")}
                         </h2>
                         <div
-                            className="text-gray-400 font-thin text-sm flex space-x-4 p-4 items-center bg-gray-100 rounded-md">
+                            className="text-gray-400 font-thin text-sm flex space-x-4 p-4 items-center bg-gray-200 rounded-md">
                             <MdOutlineConnectWithoutContact
-                                className="w-6 h-6 text-gray-50"/>
+                                className="w-6 h-6 text-gray-600"/>
                             <p>Aidez <span
                                 className="font-bold text-gray-600">{ucfirst(kuser.firstname) + "!"}</span> à en
                                 savoir plus sur vous.</p>
@@ -100,7 +110,7 @@ export default function KuserFeedback({kuser, callback}: KuserBlockProps) {
                                         <Label htmlFor="email" value="Your email"/>
                                     </div>
                                     <TextInput theme={customTextInputTheme} color="gray" defaultValue={email}
-                                               id="email" type="email" placeholder="name@ikonect.me" required
+                                               id="email" type="email" required
                                                onChange={(val) => {
                                                    setEmail(val.target.value)
                                                }}/>

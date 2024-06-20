@@ -10,7 +10,7 @@ export class UserService {
         return new User()
     }
     static async getUser(uuid: string) {
-        const res = await fetch(SERVER_API_URL + "/user/" + uuid, {cache: 'force-cache'})
+        const res = await fetch(SERVER_API_URL + "/user/" + uuid, {cache: 'no-store'})
 
         if (!res.ok) {
             // This will activate the closest `error.js` Error Boundary

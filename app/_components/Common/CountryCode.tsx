@@ -48,7 +48,7 @@ export default function CountryCode({callback}: KuserBlockProps) {
     const [current, setCurrent] = useState<number>(1);
 
     const nodeMaker = (current: number): ReactNode => {
-        return <span className="flex justify-around items-center space-x-1 text-gray-400 text-xs font-semibold md:text-sm w-14">
+        return <span className="flex justify-around items-center space-x-1 text-gray-500 text-xs font-semibold md:text-sm w-14">
                     {availablesCountries[current].icon}
             <span className="">{availablesCountries[current].countryCode}</span>
                 </span>
