@@ -1,5 +1,6 @@
 "use client";
-import {useEffect, useRef, useState} from "react";
+import { motion } from "framer-motion"
+import { useState} from "react";
 import {ROOT_ASSETS_URL} from "@/app/_core/config/constants";
 import {homeRoute} from "@/app/_core/config/routes";
 import Image from "next/image";
@@ -7,7 +8,7 @@ import Link from "next/link";
 import {TbX} from "react-icons/tb";
 import {MdOutlineConnectWithoutContact} from "react-icons/md";
 import {ucfirst} from "@/app/_core/utils/functions";
-import {Button, Checkbox, type CustomFlowbiteTheme, Label, TextInput} from "flowbite-react";
+import {Button, Label, TextInput} from "flowbite-react";
 import {customTextInputTheme} from "@/app/_styles/flowbite/form";
 import {customButtonTheme} from "@/app/_styles/flowbite/button";
 import CountryCode from "@/app/_components/Common/CountryCode";
@@ -50,7 +51,14 @@ export default function KuserFeedback({kuser, callback}: KuserBlockProps) {
         }
     }
     return (
-        <div className="fixed top-0 left-0 h-screen w-screen flex justify-center items-center z-50">
+        <motion.div
+    animate={{ x: 100 }}
+    transition={{
+        duration: 0.8,
+        delay: 0.3,
+        ease: [0, 0.71, 0.2, 1.01]
+    }}
+     className="fixed top-0 left-0 h-screen w-screen flex justify-center items-center z-50">
             <div className="bg-gray-700 opacity-30 h-full w-full">
 
             </div>
@@ -137,7 +145,7 @@ export default function KuserFeedback({kuser, callback}: KuserBlockProps) {
 
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }
 

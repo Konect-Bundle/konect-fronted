@@ -126,34 +126,34 @@ export default function KuserBlock({kuser, isLoading = false}: KuserBlockProps) 
                   {isLoading ? (
                       <TextSkeleton className="w-16" bgClass="bg-gray-300/25"/>
                   ) : (
-                      <span className="text-sm text-gray-700 space-x-1">
+                      <span className="text-sm text-gray-700 space-x-1 flex">
+                     <motion.div initial={{opacity: 0, scale: 0.5}}
+                                 animate={{opacity: 1, scale: 1}}
+                                 transition={{
+                                     duration: 0.2,
+                                     ease: [0, 0.71, 0.2, 1.01],
+                                     scale: {
+                                         type: "spring",
+                                         damping: 7,
+                                         stiffness: 100,
+                                         restDelta: 0.001
+                                     }
+                                 }}>
+                         <span id="konect-stat">{konectsCount}</span>
+                     </motion.div>
+                    <span>{esser("konect", konectsCount)}</span>
+                  </span>
 
-                         <span id="konect-stat"><motion.div initial={{opacity: 0, scale: 0.5}}
-                                                            animate={{opacity: 1, scale: 1}}
-                                                            transition={{
-                                                                duration: 0.1,
-                                                                ease: [0, 0.71, 0.2, 1.01],
-                                                                scale: {
-                                                                    type: "spring",
-                                                                    damping: 5,
-                                                                    stiffness: 100,
-                                                                    restDelta: 0.001
-                                                                }
-                                                            }}>{konectsCount} </motion.div></span>
+                  )}
+              </span>
 
-                      <span>{esser("konect", konectsCount)}</span>
-                        </span>
+                        </div>
 
-                        )}
-                    </span>
-
-                </div>
-
-                <div
-                    className="flex mt-4 space-x-3 pb-2 relative w-full shadow-none justify-center items-center bottom-0 left-0">
-                    <Link href={kuser ? ROOT_FILES_URL + "/vcards/" + kuser.uuid + '.vcf' : ""} ref={aRef}
-                          className="hidden opacity-0 invisible"/>
-                    <Button theme={customButtonTheme} color="dark" onClick={handleSaveContact}>
+                        <div
+                            className="flex mt-4 space-x-3 pb-2 relative w-full shadow-none justify-center items-center bottom-0 left-0">
+                            <Link href={kuser ? ROOT_FILES_URL + "/vcards/" + kuser.uuid + '.vcf' : ""} ref={aRef}
+                                  className="hidden opacity-0 invisible"/>
+                            <Button theme={customButtonTheme} color="dark" onClick={handleSaveContact}>
                                 <HiSave className={"text-lg"}/>
                                 <span className="ml-1">{('Save')}</span>
                             </Button>
