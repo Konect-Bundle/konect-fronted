@@ -1,29 +1,12 @@
 import {SERVER_API_URL} from "../constants";
 import {serialize} from "object-to-formdata";
+import {fetchData} from "@/app/_core/api/functions";
 
 export class GadgetService {
 
     static async getAll(filter = "all") {
-        const
-            res = await fetch(SERVER_API_URL + "/gadget/filter", {
-                method: "POST",
-                body: serialize({"filter": filter}),
-                cache: 'force-cache'
-            })
+        return await fetchData("/api/gadget/filter", serialize({"filter": filter}), {}, "POST")
 
-        if (
-
-            !
-                res
-                    .ok
-        ) {
-            // This will activate the closest `error.js` Error Boundary
-            throw new Error(
-                'Failed to fetch data'
-            )
-        }
-
-        return res.json()
     }
 
     static async getKwidget(code

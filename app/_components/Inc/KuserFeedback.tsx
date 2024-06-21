@@ -32,11 +32,10 @@ export default function KuserFeedback({kuser, callback}: KuserBlockProps) {
     const [phone, setPhone] = useState("");
 
     const handleShareInfo = (e: any) => {
-        console.log(name, firstname, email, phone)
         e.preventDefault();
         if (name || firstname || email || phone) {
             var tel: string = $("#countryCode").val() + phone;
-            KonectService.makeFeed(kuser.uuid, kuser.name, kuser.firstname, kuser.email, kuser.vinfo.phone.text).then((rs) => {
+            KonectService.makeFeed(kuser.uuid, name, firstname, email, phone).then((rs) => {
                 Swal.fire({
                     title: "Sent!",
                     text: "You successfully sent your informations",
@@ -52,7 +51,7 @@ export default function KuserFeedback({kuser, callback}: KuserBlockProps) {
     }
     return (
         <motion.div
-    animate={{ x: 100 }}
+    animate={{ x: 0 }}
     transition={{
         duration: 0.8,
         delay: 0.3,

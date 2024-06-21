@@ -44,3 +44,12 @@ export const productItemRoute : RouteNameInterface = {
  Auth Routes
 ========================= */
 
+
+
+/* =======================
+ Profil Routes
+========================= */
+export const dashboardRoute : RouteNameInterface = {
+    name: 'dashboard',
+    path: '/dashboard'
+}

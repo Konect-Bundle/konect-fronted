@@ -4,8 +4,9 @@ import {Button, Checkbox, Label, TextInput} from "flowbite-react";
 import {TbEyeOff, TbEye} from "react-icons/tb";
 import $ from "jquery";
 import {UserService} from "@/app/_core/api/services/UserService";
-import {homeRoute} from "@/app/_core/config/routes";
-import { cookies } from 'next/headers'
+import {dashboardRoute, homeRoute} from "@/app/_core/config/routes";
+import {cookies} from 'next/headers'
+import Swal from "sweetalert2";
 
 export interface ILoginFormPageProps {
 }
@@ -15,6 +16,7 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
     const [rememberMe, setRemberMe] = useState("off")
     const [password, setPassword] = useState("")
     const [showPassword, setShowPassword] = useState(false)
+
 
     useEffect(() => {
         var iconDiv = $("#password").parent().find('div')
@@ -32,7 +34,32 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
         if (!email || !password) return
 
         UserService.login(email, password).then(res => {
-            console.log(res)
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "bottom-right",
+                showConfirmButton: false,
+                timer: 3000,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+
+            if (res.state) {
+                Toast.fire({
+                    icon: "success",
+                    title: res.msg
+                }).then(
+                    () => window.location.href = dashboardRoute.path
+                );
+            } else {
+
+                Toast.fire({
+                    icon: "error",
+                    title: res.msg
+                });
+
+            }
             // if (res.data.token) {
             //     cookies().set('client_token', res.data.token)
             //     // localStorage.setItem("client_token", res.data.token)

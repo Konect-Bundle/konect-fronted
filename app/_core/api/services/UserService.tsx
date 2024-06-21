@@ -1,6 +1,7 @@
 import {SERVER_API_URL} from "../constants";
 import {serialize} from "object-to-formdata";
 import {User} from "@/app/_core/models/User";
+import {fetchData} from "@/app/_core/api/functions";
 
 export class UserService {
 
@@ -10,62 +11,15 @@ export class UserService {
         return new User()
     }
     static async getUser(uuid: string) {
-        const res = await fetch(SERVER_API_URL + "/user/" + uuid, {cache: 'no-store'})
-
-        if (!res.ok) {
-            // This will activate the closest `error.js` Error Boundary
-            throw new Error('Failed to fetch data')
-        }
-
-        return res.json()
-
+        return await fetchData("/api/user/uuid/" + uuid);
     }
 
     static async login(email: string, password: string) {
-        const res = await fetch(SERVER_API_URL + "/auth/login", {
-            method: "POST",
-            credentials: "include",
-            body: serialize({"email": email, "password": password}),
-            cache: 'force-cache'
-        })
-
-        if (!res.ok) {
-            // This will activate the closest `error.js` Error Boundary
-            throw new Error('Failed to fetch data')
-        }
-
-        return res.json()
-
+        return await fetchData("/api/auth/login", serialize({"email": email, "password": password}), {}, "POST");
     }
 
-    static async getUserByToken(token: string) {
-        const res = await fetch(SERVER_API_URL + "/auth/user", {
-            method: "POST",
-            headers: {
-                Authorization: `Bearer ${token}`,
-                // Content-Type: 'application/json'
-            },
-            cache: 'force-cache'
-        })
-
-        if (!res.ok) {
-            // This will activate the closest `error.js` Error Boundary
-            throw new Error('Failed to fetch data')
-        }
-
-        return res.json()
-
+    static async getLoggedUser() {
+        return await fetchData("/api/auth/user");
     }
 }
 
-
-//AXIOS OLD
-// try {
-//   cache( async() => {
-//     const response = await axiosInstance.get(SERVER_API_URL + "/user/" + uuid);
-//     return response.data;
-//   });
-// } catch (error) {
-//   console.error('Error retrieving data:', error);
-//   throw new Error('Could not get data');
-// }

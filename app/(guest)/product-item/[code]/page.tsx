@@ -63,7 +63,7 @@ export default function KwidgetItemPage({
         if (!name || !familyName || !companyName || !qty) return;
         PaymentService.makePayment(params.code, name, familyName, companyName, qty).then((rs) => {
             console.log(rs)
-            window.location.href = rs.data.redirect_url
+            window.location.href = rs.data.url
 
         })
     }
@@ -364,7 +364,7 @@ export default function KwidgetItemPage({
                                                 <TbPlus/>
                                             </button>
                                         </div>
-                                        <Button theme={customButtonTheme} size="md" color="dark"
+                                        <Button onClick={handleMakePayment} theme={customButtonTheme} size="md" color="dark"
                                                 className="flex justify-center space-x-2">
                                             <TbShoppingCart className="text-lg"/>
                                             <span className="ml-1 font-bold">{"Buy"}</span>

@@ -19,6 +19,7 @@ import {customDropdownTheme} from "@/app/_styles/flowbite/dropdown";
 import ImageSkeleton from "@/app/_components/Common/Skeleton/ImageSkeleton";
 import TextSkeleton from "@/app/_components/Common/Skeleton/TextSkeleton";
 import NoResultFound from "@/app/_components/Common/NoResultFound";
+import useSWR from "swr";
 
 export interface KwidgetListProps {
 }
@@ -27,9 +28,7 @@ export default function KwidgetListPage(props: KwidgetListProps) {
     const [filter, setFilter] = useState<string>("all");
     const gadgetFilters: Array<string> = ["all", "card", "ring", "watch"]
     const [gadgets, setGadgets] = useState<Array<KoGadgetItem> | null>(null);
-    const [isLoading, setLoading] = useState<boolean>(false);
-    useEffect(() => {
-        setLoading(true);
+    const {data, error, isLoading} = useSWR('/api/kgadgets', () => {
         GadgetService.getAll(filter).then((rs) => {
             var items: Array<KoGadgetItem> = []
             rs.data.map((gadget: any) => {
@@ -46,23 +45,20 @@ export default function KwidgetListPage(props: KwidgetListProps) {
                 );
                 items.push(g);
             })
-            console.log(rs.data);
+            // console.log(rs.data);
             setGadgets(items);
 
-            setTimeout(() => {
-                setLoading(false);
-            }, 700)
         })
-    }, [filter]);
+    })
+
 
     return (<div className="min-h-screen">
             <Header/>
             <main>
                 <section className="py-6 h-max">
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                        <a
+                        <span
                             className="group h-72 relative flex flex-col w-full min-h-60 bg-center bg-cover rounded-xl hover:shadow-lg transition bg-[url('https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3000&q=80')]"
-                            href="#"
                         >
                             <div className="flex-auto p-4 md:p-6">
                                 <h3 className="text-xl text-white/90 group-hover:text-white">
@@ -90,7 +86,7 @@ export default function KwidgetListPage(props: KwidgetListProps) {
                                     </svg>
                                 </div>
                             </div>
-                        </a>
+                        </span>
 
                         <Breadcrumb aria-label="Default breadcrumb example" theme={customBreadCrumbTheme?.root}
                                     className="py-6">
@@ -132,7 +128,7 @@ export default function KwidgetListPage(props: KwidgetListProps) {
 
 
                                                 return (
-                                                    <Link key={index} href={productItemRoute.path + "/" + gadget.code}
+                                                    <span key={index}
                                                           className="mx-auto sm:mr-0 group cursor-pointer lg:mx-auto transition-all duration-500 rounded-xl p-3">
                                                         <div
                                                             className="bg-white border rounded-3xl overflow-hidden border-noir-medium/25">
@@ -177,7 +173,7 @@ export default function KwidgetListPage(props: KwidgetListProps) {
                                                             </div>
 
                                                         </div>
-                                                    </Link>);
+                                                    </span>);
                                             })
                                         : (
                                             <>

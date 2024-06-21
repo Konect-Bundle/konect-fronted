@@ -18,6 +18,7 @@ import {HiSave} from "react-icons/hi";
 import KuserFeedback from "@/app/_components/Inc/KuserFeedback";
 import {KonectService} from "@/app/_core/api/services/KonectService";
 import {motion} from "framer-motion"
+import {ErrorBoundary} from "next/dist/client/components/error-boundary";
 
 interface KuserBlockProps {
     kuser: any,
@@ -58,6 +59,8 @@ export default function KuserBlock({kuser, isLoading = false}: KuserBlockProps) 
                     }, 2000)
                 }
                 window.location.href = aRef.current?.href!
+            }).catch((err) => {
+                console.log(err)
             })
 
         }
@@ -91,7 +94,7 @@ export default function KuserBlock({kuser, isLoading = false}: KuserBlockProps) 
                           }
                           width={500}
                           height={500}
-                          className="w-full"
+                          className="w-full" priority={true}
                       />
                   </span>
 

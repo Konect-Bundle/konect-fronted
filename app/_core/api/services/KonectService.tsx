@@ -1,44 +1,24 @@
 import {SERVER_API_URL} from "../constants";
 import {serialize} from "object-to-formdata";
+import {fetchData} from "@/app/_core/api/functions";
+import {AppSPAService} from "@/app/_core/api/services/AppSPAService";
 
 export class KonectService {
 
     static async makeConnect(uuid: string, way: number = 1) {
-        const
-            res = await fetch(SERVER_API_URL + "/add-konect", {
-                method: "POST",
-                body: serialize({"uuid": uuid, "way": way}),
-                cache: 'force-cache'
-
-
-            })
-
-        if (!res.ok) {
-            // This will activate the closest `error.js` Error Boundary
-            throw new Error(
-                'Failed to fetch data'
-            )
-        }
-
-        return res.json()
+        // return await  fetchData("/sanctum/csrf-cookie")
+        return await fetchData("/api/add-konect", serialize({"uuid": uuid, "way": way}), {}, "POST")
     }
 
     static async makeFeed(uuid: string, name: string, firstname: string, email: string, phone: string) {
-        const
-            res = await fetch(SERVER_API_URL + "/add-feed/" + uuid, {
-                method: "POST",
-                body: serialize({"name": name, "firstname": firstname, "email": email, "phone": phone}),
-                cache: 'force-cache'
-            })
 
-        if (!res.ok) {
-            // This will activate the closest `error.js` Error Boundary
-            throw new Error(
-                'Failed to fetch data'
-            )
-        }
+        return await fetchData("/api/add-feed/" + uuid, serialize({
+            "name": name,
+            "firstname": firstname,
+            "email": email,
+            "phone": phone
+        }), {}, "POST")
 
-        return res.json()
     }
 }
 
