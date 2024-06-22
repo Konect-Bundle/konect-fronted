@@ -4,6 +4,8 @@ import "./globals.scss";
 import StoreProvider from "@/app/_components/Store/StoreProvider";
 import {ROOT_ASSETS_URL} from "@/app/_core/config/constants";
 import {AppSPAService} from "@/app/_core/api/services/AppSPAService";
+import {getLocale, getMessages} from "next-intl/server";
+import {NextIntlClientProvider} from "next-intl";
 
 const inter = Onest({
     subsets: ["latin"],
@@ -36,16 +38,23 @@ export default async function RootLayout({
                                          }: Readonly<{
     children: React.ReactNode;
 }>) {
-    AppSPAService.login()
-    return (
-        <html lang="en">
-        <body className={inter.className}>
-        <StoreProvider>
-            <main className="bg-gray-50 min-h-screen w-screen">
-                {children}
-            </main>
-        </StoreProvider>
+    await AppSPAService.login()
 
+    const locale = await getLocale();
+
+    // Providing all messages to the client
+    // side is the easiest way to get started
+    const messages = await getMessages();
+    return (
+        <html lang={locale}>
+        <body className={inter.className}>
+        <NextIntlClientProvider messages={messages}>
+            <StoreProvider>
+                <main className="bg-gray-50 min-h-screen w-screen">
+                    {children}
+                </main>
+            </StoreProvider>
+        </NextIntlClientProvider>
         </body>
         </html>
     );

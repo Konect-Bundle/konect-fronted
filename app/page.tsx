@@ -13,8 +13,10 @@ import {useEffect} from "react";
 import {customButtonTheme} from "@/app/_styles/flowbite/button";
 import {productsRoute} from "@/app/_core/config/routes";
 import Link from "next/link";
+import {useTranslations} from "next-intl";
 
 export default function Home() {
+    const t = useTranslations("Home");
     useEffect(() => {
         AOS.init();
     }, []);
@@ -37,14 +39,14 @@ export default function Home() {
                                                                   className="w-6 h-6 text-gray-50"/>
                                         </span>
                                         <span>
-                                            {'Networking taken to the next level'}
+                                            {t("label_01")}
                                         </span>
                                     </span>
                                         <h2
                                             className="max-w-2xl mb-4 text-5xl font-extrabold tracking-tight leading-none md:text-6xl xl:text-7xl text-gray-900">
-                                            {'app.bannerText01'}</h2>
+                                            {t('bannerText01')}</h2>
                                         <p className="max-w-2xl mb-6 font-light text-gray-500  lg:mb-8 md:text-lg lg:text-xl ">
-                                            {'app.bannerText02'}.</p>
+                                            {t('bannerText02')}.</p>
                                         <Link href={productsRoute.path} className="">
                                             <Button theme={customButtonTheme} outline color="gray" size="md"
                                                     className="px-6 text-md uppercase">
@@ -82,7 +84,7 @@ export default function Home() {
                                 {('Our vision')}
                             </h2>
                             <p className="mt-3 text-gray-800 dark:text-neutral-400">
-                                {('app.index_vision_text')}
+                                {t('index_vision_text')}
                             </p>
                         </div>
 
@@ -103,10 +105,10 @@ export default function Home() {
                                 </svg>
                                 <div className="ms-5 sm:ms-8">
                                     <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-neutral-200">
-                                        {'Eco-friendly and economical'}
+                                        {t('index_vision_title01')}
                                     </h3>
                                     <p className="mt-1 text-gray-600 dark:text-neutral-400">
-                                        {'app.index_vision_section01'}
+                                        {t('index_vision_section01')}
                                     </p>
                                 </div>
                             </div>
@@ -124,10 +126,10 @@ export default function Home() {
 
                                 <div className="ms-5 sm:ms-8">
                                     <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-neutral-200">
-                                        {('Analytics et Insights')}
+                                        {t('index_vision_title02')}
                                     </h3>
                                     <p className="mt-1 text-gray-600 dark:text-neutral-400">
-                                        {('app.index_vision_section02')}
+                                        {t('index_vision_section02')}
                                     </p>
                                 </div>
                             </div>
@@ -145,10 +147,10 @@ export default function Home() {
                                 </svg>
                                 <div className="ms-5 sm:ms-8">
                                     <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-neutral-200">
-                                        {('Networking Made Easy')}
+                                        {t('index_vision_title03')}
                                     </h3>
                                     <p className="mt-1 text-gray-600 dark:text-neutral-400">
-                                        {('app.index_vision_section03')}
+                                        {t('index_vision_section03')}
                                     </p>
                                 </div>
                             </div>
