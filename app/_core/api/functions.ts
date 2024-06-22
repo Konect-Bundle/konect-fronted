@@ -1,7 +1,8 @@
 import {axiosClient} from "@/app/_core/api/axios";
 import {AxiosRequestConfig} from "axios";
+import {AppSPAService} from "@/app/_core/api/services/AppSPAService";
 
-export async function fetchData(route: string, body: any = {}, config: AxiosRequestConfig={}, method: string = "GET"): Promise<any> {
+export async function fetchData(route: string, body: any = {}, config: AxiosRequestConfig = {}, method: string = "GET"): Promise<any> {
     try {
         config = {
             ...config,
@@ -17,7 +18,11 @@ export async function fetchData(route: string, body: any = {}, config: AxiosRequ
         } else {
             response = await axiosClient.get(route, config)
         }
+
         if (response.status.toString().startsWith('4')) {
+            if (response.status == 419) {
+                await AppSPAService.login()
+            }
             return await response.data;
         } else if (response.status.toString().startsWith('2')) {
             return await response.data;

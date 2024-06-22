@@ -18,6 +18,8 @@ import {customBreadCrumbTheme} from "@/app/_styles/flowbite/breadcrumb";
 import {customTextInputTheme} from "@/app/_styles/flowbite/form";
 import {customButtonTheme} from "@/app/_styles/flowbite/button";
 import {PaymentService} from "@/app/_core/api/services/PaymentService";
+import {batch} from "react-redux";
+import {useTranslations} from "next-intl";
 
 export interface KwidgetItemProps {
 
@@ -67,6 +69,7 @@ export default function KwidgetItemPage({
 
         })
     }
+    const t = useTranslations("Kgadgets");
     return (
         <main className="min-h-screen">
             <Header/>
@@ -313,7 +316,7 @@ export default function KwidgetItemPage({
                                         </div>
                                     </div>
                                     <p className="text-gray-500 text-base font-normal mb-5">
-                                        {gadgetItem?.description}
+                                        {t(gadgetItem?.description)}
                                     </p>
                                     <ul className="grid gap-y-4 mb-8">
                                         <li className="flex items-center gap-3">
@@ -364,7 +367,8 @@ export default function KwidgetItemPage({
                                                 <TbPlus/>
                                             </button>
                                         </div>
-                                        <Button onClick={handleMakePayment} theme={customButtonTheme} size="md" color="dark"
+                                        <Button onClick={handleMakePayment} theme={customButtonTheme} size="md"
+                                                color="dark"
                                                 className="flex justify-center space-x-2">
                                             <TbShoppingCart className="text-lg"/>
                                             <span className="ml-1 font-bold">{"Buy"}</span>
