@@ -7,13 +7,14 @@ import {customFooterTheme} from "@/app/_styles/flowbite/footer";
 import { Footer as FooterFb } from "flowbite-react";
 import {ROOT_ASSETS_URL} from "@/app/_core/config/constants";
 import {homeRoute} from "@/app/_core/config/routes";
+import {useTranslations} from "next-intl";
 
 export interface IFooterProps {
 }
 
 export default function Footer(props: IFooterProps) {
     const pathname = usePathname()
-
+    const tLinks= useTranslations("Links")
     return (
         <FooterFb container theme={customFooterTheme}>
             <div className="w-full">
@@ -24,28 +25,27 @@ export default function Footer(props: IFooterProps) {
                             src={ROOT_ASSETS_URL + "/images/logo.png"}
                             alt="Konect Logo"
                             name="nect"
+                            loading="lazy"
                         />
                     </div>
                     <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
                         <div>
-                            <FooterFb.Title title="about"/>
+                            <FooterFb.Title title={tLinks("about")}/>
                             <FooterFb.LinkGroup col>
-                                <FooterFb.Link href="#">Flowbite</FooterFb.Link>
-                                <FooterFb.Link href="#">Tailwind CSS</FooterFb.Link>
+                                <FooterFb.Link href="#">{tLinks("our_team")}</FooterFb.Link>
                             </FooterFb.LinkGroup>
                         </div>
                         <div>
-                            <FooterFb.Title title="Follow us"/>
+                            <FooterFb.Title title={tLinks("follow_us")}/>
                             <FooterFb.LinkGroup col>
                                 <FooterFb.Link href="#">Github</FooterFb.Link>
-                                <FooterFb.Link href="#">Discord</FooterFb.Link>
                             </FooterFb.LinkGroup>
                         </div>
                         <div>
-                            <FooterFb.Title title="Legal"/>
+                            <FooterFb.Title title={tLinks("legal")}/>
                             <FooterFb.LinkGroup col>
-                                <FooterFb.Link href="#">Privacy Policy</FooterFb.Link>
-                                <FooterFb.Link href="#">Terms &amp; Conditions</FooterFb.Link>
+                                <FooterFb.Link href="#">{tLinks("privacy_policy")}</FooterFb.Link>
+                                <FooterFb.Link href="#">{tLinks("terms_and_condition")}</FooterFb.Link>
                             </FooterFb.LinkGroup>
                         </div>
                     </div>

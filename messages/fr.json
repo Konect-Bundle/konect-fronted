@@ -12,7 +12,23 @@
     "index_vision_section02": "Offrir des analyses détaillées sur les interactions et les connexions pour aider les utilisateurs à comprendre et à optimiser leur réseau.",
     "index_vision_title03": "Réseautage simplifié",
     "index_vision_section03": "Faciliter les connexions lors d'événements, de conférences et de réunions professionnelles avec des échanges de contacts instantanés.",
-    "label_01": "Réseautage porté à un niveau supérieur"
+    "label_01": "Réseautage porté à un niveau supérieur",
+    "how_does_section": "Comment fonctionne Konect ?",
+    "learn_about_text": "En savoir plus sur Konect",
+    "watch_tutorial_text": "Suivre le tutoriel"
+  },
+  "Kuser": {
+    "you_too": "Vous aussi, récupérez facilement votre carte konect"
+  },
+  "Links": {
+    "how_it_works": "Comment ca marche?",
+    "contact_us": "Nous contacter",
+    "privacy_policy": "Politique de confidentialité",
+    "terms_and_condition": "Conditions d'utilisation",
+    "about": "À props",
+    "our_team": "Notre équipe",
+    "follow_us": "Nous suivre",
+    "legal": "Legislation"
   },
   "Plan": {
     "plan_title01": "Nos excellents forfaits pour vous",
@@ -96,6 +112,7 @@
     "file": "Fichier",
     "files": "Fichiers",
     "go_home": "Aller à l'accueil",
+    "get_card": "Obtenir ma carte",
     "hide": "Cacher",
     "home": "Accueil",
     "image": "Image",
@@ -127,6 +144,7 @@
     },
     "new": "Nouveau",
     "no": "Non",
+    "order_now": "Commander maintenant",
     "open": "Ouvrir",
     "open_website": "Ouvrir sur le site web",
     "preview": "Aperçu",
@@ -167,6 +185,8 @@
     "update": "Mettre à jour",
     "user": "Utilisateur",
     "view": "Voir",
-    "yes": "Oui"
+    "yes": "Oui",
+    "login": "Se connecter",
+    "register": "S'inscrire"
   }
 }
