@@ -17,6 +17,8 @@ import {useTranslations} from "next-intl";
 
 export default function Home() {
     const t = useTranslations("Home");
+    const tActions = useTranslations("Actions");
+
     useEffect(() => {
         AOS.init();
     }, []);
@@ -51,7 +53,7 @@ export default function Home() {
                                             <Button theme={customButtonTheme} outline color="gray" size="md"
                                                     className="px-6 text-md uppercase">
                                                 <TbArrowForwardUpDouble className={"w-6 h-6 mr-2"}/>
-                                                {('Order now')}
+                                                {tActions('order_now')}
                                             </Button>
                                         </Link>
                                     </div>
@@ -170,11 +172,8 @@ export default function Home() {
                         {/*Card*/}
                         <div className="px-5 py-4 inline-block bg-white rounded-lg md:p-7 dark:bg-neutral-800">
                             <div className="hidden md:block">
-                                <h3 className="text-lg font-bold text-gray-800 sm:text-2xl dark:text-neutral-200">How
-                                    does
-                                    Preline
-                                    work?</h3>
-                                <p className="mt-2 text-gray-800 dark:text-neutral-200">Learn more about Preline.</p>
+                                <h3 className="text-lg font-bold text-gray-800 sm:text-2xl dark:text-neutral-200">{t("how_does_section")}</h3>
+                                <p className="mt-2 text-gray-800 dark:text-neutral-200">{t("learn_about_text")}</p>
                             </div>
 
                             <div className="md:mt-16">
@@ -185,7 +184,7 @@ export default function Home() {
                                          strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <polygon points="5 3 19 12 5 21 5 3"/>
                                     </svg>
-                                    Watch our story
+                                    {t("watch_tutorial_text")}
                                 </a>
                             </div>
                         </div>

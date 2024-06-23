@@ -12,7 +12,24 @@
     "index_vision_section02": "Offer detailed analytics on interactions and connections to help users understand and optimize their network.",
     "index_vision_title03": "Networking Made Easy",
     "index_vision_section03": "Facilitate connections at events, conferences and professional meetings with instant contact exchanges.",
-    "label_01": "Networking taken to the next level"
+    "label_01": "Networking taken to the next level",
+    "how_does_section" : "How does Konect work?",
+    "learn_about_text" : "Learn about Konect",
+    "watch_tutorial_text" : "Watch tutorial"
+
+  },
+  "Links": {
+    "how_it_works" : "How it works?",
+    "contact_us" : "Contact us",
+    "privacy_policy": "Privacy Policy",
+    "terms_and_condition": "Terms of Use",
+    "about": "About",
+    "our_team": "Our team",
+    "follow_us": "Follow us",
+    "legal": "Legal"
+  },
+  "Kuser": {
+    "you_too": "You too, easily get your konect card"
   },
   "Plan": {
     "plan_title01": "Our excellent packages for you",
@@ -96,6 +113,7 @@
     "file": "File",
     "files": "Files",
     "go_home": "Go Home",
+    "get_card": "Get Card",
     "hide": "Hide",
     "home": "Home",
     "image": "Image",
@@ -127,6 +145,7 @@
     },
     "new": "New",
     "no": "No",
+    "order_now": "Order now",
     "open": "Open",
     "open_website": "Open on the website",
     "preview": "Preview",
@@ -167,6 +186,9 @@
     "update": "Update",
     "user": "User",
     "view": "View",
-    "yes": "Yes"
+    "yes": "Yes",
+    "login": "Login",
+    "register": "Register"
+
   }
 }

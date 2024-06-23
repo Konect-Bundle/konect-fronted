@@ -5,6 +5,7 @@ import {customButtonTheme} from "@/app/_styles/flowbite/button";
 import {customAlertTheme} from "@/app/_styles/flowbite/alert";
 import {productsRoute} from "@/app/_core/config/routes";
 import Link from "next/link";
+import {useTranslations} from "next-intl";
 
 export interface IAppProps {
 }
@@ -20,6 +21,10 @@ const KuserHeader: React.FC<IAppProps> = (props) => {
         setShowAlert(false);
         console.log(showAlert);
     };
+
+const tActions= useTranslations("Actions");
+const tKuser= useTranslations("Kuser");
+
     return (
         <div className="fixed z-40 top-0 left-0 w-screen flex ">
             <Alert
@@ -42,13 +47,12 @@ const KuserHeader: React.FC<IAppProps> = (props) => {
                         </svg>
                         <span className="sr-only">Info</span>
                         <div className="ms-3 text-sm font-medium">
-                            You too, easily get your konect card
-                        </div>
+                            {tKuser("you_too")}                        </div>
                     </div>
                     <div className="md:space-x-4 space-x-2 flex items-center">
                         <Link href={productsRoute.path} className="pl-1">
                             <Button theme={customButtonTheme} color="primary" className="w-max">
-                                Get card
+                                {tActions("get_card")}
                             </Button>
                         </Link>
                     </div>
