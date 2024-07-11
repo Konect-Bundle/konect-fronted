@@ -34,6 +34,7 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
         if (!email || !password) return
 
         UserService.login(email, password).then(res => {
+            localStorage.setItem('authToken', res.data.authToken);
             const Toast = Swal.mixin({
                 toast: true,
                 position: "bottom-right",

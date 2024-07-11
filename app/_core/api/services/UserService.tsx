@@ -5,11 +5,16 @@ import {fetchData} from "@/app/_core/api/functions";
 
 export class UserService {
 
-    buildObjectParser(data: string){
-        var jsonRes : Object = JSON.parse(data);
+    static buildObjectParser(data: any) {
+        var user: User = new User();
+        user.name = data.data.name;
+        user.firstname = data.data.firstname;
+        user.email = data.data.email;
 
-        return new User()
+
+        return user;
     }
+
     static async getUser(uuid: string) {
         return await fetchData("/api/user/uuid/" + uuid);
     }
@@ -18,8 +23,8 @@ export class UserService {
         return await fetchData("/api/auth/login", serialize({"email": email, "password": password}), {}, "POST");
     }
 
-    static async getLoggedUser() {
-        return await fetchData("/api/auth/user");
+    static async getLoggedUser(token: string) {
+        return await fetchData("/api/auth/user", "", {}, "GET", token);
     }
 }
 

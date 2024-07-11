@@ -2,12 +2,13 @@ import {axiosClient} from "@/app/_core/api/axios";
 import {AxiosRequestConfig} from "axios";
 import {AppSPAService} from "@/app/_core/api/services/AppSPAService";
 
-export async function fetchData(route: string, body: any = {}, config: AxiosRequestConfig = {}, method: string = "GET"): Promise<any> {
+export async function fetchData(route: string, body: any = {}, config: AxiosRequestConfig = {}, method: string = "GET", bearer: string= ""): Promise<any> {
     try {
         config = {
             ...config,
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${bearer}`,
             }
         }
         // console.log(body)
