@@ -14,6 +14,7 @@ export async function generateMetadata(
 
     // fetch data
     var kuser = (await UserService.getUser(uuid)).data;
+    console.log(kuser);
 
     // optionally access and extend (rather than replace) parent metadata
     const previousImages = (await parent).openGraph?.images || [];

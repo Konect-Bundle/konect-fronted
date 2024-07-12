@@ -24,7 +24,7 @@ export default function Home() {
     }, []);
     return (
         <main className="flex flex-col">
-            <div className="flex flex-col md:h-screen h-[70vh]">
+            <div className="flex flex-col md:h-screen h-[80vh]">
                 <Header />
                 <ContainerLayout className="mt-6 md:mt-1 h-[inherit] flex items-center">
                     <div className=" flex items-center bg-white rounded-2xl h-full w-full overflow-hidden">
