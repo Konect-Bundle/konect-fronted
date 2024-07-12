@@ -1,36 +1,42 @@
 "use client";
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 import Header from "@/app/_components/Common/Headers/Header";
-import {useEffect} from "react";
-import {GadgetService} from "@/app/_core/api/services/GadgetService";
-import {Breadcrumb, Button, Label, TextInput} from "flowbite-react";
-import {TbHomeFilled, TbMinus, TbPlus, TbRotateClockwise2, TbShoppingCart} from "react-icons/tb";
-import {productItemRoute, productsRoute} from "@/app/_core/config/routes";
+import { useEffect } from "react";
+import { GadgetService } from "@/app/_core/api/services/GadgetService";
+import { Breadcrumb, Button, Label, TextInput } from "flowbite-react";
+import {
+    TbHomeFilled,
+    TbMinus,
+    TbPlus,
+    TbRotateClockwise2,
+    TbShoppingCart,
+} from "react-icons/tb";
+import { productItemRoute, productsRoute } from "@/app/_core/config/routes";
 import Image from "next/image";
-import {KoGadgetItem} from "@/app/_core/models/KoGadgetItem";
-import {ucfirst} from "@/app/_core/utils/functions";
-import {ROOT_FILES_URL} from "@/app/_core/config/constants";
+import { KoGadgetItem } from "@/app/_core/models/KoGadgetItem";
+import { ucfirst } from "@/app/_core/utils/functions";
+import { ROOT_FILES_URL } from "@/app/_core/config/constants";
 import ReactCardFlip from "react-card-flip";
-import {setFips} from "crypto";
+import { setFips } from "crypto";
 import ContainerLayout from "@/app/_components/Layouts/Container";
-import {customBreadCrumbTheme} from "@/app/_styles/flowbite/breadcrumb";
-import {customTextInputTheme} from "@/app/_styles/flowbite/form";
-import {customButtonTheme} from "@/app/_styles/flowbite/button";
-import {PaymentService} from "@/app/_core/api/services/PaymentService";
-import {batch} from "react-redux";
-import {useTranslations} from "next-intl";
+import { customBreadCrumbTheme } from "@/app/_styles/flowbite/breadcrumb";
+import { customTextInputTheme } from "@/app/_styles/flowbite/form";
+import { customButtonTheme } from "@/app/_styles/flowbite/button";
+import { PaymentService } from "@/app/_core/api/services/PaymentService";
+import { batch } from "react-redux";
+import { useTranslations } from "next-intl";
 
-export interface KwidgetItemProps {
-
-}
+export interface KwidgetItemProps {}
 
 export default function KwidgetItemPage({
-                                            params,
-                                        }: {
+    params,
+}: {
     params: { code: string };
 }) {
-    const [gadgetItem, setGadget] = useState<KoGadgetItem>(KoGadgetItem.empty());
+    const [gadgetItem, setGadget] = useState<KoGadgetItem>(
+        KoGadgetItem.empty(),
+    );
     const [name, setName] = useState("");
     const [familyName, setFamilyName] = useState("");
     const [companyName, setCompanyName] = useState("");
@@ -48,7 +54,7 @@ export default function KwidgetItemPage({
                 JSON.parse(rs.data.kg_details).color,
                 JSON.parse(rs.data.kg_details).material,
                 JSON.parse(rs.data.kg_details).type,
-                JSON.parse(rs.data.kg_details).imageURL
+                JSON.parse(rs.data.kg_details).imageURL,
             );
 
             setGadget(gadget);
@@ -63,69 +69,91 @@ export default function KwidgetItemPage({
     const handleMakePayment = (e: any) => {
         e.preventDefault();
         if (!name || !familyName || !companyName || !qty) return;
-        PaymentService.makePayment(params.code, name, familyName, companyName, qty).then((rs) => {
-            console.log(rs)
-            window.location.href = rs.data.url
-
-        })
-    }
+        PaymentService.makePayment(
+            params.code,
+            name,
+            familyName,
+            companyName,
+            qty,
+        ).then((rs) => {
+            console.log(rs);
+            window.location.href = rs.data.url;
+        });
+    };
     const t = useTranslations("Kgadgets");
     return (
         <main className="min-h-screen">
-            <Header/>
+            <Header />
 
             <ContainerLayout>
                 <section className="relative ">
                     <div className="w-full mx-auto md:px-4 px-0 sm:px-6 lg:px-0">
                         <form
                             className="grid grid-cols-1 lg:grid-cols-2 gap-16"
-                            method="POST" onSubmit={handleMakePayment}>
+                            method="POST"
+                            onSubmit={handleMakePayment}
+                        >
                             <div className="img">
-                                <Breadcrumb aria-label="Default breadcrumb example" theme={customBreadCrumbTheme?.root}
-                                            className="py-6">
-                                    <Breadcrumb.Item theme={customBreadCrumbTheme?.item} href="/" icon={TbHomeFilled}>
+                                <Breadcrumb
+                                    aria-label="Default breadcrumb example"
+                                    theme={customBreadCrumbTheme?.root}
+                                    className="py-6"
+                                >
+                                    <Breadcrumb.Item
+                                        theme={customBreadCrumbTheme?.item}
+                                        href="/"
+                                        icon={TbHomeFilled}
+                                    >
                                         Home
                                     </Breadcrumb.Item>
-                                    <Breadcrumb.Item theme={customBreadCrumbTheme?.item} href={productsRoute.path}>
+                                    <Breadcrumb.Item
+                                        theme={customBreadCrumbTheme?.item}
+                                        href={productsRoute.path}
+                                    >
                                         {productsRoute.name}
                                     </Breadcrumb.Item>
-                                    <Breadcrumb.Item theme={customBreadCrumbTheme?.item}>
+                                    <Breadcrumb.Item
+                                        theme={customBreadCrumbTheme?.item}
+                                    >
                                         {gadgetItem.code}
                                     </Breadcrumb.Item>
                                 </Breadcrumb>
 
-
                                 <div className="flex flex-col items-center">
-
                                     <div onDoubleClick={flipCard}>
-                                        <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
-                                            <div
-                                                className="img-box md:h-[240px] md:w-[390px] h-[210px] w-[345px] max-lg:mx-auto relative">
-                                                <div
-                                                    className="flex flex-col justify-center ps-8 sm:space-y-2 space-y-1 absolute w-full h-full left-0 {{ $kg_details->color->name == 'white' ? ' text-gray-800' : ' text-white' }}">
+                                        <ReactCardFlip
+                                            isFlipped={isFlipped}
+                                            flipDirection="vertical"
+                                        >
+                                            <div className="img-box md:h-[240px] md:w-[390px] h-[210px] w-[345px] max-lg:mx-auto relative">
+                                                <div className="flex flex-col justify-center ps-8 sm:space-y-2 space-y-1 absolute w-full h-full left-0 {{ $kg_details->color->name == 'white' ? ' text-gray-800' : ' text-white' }}">
                                                     <div className="flex space-x-2 sm:text-2xl text-lg font-bold">
-                                                    <span
-                                                        id="givenNameText"
-                                                        className="capitalize h-2.5 bg-gray-200 rounded-sm sm:w-20 w-10 animate-pulse"
-                                                    >
-                                                        {name}
-                                                    </span>
+                                                        <span
+                                                            id="givenNameText"
+                                                            className="capitalize h-2.5 bg-gray-200 rounded-sm sm:w-20 w-10 animate-pulse"
+                                                        >
+                                                            {name}
+                                                        </span>
                                                         <span
                                                             id="familyNameText"
                                                             className="capitalize h-2.5 bg-gray-200 rounded-sm sm:w-28 w-14 animate-pulse"
                                                         >
-                                                        {familyName}
-                                                    </span>
+                                                            {familyName}
+                                                        </span>
                                                     </div>
                                                     <span
                                                         className="capitalize sm:text-lg text-sm font-semibold h-2.5 bg-gray-200 rounded-sm sm:w-28 w-14 animate-pulse {{ $kg_details->color->name == 'white' ? ' text-gray-600' : ' text-gray-100' }}"
                                                         id="companyNameText"
                                                     >
-                                                    {companyName}
-                                                </span>
+                                                        {companyName}
+                                                    </span>
                                                 </div>
                                                 <Image
-                                                    src={ROOT_FILES_URL + "/" + gadgetItem?.imageURL[1]}
+                                                    src={
+                                                        ROOT_FILES_URL +
+                                                        "/" +
+                                                        gadgetItem?.imageURL[1]
+                                                    }
                                                     alt="Yellow Tropical Printed Shirt image"
                                                     className="max-lg:mx-auto lg:ml-auto h-full border rounded-2xl"
                                                     width={500}
@@ -133,12 +161,15 @@ export default function KwidgetItemPage({
                                                 />
                                             </div>
 
-                                            <div
-                                                className="img-box md:h-[240px] md:w-[390px] h-[210px] w-[345px] max-lg:mx-auto">
+                                            <div className="img-box md:h-[240px] md:w-[390px] h-[210px] w-[345px] max-lg:mx-auto">
                                                 <Image
                                                     width={500}
                                                     height={500}
-                                                    src={ROOT_FILES_URL + "/" + gadgetItem?.imageURL[1]}
+                                                    src={
+                                                        ROOT_FILES_URL +
+                                                        "/" +
+                                                        gadgetItem?.imageURL[1]
+                                                    }
                                                     alt="Yellow Tropical Printed Shirt image"
                                                     className="max-lg:mx-auto lg:ml-auto h-full border rounded-2xl"
                                                 />
@@ -146,8 +177,14 @@ export default function KwidgetItemPage({
                                         </ReactCardFlip>
                                     </div>
 
-                                    <TbRotateClockwise2 className="my-3 text-gray-700 text-3xl" onClick={flipCard}/>
-                                    <p className="text-gray-300">Click on the flip icon or dbclick on the card</p>
+                                    <TbRotateClockwise2
+                                        className="my-3 text-gray-700 text-3xl"
+                                        onClick={flipCard}
+                                    />
+                                    <p className="text-gray-300">
+                                        Click on the flip icon or dbclick on the
+                                        card
+                                    </p>
                                 </div>
 
                                 <h3 className="md:py-6 py-3 font-bold md:text-2xl text-xl">
@@ -156,22 +193,29 @@ export default function KwidgetItemPage({
                                 <div className="grid grid-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
                                     <div>
                                         <div className="mb-2 block">
-                                            <Label htmlFor="givenName" value={"Your firstname"}/>
+                                            <Label
+                                                htmlFor="givenName"
+                                                value={"Your firstname"}
+                                            />
                                         </div>
-                                        <TextInput theme={customTextInputTheme}
-                                                   id="givenName"
-                                                   type="text"
-                                                   placeholder={"Your firstname"}
-                                                   sizing="md"
-                                                   required
-                                                   onChange={(e) => {
-                                                       setName(e.target.value);
-                                                   }}
+                                        <TextInput
+                                            theme={customTextInputTheme}
+                                            id="givenName"
+                                            type="text"
+                                            placeholder={"Your firstname"}
+                                            sizing="md"
+                                            required
+                                            onChange={(e) => {
+                                                setName(e.target.value);
+                                            }}
                                         />
                                     </div>
                                     <div>
                                         <div className="mb-2 block">
-                                            <Label htmlFor="familyName" value={"Your name"}/>
+                                            <Label
+                                                htmlFor="familyName"
+                                                value={"Your name"}
+                                            />
                                         </div>
                                         <TextInput
                                             id="familyName"
@@ -187,12 +231,16 @@ export default function KwidgetItemPage({
                                     </div>
                                     <div>
                                         <div className="mb-2 block">
-                                            <Label htmlFor="companyName" value={"Your Company name"}/>
+                                            <Label
+                                                htmlFor="companyName"
+                                                value={"Your Company name"}
+                                            />
                                         </div>
                                         <TextInput
                                             id="companyName"
                                             type="text"
-                                            theme={customTextInputTheme} sizing="md"
+                                            theme={customTextInputTheme}
+                                            sizing="md"
                                             placeholder={"Your Company name"}
                                             required
                                             onChange={(e) => {
@@ -202,8 +250,7 @@ export default function KwidgetItemPage({
                                     </div>
                                 </div>
                             </div>
-                            <div
-                                className="data w-full lg:pr-8 pr-0 xl:justify-start justify-center flex items-center max-lg:pb-10 xl:my-2 lg:my-5 my-0 bg-white rounded-lg ps-8 pe-8 md:pt-0 pt-6 border border-gray-300/25">
+                            <div className="data w-full lg:pr-8 pr-0 xl:justify-start justify-center flex items-center max-lg:pb-10 xl:my-2 lg:my-5 my-0 bg-white rounded-lg ps-8 pe-8 md:pt-0 pt-6 border border-gray-300/25">
                                 <div className="data w-full max-w-xl">
                                     <h2 className="font-manrope font-bold md:text-3xl text-2xl leading-10 text-gray-900 mb-2 capitalize">
                                         {"Konect " + gadgetItem?.name}
@@ -229,7 +276,11 @@ export default function KwidgetItemPage({
                                                     </g>
                                                     <defs>
                                                         <clipPath id="clip0_12029_1640">
-                                                            <rect width="20" height="20" fill="white"/>
+                                                            <rect
+                                                                width="20"
+                                                                height="20"
+                                                                fill="white"
+                                                            />
                                                         </clipPath>
                                                     </defs>
                                                 </svg>
@@ -248,7 +299,11 @@ export default function KwidgetItemPage({
                                                     </g>
                                                     <defs>
                                                         <clipPath id="clip0_12029_1640">
-                                                            <rect width="20" height="20" fill="white"/>
+                                                            <rect
+                                                                width="20"
+                                                                height="20"
+                                                                fill="white"
+                                                            />
                                                         </clipPath>
                                                     </defs>
                                                 </svg>
@@ -267,7 +322,11 @@ export default function KwidgetItemPage({
                                                     </g>
                                                     <defs>
                                                         <clipPath id="clip0_12029_1640">
-                                                            <rect width="20" height="20" fill="white"/>
+                                                            <rect
+                                                                width="20"
+                                                                height="20"
+                                                                fill="white"
+                                                            />
                                                         </clipPath>
                                                     </defs>
                                                 </svg>
@@ -286,7 +345,11 @@ export default function KwidgetItemPage({
                                                     </g>
                                                     <defs>
                                                         <clipPath id="clip0_12029_1640">
-                                                            <rect width="20" height="20" fill="white"/>
+                                                            <rect
+                                                                width="20"
+                                                                height="20"
+                                                                fill="white"
+                                                            />
                                                         </clipPath>
                                                     </defs>
                                                 </svg>
@@ -305,7 +368,11 @@ export default function KwidgetItemPage({
                                                     </g>
                                                     <defs>
                                                         <clipPath id="clip0_8480_66029">
-                                                            <rect width="20" height="20" fill="white"/>
+                                                            <rect
+                                                                width="20"
+                                                                height="20"
+                                                                fill="white"
+                                                            />
                                                         </clipPath>
                                                     </defs>
                                                 </svg>
@@ -327,7 +394,12 @@ export default function KwidgetItemPage({
                                                 fill="none"
                                                 xmlns="http://www.w3.org/2000/svg"
                                             >
-                                                <rect width="26" height="26" rx="13" fill="#4F46E5"/>
+                                                <rect
+                                                    width="26"
+                                                    height="26"
+                                                    rx="13"
+                                                    fill="#4F46E5"
+                                                />
                                                 <path
                                                     d="M7.66669 12.629L10.4289 15.3913C10.8734 15.8357 11.0956 16.0579 11.3718 16.0579C11.6479 16.0579 11.8701 15.8357 12.3146 15.3913L18.334 9.37183"
                                                     stroke="white"
@@ -351,7 +423,7 @@ export default function KwidgetItemPage({
                                                     }
                                                 }}
                                             >
-                                                <TbMinus/>
+                                                <TbMinus />
                                             </button>
                                             <input
                                                 type="text"
@@ -364,14 +436,20 @@ export default function KwidgetItemPage({
                                                     setQty(qty + 1);
                                                 }}
                                             >
-                                                <TbPlus/>
+                                                <TbPlus />
                                             </button>
                                         </div>
-                                        <Button onClick={handleMakePayment} theme={customButtonTheme} size="md"
-                                                color="dark"
-                                                className="flex justify-center space-x-2">
-                                            <TbShoppingCart className="text-lg"/>
-                                            <span className="ml-1 font-bold">{"Buy"}</span>
+                                        <Button
+                                            onClick={handleMakePayment}
+                                            theme={customButtonTheme}
+                                            size="md"
+                                            color="dark"
+                                            className="flex justify-center space-x-2"
+                                        >
+                                            <TbShoppingCart className="text-lg" />
+                                            <span className="ml-1 font-bold">
+                                                {"Buy"}
+                                            </span>
                                         </Button>
                                     </div>
                                 </div>

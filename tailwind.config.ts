@@ -1,4 +1,4 @@
-import type {Config} from "tailwindcss";
+import type { Config } from "tailwindcss";
 import flowbite from "flowbite-react/tailwind";
 
 const config: Config = {
@@ -52,14 +52,13 @@ const config: Config = {
                     950: "#161616",
                 },
                 black: {
-                    light: '#131313',
-                    medium: '#0f0f0f',
-                    normal: '#0b0b0b',
-                    semibold: '#070707',
-                    bold: '#040404',
-                }
-
-            }
+                    light: "#131313",
+                    medium: "#0f0f0f",
+                    normal: "#0b0b0b",
+                    semibold: "#070707",
+                    bold: "#040404",
+                },
+            },
         },
     },
     plugins: [flowbite.plugin()],

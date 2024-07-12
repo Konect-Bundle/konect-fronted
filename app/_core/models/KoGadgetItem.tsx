@@ -49,17 +49,16 @@ export class KoGadgetItem implements Gadget {
     }
 
     static empty() {
-        var ko : KoGadgetItem = new KoGadgetItem(
+        var ko: KoGadgetItem = new KoGadgetItem(
             "",
             "",
             "",
             0,
             0,
-            {name:"", hexaCode:""},
+            { name: "", hexaCode: "" },
             "",
             "",
-            []
-
+            [],
         );
         return ko;
     }
@@ -73,6 +72,6 @@ export class KoGadgetItem implements Gadget {
         console.log(`Color: ${this.color.name} (${this.color.hexaCode})`);
         console.log(`Material: ${this.material}`);
         console.log(`Type: ${this.type}`);
-        console.log(`Images: ${this.imageURL.join(', ')}`);
+        console.log(`Images: ${this.imageURL.join(", ")}`);
     }
 }

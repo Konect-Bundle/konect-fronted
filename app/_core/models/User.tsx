@@ -6,7 +6,7 @@ export class User {
     vinfo?: string;
     uuid?: string;
     profile_photo_url?: string;
-    
+
     // constructor(
     //     name: string,
     //     firstname: string,

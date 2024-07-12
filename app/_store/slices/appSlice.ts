@@ -1,19 +1,19 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {User} from "@/app/_core/models/User";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { User } from "@/app/_core/models/User";
 
 const initialState: any = {
     darkMode: false,
-}
+};
 
 const appSlice = createSlice({
-    name: 'app',
+    name: "app",
     initialState,
     reducers: {
         toggleTheme: (state) => {
-            state.darkMode = !state.darkMode
-        }
-    }
-})
+            state.darkMode = !state.darkMode;
+        },
+    },
+});
 
-export const {toggleTheme} = appSlice.actions
-export default appSlice.reducer
+export const { toggleTheme } = appSlice.actions;
+export default appSlice.reducer;

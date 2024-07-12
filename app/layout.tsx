@@ -1,11 +1,11 @@
-import type {Metadata} from "next";
-import {Onest, Figtree} from "next/font/google";
+import type { Metadata } from "next";
+import { Onest, Figtree } from "next/font/google";
 import "./globals.scss";
 import StoreProvider from "@/app/_components/Store/StoreProvider";
-import {ROOT_ASSETS_URL} from "@/app/_core/config/constants";
-import {AppSPAService} from "@/app/_core/api/services/AppSPAService";
-import {getLocale, getMessages} from "next-intl/server";
-import {NextIntlClientProvider} from "next-intl";
+import { ROOT_ASSETS_URL } from "@/app/_core/config/constants";
+import { AppSPAService } from "@/app/_core/api/services/AppSPAService";
+import { getLocale, getMessages } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
 
 const inter = Onest({
     subsets: ["latin"],
@@ -14,9 +14,20 @@ const inter = Onest({
 export const metadata: Metadata = {
     title: "Konect - " + "A link for your value",
     description: "Networking platform",
-    authors: {name: "uziel mvuama", url: "https://www.mrlezi.com"},
+    authors: { name: "uziel mvuama", url: "https://www.mrlezi.com" },
     applicationName: "Konect",
-    keywords: ["konect", "networking", "réseautage", "carte", "nfc", "nfc card", "cartes nfc", "social", "social network", "social media"],
+    keywords: [
+        "konect",
+        "networking",
+        "réseautage",
+        "carte",
+        "nfc",
+        "nfc card",
+        "cartes nfc",
+        "social",
+        "social network",
+        "social media",
+    ],
     twitter: {
         card: "summary_large_image",
         creator: "@_uziel_mvuama",
@@ -30,15 +41,15 @@ export const metadata: Metadata = {
         title: "Konect - " + "A link for your value",
         siteName: "https://www.ikonect.me/sitemap.xml",
         description: "Networking platform",
-    }
+    },
 };
 
 export default async function RootLayout({
-                                             children,
-                                         }: Readonly<{
+    children,
+}: Readonly<{
     children: React.ReactNode;
 }>) {
-    await AppSPAService.login()
+    await AppSPAService.login();
 
     const locale = await getLocale();
 
@@ -47,15 +58,15 @@ export default async function RootLayout({
     const messages = await getMessages();
     return (
         <html lang={locale}>
-        <body className={inter.className}>
-        <NextIntlClientProvider messages={messages}>
-            <StoreProvider>
-                <main className="bg-gray-50 min-h-screen w-screen">
-                    {children}
-                </main>
-            </StoreProvider>
-        </NextIntlClientProvider>
-        </body>
+            <body className={inter.className}>
+                <NextIntlClientProvider messages={messages}>
+                    <StoreProvider>
+                        <main className="bg-gray-50 min-h-screen w-screen">
+                            {children}
+                        </main>
+                    </StoreProvider>
+                </NextIntlClientProvider>
+            </body>
         </html>
     );
 }

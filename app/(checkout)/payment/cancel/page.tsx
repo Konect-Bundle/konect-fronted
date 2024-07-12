@@ -1,10 +1,5 @@
-export interface IPaymentCancelPageProps {
-}
+export interface IPaymentCancelPageProps {}
 
 export default function PaymentCancelPage(props: IPaymentCancelPageProps) {
-    return (
-        <>
-            Cancel
-        </>
-    );
+    return <>Cancel</>;
 }

@@ -1,21 +1,19 @@
 "use client";
-import {Button, Checkbox, Label, TextInput} from "flowbite-react";
-import {UserService} from "@/app/_core/api/services/UserService";
-import {User} from "@/app/_core/models/User";
-import {useEffect, useState} from "react";
-import {dashboardRoute, loginRoute} from "@/app/_core/config/routes";
-import {ucfirst} from "@/app/_core/utils/functions";
+import { Button, Checkbox, Label, TextInput } from "flowbite-react";
+import { UserService } from "@/app/_core/api/services/UserService";
+import { User } from "@/app/_core/models/User";
+import { useEffect, useState } from "react";
+import { dashboardRoute, loginRoute } from "@/app/_core/config/routes";
+import { ucfirst } from "@/app/_core/utils/functions";
 
+export interface IDashboardPageProps {}
 
-export interface IDashboardPageProps {
-}
-
-export default  function DashboardPage(props: IDashboardPageProps) {
+export default function DashboardPage(props: IDashboardPageProps) {
     const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
         const fetchUser = async () => {
-            const token = localStorage.getItem('authToken');
+            const token = localStorage.getItem("authToken");
             console.log(token);
 
             if (token) {
@@ -23,10 +21,10 @@ export default  function DashboardPage(props: IDashboardPageProps) {
                     const userData = await UserService.getLoggedUser(token);
                     setUser(UserService.buildObjectParser(userData));
                 } catch (error) {
-                    console.error('Error fetching user:', error);
+                    console.error("Error fetching user:", error);
                 }
-            }else{
-                window.location.href = loginRoute.path
+            } else {
+                window.location.href = loginRoute.path;
             }
         };
 
@@ -34,9 +32,5 @@ export default  function DashboardPage(props: IDashboardPageProps) {
     }, []);
 
     if (!user) return <p>Loading...</p>;
-    return (
-        <>
-        Bonjour {ucfirst(user.firstname!)}
-        </>
-    );
+    return <>Bonjour {ucfirst(user.firstname!)}</>;
 }

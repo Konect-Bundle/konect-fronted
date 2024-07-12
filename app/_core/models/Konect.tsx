@@ -7,14 +7,14 @@ export class Konect {
     ko_phone_clicked: string;
     user_id: number;
     konect_category_id: number;
-    
+
     constructor(
         ko_ip_konect: string,
         ko_ip_locations: string,
         ko_social_clicked: string,
         ko_phone_clicked: string,
         user_id: number,
-        konect_category_id: number
+        konect_category_id: number,
     ) {
         this.ko_ip_konect = ko_ip_konect;
         this.ko_ip_locations = ko_ip_locations;
