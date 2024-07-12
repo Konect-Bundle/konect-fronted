@@ -45,6 +45,7 @@ export default function KwidgetItemPage({
 
     useEffect(() => {
         GadgetService.getKwidget(params.code).then((rs) => {
+            console.log(rs);
             var gadget = new KoGadgetItem(
                 rs.data.kg_name,
                 rs.data.kg_code,
@@ -126,23 +127,25 @@ export default function KwidgetItemPage({
                                             flipDirection="vertical"
                                         >
                                             <div className="img-box md:h-[240px] md:w-[390px] h-[210px] w-[345px] max-lg:mx-auto relative">
-                                                <div className="flex flex-col justify-center ps-8 sm:space-y-2 space-y-1 absolute w-full h-full left-0 {{ $kg_details->color->name == 'white' ? ' text-gray-800' : ' text-white' }}">
-                                                    <div className="flex space-x-2 sm:text-2xl text-lg font-bold">
+                                                <div
+                                                    className={`flex flex-col justify-center ps-8 sm:space-y-1 space-y-1 absolute w-full h-full left-0 ${gadgetItem.color.name == "white" ? " text-gray-800" : gadgetItem.color.name == "black text yellow" ? " text-yellow-600" : " text-gray-100"}`}
+                                                >
+                                                    <div className="flex space-x-3 sm:text-2xl text-lg font-bold">
                                                         <span
                                                             id="givenNameText"
-                                                            className="capitalize h-2.5 bg-gray-200 rounded-sm sm:w-20 w-10 animate-pulse"
+                                                            className={`capitalize ${name ? " " : "h-3 bg-gray-200 animate-pulse rounded-sm sm:w-20 w-10"} `}
                                                         >
                                                             {name}
                                                         </span>
                                                         <span
                                                             id="familyNameText"
-                                                            className="capitalize h-2.5 bg-gray-200 rounded-sm sm:w-28 w-14 animate-pulse"
+                                                            className={`capitalize ${familyName ? " " : "h-3 bg-gray-200 animate-pulse  rounded-sm sm:w-28 w-14"}`}
                                                         >
                                                             {familyName}
                                                         </span>
                                                     </div>
                                                     <span
-                                                        className="capitalize sm:text-lg text-sm font-semibold h-2.5 bg-gray-200 rounded-sm sm:w-28 w-14 animate-pulse {{ $kg_details->color->name == 'white' ? ' text-gray-600' : ' text-gray-100' }}"
+                                                        className={`capitalize sm:text-lg text-xs font-normal italic ${companyName ? " " : "h-3 bg-gray-200 animate-pulse rounded-sm sm:w-28 w-14"} ${gadgetItem.color.name == "white" ? " text-gray-600" : " text-gray-300"}`}
                                                         id="companyNameText"
                                                     >
                                                         {companyName}
@@ -168,7 +171,7 @@ export default function KwidgetItemPage({
                                                     src={
                                                         ROOT_FILES_URL +
                                                         "/" +
-                                                        gadgetItem?.imageURL[1]
+                                                        gadgetItem?.imageURL[0]
                                                     }
                                                     alt="Yellow Tropical Printed Shirt image"
                                                     className="max-lg:mx-auto lg:ml-auto h-full border rounded-2xl"

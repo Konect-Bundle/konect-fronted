@@ -1,10 +1,11 @@
 "use client";
-import { Button, Checkbox, Label, TextInput } from "flowbite-react";
+import { getCookie } from "cookies-next";
 import { UserService } from "@/app/_core/api/services/UserService";
 import { User } from "@/app/_core/models/User";
 import { useEffect, useState } from "react";
 import { dashboardRoute, loginRoute } from "@/app/_core/config/routes";
 import { ucfirst } from "@/app/_core/utils/functions";
+import { cookies } from "next/headers";
 
 export interface IDashboardPageProps {}
 
@@ -13,7 +14,7 @@ export default function DashboardPage(props: IDashboardPageProps) {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const token = localStorage.getItem("authToken");
+            const token = getCookie("konectAuthToken");
             console.log(token);
 
             if (token) {

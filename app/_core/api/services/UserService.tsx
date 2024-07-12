@@ -2,6 +2,7 @@ import { SERVER_API_URL } from "../constants";
 import { serialize } from "object-to-formdata";
 import { User } from "@/app/_core/models/User";
 import { fetchData } from "@/app/_core/api/functions";
+import { cookies } from "next/headers";
 
 export class UserService {
     static buildObjectParser(data: any) {

@@ -5,8 +5,8 @@ import { TbEyeOff, TbEye } from "react-icons/tb";
 import $ from "jquery";
 import { UserService } from "@/app/_core/api/services/UserService";
 import { dashboardRoute, homeRoute } from "@/app/_core/config/routes";
-import { cookies } from "next/headers";
 import Swal from "sweetalert2";
+import { setCookie } from "cookies-next";
 
 export interface ILoginFormPageProps {}
 
@@ -32,7 +32,12 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
         if (!email || !password) return;
 
         UserService.login(email, password).then((res) => {
-            localStorage.setItem("authToken", res.data.authToken);
+            // SET COOKIE
+            setCookie("konectAuthToken", res.data.authToken, {
+                // httpOnly: true,
+                // path: "/"
+            });
+
             const Toast = Swal.mixin({
                 toast: true,
                 position: "bottom-right",
