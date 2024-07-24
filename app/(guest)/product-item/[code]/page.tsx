@@ -51,13 +51,14 @@ export default function KwidgetItemPage({
     const [isFlipped, setIsFlipped] = useState(false);
     const [qty, setQty] = useState(1);
     const T = useTranslations("Kgadgets");
+    const __A= useTranslations("Actions");
 
 
     useEffect(() => {
         GadgetService.getKwidget(params.code).then((rs) => {
             // console.log(rs);
             var gadget = new KoGadgetItem(
-                rs.data.kg_name,
+                JSON.parse(rs.data.kg_details).name,
                 rs.data.kg_code,
                 JSON.parse(rs.data.kg_details).description,
                 JSON.parse(rs.data.kg_details).price,
@@ -213,8 +214,7 @@ export default function KwidgetItemPage({
                                         onClick={flipCard}
                                     />
                                     <p className="text-gray-300">
-                                        Click on the flip icon or dbclick on the
-                                        card
+                                        {__A("click_to_flip")}
                                     </p>
                                 </div>
 

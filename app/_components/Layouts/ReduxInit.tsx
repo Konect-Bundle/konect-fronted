@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { ucfirst } from "../../_core/utils/functions";
 import { Spinner } from "flowbite-react";
 import { customSpinnerTheme } from "@/app/_styles/flowbite/spinner";
+import { MutatingDots } from "react-loader-spinner";
 
 interface ReduxInitLayoutProps extends React.PropsWithChildren {
     className?: string;
@@ -43,10 +44,16 @@ const ReduxInitLayout: React.FC<ReduxInitLayoutProps> = ({
 
     return isLoading ? (
         <div className="w-screen h-screen flex justify-center items-center">
-            <Spinner
-                color="yellow"
-                theme={customSpinnerTheme}
-                aria-label="Success spinner example"
+            <MutatingDots
+                visible={true}
+                height="80"
+                width="80"
+                color="#e4dc1a"
+                secondaryColor="#e4dc1a"
+                radius="12.5"
+                ariaLabel="mutating-dots-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
             />
         </div>
     ) : (

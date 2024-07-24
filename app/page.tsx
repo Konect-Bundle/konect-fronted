@@ -6,7 +6,7 @@ import Header from "./_components/Common/Headers/Header";
 import Footer from "./_components/Common/Footers/Footer";
 import ContainerLayout from "@/app/_components/Layouts/Container";
 import { Button } from "flowbite-react";
-import { TbArrowForwardUpDouble } from "react-icons/tb";
+import { TbAdjustmentsHorizontal, TbArrowForwardUpDouble, TbPhoneCall, TbTruckDelivery, TbUsersGroup } from "react-icons/tb";
 import { DiHtml5Connectivity } from "react-icons/di";
 import { MdOutlineConnectWithoutContact } from "react-icons/md";
 import { useEffect } from "react";
@@ -90,6 +90,76 @@ export default function Home() {
                     </div>
                 </ContainerLayout>
             </div>
+            {/* 
+            <ContainerLayout>
+                <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 items-center gap-12"  data-aos="fade-up" data-aos-duration="800">
+                        
+                        <div>
+                        <TbUsersGroup size={30}/>
+
+                            <div className="bg-gradient-to-r from-gray-200 via-gray-50 to-transparent h-0.5 mt-6 dark:from-neutral-700 dark:via-neutral-900">
+                                <div className="bg-gray-400 w-9 h-0.5 dark:bg-neutral-600" />
+                            </div>
+                            <div className="mt-5">
+                                <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+                                    Networking
+                                </h3>
+                                <p className="mt-1 text-gray-600 dark:text-neutral-400">
+                                    Components are easily customized and extendable
+                                </p>
+                            </div>
+                        </div>
+                       
+                        <div>
+                        <TbAdjustmentsHorizontal size={30}/>
+
+                            <div className="bg-gradient-to-r from-gray-200 via-gray-50 to-transparent h-0.5 mt-6 dark:from-neutral-700 dark:via-neutral-900">
+                                <div className="bg-gray-400 w-9 h-0.5 dark:bg-neutral-600" />
+                            </div>
+                            <div className="mt-5">
+                                <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+                                    Customizable
+                                </h3>
+                                <p className="mt-1 text-gray-600 dark:text-neutral-400">
+                                    Components are easily customized and extendable
+                                </p>
+                            </div>
+                        </div>
+                      
+                        <div>
+                            <TbPhoneCall size={30}/>
+                            <div className="bg-gradient-to-r from-gray-200 via-gray-50 to-transparent h-0.5 mt-6 dark:from-neutral-700 dark:via-neutral-900">
+                                <div className="bg-gray-400 w-9 h-0.5 dark:bg-neutral-600" />
+                            </div>
+                            <div className="mt-5">
+                                <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+                                    24/7 Support
+                                </h3>
+                                <p className="mt-1 text-gray-600 dark:text-neutral-400">
+                                    Contact us 24 hours a day, 7 days a week
+                                </p>
+                            </div>
+                        </div>
+                       
+                        <div>
+                        <TbTruckDelivery size={30}/>
+
+                            <div className="bg-gradient-to-r from-gray-200 via-gray-50 to-transparent h-0.5 mt-6 dark:from-neutral-700 dark:via-neutral-900">
+                                <div className="bg-gray-400 w-9 h-0.5 dark:bg-neutral-600" />
+                            </div>
+                            <div className="mt-5">
+                                <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+                                    24/7 Support
+                                </h3>
+                                <p className="mt-1 text-gray-600 dark:text-neutral-400">
+                                    Contact us 24 hours a day, 7 days a week
+                                </p>
+                            </div>
+                        </div>                  </div>
+                </div>
+            </ContainerLayout> */}
+
             <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
                 <div className="max-w-2xl mx-auto">
                     {/* -- Grid --*/}
@@ -97,7 +167,7 @@ export default function Home() {
                         <div data-aos="fade-up" data-aos-duration="800">
                             <h2
                                 data-aos="fade-up"
-                                data-aos-duration="00"
+                                data-aos-duration="800"
                                 className="text-3xl text-gray-800 font-bold lg:text-4xl dark:text-white"
                             >
                                 {"Our vision"}

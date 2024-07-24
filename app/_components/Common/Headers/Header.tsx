@@ -119,8 +119,8 @@ export default function Header(props: IAppProps) {
                                     </Dropdown.Header>
                                     <Dropdown.Item><Link href={dashboardRoute.path} />
                                         <span className="flex items-center space-x-1">
-                                            <TbLayoutDashboardFilled/>
-                                            <span>Dashboard</span>
+                                            <TbLayoutDashboardFilled />
+                                            <span>{tLinks("dashboard")}</span>
                                         </span>
                                     </Dropdown.Item>
                                     {/* <Dropdown.Item>Settings</Dropdown.Item>
@@ -136,7 +136,7 @@ export default function Header(props: IAppProps) {
                                     >
                                         <span className="flex items-center space-x-1">
                                             <TbPower />
-                                            <span>Sign out</span>
+                                            <span>{tLinks("logout")}</span>
                                         </span>
                                     </Dropdown.Item>
                                 </Dropdown>

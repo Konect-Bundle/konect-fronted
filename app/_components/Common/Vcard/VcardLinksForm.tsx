@@ -10,12 +10,17 @@ import { customButtonTheme } from "@/app/_styles/flowbite/button";
 import { UrlVcardInterface } from "@/app/_core/interfaces/vcardInterfaces";
 import { Input } from "postcss";
 import InputField from "../Form/InputField";
+import { useTranslations } from "next-intl";
 
 interface VcardLinksFormProps extends React.PropsWithChildren { }
 
 const VcardLinksForm: React.FC<
     VcardLinksFormProps
 > = ({ }: VcardLinksFormProps) => {
+    const __= useTranslations("Text");
+    const __A= useTranslations("Actions");
+
+
     return (
         <FieldArray
             name="urls"
@@ -32,7 +37,7 @@ const VcardLinksForm: React.FC<
                                 <div className="flex flex-col justify-center md:col-span-3 col-span-8">
                                     <InputWithLabel
                                         labelFor="title"
-                                        labelTitle={"Titre"}
+                                        labelTitle={__("title")}
                                         className="w-full"
                                     >
                                         <div className="flex items-center">
@@ -50,7 +55,7 @@ const VcardLinksForm: React.FC<
                                     <InputWithLabel
                                         labelFor="url"
                                         key={index}
-                                        labelTitle={"Lien externe"}
+                                        labelTitle={__("website_link")}
                                         className="w-full col-span-2"
                                     >
                                         <div className="flex items-center">
@@ -70,7 +75,7 @@ const VcardLinksForm: React.FC<
                                         <TbX
                                             size={18}
                                             className="ml-1 cursor-pointer" />
-                                        <span className="text-xs">Supprimer</span>
+                                        <span className="text-xs">{__A("delete")}</span>
                                     </span>
                                 </div>
                             </div>
@@ -85,7 +90,7 @@ const VcardLinksForm: React.FC<
                         >
                             <TbPlus className={"text-lg"} />
                             <span className="ml-1 text-xs">
-                                {"Ajouter un champ"}
+                                {__("add")}
                             </span>
                         </Button>
                     </div>

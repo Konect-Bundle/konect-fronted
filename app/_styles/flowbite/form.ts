@@ -141,7 +141,7 @@ export const customFileInputTheme: CustomFlowbiteTheme["fileInput"] = {
 
 export const customCheckBoxTheme: CustomFlowbiteTheme["checkbox"] ={
     "root": {
-      "base": "h-4 w-4 rounded border border-gray-500 bg-gray-100 focus:ring-2 dark:border-gray-600 dark:bg-gray-700",
+      "base": "h-4 w-4 rounded border border-gray-300/40 bg-gray-100 focus:ring-2 dark:border-gray-600 dark:bg-gray-700",
       "color": {
         "default": "text-yellow-800 focus:ring-gray-200 dark:ring-offset-gray-800 dark:focus:ring-cyan-600",
         "dark": "text-gray-800 focus:ring-gray-800 dark:ring-offset-gray-800 dark:focus:ring-gray-800",

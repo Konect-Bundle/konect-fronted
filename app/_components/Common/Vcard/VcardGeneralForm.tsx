@@ -7,6 +7,7 @@ import InputWithLabel from "../Form/InputWithLabel";
 import InputField from "../Form/InputField";
 import InputPrefixedIcon from "../Form/InputPrefixedIcon";
 import { TbMail, TbPhone } from "react-icons/tb";
+import { useTranslations } from "next-intl";
 
 interface VcardGeneralFormProps extends React.PropsWithChildren { }
 
@@ -16,12 +17,12 @@ const VcardGeneralForm: React.FC<
     // const CustomTextAreaComponent = (props: any) => (
     //     <Textarea id="comment" placeholder="Leave a comment..." required rows={4} {...props} />
     // );
-
+    const __= useTranslations("Text")
     return (
         <div className="grid grid-2 gap-4">
             <div className="grid grid-cols-6 col-span-2 gap-4">
                 <div className="sm:col-span-1 col-span-3">
-                    <InputWithLabel labelFor={"prefix"} labelTitle={"Préfixe"}>
+                    <InputWithLabel labelFor={"prefix"} labelTitle={__("prefix")}>
                         <InputField
                             labelFor="prefix"
                             name="names.prefix"
@@ -30,7 +31,7 @@ const VcardGeneralForm: React.FC<
                     </InputWithLabel>
                 </div>
                 <div className="sm:col-span-1 col-span-3">
-                    <InputWithLabel labelFor={"suffix"} labelTitle={"Suffixe"}>
+                    <InputWithLabel labelFor={"suffix"} labelTitle={__("suffix")}>
                         <InputField
                             labelFor="suffix"
                             name="names.suffix"
@@ -43,7 +44,7 @@ const VcardGeneralForm: React.FC<
                 <InputWithLabel
                     isRequired={true}
                     labelFor={"givenName"}
-                    labelTitle={"Prénom"}
+                    labelTitle={__("given_name")}
                 >
                     <InputField
                         labelFor="givenName"
@@ -56,7 +57,7 @@ const VcardGeneralForm: React.FC<
             <div className="sm:col-span-1 col-span-2">
                 <InputWithLabel
                     isRequired={true}
-                    labelFor={"familyName"}
+                    labelFor={__("family_name")}
                     labelTitle={"Nom"}
                 >
                     <InputField
@@ -70,7 +71,7 @@ const VcardGeneralForm: React.FC<
             <div className="sm:col-span-1 col-span-2">
                 <InputWithLabel
                     labelFor={"middleName"}
-                    labelTitle={"Deuxième prénom"}
+                    labelTitle={__("middle_name")}
                 >
                     <InputField
                         labelFor="middleName"
@@ -80,7 +81,7 @@ const VcardGeneralForm: React.FC<
                 </InputWithLabel>
             </div>
             <div className="sm:col-span-1 col-span-2">
-                <InputWithLabel labelFor={"phone"} labelTitle={"Téléphone"} isRequired={true}
+                <InputWithLabel labelFor={"phone"} labelTitle={__("phone_number")} isRequired={true}
                 >
                     <InputPrefixedIcon
                         icon={<TbPhone />}
@@ -91,7 +92,7 @@ const VcardGeneralForm: React.FC<
                 </InputWithLabel>
             </div>
             <div className="sm:col-span-1 col-span-2">
-                <InputWithLabel labelFor={"email"} labelTitle={"Adresse email"} isRequired={true}
+                <InputWithLabel labelFor={"email"} labelTitle={__("email_address")} isRequired={true}
                 >
                     <InputPrefixedIcon
                         icon={<TbMail />}
@@ -102,7 +103,7 @@ const VcardGeneralForm: React.FC<
                 </InputWithLabel>
             </div>
             <div className="pt-5 col-span-2">
-                <h2 className="pb-6 font-semibold text-xl ">Note sur vous</h2>
+                <h2 className="pb-6 font-semibold text-xl ">{__("description_note")}</h2>
                 <div className="w-full">
                     <Field
                         name="note.text"

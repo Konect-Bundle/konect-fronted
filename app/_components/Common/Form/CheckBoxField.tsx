@@ -29,11 +29,11 @@ const CheckBoxField: React.FC<CheckBoxFieldProps> = ({
                 } = fieldProps;
 
                 return <div>
-                    <Checkbox id={labelFor} theme={customCheckBoxTheme}   {...field} />
+                    <Checkbox id={labelFor} theme={customCheckBoxTheme}   {...field} checked={field.value} />
 
                     {meta.touched && meta.error && (
 
-                        <div className="error">{meta.error}</div>
+                        <div className="error mt-2 text-xs text-red-500">{meta.error}</div>
                     )}
 
                 </div>

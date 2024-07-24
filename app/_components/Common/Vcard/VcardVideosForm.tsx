@@ -11,12 +11,17 @@ import {
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
 import { VideoLinkVcardInterface } from "@/app/_core/interfaces/vcardInterfaces";
 import InputField from "../Form/InputField";
+import { useTranslations } from "next-intl";
 
 interface VcardVideosFormProps extends React.PropsWithChildren { }
 
 const VcardVideosForm: React.FC<
     VcardVideosFormProps
 > = ({ }: VcardVideosFormProps) => {
+    const __= useTranslations("Text");
+    const __A= useTranslations("Actions");
+
+
     return (
         <FieldArray name="videoLinks">
             {(fieldArrayProps) => {
@@ -31,7 +36,7 @@ const VcardVideosForm: React.FC<
                                 <div className="flex flex-col justify-center md:col-span-3 col-span-8 ">
                                     <InputWithLabel
                                         labelFor="title"
-                                        labelTitle={"Titre"}
+                                        labelTitle={__("title")}
                                         className="w-full"
                                     >
                                         <div className="flex items-center">
@@ -49,7 +54,7 @@ const VcardVideosForm: React.FC<
                                     <InputWithLabel
                                         labelFor="videoLinks"
                                         key={index}
-                                        labelTitle={"Lien externe"}
+                                        labelTitle={__("video_link")}
                                         className="w-full col-span-2"
                                     >
                                         <div className="flex items-center">
@@ -69,7 +74,7 @@ const VcardVideosForm: React.FC<
                                             size={18}
                                             className="ml-1 cursor-pointer"
                                         />
-                                        <span className="text-xs">Supprimer</span>
+                                        <span className="text-xs">{__A("delete")}</span>
                                     </span>
                                 </div>
                             </div>
@@ -84,7 +89,7 @@ const VcardVideosForm: React.FC<
                         >
                             <TbPlus className={"text-lg"} />
                             <span className="ml-1 text-xs">
-                                {"Ajouter un champ"}
+                            {__("add")}
                             </span>
                         </Button>
                     </div>

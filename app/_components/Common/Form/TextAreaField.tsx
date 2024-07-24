@@ -33,7 +33,7 @@ const TextAreaField: React.FC<TextAreaFieldProps> = ({
 
                     {meta.touched && meta.error && (
 
-                        <div className="error">{meta.error}</div>
+                        <div className="error mt-2 text-xs text-red-500">{meta.error}</div>
                     )}
 
                 </div>
