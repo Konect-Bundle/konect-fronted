@@ -33,7 +33,9 @@ export default abstract class VcardModel {
             );
             this.note = new NoteVcard("");
         } else {
-            const vinfoObj = JSON.parse((typeof vinfo) == "string" ? vinfo :JSON.stringify(vinfo));
+            const vinfoObj = JSON.parse(
+                typeof vinfo == "string" ? vinfo : JSON.stringify(vinfo),
+            );
             this.names = new NameVcard(
                 vinfoObj.names.givenName,
                 vinfoObj.names.familyName,

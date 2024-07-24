@@ -3,7 +3,8 @@ import { Label, Textarea, TextInput } from "flowbite-react";
 import { Field, FieldConfig } from "formik";
 import React from "react";
 
-interface TextAreaFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface TextAreaFieldProps
+    extends React.InputHTMLAttributes<HTMLInputElement> {
     disabled?: boolean;
     labelFor: string;
     className?: string;
@@ -18,31 +19,31 @@ const TextAreaField: React.FC<TextAreaFieldProps> = ({
     ...props
 }) => {
     return (
-        <Field id={labelFor}
-            disabled={disabled}
-            name={name}>
+        <Field id={labelFor} disabled={disabled} name={name}>
             {(fieldProps: any) => {
-                const { field, // { name, value, onChange, onBlur }
+                const {
+                    field, // { name, value, onChange, onBlur }
                     form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
                     meta,
-
                 } = fieldProps;
 
-                return <div>
-                    <Textarea id={labelFor} theme={customTextInputTheme}   {...field} />
+                return (
+                    <div>
+                        <Textarea
+                            id={labelFor}
+                            theme={customTextInputTheme}
+                            {...field}
+                        />
 
-                    {meta.touched && meta.error && (
-
-                        <div className="error mt-2 text-xs text-red-500">{meta.error}</div>
-                    )}
-
-                </div>
-
-            }
-            }
-
+                        {meta.touched && meta.error && (
+                            <div className="error mt-2 text-xs text-red-500">
+                                {meta.error}
+                            </div>
+                        )}
+                    </div>
+                );
+            }}
         </Field>
-
     );
 };
 

@@ -3,7 +3,8 @@ import { Checkbox } from "flowbite-react";
 import { Field } from "formik";
 import React from "react";
 
-interface CheckBoxFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface CheckBoxFieldProps
+    extends React.InputHTMLAttributes<HTMLInputElement> {
     disabled?: boolean;
     labelFor: string;
     className?: string;
@@ -18,31 +19,32 @@ const CheckBoxField: React.FC<CheckBoxFieldProps> = ({
     ...props
 }) => {
     return (
-        <Field id={labelFor}
-            disabled={disabled}
-            name={name}>
+        <Field id={labelFor} disabled={disabled} name={name}>
             {(fieldProps: any) => {
-                const { field, // { name, value, onChange, onBlur }
+                const {
+                    field, // { name, value, onChange, onBlur }
                     form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
                     meta,
-
                 } = fieldProps;
 
-                return <div>
-                    <Checkbox id={labelFor} theme={customCheckBoxTheme}   {...field} checked={field.value} />
+                return (
+                    <div>
+                        <Checkbox
+                            id={labelFor}
+                            theme={customCheckBoxTheme}
+                            {...field}
+                            checked={field.value}
+                        />
 
-                    {meta.touched && meta.error && (
-
-                        <div className="error mt-2 text-xs text-red-500">{meta.error}</div>
-                    )}
-
-                </div>
-
-            }
-            }
-
+                        {meta.touched && meta.error && (
+                            <div className="error mt-2 text-xs text-red-500">
+                                {meta.error}
+                            </div>
+                        )}
+                    </div>
+                );
+            }}
         </Field>
-
     );
 };
 

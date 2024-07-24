@@ -57,8 +57,8 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
     >(null);
     const [file, setFile] = useState<Blob | null>(null);
     const [isLoading, setIsLoading] = useState(false);
-    const TAction = useTranslations("Actions")
-    const Ttext = useTranslations("Text")
+    const TAction = useTranslations("Actions");
+    const Ttext = useTranslations("Text");
     const initialValues: UserVcardInterface = {
         names: {
             givenName: vcard.names.givenName,
@@ -126,7 +126,6 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
         }
     }, [file]);
 
-
     return (
         <LoadingLayout isLoading={isLoading}>
             <Formik initialValues={initialValues} onSubmit={handleSubmitForm}>
@@ -151,8 +150,8 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                                     selectedImage
                                                         ? (selectedImage as string)
                                                         : ROOT_FILES_URL +
-                                                        "/" +
-                                                        user.profile_photo_url
+                                                          "/" +
+                                                          user.profile_photo_url
                                                 }
                                                 width={500}
                                                 height={500}
@@ -178,7 +177,9 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                                     onChange={(
                                                         e: React.ChangeEvent<HTMLInputElement>,
                                                     ) => {
-                                                        setFile(e.target.files![0]);
+                                                        setFile(
+                                                            e.target.files![0],
+                                                        );
                                                         if (file) {
                                                             formProps.setFieldValue(
                                                                 "img",
@@ -208,7 +209,10 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                         <VcardSocialForm />
                                     </div>
                                 </Tabs.Item>
-                                <Tabs.Item title={Ttext("external_links")} icon={TbLinkPlus}>
+                                <Tabs.Item
+                                    title={Ttext("external_links")}
+                                    icon={TbLinkPlus}
+                                >
                                     <div className="px-8 pb-8 pt-5">
                                         <h2 className="pb-6 font-semibold text-xl ">
                                             {Ttext("external_links")}
@@ -216,7 +220,10 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                         <VcardLinksForm />
                                     </div>
                                 </Tabs.Item>
-                                <Tabs.Item title={Ttext("video") + "s"} icon={TbVideo}>
+                                <Tabs.Item
+                                    title={Ttext("video") + "s"}
+                                    icon={TbVideo}
+                                >
                                     <div className="px-8 pb-8 pt-5">
                                         <h2 className="pb-6 font-semibold text-xl ">
                                             {Ttext("video") + "s"}

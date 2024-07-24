@@ -31,7 +31,6 @@
         "legal": "Legislation",
         "dashboard": "Tableau de bord",
         "logout": "Déconnexion"
-
     },
     "Plan": {
         "plan_title01": "Nos excellents forfaits pour vous",
@@ -355,10 +354,9 @@
         "wed_love_to_talk_about_how_we_can_help_you": "Nous serions ravis de discuter de la façon dont nous pouvons vous aider.",
         "well_get_back_to_you_in_1_2_business_days": "Nous vous répondrons dans 1 à 2 jours ouvrables.",
         "networking_taken_to_the_next_level": "Le réseautage à l'étape supérieure",
-        "should_see":"Decidez de qu'est ce que doivent voir les personnes à qui vous partagez votre contact",
+        "should_see": "Decidez de qu'est ce que doivent voir les personnes à qui vous partagez votre contact",
         "enable_card": "Activer ma carte",
         "enable_localization": "Afficher ma localization",
         "add": "Ajouter"
-
     }
 }

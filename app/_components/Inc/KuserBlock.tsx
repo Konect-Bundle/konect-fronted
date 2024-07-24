@@ -41,7 +41,6 @@ export default function KuserBlock({
 
     const [konectsCount, setKonectCount] = useState<number>(user.konect_count!);
 
-
     const handleShareContact = (e: any) => {
         e.preventDefault();
         if (navigator.share) {
@@ -79,374 +78,367 @@ export default function KuserBlock({
         // setIsSaved(true)
     };
 
-    return (
-        vconfig.isCardActivated ?
-            <div className="h-screen py-4">
-                {isCompleted && (
-                    <KuserFeedback
-                        callback={() => {
-                            setIsCompleted(false);
-                        }}
-                        kuser={user}
-                    />
-                )}
-                <KuserHeader />
+    return vconfig.isCardActivated ? (
+        <div className="h-screen py-4">
+            {isCompleted && (
+                <KuserFeedback
+                    callback={() => {
+                        setIsCompleted(false);
+                    }}
+                    kuser={user}
+                />
+            )}
+            <KuserHeader />
 
-                <div className="grid grid-cols-12 gap-2 h-full w-screen bg-gray-100">
-                    <div className="flex flex-col lg:col-span-4 sm:col-span-6 col-span-12 px-4">
-                        <div className="relative py-4 flex flex-col items-center justify-start mt-32 mb-2 h-full bg-white rounded-lg space-y-3 md:space-y-6 px-6 border">
-                            <span className="absolute -top-24">
+            <div className="grid grid-cols-12 gap-2 h-full w-screen bg-gray-100">
+                <div className="flex flex-col lg:col-span-4 sm:col-span-6 col-span-12 px-4">
+                    <div className="relative py-4 flex flex-col items-center justify-start mt-32 mb-2 h-full bg-white rounded-lg space-y-3 md:space-y-6 px-6 border">
+                        <span className="absolute -top-24">
+                            {isLoading ? (
+                                <ImageSkeleton
+                                    className="w-52 h-52 rounded-xl"
+                                    animated={false}
+                                />
+                            ) : (
+                                <span className="rounded-xl max-w-52 min-h-52 overflow-hidden flex justify-center items-center">
+                                    <Image
+                                        alt="Kuser Image"
+                                        src={
+                                            ROOT_FILES_URL +
+                                            "/" +
+                                            user.profile_photo_url!
+                                        }
+                                        width={500}
+                                        height={500}
+                                        className="w-full"
+                                        priority={true}
+                                    />
+                                </span>
+                            )}
+                        </span>
+
+                        <div className="pt-24 flex flex-col justify-start space-y-4">
+                            <h2 className="font-bold text-2xl">
                                 {isLoading ? (
-                                    <ImageSkeleton
-                                        className="w-52 h-52 rounded-xl"
-                                        animated={false}
+                                    <span className="flex space-x-2">
+                                        <TextSkeleton
+                                            className="md:28 w-16 text-gray-200"
+                                            height={4}
+                                        />{" "}
+                                        <TextSkeleton
+                                            className="ms-2 md:32 w-16 text-gray-100"
+                                            height={4}
+                                        />
+                                    </span>
+                                ) : (
+                                    ucfirst(user.firstname!) +
+                                    " " +
+                                    ucfirst(user.name!)
+                                )}
+                            </h2>
+                        </div>
+
+                        <div>
+                            <span className="my-1 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded flex items-center bg-gray-50 border">
+                                <span className="px-1 text-white">
+                                    <MdOutlineConnectWithoutContact className="w-4 h-4 text-gray-700" />
+                                </span>
+                                {isLoading ? (
+                                    <TextSkeleton
+                                        className="w-16"
+                                        bgClass="bg-gray-300/25"
                                     />
                                 ) : (
-                                    <span className="rounded-xl max-w-52 min-h-52 overflow-hidden flex justify-center items-center">
-                                        <Image
-                                            alt="Kuser Image"
-                                            src={
-                                                ROOT_FILES_URL +
-                                                "/" +
-                                                user.profile_photo_url!
-                                            }
-                                            width={500}
-                                            height={500}
-                                            className="w-full"
-                                            priority={true}
-                                        />
+                                    <span className="text-sm text-gray-700 space-x-1 flex">
+                                        <motion.div
+                                            initial={{ opacity: 0, scale: 0.5 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            transition={{
+                                                duration: 0.2,
+                                                ease: [0, 0.71, 0.2, 1.01],
+                                                scale: {
+                                                    type: "spring",
+                                                    damping: 7,
+                                                    stiffness: 100,
+                                                    restDelta: 0.001,
+                                                },
+                                            }}
+                                        >
+                                            <span id="konect-stat">
+                                                {konectsCount}
+                                            </span>
+                                        </motion.div>
+                                        <span>
+                                            {esser("konect", konectsCount)}
+                                        </span>
                                     </span>
                                 )}
                             </span>
+                        </div>
 
-                            <div className="pt-24 flex flex-col justify-start space-y-4">
-                                <h2 className="font-bold text-2xl">
-                                    {isLoading ? (
-                                        <span className="flex space-x-2">
-                                            <TextSkeleton
-                                                className="md:28 w-16 text-gray-200"
-                                                height={4}
-                                            />{" "}
-                                            <TextSkeleton
-                                                className="ms-2 md:32 w-16 text-gray-100"
-                                                height={4}
-                                            />
-                                        </span>
-                                    ) : (
-                                        ucfirst(user.firstname!) +
-                                        " " +
-                                        ucfirst(user.name!)
-                                    )}
-                                </h2>
-                            </div>
+                        <div className="flex mt-4 space-x-3 pb-2 relative w-full shadow-none justify-center items-center bottom-0 left-0">
+                            <Link
+                                href={
+                                    kuser
+                                        ? ROOT_FILES_URL +
+                                          "/vcards/" +
+                                          user.uuid! +
+                                          ".vcf"
+                                        : ""
+                                }
+                                ref={aRef}
+                                className="hidden opacity-0 invisible"
+                            />
+                            <Button
+                                theme={customButtonTheme}
+                                color="dark"
+                                onClick={handleSaveContact}
+                            >
+                                <HiSave className={"text-lg"} />
+                                <span className="ml-1">{"Save"}</span>
+                            </Button>
+                            <Button
+                                theme={customButtonTheme}
+                                onClick={handleShareContact}
+                                color="gray"
+                            >
+                                <TbShare3 className={"text-lg"} />
+                                <span className="ml-1">{"Share"}</span>
+                            </Button>
+                        </div>
 
-                            <div>
-                                <span className="my-1 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded flex items-center bg-gray-50 border">
-                                    <span className="px-1 text-white">
-                                        <MdOutlineConnectWithoutContact className="w-4 h-4 text-gray-700" />
-                                    </span>
-                                    {isLoading ? (
-                                        <TextSkeleton
-                                            className="w-16"
-                                            bgClass="bg-gray-300/25"
-                                        />
-                                    ) : (
-                                        <span className="text-sm text-gray-700 space-x-1 flex">
-                                            <motion.div
-                                                initial={{ opacity: 0, scale: 0.5 }}
-                                                animate={{ opacity: 1, scale: 1 }}
-                                                transition={{
-                                                    duration: 0.2,
-                                                    ease: [0, 0.71, 0.2, 1.01],
-                                                    scale: {
-                                                        type: "spring",
-                                                        damping: 7,
-                                                        stiffness: 100,
-                                                        restDelta: 0.001,
-                                                    },
-                                                }}
-                                            >
-                                                <span id="konect-stat">
-                                                    {konectsCount}
-                                                </span>
-                                            </motion.div>
-                                            <span>
-                                                {esser("konect", konectsCount)}
-                                            </span>
-                                        </span>
-                                    )}
+                        <div className="flex flex-wrap items-center mt-1">
+                            {isLoading ? (
+                                <span className="flex space-x-2">
+                                    <ImageSkeleton className="w-12 h-12" />
+                                    <ImageSkeleton className="w-12 h-12" />
+                                    <ImageSkeleton className="w-12 h-12" />
                                 </span>
-                            </div>
-
-                            <div className="flex mt-4 space-x-3 pb-2 relative w-full shadow-none justify-center items-center bottom-0 left-0">
-                                <Link
-                                    href={
-                                        kuser
-                                            ? ROOT_FILES_URL +
-                                            "/vcards/" +
-                                            user.uuid! +
-                                            ".vcf"
-                                            : ""
-                                    }
-                                    ref={aRef}
-                                    className="hidden opacity-0 invisible"
+                            ) : (
+                                <SocialMediaBloc
+                                    socialProfils={vinfo.socialProfils}
                                 />
-                                <Button
-                                    theme={customButtonTheme}
-                                    color="dark"
-                                    onClick={handleSaveContact}
-                                >
-                                    <HiSave className={"text-lg"} />
-                                    <span className="ml-1">{"Save"}</span>
-                                </Button>
-                                <Button
-                                    theme={customButtonTheme}
-                                    onClick={handleShareContact}
-                                    color="gray"
-                                >
-                                    <TbShare3 className={"text-lg"} />
-                                    <span className="ml-1">{"Share"}</span>
-                                </Button>
-                            </div>
+                            )}
+                        </div>
 
-                            <div className="flex flex-wrap items-center mt-1">
-                                {isLoading ? (
-                                    <span className="flex space-x-2">
-                                        <ImageSkeleton className="w-12 h-12" />
-                                        <ImageSkeleton className="w-12 h-12" />
-                                        <ImageSkeleton className="w-12 h-12" />
+                        <div className="bg-gray-50 border rounded-md w-full md:pb-0 pb-3">
+                            <ul className="py-2 divide-y divide-gray-200 px-3">
+                                <li className="flex space-x-3 items-center overflow-hidden py-3">
+                                    <span className="bg-white min-w-10 h-10 rounded flex justify-center items-center border">
+                                        <TbMail className="w-5 text-gray-500 hover:text-gray-800 cursor-pointer" />
                                     </span>
-                                ) : (
-                                    <SocialMediaBloc
-                                        socialProfils={vinfo.socialProfils}
-                                    />
-                                )}
-                            </div>
 
-                            <div className="bg-gray-50 border rounded-md w-full md:pb-0 pb-3">
-                                <ul className="py-2 divide-y divide-gray-200 px-3">
+                                    <div className="inline-flex flex-col justify-center w-[inherit]">
+                                        <span className="font-bold text-sm text-gray-400">
+                                            {"Email"}
+                                        </span>
+                                        {isLoading ? (
+                                            <span>
+                                                <TextSkeleton
+                                                    className="w-56 mt-1"
+                                                    bgClass="bg-gray-300/20"
+                                                />
+                                            </span>
+                                        ) : (
+                                            <a
+                                                href={
+                                                    "mailto:" + vinfo.email.text
+                                                }
+                                                className="hover:underline text-gray-700 break-words"
+                                            >
+                                                {vinfo.email.text}
+                                            </a>
+                                        )}
+                                    </div>
+                                </li>
+                                <li className="flex space-x-3 py-3 items-center overflow-hidden">
+                                    <span className="bg-white min-w-10 h-10 rounded flex justify-center items-center border">
+                                        <TbPhone className="w-5 text-gray-500 hover:text-gray-800 cursor-pointer" />
+                                    </span>
+                                    <div className="flex flex-col justify-center">
+                                        <span className="font-bold text-sm text-gray-400">
+                                            {"Phone"}
+                                        </span>
+                                        {isLoading ? (
+                                            <span>
+                                                <TextSkeleton
+                                                    className="w-40 mt-1"
+                                                    bgClass="bg-gray-300/20"
+                                                />
+                                            </span>
+                                        ) : (
+                                            <a
+                                                href={"tel:" + vinfo.phone.text}
+                                                className="hover:underline text-gray-700"
+                                            >
+                                                {vinfo.phone.text}
+                                            </a>
+                                        )}
+                                    </div>
+                                </li>
+                                {vconfig.showLocalization && (
                                     <li className="flex space-x-3 items-center overflow-hidden py-3">
                                         <span className="bg-white min-w-10 h-10 rounded flex justify-center items-center border">
-                                            <TbMail className="w-5 text-gray-500 hover:text-gray-800 cursor-pointer" />
+                                            <MdLocationPin className="w-5 text-gray-500 hover:text-gray-800 cursor-pointer" />
                                         </span>
 
                                         <div className="inline-flex flex-col justify-center w-[inherit]">
                                             <span className="font-bold text-sm text-gray-400">
-                                                {"Email"}
+                                                {"Location"}
                                             </span>
                                             {isLoading ? (
                                                 <span>
                                                     <TextSkeleton
-                                                        className="w-56 mt-1"
+                                                        className="w-52 mt-1"
                                                         bgClass="bg-gray-300/20"
                                                     />
                                                 </span>
                                             ) : (
                                                 <a
                                                     href={
-                                                        "mailto:" + vinfo.email.text
+                                                        "https://www.google.com/maps/search/?api=1&query=" +
+                                                        vinfo.location.city +
+                                                        "+" +
+                                                        vinfo.location.state +
+                                                        "+" +
+                                                        vinfo.location.iso_code
                                                     }
+                                                    target="_blank"
                                                     className="hover:underline text-gray-700 break-words"
                                                 >
-                                                    {vinfo.email.text}
+                                                    {vinfo.location.city +
+                                                        ", " +
+                                                        vinfo.location.state +
+                                                        ", " +
+                                                        vinfo.location.iso_code}
                                                 </a>
                                             )}
                                         </div>
                                     </li>
-                                    <li className="flex space-x-3 py-3 items-center overflow-hidden">
-                                        <span className="bg-white min-w-10 h-10 rounded flex justify-center items-center border">
-                                            <TbPhone className="w-5 text-gray-500 hover:text-gray-800 cursor-pointer" />
-                                        </span>
-                                        <div className="flex flex-col justify-center">
-                                            <span className="font-bold text-sm text-gray-400">
-                                                {"Phone"}
-                                            </span>
-                                            {isLoading ? (
-                                                <span>
-                                                    <TextSkeleton
-                                                        className="w-40 mt-1"
-                                                        bgClass="bg-gray-300/20"
-                                                    />
-                                                </span>
-                                            ) : (
-                                                <a
-                                                    href={"tel:" + vinfo.phone.text}
-                                                    className="hover:underline text-gray-700"
-                                                >
-                                                    {vinfo.phone.text}
-                                                </a>
-                                            )}
-                                        </div>
-                                    </li>
-                                    {
-                                        vconfig.showLocalization && <li className="flex space-x-3 items-center overflow-hidden py-3">
-                                            <span className="bg-white min-w-10 h-10 rounded flex justify-center items-center border">
-                                                <MdLocationPin className="w-5 text-gray-500 hover:text-gray-800 cursor-pointer" />
-                                            </span>
-
-                                            <div className="inline-flex flex-col justify-center w-[inherit]">
-                                                <span className="font-bold text-sm text-gray-400">
-                                                    {"Location"}
-                                                </span>
-                                                {isLoading ? (
-                                                    <span>
-                                                        <TextSkeleton
-                                                            className="w-52 mt-1"
-                                                            bgClass="bg-gray-300/20"
-                                                        />
-                                                    </span>
-                                                ) : (
-                                                    <a
-                                                        href={
-                                                            "https://www.google.com/maps/search/?api=1&query=" +
-                                                            vinfo.location.city +
-                                                            "+" +
-                                                            vinfo.location.state +
-                                                            "+" +
-                                                            vinfo.location.iso_code
-                                                        }
-                                                        target="_blank"
-                                                        className="hover:underline text-gray-700 break-words"
-                                                    >
-                                                        {vinfo.location.city +
-                                                            ", " +
-                                                            vinfo.location.state +
-                                                            ", " +
-                                                            vinfo.location.iso_code}
-                                                    </a>
-                                                )}
-                                            </div>
-                                        </li>
-                                    }
-
-                                </ul>
-                            </div>
+                                )}
+                            </ul>
                         </div>
                     </div>
+                </div>
 
-                    <div className="border my-2 bg-white lg:col-span-8 sm:col-span-6 col-span-12 flex flex-col space-y-8  px-8 rounded-lg">
-                        {isLoading ? (
-                            <span>
+                <div className="border my-2 bg-white lg:col-span-8 sm:col-span-6 col-span-12 flex flex-col space-y-8  px-8 rounded-lg">
+                    {isLoading ? (
+                        <span>
+                            <h3 className="text-gray-700 font-bold text-lg mb-4 mt-4">
+                                {"About me"}
+                            </h3>
+                            <span className="flex flex-col space-y-3 mt-4 mb-4">
+                                <span className="flex space-x-2">
+                                    <TextSkeleton className="ms-2 w-20 text-gray-200" />
+                                    <TextSkeleton className="ms-2 w-48 text-gray-300/25" />
+                                    <TextSkeleton className="ms-2 w-full text-gray-200" />
+                                </span>
+                                <span className="flex space-x-2">
+                                    <TextSkeleton className="ms-2 w-20 text-gray-200" />
+                                    <TextSkeleton className="ms-2 w-full text-gray-300/25" />
+
+                                    <TextSkeleton className="ms-2 w-36 text-gray-200" />
+                                </span>
+                            </span>
+                        </span>
+                    ) : (
+                        vinfo.note && (
+                            <div>
                                 <h3 className="text-gray-700 font-bold text-lg mb-4 mt-4">
                                     {"About me"}
                                 </h3>
-                                <span className="flex flex-col space-y-3 mt-4 mb-4">
-                                    <span className="flex space-x-2">
-                                        <TextSkeleton className="ms-2 w-20 text-gray-200" />
-                                        <TextSkeleton className="ms-2 w-48 text-gray-300/25" />
-                                        <TextSkeleton className="ms-2 w-full text-gray-200" />
-                                    </span>
-                                    <span className="flex space-x-2">
-                                        <TextSkeleton className="ms-2 w-20 text-gray-200" />
-                                        <TextSkeleton className="ms-2 w-full text-gray-300/25" />
+                                <p className="mt-4 text-gray-500">
+                                    {vinfo.note.text}
+                                </p>
+                            </div>
+                        )
+                    )}
 
-                                        <TextSkeleton className="ms-2 w-36 text-gray-200" />
-                                    </span>
-                                </span>
-                            </span>
-                        ) : (
-                            vinfo.note && (
-                                <div>
-                                    <h3 className="text-gray-700 font-bold text-lg mb-4 mt-4">
-                                        {"About me"}
-                                    </h3>
-                                    <p className="mt-4 text-gray-500">
-                                        {vinfo.note.text}
-                                    </p>
-                                </div>
-                            )
-                        )}
-
-                        {isLoading ? (
-                            <span>
+                    {isLoading ? (
+                        <span>
+                            <h3 className="text-gray-700 font-bold text-lg mb-6">
+                                {"Externals Links"}
+                            </h3>
+                            <ExternalLinkSkeleton />
+                        </span>
+                    ) : (
+                        vinfo.urls.length > 0 && (
+                            <div>
                                 <h3 className="text-gray-700 font-bold text-lg mb-6">
                                     {"Externals Links"}
                                 </h3>
-                                <ExternalLinkSkeleton />
-                            </span>
-                        ) : (
-                            vinfo.urls.length > 0 && (
-                                <div>
-                                    <h3 className="text-gray-700 font-bold text-lg mb-6">
-                                        {"Externals Links"}
-                                    </h3>
-                                    <div className="grid gap-3 md:grid-cols-2 grid-cols-1">
-                                        {vinfo.urls.map((url, i) => (
-                                            <div
-                                                className="flex justify-start bg-slate-50 rounded-md border  items-center p-2 overflow-hidden"
-                                                key={i}
-                                            >
-                                                <span className="bg-white p-2 border rounded-md">
-                                                    <TbExternalLink className="w-6" />
+                                <div className="grid gap-3 md:grid-cols-2 grid-cols-1">
+                                    {vinfo.urls.map((url, i) => (
+                                        <div
+                                            className="flex justify-start bg-slate-50 rounded-md border  items-center p-2 overflow-hidden"
+                                            key={i}
+                                        >
+                                            <span className="bg-white p-2 border rounded-md">
+                                                <TbExternalLink className="w-6" />
+                                            </span>
+                                            <div className="flex flex-col px-4">
+                                                <span className="text-sm font-bold">
+                                                    {url.type}
                                                 </span>
-                                                <div className="flex flex-col px-4">
-                                                    <span className="text-sm font-bold">
-                                                        {url.type}
-                                                    </span>
-                                                    <span>
-                                                        <a
-                                                            className="text-gray-500 underline truncate"
-                                                            target="__blank"
-                                                            href={
-                                                                url.uri
-                                                            }
-                                                        >
-                                                            {url.uri}
-                                                        </a>
-                                                    </span>
-                                                </div>
+                                                <span>
+                                                    <a
+                                                        className="text-gray-500 underline truncate"
+                                                        target="__blank"
+                                                        href={url.uri}
+                                                    >
+                                                        {url.uri}
+                                                    </a>
+                                                </span>
                                             </div>
-                                        ))}
-                                    </div>
+                                        </div>
+                                    ))}
                                 </div>
-                            )
-                        )}
+                            </div>
+                        )
+                    )}
 
-                        {isLoading ? (
-                            <span>
-                                <h3 className="text-gray-700 font-bold text-lg mb-4 mt-4">
+                    {isLoading ? (
+                        <span>
+                            <h3 className="text-gray-700 font-bold text-lg mb-4 mt-4">
+                                {"Videos"}
+                            </h3>
+                            <VideoSkeleton
+                                className="w-full h-60 rounded-xl"
+                                animated={true}
+                            />
+                        </span>
+                    ) : (
+                        vinfo.urls.length > 0 && (
+                            <div className="pb-28">
+                                <h3 className="text-gray-700 font-bold text-lg mb-6">
                                     {"Videos"}
                                 </h3>
-                                <VideoSkeleton
-                                    className="w-full h-60 rounded-xl"
-                                    animated={true}
-                                />
-                            </span>
-                        ) : (
-                            vinfo.urls.length > 0 && (
-                                <div className="pb-28">
-                                    <h3 className="text-gray-700 font-bold text-lg mb-6">
-                                        {"Videos"}
-                                    </h3>
-                                    <div className="grid md:grid-cols-2 grid-cols-1 gap-3">
-                                        {vinfo.videoLinks.map(
-                                            (video, i) => (
-                                                <div
-                                                    className="flex flex-col items-center space-y-3"
-                                                    key={i}
-                                                >
-                                                    <iframe
-                                                        src={
-                                                            video.uri
-                                                        }
-                                                        title="W3Schools Free Online Web Tutorials"
-                                                        className="w-full h-52"
-                                                        loading="lazy"
-                                                    ></iframe>
-                                                    <span className="text-gray-400 text-sm">
-                                                        {video.type}
-                                                    </span>
-                                                </div>
-                                            ),
-                                        )}{" "}
-                                    </div>
+                                <div className="grid md:grid-cols-2 grid-cols-1 gap-3">
+                                    {vinfo.videoLinks.map((video, i) => (
+                                        <div
+                                            className="flex flex-col items-center space-y-3"
+                                            key={i}
+                                        >
+                                            <iframe
+                                                src={video.uri}
+                                                title="W3Schools Free Online Web Tutorials"
+                                                className="w-full h-52"
+                                                loading="lazy"
+                                            ></iframe>
+                                            <span className="text-gray-400 text-sm">
+                                                {video.type}
+                                            </span>
+                                        </div>
+                                    ))}{" "}
                                 </div>
-                            )
-                        )}
-                    </div>
+                            </div>
+                        )
+                    )}
                 </div>
             </div>
-            : "Carte desactivée"
+        </div>
+    ) : (
+        "Carte desactivée"
     );
 }
 

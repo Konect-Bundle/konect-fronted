@@ -12,14 +12,13 @@ import { Input } from "postcss";
 import InputField from "../Form/InputField";
 import { useTranslations } from "next-intl";
 
-interface VcardLinksFormProps extends React.PropsWithChildren { }
+interface VcardLinksFormProps extends React.PropsWithChildren {}
 
 const VcardLinksForm: React.FC<
     VcardLinksFormProps
-> = ({ }: VcardLinksFormProps) => {
-    const __= useTranslations("Text");
-    const __A= useTranslations("Actions");
-
+> = ({}: VcardLinksFormProps) => {
+    const __ = useTranslations("Text");
+    const __A = useTranslations("Actions");
 
     return (
         <FieldArray
@@ -47,7 +46,6 @@ const VcardLinksForm: React.FC<
                                                     labelFor="title"
                                                 />
                                             </div>
-
                                         </div>
                                     </InputWithLabel>
                                 </div>
@@ -70,16 +68,20 @@ const VcardLinksForm: React.FC<
                                     </InputWithLabel>
                                 </div>
                                 <div className="md:col-span-1 col-span-8 flex sm:items-start items-end flex-col justify-end mb-4">
-                                    <span className="cursor-pointer flex items-center justify-start text-red-500 hover:text-red-700" onClick={() => remove(index)}
+                                    <span
+                                        className="cursor-pointer flex items-center justify-start text-red-500 hover:text-red-700"
+                                        onClick={() => remove(index)}
                                     >
                                         <TbX
                                             size={18}
-                                            className="ml-1 cursor-pointer" />
-                                        <span className="text-xs">{__A("delete")}</span>
+                                            className="ml-1 cursor-pointer"
+                                        />
+                                        <span className="text-xs">
+                                            {__A("delete")}
+                                        </span>
                                     </span>
                                 </div>
                             </div>
-
                         ))}
                         <Button
                             theme={customButtonTheme}
@@ -89,9 +91,7 @@ const VcardLinksForm: React.FC<
                             size={"sm"}
                         >
                             <TbPlus className={"text-lg"} />
-                            <span className="ml-1 text-xs">
-                                {__("add")}
-                            </span>
+                            <span className="ml-1 text-xs">{__("add")}</span>
                         </Button>
                     </div>
                 );

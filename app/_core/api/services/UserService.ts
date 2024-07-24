@@ -13,7 +13,7 @@ export class UserService {
         user.vinfo = data.data.vinfo;
         user.vconfig = data.data.vconfig;
         user.profile_photo_url = data.data.profile_photo_path;
-        user.konect_count = data.data.konect_count
+        user.konect_count = data.data.konect_count;
         return user;
     }
 

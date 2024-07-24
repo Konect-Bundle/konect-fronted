@@ -29,13 +29,20 @@ import {
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { getCookie, deleteCookie } from "cookies-next";
-import { TbArrowDown, TbChevronDown, TbDashboard, TbDotsVertical, TbLayoutDashboardFilled, TbPower } from "react-icons/tb";
+import {
+    TbArrowDown,
+    TbChevronDown,
+    TbDashboard,
+    TbDotsVertical,
+    TbLayoutDashboardFilled,
+    TbPower,
+} from "react-icons/tb";
 import { useAppSelector, useAppDispatch } from "@/app/_store/hooks";
 import { logout } from "@/app/_store/slices/authSlice";
 import { customAvatarTheme } from "@/app/_styles/flowbite/avatar";
 import { ucfirst, ucwords } from "@/app/_core/utils/functions";
 
-export interface IAppProps { }
+export interface IAppProps {}
 
 export default function Header(props: IAppProps) {
     const pathname = usePathname();
@@ -111,13 +118,16 @@ export default function Header(props: IAppProps) {
                                 >
                                     <Dropdown.Header>
                                         <span className="block text-sm">
-                                            {ucwords(`${user.firstname} ${user.name}`)}
+                                            {ucwords(
+                                                `${user.firstname} ${user.name}`,
+                                            )}
                                         </span>
                                         <span className="block truncate text-sm font-medium">
                                             {user.email}
                                         </span>
                                     </Dropdown.Header>
-                                    <Dropdown.Item><Link href={dashboardRoute.path} />
+                                    <Dropdown.Item>
+                                        <Link href={dashboardRoute.path} />
                                         <span className="flex items-center space-x-1">
                                             <TbLayoutDashboardFilled />
                                             <span>{tLinks("dashboard")}</span>

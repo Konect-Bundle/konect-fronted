@@ -16,13 +16,13 @@ import { intent_processor } from "@/app/_core/utils/functions";
 import { Field, Form, Formik } from "formik";
 import InputWithLabel from "@/app/_components/Common/Form/InputWithLabel";
 import InputField from "@/app/_components/Common/Form/InputField";
-import CheckBoxField from '../../_components/Common/Form/CheckBoxField';
+import CheckBoxField from "../../_components/Common/Form/CheckBoxField";
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
 import { useTranslations } from "next-intl";
-import * as Yup from 'yup';
+import * as Yup from "yup";
 import LoadingLayout from "@/app/_components/Layouts/LoadingLayout";
 
-export interface ILoginFormPageProps { }
+export interface ILoginFormPageProps {}
 
 export default function LoginFormPage(props: ILoginFormPageProps) {
     const [showPassword, setShowPassword] = useState(false);
@@ -32,8 +32,12 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
     const T = useTranslations("Auth");
 
     const SigninSchema = Yup.object().shape({
-        email: Yup.string().email(T("validate_email")).required(T("validate_required")),
-        password: Yup.string().min(8, T("Password.validate_min")).required(T("validate_required")),
+        email: Yup.string()
+            .email(T("validate_email"))
+            .required(T("validate_required")),
+        password: Yup.string()
+            .min(8, T("Password.validate_min"))
+            .required(T("validate_required")),
         rememberMe: Yup.bool(),
     });
 
@@ -56,7 +60,11 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
         }
     }, [showPassword]);
 
-    function doAuth(values: { email: string, password: string, rememberMe: boolean }) {
+    function doAuth(values: {
+        email: string;
+        password: string;
+        rememberMe: boolean;
+    }) {
         setIsLoading(true);
         // if (!values.email || !values.password) return;
 
@@ -106,31 +114,63 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
         });
     }
     const closeLoading = () => {
-            setIsLoading(false);
-      
-    }
+        setIsLoading(false);
+    };
 
     return (
         <LoadingLayout isLoading={isLoading}>
             <div className="w-full h-full flex  flex-col justify-center items-center">
-                <h2 className="text-2xl text-black-semibold text-center font-bold md:py-10 p-4">{T("login")}</h2>
+                <h2 className="text-2xl text-black-semibold text-center font-bold md:py-10 p-4">
+                    {T("login")}
+                </h2>
 
-                <Formik onSubmit={doAuth} validationSchema={SigninSchema} initialValues={{ email: "", password: "", rememberMe: true }}>
+                <Formik
+                    onSubmit={doAuth}
+                    validationSchema={SigninSchema}
+                    initialValues={{
+                        email: "",
+                        password: "",
+                        rememberMe: true,
+                    }}
+                >
                     <Form className="flex lg:w-96 sm:w-80 w-72 flex-col gap-4">
-                        <InputWithLabel labelFor="email" labelTitle={T("your_email")}>
-                            <InputField labelFor="email" name="email" required />
+                        <InputWithLabel
+                            labelFor="email"
+                            labelTitle={T("your_email")}
+                        >
+                            <InputField
+                                labelFor="email"
+                                name="email"
+                                required
+                            />
                         </InputWithLabel>
 
-                        <InputWithLabel labelFor="password" labelTitle={T("your_password")}>
-                            <InputField rightIcon={showPassword ? TbEyeOff : TbEye} manualType={showPassword ? "text" : "password"} labelFor="password" name="password" required />
+                        <InputWithLabel
+                            labelFor="password"
+                            labelTitle={T("your_password")}
+                        >
+                            <InputField
+                                rightIcon={showPassword ? TbEyeOff : TbEye}
+                                manualType={showPassword ? "text" : "password"}
+                                labelFor="password"
+                                name="password"
+                                required
+                            />
                         </InputWithLabel>
 
                         <div className="flex items-center gap-2 mb-2">
-                            <CheckBoxField labelFor="remember" name="rememberMe" />
+                            <CheckBoxField
+                                labelFor="remember"
+                                name="rememberMe"
+                            />
                             {/* <Field type="checkbox" name="remberMe" /> */}
                             <Label htmlFor="remember">{T("remember_me")}</Label>
                         </div>
-                        <Button color="dark" theme={customButtonTheme} type="submit">
+                        <Button
+                            color="dark"
+                            theme={customButtonTheme}
+                            type="submit"
+                        >
                             {T("login")}
                         </Button>
                     </Form>

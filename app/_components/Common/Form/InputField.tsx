@@ -17,37 +17,38 @@ const InputField: React.FC<InputFieldProps> = ({
     className = "",
     labelFor = "",
     name,
-    manualType="text",
+    manualType = "text",
     rightIcon,
     ...props
 }) => {
     return (
-        <Field id={labelFor}
-            disabled={disabled}
-            name={name}>
+        <Field id={labelFor} disabled={disabled} name={name}>
             {(fieldProps: any) => {
-                const { field, // { name, value, onChange, onBlur }
+                const {
+                    field, // { name, value, onChange, onBlur }
                     form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
                     meta,
-
                 } = fieldProps;
 
-                return <div>
+                return (
+                    <div>
+                        <TextInput
+                            id={labelFor}
+                            theme={customTextInputTheme}
+                            rightIcon={rightIcon && rightIcon}
+                            type={manualType}
+                            {...field}
+                        />
 
-                    <TextInput id={labelFor} theme={customTextInputTheme} rightIcon={rightIcon && rightIcon} type={manualType} {...field}/>
-
-                    {meta.touched && meta.error && (
-
-                        <div className="error mt-2 text-xs text-red-500">{meta.error}</div>
-                    )}
-
-                </div>
-
-            }
-            }
-
+                        {meta.touched && meta.error && (
+                            <div className="error mt-2 text-xs text-red-500">
+                                {meta.error}
+                            </div>
+                        )}
+                    </div>
+                );
+            }}
         </Field>
-        
     );
 };
 

@@ -12,7 +12,9 @@ export default class UserVcard extends VcardModel {
             this.phone = new PhoneVcard("", "");
             //   this.work = new WorkVcard("", "");
         } else {
-            const vinfoObj = JSON.parse((typeof vinfo) == "string" ? vinfo :JSON.stringify(vinfo));
+            const vinfoObj = JSON.parse(
+                typeof vinfo == "string" ? vinfo : JSON.stringify(vinfo),
+            );
             this.phone = new PhoneVcard(
                 vinfoObj.phone.type,
                 vinfoObj.phone.text,
