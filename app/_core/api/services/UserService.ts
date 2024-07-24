@@ -7,6 +7,7 @@ import { cookies } from "next/headers";
 export class UserService {
     static buildObjectParser(data: any) {
         var user: User = new User();
+        user.uuid = data.data.uuid;
         user.name = data.data.name;
         user.firstname = data.data.firstname;
         user.email = data.data.email;
