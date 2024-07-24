@@ -1,16 +1,16 @@
-import { customTextInputTheme } from "@/app/_styles/flowbite/form";
-import { Label, Textarea, TextInput } from "flowbite-react";
-import { Field, FieldConfig } from "formik";
+import { customCheckBoxTheme } from "@/app/_styles/flowbite/form";
+import { Checkbox } from "flowbite-react";
+import { Field } from "formik";
 import React from "react";
 
-interface TextAreaFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface CheckBoxFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
     disabled?: boolean;
     labelFor: string;
     className?: string;
     name?: string;
 }
 
-const TextAreaField: React.FC<TextAreaFieldProps> = ({
+const CheckBoxField: React.FC<CheckBoxFieldProps> = ({
     disabled = false,
     className = "",
     labelFor = "",
@@ -29,7 +29,7 @@ const TextAreaField: React.FC<TextAreaFieldProps> = ({
                 } = fieldProps;
 
                 return <div>
-                    <Textarea id={labelFor} theme={customTextInputTheme}   {...field} />
+                    <Checkbox id={labelFor} theme={customCheckBoxTheme}   {...field} />
 
                     {meta.touched && meta.error && (
 
@@ -46,4 +46,4 @@ const TextAreaField: React.FC<TextAreaFieldProps> = ({
     );
 };
 
-export default TextAreaField;
+export default CheckBoxField;

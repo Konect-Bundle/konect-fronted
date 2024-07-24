@@ -1,13 +1,15 @@
 import { customTextInputTheme } from "@/app/_styles/flowbite/form";
 import { Label, TextInput } from "flowbite-react";
 import { Field, FieldConfig } from "formik";
-import React from "react";
+import React, { ReactSVGElement } from "react";
 
 interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
     disabled?: boolean;
     labelFor: string;
     className?: string;
+    manualType?: string;
     name?: string;
+    rightIcon?: React.FC<React.SVGProps<SVGSVGElement>>;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -15,6 +17,8 @@ const InputField: React.FC<InputFieldProps> = ({
     className = "",
     labelFor = "",
     name,
+    manualType="text",
+    rightIcon,
     ...props
 }) => {
     return (
@@ -30,7 +34,7 @@ const InputField: React.FC<InputFieldProps> = ({
 
                 return <div>
 
-                    <TextInput theme={customTextInputTheme} type="text" {...field} />
+                    <TextInput id={labelFor} theme={customTextInputTheme} rightIcon={rightIcon && rightIcon} type={manualType} {...field}/>
 
                     {meta.touched && meta.error && (
 

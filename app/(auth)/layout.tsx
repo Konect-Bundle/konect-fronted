@@ -7,7 +7,7 @@ export default function AuthLayout({
     children: React.ReactNode;
 }) {
     return (
-        <section className="h-screen w-screen grid md:grid-cols-2 grid-cols-1">
+        <section className="h-screen bg-white w-screen grid md:grid-cols-2 grid-cols-1">
             <div className="flex justify-center items-center">
                 <div className="absolute top-6">
                     <Image
