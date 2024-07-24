@@ -8,7 +8,7 @@ const ContainerLayout: React.FC<ContainerLayoutProps> = ({
     className = "",
     children,
 }: ContainerLayoutProps) => {
-    return <div className={"md:px-24 px-4 " + className}>{children}</div>;
+    return <div className={"md:px-24 px-8 " + className}>{children}</div>;
 };
 
 export default ContainerLayout;

@@ -9,7 +9,7 @@ export default class VcardConfig {
             this.showLocalization = false;
             this.configTheme = new VcardConfigTheme("");
         } else {
-            const vConfigObj = JSON.parse(vconfig);
+            const vConfigObj = JSON.parse((typeof vconfig) == "string" ? vconfig :JSON.stringify(vconfig));
             this.isCardActivated = vConfigObj.isCardActivated;
             this.showLocalization = vConfigObj.showLocalization;
             this.configTheme = new VcardConfigTheme(

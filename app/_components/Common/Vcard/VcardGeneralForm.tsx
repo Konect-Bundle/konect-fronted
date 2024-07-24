@@ -8,11 +8,11 @@ import InputField from "../Form/InputField";
 import InputPrefixedIcon from "../Form/InputPrefixedIcon";
 import { TbMail, TbPhone } from "react-icons/tb";
 
-interface VcardGeneralFormProps extends React.PropsWithChildren {}
+interface VcardGeneralFormProps extends React.PropsWithChildren { }
 
 const VcardGeneralForm: React.FC<
     VcardGeneralFormProps
-> = ({}: VcardGeneralFormProps) => {
+> = ({ }: VcardGeneralFormProps) => {
     // const CustomTextAreaComponent = (props: any) => (
     //     <Textarea id="comment" placeholder="Leave a comment..." required rows={4} {...props} />
     // );
@@ -49,6 +49,7 @@ const VcardGeneralForm: React.FC<
                         labelFor="givenName"
                         name="names.givenName"
                         id="givenName"
+                        required
                     />
                 </InputWithLabel>
             </div>
@@ -62,6 +63,7 @@ const VcardGeneralForm: React.FC<
                         labelFor="familyName"
                         name="names.familyName"
                         id="familyName"
+                        required
                     />
                 </InputWithLabel>
             </div>
@@ -78,20 +80,24 @@ const VcardGeneralForm: React.FC<
                 </InputWithLabel>
             </div>
             <div className="sm:col-span-1 col-span-2">
-                <InputWithLabel labelFor={"phone"} labelTitle={"Téléphone"}>
+                <InputWithLabel labelFor={"phone"} labelTitle={"Téléphone"} isRequired={true}
+                >
                     <InputPrefixedIcon
                         icon={<TbPhone />}
                         labelFor="phone"
                         name="phone.text"
+                        required
                     />
                 </InputWithLabel>
             </div>
             <div className="sm:col-span-1 col-span-2">
-                <InputWithLabel labelFor={"email"} labelTitle={"Adresse email"}>
+                <InputWithLabel labelFor={"email"} labelTitle={"Adresse email"} isRequired={true}
+                >
                     <InputPrefixedIcon
                         icon={<TbMail />}
                         labelFor="email"
                         name="email.text"
+                        required
                     />
                 </InputWithLabel>
             </div>
@@ -103,7 +109,7 @@ const VcardGeneralForm: React.FC<
                         as={"textarea"}
                         placeholder="First Name"
                         rows="4"
-                        className="block p-2.5 w-full text-sm text-gray-900  rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="block p-2.5 w-full text-sm text-gray-900  rounded-lg border border-gray-300/40 focus:ring-gray-200 focus:border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
                 </div>
             </div>

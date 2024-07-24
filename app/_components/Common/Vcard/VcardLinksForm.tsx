@@ -8,12 +8,14 @@ import Image from "next/image";
 import { TbLink, TbPlus, TbTrash, TbTrashXFilled, TbX } from "react-icons/tb";
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
 import { UrlVcardInterface } from "@/app/_core/interfaces/vcardInterfaces";
+import { Input } from "postcss";
+import InputField from "../Form/InputField";
 
-interface VcardLinksFormProps extends React.PropsWithChildren {}
+interface VcardLinksFormProps extends React.PropsWithChildren { }
 
 const VcardLinksForm: React.FC<
     VcardLinksFormProps
-> = ({}: VcardLinksFormProps) => {
+> = ({ }: VcardLinksFormProps) => {
     return (
         <FieldArray
             name="urls"
@@ -26,27 +28,53 @@ const VcardLinksForm: React.FC<
                 return (
                     <div className="flex flex-col space-y-4">
                         {urls.map((url: UrlVcardInterface, index: number) => (
-                            <InputWithLabel
-                                labelFor="facebook"
-                                key={index}
-                                labelTitle={url.type}
-                                className="w-full"
-                            >
-                                <div className="flex items-center">
-                                    <div className="w-full">
-                                        <InputPrefixedIcon
-                                            name={`urls[${index}].uri`}
-                                            labelFor="facebook"
-                                            icon={<TbLink />}
-                                        />
-                                    </div>
-                                    <TbX
-                                        size={20}
-                                        className="mx-4 cursor-pointer"
-                                        onClick={() => remove(index)}
-                                    />
+                            <div className="grid grid-cols-8 gap-3" key={index}>
+                                <div className="flex flex-col justify-center md:col-span-3 col-span-8">
+                                    <InputWithLabel
+                                        labelFor="title"
+                                        labelTitle={"Titre"}
+                                        className="w-full"
+                                    >
+                                        <div className="flex items-center">
+                                            <div className="w-full">
+                                                <InputField
+                                                    name={`urls[${index}].type`}
+                                                    labelFor="title"
+                                                />
+                                            </div>
+
+                                        </div>
+                                    </InputWithLabel>
                                 </div>
-                            </InputWithLabel>
+                                <div className="flex flex-col justify-center md:col-span-4 col-span-8">
+                                    <InputWithLabel
+                                        labelFor="url"
+                                        key={index}
+                                        labelTitle={"Lien externe"}
+                                        className="w-full col-span-2"
+                                    >
+                                        <div className="flex items-center">
+                                            <div className="w-full">
+                                                <InputPrefixedIcon
+                                                    icon={<TbLink />}
+                                                    name={`urls[${index}].uri`}
+                                                    labelFor="url"
+                                                />
+                                            </div>
+                                        </div>
+                                    </InputWithLabel>
+                                </div>
+                                <div className="md:col-span-1 col-span-8 flex sm:items-start items-end flex-col justify-end mb-4">
+                                    <span className="cursor-pointer flex items-center justify-start text-red-500 hover:text-red-700" onClick={() => remove(index)}
+                                    >
+                                        <TbX
+                                            size={18}
+                                            className="ml-1 cursor-pointer" />
+                                        <span className="text-xs">Supprimer</span>
+                                    </span>
+                                </div>
+                            </div>
+
                         ))}
                         <Button
                             theme={customButtonTheme}

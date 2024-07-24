@@ -1,26 +1,22 @@
-import React, { ReactElement, ReactNode } from "react";
-import { Field, FieldArray } from "formik";
-import { Button, Label, TextInput } from "flowbite-react";
+import React from "react";
+import { FieldArray } from "formik";
+import { Button } from "flowbite-react";
 import InputWithLabel from "../Form/InputWithLabel";
 import InputPrefixedIcon from "../Form/InputPrefixedIcon";
-import Image from "next/image";
-import { UrlVcard } from "@/app/_core/models/vcard/VcardParts";
 import {
-    TbExternalLink,
+    TbLink,
     TbPlus,
-    TbTrash,
-    TbVideo,
-    TbVideoPlus,
     TbX,
 } from "react-icons/tb";
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
 import { VideoLinkVcardInterface } from "@/app/_core/interfaces/vcardInterfaces";
+import InputField from "../Form/InputField";
 
-interface VcardVideosFormProps extends React.PropsWithChildren {}
+interface VcardVideosFormProps extends React.PropsWithChildren { }
 
 const VcardVideosForm: React.FC<
     VcardVideosFormProps
-> = ({}: VcardVideosFormProps) => {
+> = ({ }: VcardVideosFormProps) => {
     return (
         <FieldArray name="videoLinks">
             {(fieldArrayProps) => {
@@ -30,34 +26,55 @@ const VcardVideosForm: React.FC<
 
                 return (
                     <div className="flex flex-col space-y-4">
-                        {videoLinks.map(
-                            (
-                                videoLink: VideoLinkVcardInterface,
-                                index: number,
-                            ) => (
-                                <InputWithLabel
-                                    labelFor="facebook"
-                                    key={index}
-                                    labelTitle={videoLink.type}
-                                >
-                                    <div className="flex items-center">
-                                        <div className="w-full">
-                                            <InputPrefixedIcon
-                                                name={`videoLinks[${index}].uri`}
-                                                labelFor="facebook"
-                                                icon={<TbVideo />}
-                                            />
-                                        </div>
-                                        <TbX
-                                            size={20}
-                                            className="mx-4 cursor-pointer"
-                                            onClick={() => remove(index)}
-                                        />{" "}
-                                    </div>
-                                </InputWithLabel>
-                            ),
-                        )}
+                        {videoLinks.map((videoLink: VideoLinkVcardInterface, index: number) => (
+                            <div className="grid grid-cols-8 gap-3" key={index}>
+                                <div className="flex flex-col justify-center md:col-span-3 col-span-8 ">
+                                    <InputWithLabel
+                                        labelFor="title"
+                                        labelTitle={"Titre"}
+                                        className="w-full"
+                                    >
+                                        <div className="flex items-center">
+                                            <div className="w-full">
+                                                <InputField
+                                                    name={`videoLinks[${index}].type`}
+                                                    labelFor="title"
+                                                />
+                                            </div>
 
+                                        </div>
+                                    </InputWithLabel>
+                                </div>
+                                <div className="flex flex-col justify-center md:col-span-4 col-span-8 ">
+                                    <InputWithLabel
+                                        labelFor="videoLinks"
+                                        key={index}
+                                        labelTitle={"Lien externe"}
+                                        className="w-full col-span-2"
+                                    >
+                                        <div className="flex items-center">
+                                            <div className="w-full">
+                                                <InputPrefixedIcon
+                                                    icon={<TbLink />}
+                                                    name={`videoLinks[${index}].uri`}
+                                                    labelFor="videoLinks"
+                                                />
+                                            </div>
+                                        </div>
+                                    </InputWithLabel>
+                                </div>
+                                <div className="md:col-span-1 col-span-8 flex flex-col sm:items-start items-end justify-end mb-4">
+                                    <span className="cursor-pointer flex items-center justify-start text-red-500 hover:text-red-700" onClick={() => remove(index)}>
+                                        <TbX
+                                            size={18}
+                                            className="ml-1 cursor-pointer"
+                                        />
+                                        <span className="text-xs">Supprimer</span>
+                                    </span>
+                                </div>
+                            </div>
+
+                        ))}
                         <Button
                             theme={customButtonTheme}
                             color="light"

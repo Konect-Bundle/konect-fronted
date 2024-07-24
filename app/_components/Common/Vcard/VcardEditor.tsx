@@ -128,13 +128,14 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                         <Tabs
                             aria-label="Tabs with icons"
                             theme={customTabsTheme}
+                            style={"underline"}
                         >
                             <Tabs.Item
                                 active
                                 title="Informations Générales"
                                 icon={TbUserQuestion}
                             >
-                                <div className="flex items-center space-x-8 px-8 pb-8 pt-5">
+                                <div className="flex md:flex-row md:justify-start justify-center flex-col items-center space-x-8 px-8 pb-8 pt-5">
                                     <div className="w-40 h-40 rounded-xl overflow-hidden">
                                         <Image
                                             alt="Kuser Image"
@@ -142,8 +143,8 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                                 selectedImage
                                                     ? (selectedImage as string)
                                                     : ROOT_FILES_URL +
-                                                      "/" +
-                                                      user.profile_photo_url
+                                                    "/" +
+                                                    user.profile_photo_url
                                             }
                                             width={500}
                                             height={500}
@@ -152,7 +153,7 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                         />
                                     </div>
 
-                                    <div className="">
+                                    <div className="md:mt-0 mt-4">
                                         <div>
                                             <div>
                                                 <Label
@@ -163,6 +164,7 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                             <FileInput
                                                 accept=".jpg,.jpeg,.png"
                                                 theme={customFileInputTheme}
+                                                color={"gray"}
                                                 id="file-upload-helper-text"
                                                 helperText="SVG, PNG, JPG or GIF (MAX. 800x400px)."
                                                 onChange={(
@@ -180,7 +182,7 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                         </div>
                                     </div>
                                 </div>
-                                <div className="px-8 pb-8 pt-5">
+                                <div className="px-8 pb-8 md:pt-5 pt-2">
                                     <h2 className="pb-6 font-semibold text-xl ">
                                         Informations personelles
                                     </h2>

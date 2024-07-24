@@ -1,6 +1,6 @@
 import { customTextInputTheme } from "@/app/_styles/flowbite/form";
-import { Label } from "flowbite-react";
-import { Field } from "formik";
+import { Label, TextInput } from "flowbite-react";
+import { Field, FieldConfig } from "formik";
 import React from "react";
 
 interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -18,13 +18,32 @@ const InputField: React.FC<InputFieldProps> = ({
     ...props
 }) => {
     return (
-        <Field
-            id={labelFor}
+        <Field id={labelFor}
             disabled={disabled}
-            name={name}
-            className={`${customTextInputTheme?.field?.input?.base} + " p-3.5 text-sm "+ ${className}`}
-            {...props}
-        />
+            name={name}>
+            {(fieldProps: any) => {
+                const { field, // { name, value, onChange, onBlur }
+                    form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                    meta,
+
+                } = fieldProps;
+
+                return <div>
+
+                    <TextInput theme={customTextInputTheme} type="text" placeholder="Email" {...field} />
+
+                    {meta.touched && meta.error && (
+
+                        <div className="error">{meta.error}</div>
+                    )}
+
+                </div>
+
+            }
+            }
+
+        </Field>
+        
     );
 };
 

@@ -10,7 +10,7 @@ export default class CompanyVcard extends VcardModel {
         if (vinfo === null) {
             this.adress = new AdressVcard("", "", "", "", "", "", "");
         } else {
-            const vinfoObj = JSON.parse(vinfo);
+            const vinfoObj = JSON.parse((typeof vinfo) == "string" ? vinfo :JSON.stringify(vinfo));
             this.adress = new AdressVcard(
                 vinfoObj.adress.type,
                 vinfoObj.adress.text,

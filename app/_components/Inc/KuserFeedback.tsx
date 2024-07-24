@@ -16,9 +16,10 @@ import Swal from "sweetalert2";
 
 import $ from "jquery";
 import { KonectService } from "@/app/_core/api/services/KonectService";
+import { User } from "@/app/_core/models/User";
 
 interface KuserBlockProps {
-    kuser: any;
+    kuser: User;
     callback: () => void;
 }
 
@@ -37,7 +38,7 @@ export default function KuserFeedback({ kuser, callback }: KuserBlockProps) {
         if (name || firstname || email || phone) {
             var tel: string = $("#countryCode").val() + phone;
             KonectService.makeFeed(
-                kuser.uuid,
+                kuser.uuid!,
                 name,
                 firstname,
                 email,
@@ -102,7 +103,7 @@ export default function KuserFeedback({ kuser, callback }: KuserBlockProps) {
                             <p>
                                 Aidez{" "}
                                 <span className="font-bold text-gray-600">
-                                    {ucfirst(kuser.firstname) + "!"}
+                                    {ucfirst(kuser.firstname!) + "!"}
                                 </span>{" "}
                                 à en savoir plus sur vous.
                             </p>

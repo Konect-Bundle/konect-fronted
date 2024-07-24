@@ -1,5 +1,6 @@
 export class User {
     name?: string;
+    konect_count?: number;
     firstname?: string;
     email?: string;
     password?: string;

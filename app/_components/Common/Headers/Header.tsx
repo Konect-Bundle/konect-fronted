@@ -20,6 +20,7 @@ import {
     ROOT_FILES_URL,
 } from "@/app/_core/config/constants";
 import {
+    dashboardRoute,
     homeRoute,
     howItRoute,
     loginRoute,
@@ -28,12 +29,13 @@ import {
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { getCookie, deleteCookie } from "cookies-next";
-import { TbArrowDown, TbChevronDown, TbDotsVertical } from "react-icons/tb";
+import { TbArrowDown, TbChevronDown, TbDashboard, TbDotsVertical, TbLayoutDashboardFilled, TbPower } from "react-icons/tb";
 import { useAppSelector, useAppDispatch } from "@/app/_store/hooks";
 import { logout } from "@/app/_store/slices/authSlice";
 import { customAvatarTheme } from "@/app/_styles/flowbite/avatar";
+import { ucfirst, ucwords } from "@/app/_core/utils/functions";
 
-export interface IAppProps {}
+export interface IAppProps { }
 
 export default function Header(props: IAppProps) {
     const pathname = usePathname();
@@ -109,15 +111,20 @@ export default function Header(props: IAppProps) {
                                 >
                                     <Dropdown.Header>
                                         <span className="block text-sm">
-                                            Bonnie Green
+                                            {ucwords(`${user.firstname} ${user.name}`)}
                                         </span>
                                         <span className="block truncate text-sm font-medium">
-                                            name@flowbite.com
+                                            {user.email}
                                         </span>
                                     </Dropdown.Header>
-                                    <Dropdown.Item>Dashboard</Dropdown.Item>
-                                    <Dropdown.Item>Settings</Dropdown.Item>
-                                    <Dropdown.Item>Earnings</Dropdown.Item>
+                                    <Dropdown.Item><Link href={dashboardRoute.path} />
+                                        <span className="flex items-center space-x-1">
+                                            <TbLayoutDashboardFilled/>
+                                            <span>Dashboard</span>
+                                        </span>
+                                    </Dropdown.Item>
+                                    {/* <Dropdown.Item>Settings</Dropdown.Item>
+                                    <Dropdown.Item>Earnings</Dropdown.Item> */}
                                     <Dropdown.Divider />
                                     <Dropdown.Item
                                         onClick={() => {
@@ -127,7 +134,10 @@ export default function Header(props: IAppProps) {
                                                 homeRoute.path;
                                         }}
                                     >
-                                        Sign out
+                                        <span className="flex items-center space-x-1">
+                                            <TbPower />
+                                            <span>Sign out</span>
+                                        </span>
                                     </Dropdown.Item>
                                 </Dropdown>
                                 <Navbar.Toggle />

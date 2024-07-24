@@ -53,7 +53,7 @@ export default async function KuserPage({
 }: {
     params: { uuid: string };
 }) {
-    var kuser = (await UserService.getUser(params.uuid)).data;
+    var kuser = (await UserService.getUser(params.uuid));
 
     return (
         <KuserLayout>
