@@ -6,7 +6,13 @@ import $ from "jquery";
 import { UserService } from "@/app/_core/api/services/UserService";
 import { dashboardRoute, homeRoute } from "@/app/_core/config/routes";
 import Swal from "sweetalert2";
-import { setCookie } from "cookies-next";
+import { getCookie, hasCookie, setCookie } from "cookies-next";
+import {
+    AUTH_TOKEN_NAME,
+    INTENT_COOKIE_NAME,
+} from "@/app/_core/config/constants";
+import { IntentInterface } from "@/app/_core/interfaces/appInterfaces";
+import { intent_processor } from "@/app/_core/utils/functions";
 
 export interface ILoginFormPageProps {}
 
@@ -15,7 +21,15 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
     const [rememberMe, setRemberMe] = useState("off");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-
+    const [intentData, setIntentData] = useState<IntentInterface | null>(null);
+    useEffect(() => {
+        if (localStorage.getItem(INTENT_COOKIE_NAME) && !intentData) {
+            // window.location.href = dashboardRoute.path;
+            setIntentData(
+                JSON.parse(localStorage.getItem(INTENT_COOKIE_NAME)!),
+            );
+        }
+    }, [intentData]);
     useEffect(() => {
         var iconDiv = $("#password").parent().find("div");
         var data = iconDiv.data("testid");
@@ -31,9 +45,9 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
         e.preventDefault();
         if (!email || !password) return;
 
-        UserService.login(email, password).then((res) => {
+        UserService.login(email, password).then(async (res) => {
             // SET COOKIE
-            setCookie("konectAuthToken", res.data.authToken, {
+            setCookie(AUTH_TOKEN_NAME, res.data.authToken, {
                 // httpOnly: true,
                 // path: "/"
             });
@@ -53,24 +67,26 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
                 Toast.fire({
                     icon: "success",
                     title: res.msg,
-                }).then(() => (window.location.href = dashboardRoute.path));
+                }).then(() => {
+                    if (intentData) {
+                        intent_processor(
+                            intentData,
+                            getCookie(AUTH_TOKEN_NAME)!,
+                        ).then((urlIntent) => {
+                            localStorage.removeItem(INTENT_COOKIE_NAME);
+                            window.location.href = urlIntent;
+                        });
+                    } else {
+                        window.location.href = dashboardRoute.path;
+                    }
+                });
             } else {
                 Toast.fire({
                     icon: "error",
                     title: res.msg,
                 });
             }
-            // if (res.data.token) {
-            //     cookies().set('client_token', res.data.token)
-            //     // localStorage.setItem("client_token", res.data.token)
-            //     window.location.href = homeRoute.path
-            // } else {
-            //     console.log(res.message)
-            // }
         });
-
-        // setEmail("")
-        // setPassword("")
     }
 
     return (

@@ -4,20 +4,24 @@ import { AppSPAService } from "@/app/_core/api/services/AppSPAService";
 
 export async function fetchData(
     route: string,
-    body: any = {},
+    body: any | FormData = {},
     config: AxiosRequestConfig = {},
     method: string = "GET",
     bearer: string = "",
+    withFile: boolean = false,
 ): Promise<any> {
     try {
         config = {
             ...config,
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": withFile
+                    ? "application/json"
+                    : "multipart/form-data",
                 Authorization: `Bearer ${bearer}`,
             },
         };
-        // console.log(body)
+
+        // console.log(config, "SIOUU");
 
         var response;
         if (method === "POST") {

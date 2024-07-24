@@ -12,11 +12,19 @@ import {
     TbRotateClockwise2,
     TbShoppingCart,
 } from "react-icons/tb";
-import { productItemRoute, productsRoute } from "@/app/_core/config/routes";
+import {
+    loginRoute,
+    productItemRoute,
+    productsRoute,
+} from "@/app/_core/config/routes";
 import Image from "next/image";
 import { KoGadgetItem } from "@/app/_core/models/KoGadgetItem";
 import { ucfirst } from "@/app/_core/utils/functions";
-import { ROOT_FILES_URL } from "@/app/_core/config/constants";
+import {
+    AUTH_TOKEN_NAME,
+    INTENT_COOKIE_NAME,
+    ROOT_FILES_URL,
+} from "@/app/_core/config/constants";
 import ReactCardFlip from "react-card-flip";
 import { setFips } from "crypto";
 import ContainerLayout from "@/app/_components/Layouts/Container";
@@ -26,6 +34,8 @@ import { customButtonTheme } from "@/app/_styles/flowbite/button";
 import { PaymentService } from "@/app/_core/api/services/PaymentService";
 import { batch } from "react-redux";
 import { useTranslations } from "next-intl";
+import { getCookie, setCookie } from "cookies-next";
+import { IntentInterface } from "../../../_core/interfaces/appInterfaces";
 
 export interface KwidgetItemProps {}
 
@@ -45,7 +55,7 @@ export default function KwidgetItemPage({
 
     useEffect(() => {
         GadgetService.getKwidget(params.code).then((rs) => {
-            console.log(rs);
+            // console.log(rs);
             var gadget = new KoGadgetItem(
                 rs.data.kg_name,
                 rs.data.kg_code,
@@ -70,18 +80,37 @@ export default function KwidgetItemPage({
     const handleMakePayment = (e: any) => {
         e.preventDefault();
         if (!name || !familyName || !companyName || !qty) return;
-        PaymentService.makePayment(
-            params.code,
-            name,
-            familyName,
-            companyName,
-            qty,
-        ).then((rs) => {
-            console.log(rs);
-            window.location.href = rs.data.url;
-        });
+        var token = getCookie(AUTH_TOKEN_NAME);
+
+        if (token) {
+            PaymentService.makePayment(
+                params.code,
+                name,
+                familyName,
+                companyName,
+                qty,
+                token,
+            ).then((rs) => {
+                console.log(rs);
+                window.location.href = rs.data.url;
+            });
+        } else {
+            var intent: IntentInterface = {
+                path: window.location.href,
+                from: productItemRoute.name,
+                data: {
+                    code: params.code,
+                    name: name,
+                    familyName: familyName,
+                    companyName: companyName,
+                    qty: qty,
+                },
+            };
+            localStorage.setItem(INTENT_COOKIE_NAME, JSON.stringify(intent));
+            window.location.href = loginRoute.path;
+        }
     };
-    const t = useTranslations("Kgadgets");
+    const T = useTranslations("Kgadgets");
     return (
         <main className="min-h-screen">
             <Header />
@@ -386,7 +415,7 @@ export default function KwidgetItemPage({
                                         </div>
                                     </div>
                                     <p className="text-gray-500 text-base font-normal mb-5">
-                                        {t(gadgetItem?.description)}
+                                        {T!(gadgetItem?.description)}
                                     </p>
                                     <ul className="grid gap-y-4 mb-8">
                                         <li className="flex items-center gap-3">
@@ -443,7 +472,7 @@ export default function KwidgetItemPage({
                                             </button>
                                         </div>
                                         <Button
-                                            onClick={handleMakePayment}
+                                            type="submit"
                                             theme={customButtonTheme}
                                             size="md"
                                             color="dark"

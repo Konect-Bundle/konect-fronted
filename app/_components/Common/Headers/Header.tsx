@@ -7,13 +7,18 @@ import {
     NavbarCollapse,
     NavbarLink,
     NavbarToggle,
-    Flowbite,
+    Dropdown,
+    Avatar,
 } from "flowbite-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { customNavbarTheme } from "@/app/_styles/flowbite/navbar";
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
-import { ROOT_ASSETS_URL } from "@/app/_core/config/constants";
+import {
+    AUTH_TOKEN_NAME,
+    ROOT_ASSETS_URL,
+    ROOT_FILES_URL,
+} from "@/app/_core/config/constants";
 import {
     homeRoute,
     howItRoute,
@@ -22,6 +27,11 @@ import {
 } from "@/app/_core/config/routes";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { getCookie, deleteCookie } from "cookies-next";
+import { TbArrowDown, TbChevronDown, TbDotsVertical } from "react-icons/tb";
+import { useAppSelector, useAppDispatch } from "@/app/_store/hooks";
+import { logout } from "@/app/_store/slices/authSlice";
+import { customAvatarTheme } from "@/app/_styles/flowbite/avatar";
 
 export interface IAppProps {}
 
@@ -29,6 +39,9 @@ export default function Header(props: IAppProps) {
     const pathname = usePathname();
     const tAction = useTranslations("Actions");
     const tLinks = useTranslations("Links");
+    const dispatch = useAppDispatch();
+    const user = useAppSelector((state) => state.auth.currentUser);
+
     return (
         <Navbar fluid rounded theme={customNavbarTheme}>
             <div className="flex md:flex-nowrap space-x-3 flex-nowrap justify-between mx-auto md:py-2 py-1 w-full md:items-center items-start">
@@ -46,27 +59,82 @@ export default function Header(props: IAppProps) {
                 </NavbarBrand>
                 <div className="bg-gray-900 w-[inherit] py-3 rounded-xl flex md:items-center items-end justify-end md:order-2 md:flex-row flex-col space-x-4 rtl:space-x-reverse md:pe-6 pe-2">
                     <div className="ml-4 flex md:order-2 md:space-x-4 space-x-3">
-                        <Link href={productsRoute.path}>
-                            <Button
-                                theme={customButtonTheme}
-                                color="primary"
-                                size="md"
-                            >
-                                {tAction("get_card")}
-                            </Button>
-                        </Link>
+                        {!user ? (
+                            <>
+                                <Link href={productsRoute.path}>
+                                    <Button
+                                        theme={customButtonTheme}
+                                        color="primary"
+                                        size="md"
+                                    >
+                                        {tAction("get_card")}
+                                    </Button>
+                                </Link>
 
-                        <Link href={loginRoute.path}>
-                            <Button
-                                theme={customButtonTheme}
-                                color="primary-light"
-                                size="md"
-                            >
-                                {tAction("login")}
-                            </Button>
-                        </Link>
-                        <NavbarToggle />
+                                <Link href={loginRoute.path}>
+                                    <Button
+                                        theme={customButtonTheme}
+                                        color="primary-light"
+                                        size="md"
+                                    >
+                                        {tAction("login")}
+                                    </Button>
+                                </Link>
+                                <NavbarToggle />
+                            </>
+                        ) : (
+                            <div className="flex space-x-4">
+                                <Dropdown
+                                    arrowIcon={false}
+                                    inline
+                                    label={
+                                        <span className="flex items-center space-x-1 rounded-full p-1 border-2 border-gray-600">
+                                            <Avatar
+                                                theme={customAvatarTheme}
+                                                rounded
+                                                img={
+                                                    ROOT_FILES_URL +
+                                                    "/" +
+                                                    user.profile_photo_url
+                                                }
+                                                className="w-full"
+                                                size="md"
+                                            />
+                                            <TbChevronDown
+                                                size={28}
+                                                className="text-gray-500"
+                                            />
+                                        </span>
+                                    }
+                                >
+                                    <Dropdown.Header>
+                                        <span className="block text-sm">
+                                            Bonnie Green
+                                        </span>
+                                        <span className="block truncate text-sm font-medium">
+                                            name@flowbite.com
+                                        </span>
+                                    </Dropdown.Header>
+                                    <Dropdown.Item>Dashboard</Dropdown.Item>
+                                    <Dropdown.Item>Settings</Dropdown.Item>
+                                    <Dropdown.Item>Earnings</Dropdown.Item>
+                                    <Dropdown.Divider />
+                                    <Dropdown.Item
+                                        onClick={() => {
+                                            // dispatch(logout)
+                                            deleteCookie(AUTH_TOKEN_NAME);
+                                            window.location.href =
+                                                homeRoute.path;
+                                        }}
+                                    >
+                                        Sign out
+                                    </Dropdown.Item>
+                                </Dropdown>
+                                <Navbar.Toggle />
+                            </div>
+                        )}
                     </div>
+
                     <NavbarCollapse className="">
                         <NavbarLink
                             className="uppercase"

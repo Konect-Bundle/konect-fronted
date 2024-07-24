@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User } from "@/app/_core/models/User";
 
 const initialState: any = {
     darkMode: false,

@@ -1,12 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userSlice from "@/app/_store/slices/userSlice";
 import appSlice from "@/app/_store/slices/appSlice";
+import authSlice from "./slices/authSlice";
 
 export const makeStore = () => {
     return configureStore({
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware({
+                //   thunk: {
+                //     extraArgument: myCustomApiService,
+                //   },
+                serializableCheck: false,
+            }),
         reducer: {
             // Define your reducers here
-            user: userSlice,
+            auth: authSlice,
             app: appSlice,
         },
     });

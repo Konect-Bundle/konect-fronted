@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import { Provider } from "react-redux";
 import { makeStore, AppStore } from "../../_store/store";
 import { User } from "@/app/_core/models/User";
-import { setUser as setUserSlice } from "@/app/_store/slices/userSlice";
 import { UserService } from "@/app/_core/api/services/UserService";
 import { client_token } from "@/app/_core/utils/functions";
 import { useAppStore } from "@/app/_store/hooks";

@@ -5,6 +5,7 @@ export const customButtonTheme: CustomFlowbiteTheme["button"] = {
     fullSized: "w-full",
     color: {
         primary: "bg-yellow-700 hover:bg-yellow-800 text-black-normal",
+        light: "border border-gray-300/45 bg-white text-gray-900 focus:ring-4 focus:ring-cyan-300 enabled:hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-600 dark:text-white dark:focus:ring-gray-700 dark:enabled:hover:border-gray-700 dark:enabled:hover:bg-gray-700",
         "primary-light":
             "bg-white text-gray-900 focus:ring-4 focus:bg-yellow-700 enabled:hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-600 dark:text-white dark:focus:ring-gray-700 dark:enabled:hover:border-gray-700 dark:enabled:hover:bg-gray-700",
         dark: "border border-transparent bg-gray-800 hover:bg-gray-900 text-yellow-700 focus:ring-4 focus:ring-gray-300 enabled:hover:bg-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:focus:ring-gray-800 dark:enabled:hover:bg-gray-700",

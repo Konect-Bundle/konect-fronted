@@ -10,6 +10,9 @@ export class UserService {
         user.name = data.data.name;
         user.firstname = data.data.firstname;
         user.email = data.data.email;
+        user.vinfo = data.data.vinfo;
+        user.vconfig = data.data.vconfig;
+        user.profile_photo_url = data.data.profile_photo_path;
 
         return user;
     }
@@ -29,5 +32,15 @@ export class UserService {
 
     static async getLoggedUser(token: string) {
         return await fetchData("/api/auth/user", "", {}, "GET", token);
+    }
+
+    static async updateVcard(data: FormData, token: string) {
+        return await fetchData(
+            "/api/user/update-vcard",
+            data,
+            {},
+            "POST",
+            token,
+        );
     }
 }

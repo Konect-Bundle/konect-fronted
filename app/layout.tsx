@@ -6,6 +6,7 @@ import { ROOT_ASSETS_URL } from "@/app/_core/config/constants";
 import { AppSPAService } from "@/app/_core/api/services/AppSPAService";
 import { getLocale, getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
+import ReduxInitLayout from "./_components/Layouts/ReduxInit";
 
 const inter = Onest({
     subsets: ["latin"],
@@ -49,7 +50,7 @@ export default async function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    await AppSPAService.login();
+    // await AppSPAService.login();
 
     const locale = await getLocale();
 
@@ -61,9 +62,11 @@ export default async function RootLayout({
             <body className={inter.className}>
                 <NextIntlClientProvider messages={messages}>
                     <StoreProvider>
-                        <main className="bg-gray-50 min-h-screen w-screen">
-                            {children}
-                        </main>
+                        <ReduxInitLayout>
+                            <main className="bg-gray-50 min-h-screen w-screen">
+                                {children}
+                            </main>
+                        </ReduxInitLayout>
                     </StoreProvider>
                 </NextIntlClientProvider>
             </body>

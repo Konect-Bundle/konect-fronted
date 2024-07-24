@@ -9,6 +9,7 @@ export class PaymentService {
         familyName: string,
         companyName: string,
         qteValue: number,
+        token: string,
     ) {
         return await fetchData(
             "/api/payment/stripe/" + kGadgetCode,
@@ -20,6 +21,17 @@ export class PaymentService {
             }),
             {},
             "POST",
+            token,
+        );
+    }
+
+    static async retreiveSuccessPayment(idSession: string, token: string) {
+        return await fetchData(
+            "/api/payment/stripe/success?session_id=" + idSession,
+            {},
+            {},
+            "GET",
+            token,
         );
     }
 }

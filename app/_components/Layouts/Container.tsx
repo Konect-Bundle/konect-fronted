@@ -4,9 +4,6 @@ interface ContainerLayoutProps extends React.PropsWithChildren {
     className?: string;
 }
 
-const defaultContainerLayoutProps: ContainerLayoutProps = {
-    className: "",
-};
 const ContainerLayout: React.FC<ContainerLayoutProps> = ({
     className = "",
     children,
