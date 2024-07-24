@@ -1,16 +1,16 @@
 import { customTextInputTheme } from "@/app/_styles/flowbite/form";
-import { Label, TextInput } from "flowbite-react";
+import { Label, Textarea, TextInput } from "flowbite-react";
 import { Field, FieldConfig } from "formik";
 import React from "react";
 
-interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface TextAreaFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
     disabled?: boolean;
     labelFor: string;
     className?: string;
     name?: string;
 }
 
-const InputField: React.FC<InputFieldProps> = ({
+const TextAreaField: React.FC<TextAreaFieldProps> = ({
     disabled = false,
     className = "",
     labelFor = "",
@@ -29,8 +29,7 @@ const InputField: React.FC<InputFieldProps> = ({
                 } = fieldProps;
 
                 return <div>
-
-                    <TextInput theme={customTextInputTheme} type="text" {...field} />
+                    <Textarea theme={customTextInputTheme}   {...field} />
 
                     {meta.touched && meta.error && (
 
@@ -43,8 +42,8 @@ const InputField: React.FC<InputFieldProps> = ({
             }
 
         </Field>
-        
+
     );
 };
 
-export default InputField;
+export default TextAreaField;
