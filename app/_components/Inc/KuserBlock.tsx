@@ -111,7 +111,6 @@ export default function KuserBlock({
                                         width={500}
                                         height={500}
                                         className="w-full"
-                                        priority={true}
                                     />
                                 </span>
                             )}
@@ -224,59 +223,61 @@ export default function KuserBlock({
 
                         <div className="bg-gray-50 border rounded-md w-full md:pb-0 pb-3">
                             <ul className="py-2 divide-y divide-gray-200 px-3">
-                                <li className="flex space-x-3 items-center overflow-hidden py-3">
-                                    <span className="bg-white min-w-10 h-10 rounded flex justify-center items-center border">
-                                        <TbMail className="w-5 text-gray-500 hover:text-gray-800 cursor-pointer" />
-                                    </span>
+                                {vinfo.email.text && (
+                                    <li className="flex space-x-3 items-center overflow-hidden py-3">
+                                        <span className="bg-white min-w-10 h-10 rounded flex justify-center items-center border">
+                                            <TbMail className="w-5 text-gray-500 hover:text-gray-800 cursor-pointer" />
+                                        </span>
 
-                                    <div className="inline-flex flex-col justify-center w-[inherit]">
-                                        <span className="font-bold text-sm text-gray-400">
-                                            {"Email"}
-                                        </span>
-                                        {isLoading ? (
-                                            <span>
-                                                <TextSkeleton
-                                                    className="w-56 mt-1"
-                                                    bgClass="bg-gray-300/20"
-                                                />
+                                        <div className="inline-flex flex-col justify-center w-[inherit]">
+                                            <span className="font-bold text-sm text-gray-400">
+                                                {"Email"}
                                             </span>
-                                        ) : (
-                                            <a
-                                                href={
-                                                    "mailto:" + vinfo.email.text
-                                                }
-                                                className="hover:underline text-gray-700 break-words"
-                                            >
-                                                {vinfo.email.text}
-                                            </a>
-                                        )}
-                                    </div>
-                                </li>
-                                <li className="flex space-x-3 py-3 items-center overflow-hidden">
-                                    <span className="bg-white min-w-10 h-10 rounded flex justify-center items-center border">
-                                        <TbPhone className="w-5 text-gray-500 hover:text-gray-800 cursor-pointer" />
-                                    </span>
-                                    <div className="flex flex-col justify-center">
-                                        <span className="font-bold text-sm text-gray-400">
-                                            {"Phone"}
+                                            {isLoading ? (
+                                                <span>
+                                                    <TextSkeleton
+                                                        className="w-56 mt-1"
+                                                        bgClass="bg-gray-300/20"
+                                                    />
+                                                </span>
+                                            ) : (
+                                                <a
+                                                    href={
+                                                        "mailto:" + vinfo.email.text
+                                                    }
+                                                    className="hover:underline text-gray-700 break-words"
+                                                >
+                                                    {vinfo.email.text}
+                                                </a>
+                                            )}
+                                        </div>
+                                    </li>)}
+                                {vinfo.phone.text && (
+                                    <li className="flex space-x-3 py-3 items-center overflow-hidden">
+                                        <span className="bg-white min-w-10 h-10 rounded flex justify-center items-center border">
+                                            <TbPhone className="w-5 text-gray-500 hover:text-gray-800 cursor-pointer" />
                                         </span>
-                                        {isLoading ? (
-                                            <span>
-                                                <TextSkeleton
-                                                    className="w-40 mt-1"
-                                                    bgClass="bg-gray-300/20"
-                                                />
+                                        <div className="flex flex-col justify-center">
+                                            <span className="font-bold text-sm text-gray-400">
+                                                {"Phone"}
                                             </span>
-                                        ) : (
-                                            <a
-                                                href={"tel:" + vinfo.phone.text}
-                                                className="hover:underline text-gray-700"
-                                            >
-                                                {vinfo.phone.text}
-                                            </a>
-                                        )}
-                                    </div>
-                                </li>
+                                            {isLoading ? (
+                                                <span>
+                                                    <TextSkeleton
+                                                        className="w-40 mt-1"
+                                                        bgClass="bg-gray-300/20"
+                                                    />
+                                                </span>
+                                            ) : (
+                                                <a
+                                                    href={"tel:" + vinfo.phone.text}
+                                                    className="hover:underline text-gray-700"
+                                                >
+                                                    {vinfo.phone.text}
+                                                </a>
+                                            )}
+                                        </div>
+                                    </li>)}
                                 {vconfig.showLocalization && (
                                     <li className="flex space-x-3 items-center overflow-hidden py-3">
                                         <span className="bg-white min-w-10 h-10 rounded flex justify-center items-center border">
