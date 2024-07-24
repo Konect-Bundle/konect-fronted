@@ -37,21 +37,21 @@ import { useTranslations } from "next-intl";
 import { getCookie, setCookie } from "cookies-next";
 import { IntentInterface } from "../../../_core/interfaces/appInterfaces";
 
-export interface KwidgetItemProps {}
+export interface KwidgetItemProps { }
 
 export default function KwidgetItemPage({
     params,
 }: {
     params: { code: string };
 }) {
-    const [gadgetItem, setGadget] = useState<KoGadgetItem>(
-        KoGadgetItem.empty(),
-    );
+    const [gadgetItem, setGadget] = useState<KoGadgetItem | null>(null);
     const [name, setName] = useState("");
     const [familyName, setFamilyName] = useState("");
     const [companyName, setCompanyName] = useState("");
     const [isFlipped, setIsFlipped] = useState(false);
     const [qty, setQty] = useState(1);
+    const T = useTranslations("Kgadgets");
+
 
     useEffect(() => {
         GadgetService.getKwidget(params.code).then((rs) => {
@@ -110,9 +110,8 @@ export default function KwidgetItemPage({
             window.location.href = loginRoute.path;
         }
     };
-    const T = useTranslations("Kgadgets");
     return (
-        <main className="min-h-screen">
+        gadgetItem != null && <main className="min-h-screen">
             <Header />
 
             <ContainerLayout>
@@ -282,7 +281,7 @@ export default function KwidgetItemPage({
                                     </div>
                                 </div>
                             </div>
-                            <div className="data w-full lg:pr-8 pr-0 xl:justify-start justify-center flex items-center max-lg:pb-10 xl:my-2 lg:my-5 my-0 bg-white rounded-lg ps-8 pe-8 md:pt-0 pt-6 border border-gray-300/25">
+                            <div className="data w-full lg:pr-8 pr-0 xl:justify-start justify-center flex items-center max-lg:pb-10 xl:my-2 lg:my-5 my-0 bg-white rounded-lg ps-8 pe-8 lg:pt-0 pt-6 border border-gray-300/25">
                                 <div className="data w-full max-w-xl">
                                     <h2 className="font-manrope font-bold md:text-3xl text-2xl leading-10 text-gray-900 mb-2 capitalize">
                                         {"Konect " + gadgetItem?.name}
@@ -446,9 +445,9 @@ export default function KwidgetItemPage({
                                     </ul>
 
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 py-8">
-                                        <div className="flex sm:items-center sm:justify-center w-full">
-                                            <button
-                                                className="group py-4 px-6 border border-gray-400 rounded-l-full bg-white transition-all duration-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-300"
+                                        <div className="flex space-x-2 sm:items-center sm:justify-center w-full">
+                                            <span
+                                                className="group py-2 px-2 border border-gray-300/45 rounded-l-lg bg-white transition-all duration-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-300 cursor-pointer"
                                                 onClick={() => {
                                                     if (qty > 1) {
                                                         setQty(qty - 1);
@@ -456,20 +455,22 @@ export default function KwidgetItemPage({
                                                 }}
                                             >
                                                 <TbMinus />
-                                            </button>
-                                            <input
-                                                type="text"
-                                                className="font-semibold text-gray-900 cursor-pointer text-lg py-[13px] px-6 w-[inherit] sm:max-w-[118px] outline-0 border-y border-gray-300/50 bg-transparent placeholder:text-gray-900 text-center hover:bg-gray-50"
-                                                defaultValue={qty}
-                                            />
-                                            <button
-                                                className="group py-4 px-6 border border-gray-400 rounded-r-full bg-white transition-all duration-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-300"
+                                            </span>
+                                            <span
+                                                className="font-semibold text-gray-900 text-lg py-[13px] px-8 sm:max-w-[118px] outline-0 border rounded-lg border-gray-300/50 bg-transparent placeholder:text-gray-900 text-center hover:bg-gray-50"
+                                            >
+                                                {qty}
+                                            </span>
+
+                                            <span
+                                                className="group py-2 px-2 border border-gray-300/45 rounded-r-lg bg-white transition-all duration-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-300 cursor-pointer"
                                                 onClick={() => {
-                                                    setQty(qty + 1);
+                                                    var newQty = qty + 1;
+                                                    setQty(newQty);
                                                 }}
                                             >
                                                 <TbPlus />
-                                            </button>
+                                            </span>
                                         </div>
                                         <Button
                                             type="submit"
