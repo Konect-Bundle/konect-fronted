@@ -137,53 +137,54 @@ export default function KuserBlock({
                                 )}
                             </h2>
                         </div>
-
-                        <div>
-                            <span className="my-1 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded flex items-center bg-gray-50 border">
-                                <span className="px-1 text-white">
-                                    <MdOutlineConnectWithoutContact className="w-4 h-4 text-gray-700" />
-                                </span>
-                                {isLoading ? (
-                                    <TextSkeleton
-                                        className="w-16"
-                                        bgClass="bg-gray-300/25"
-                                    />
-                                ) : (
-                                    <span className="text-sm text-gray-700 space-x-1 flex">
-                                        <motion.div
-                                            initial={{ opacity: 0, scale: 0.5 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            transition={{
-                                                duration: 0.2,
-                                                ease: [0, 0.71, 0.2, 1.01],
-                                                scale: {
-                                                    type: "spring",
-                                                    damping: 7,
-                                                    stiffness: 100,
-                                                    restDelta: 0.001,
-                                                },
-                                            }}
-                                        >
-                                            <span id="konect-stat">
-                                                {konectsCount}
-                                            </span>
-                                        </motion.div>
-                                        <span>
-                                            {esser("konect", konectsCount)}
-                                        </span>
+                        {vconfig.showKonects && (
+                            <div>
+                                <span className="my-1 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded flex items-center bg-gray-50 border">
+                                    <span className="px-1 text-white">
+                                        <MdOutlineConnectWithoutContact className="w-4 h-4 text-gray-700" />
                                     </span>
-                                )}
-                            </span>
-                        </div>
+                                    {isLoading ? (
+                                        <TextSkeleton
+                                            className="w-16"
+                                            bgClass="bg-gray-300/25"
+                                        />
+                                    ) : (
+                                        <span className="text-sm text-gray-700 space-x-1 flex">
+                                            <motion.div
+                                                initial={{ opacity: 0, scale: 0.5 }}
+                                                animate={{ opacity: 1, scale: 1 }}
+                                                transition={{
+                                                    duration: 0.2,
+                                                    ease: [0, 0.71, 0.2, 1.01],
+                                                    scale: {
+                                                        type: "spring",
+                                                        damping: 7,
+                                                        stiffness: 100,
+                                                        restDelta: 0.001,
+                                                    },
+                                                }}
+                                            >
+                                                <span id="konect-stat">
+                                                    {konectsCount}
+                                                </span>
+                                            </motion.div>
+                                            <span>
+                                                {esser("konect", konectsCount)}
+                                            </span>
+                                        </span>
+                                    )}
+                                </span>
+                            </div>
+                        )}
 
                         <div className="flex mt-4 space-x-3 pb-2 relative w-full shadow-none justify-center items-center bottom-0 left-0">
                             <Link
                                 href={
                                     kuser
                                         ? ROOT_FILES_URL +
-                                          "/vcards/" +
-                                          user.uuid! +
-                                          ".vcf"
+                                        "/vcards/" +
+                                        user.uuid! +
+                                        ".vcf"
                                         : ""
                                 }
                                 ref={aRef}

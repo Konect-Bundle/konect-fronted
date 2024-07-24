@@ -1,12 +1,15 @@
 export default class VcardConfig {
     public isCardActivated: boolean;
     public showLocalization: boolean;
+    public showKonects: boolean;
+
     public configTheme: VcardConfigTheme;
 
     constructor(vconfig: string | null = null) {
         if (vconfig === null) {
             this.isCardActivated = false;
             this.showLocalization = false;
+            this.showKonects = false;
             this.configTheme = new VcardConfigTheme("");
         } else {
             const vConfigObj = JSON.parse(
@@ -14,6 +17,7 @@ export default class VcardConfig {
             );
             this.isCardActivated = vConfigObj.isCardActivated;
             this.showLocalization = vConfigObj.showLocalization;
+            this.showKonects = vConfigObj.showKonects;
             this.configTheme = new VcardConfigTheme(
                 vConfigObj.configTheme.primaryColor,
             );
@@ -34,7 +38,7 @@ export default class VcardConfig {
 }
 
 class VcardConfigTheme {
-    constructor(public primaryColor: string) {}
+    constructor(public primaryColor: string) { }
 
     array_gen(): Record<string, any> {
         return { primaryColor: this.primaryColor };

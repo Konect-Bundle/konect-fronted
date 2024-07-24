@@ -150,8 +150,8 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                                     selectedImage
                                                         ? (selectedImage as string)
                                                         : ROOT_FILES_URL +
-                                                          "/" +
-                                                          user.profile_photo_url
+                                                        "/" +
+                                                        user.profile_photo_url
                                                 }
                                                 width={500}
                                                 height={500}

@@ -39,7 +39,6 @@ const InputPrefixedIcon: React.FC<InputPrefixedIconProps> = ({
                                 theme={customTextInputTheme}
                                 color={"icon"}
                                 type="text"
-                                placeholder="Email"
                                 {...field}
                             />
 

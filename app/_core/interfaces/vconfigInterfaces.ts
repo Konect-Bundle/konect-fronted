@@ -6,5 +6,6 @@ export interface VcardConfigThemeInterface {
 export default interface VcardConfigInterface {
     isCardActivated: boolean;
     showLocalization: boolean;
+    showKonects: boolean;
     configTheme: VcardConfigThemeInterface;
 }

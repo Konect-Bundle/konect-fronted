@@ -54,6 +54,24 @@ const VcardConfigsForm: React.FC<
                         {/* <ToggleSwitch checked={switch1} name="config.showLocalization" label="Toggle me" onChange={setSwitch1} id="showLocation" theme={customToggleSwitchTheme} color="yellow" /> */}
                     </InputWithLabel>
                 </div>
+
+                <div className="">
+                    <InputWithLabel
+                        isInline={true}
+                        labelFor="showKonects"
+                        labelTitle={__("enable_show_konects")}
+                    >
+                        <label className="inline-flex items-center mb-5 cursor-pointer">
+                            <Field
+                                name="config.showKonects"
+                                type="checkbox"
+                                className="sr-only peer"
+                            />
+                            <div className={toggleClass}></div>
+                        </label>
+                        {/* <ToggleSwitch checked={switch1} name="config.showLocalization" label="Toggle me" onChange={setSwitch1} id="showLocation" theme={customToggleSwitchTheme} color="yellow" /> */}
+                    </InputWithLabel>
+                </div>
             </div>
         </div>
     );

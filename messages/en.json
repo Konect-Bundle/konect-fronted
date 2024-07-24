@@ -357,6 +357,7 @@
         "should_see": "Decide what people you share your contact with should see",
         "enable_card": "Activate my Card",
         "enable_localization": "Show my Location",
+        "enable_show_konects" : "Show my konects",
         "add": "Add"
     }
 }
