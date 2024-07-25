@@ -30,7 +30,6 @@ export const customAvatarTheme: CustomFlowbiteTheme["avatar"] = {
             xl: "h-36 w-36",
             pxl: "h-40 w-40",
             sxl: "h-52 w-52",
-
         },
         stacked: "ring-2 ring-gray-300 dark:ring-gray-500",
         statusPosition: {

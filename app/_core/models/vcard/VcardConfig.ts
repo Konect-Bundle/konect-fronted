@@ -38,7 +38,7 @@ export default class VcardConfig {
 }
 
 class VcardConfigTheme {
-    constructor(public primaryColor: string) { }
+    constructor(public primaryColor: string) {}
 
     array_gen(): Record<string, any> {
         return { primaryColor: this.primaryColor };

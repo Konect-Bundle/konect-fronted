@@ -145,11 +145,15 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                 >
                                     <div className="flex md:flex-row md:justify-start justify-center flex-col items-center space-x-8 px-8 pb-8 pt-5">
                                         <div className="w-40 h-40 rounded-xl overflow-hidden">
-                                            <Avatar img={
-                                                ROOT_FILES_URL +
-                                                "/" +
-                                                user.profile_photo_url!
-                                            } size={"pxl"} alt="Kuser Image" theme={customAvatarTheme}
+                                            <Avatar
+                                                img={
+                                                    ROOT_FILES_URL +
+                                                    "/" +
+                                                    user.profile_photo_url!
+                                                }
+                                                size={"pxl"}
+                                                alt="Kuser Image"
+                                                theme={customAvatarTheme}
                                             />
                                         </div>
 

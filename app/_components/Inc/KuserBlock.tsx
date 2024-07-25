@@ -102,11 +102,15 @@ export default function KuserBlock({
                                 />
                             ) : (
                                 <span className="rounded-xl max-w-52 min-h-52 overflow-hidden flex justify-center items-center">
-                                    <Avatar img={
-                                        ROOT_FILES_URL +
-                                        "/" +
-                                        user.profile_photo_url!
-                                    } size={"sxl"} alt="Kuser Image" theme={customAvatarTheme}
+                                    <Avatar
+                                        img={
+                                            ROOT_FILES_URL +
+                                            "/" +
+                                            user.profile_photo_url!
+                                        }
+                                        size={"sxl"}
+                                        alt="Kuser Image"
+                                        theme={customAvatarTheme}
                                     />
                                 </span>
                             )}
@@ -146,8 +150,14 @@ export default function KuserBlock({
                                     ) : (
                                         <span className="text-sm text-gray-700 space-x-1 flex">
                                             <motion.div
-                                                initial={{ opacity: 0, scale: 0.5 }}
-                                                animate={{ opacity: 1, scale: 1 }}
+                                                initial={{
+                                                    opacity: 0,
+                                                    scale: 0.5,
+                                                }}
+                                                animate={{
+                                                    opacity: 1,
+                                                    scale: 1,
+                                                }}
                                                 transition={{
                                                     duration: 0.2,
                                                     ease: [0, 0.71, 0.2, 1.01],
@@ -177,9 +187,9 @@ export default function KuserBlock({
                                 href={
                                     kuser
                                         ? ROOT_FILES_URL +
-                                        "/vcards/" +
-                                        user.uuid! +
-                                        ".vcf"
+                                          "/vcards/" +
+                                          user.uuid! +
+                                          ".vcf"
                                         : ""
                                 }
                                 ref={aRef}
@@ -239,7 +249,8 @@ export default function KuserBlock({
                                             ) : (
                                                 <a
                                                     href={
-                                                        "mailto:" + vinfo.email.text
+                                                        "mailto:" +
+                                                        vinfo.email.text
                                                     }
                                                     className="hover:underline text-gray-700 break-words"
                                                 >
@@ -247,7 +258,8 @@ export default function KuserBlock({
                                                 </a>
                                             )}
                                         </div>
-                                    </li>)}
+                                    </li>
+                                )}
                                 {vinfo.phone.text && (
                                     <li className="flex space-x-3 py-3 items-center overflow-hidden">
                                         <span className="bg-white min-w-10 h-10 rounded flex justify-center items-center border">
@@ -266,14 +278,18 @@ export default function KuserBlock({
                                                 </span>
                                             ) : (
                                                 <a
-                                                    href={"tel:" + vinfo.phone.text}
+                                                    href={
+                                                        "tel:" +
+                                                        vinfo.phone.text
+                                                    }
                                                     className="hover:underline text-gray-700"
                                                 >
                                                     {vinfo.phone.text}
                                                 </a>
                                             )}
                                         </div>
-                                    </li>)}
+                                    </li>
+                                )}
                                 {vconfig.showLocalization && (
                                     <li className="flex space-x-3 items-center overflow-hidden py-3">
                                         <span className="bg-white min-w-10 h-10 rounded flex justify-center items-center border">

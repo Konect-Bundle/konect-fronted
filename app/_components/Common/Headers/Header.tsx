@@ -127,11 +127,14 @@ export default function Header(props: IAppProps) {
                                         </span>
                                     </Dropdown.Header>
                                     <Dropdown.Item>
-                                        <Link href={dashboardRoute.path} />
-                                        <span className="flex items-center space-x-1">
-                                            <TbLayoutDashboardFilled />
-                                            <span>{tLinks("dashboard")}</span>
-                                        </span>
+                                        <Link href={dashboardRoute.path}>
+                                            <span className="flex items-center space-x-1">
+                                                <TbLayoutDashboardFilled />
+                                                <span>
+                                                    {tLinks("dashboard")}
+                                                </span>
+                                            </span>
+                                        </Link>
                                     </Dropdown.Item>
                                     {/* <Dropdown.Item>Settings</Dropdown.Item>
                                     <Dropdown.Item>Earnings</Dropdown.Item> */}
