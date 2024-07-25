@@ -11,7 +11,7 @@ import ImageSkeleton from "@/app/_components/Common/Skeleton/ImageSkeleton";
 import TextSkeleton from "@/app/_components/Common/Skeleton/TextSkeleton";
 import VideoSkeleton from "@/app/_components/Common/Skeleton/VideoSkeleton";
 import ExternalLinkSkeleton from "@/app/_components/Common/Skeleton/ExternalLinkSkeleton";
-import { Button } from "flowbite-react";
+import { Avatar, Button } from "flowbite-react";
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
 import { ROOT_FILES_URL } from "@/app/_core/config/constants";
 import { HiSave } from "react-icons/hi";
@@ -23,6 +23,7 @@ import { User } from "@/app/_core/models/User";
 import { UserService } from "@/app/_core/api/services/UserService";
 import UserVcard from "@/app/_core/models/vcard/UserVcard";
 import VcardConfig from "@/app/_core/models/vcard/VcardConfig";
+import { customAvatarTheme } from "@/app/_styles/flowbite/avatar";
 
 interface KuserBlockProps {
     kuser: any;
@@ -101,16 +102,11 @@ export default function KuserBlock({
                                 />
                             ) : (
                                 <span className="rounded-xl max-w-52 min-h-52 overflow-hidden flex justify-center items-center">
-                                    <Image
-                                        alt="Kuser Image"
-                                        src={
-                                            ROOT_FILES_URL +
-                                            "/" +
-                                            user.profile_photo_url!
-                                        }
-                                        width={500}
-                                        height={500}
-                                        className="w-full"
+                                    <Avatar img={
+                                        ROOT_FILES_URL +
+                                        "/" +
+                                        user.profile_photo_url!
+                                    } size={"sxl"} alt="Kuser Image" theme={customAvatarTheme}
                                     />
                                 </span>
                             )}

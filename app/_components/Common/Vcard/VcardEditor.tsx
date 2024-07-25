@@ -1,6 +1,6 @@
 import UserVcard from "@/app/_core/models/vcard/UserVcard";
 import React, { ReactElement, ReactNode, useState } from "react";
-import { Button, FileInput, Label, Tabs } from "flowbite-react";
+import { Avatar, Button, FileInput, Label, Tabs } from "flowbite-react";
 
 import { Formik, Form } from "formik";
 import {
@@ -38,6 +38,7 @@ import Swal from "sweetalert2";
 import { customFileInputTheme } from "@/app/_styles/flowbite/form";
 import LoadingLayout from "../../Layouts/LoadingLayout";
 import { useTranslations } from "next-intl";
+import { customAvatarTheme } from "@/app/_styles/flowbite/avatar";
 
 interface VcardEditorProps extends React.PropsWithChildren {
     user: User;
@@ -144,19 +145,11 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                 >
                                     <div className="flex md:flex-row md:justify-start justify-center flex-col items-center space-x-8 px-8 pb-8 pt-5">
                                         <div className="w-40 h-40 rounded-xl overflow-hidden">
-                                            <Image
-                                                alt="Kuser Image"
-                                                src={
-                                                    selectedImage
-                                                        ? (selectedImage as string)
-                                                        : ROOT_FILES_URL +
-                                                        "/" +
-                                                        user.profile_photo_url
-                                                }
-                                                width={500}
-                                                height={500}
-                                                className="w-full h-full"
-                                                priority={true}
+                                            <Avatar img={
+                                                ROOT_FILES_URL +
+                                                "/" +
+                                                user.profile_photo_url!
+                                            } size={"pxl"} alt="Kuser Image" theme={customAvatarTheme}
                                             />
                                         </div>
 
