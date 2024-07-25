@@ -143,11 +143,11 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                     title={Ttext("general_infos")}
                                     icon={TbUserQuestion}
                                 >
-                                    <div className="flex md:flex-row md:justify-start justify-center flex-col items-center space-x-8 px-8 pb-8 pt-5">
-                                        <div className="w-40 h-40 rounded-xl overflow-hidden">
+                                    <div className="flex md:flex-row md:justify-start justify-center flex-col items-center md:space-x-8 space-x-0 px-8 pb-8 pt-5">
+                                        <div className="w-40 h-40 flex justify-center rounded-xl overflow-hidden">
                                             <Avatar
                                                 img={
-                                                    ROOT_FILES_URL +
+                                                    selectedImage ? (selectedImage as string) : ROOT_FILES_URL +
                                                     "/" +
                                                     user.profile_photo_url!
                                                 }
@@ -158,19 +158,22 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                         </div>
 
                                         <div className="md:mt-0 mt-4">
-                                            <div>
-                                                <div>
-                                                    <Label
+                                            <div className="flex flex-col md:items-start items-center">
+                                                <div className="cursor-pointer rounded-md flex items-center space-x-1 bg-gray-50 text-gray-500 w-max px-4 py-1 border border-gray-300/40 hover:text-gray-600 transition-colors">
+                                                   <TbEdit />
+                                                   <Label
+                                                   className="text-gray-500 font-normal cursor-pointer hover:text-gray-600 transition-colors"
                                                         htmlFor="file-upload-helper-text"
-                                                        value="Upload file"
+                                                        value={TAction("choose_image")}
                                                     />
                                                 </div>
                                                 <FileInput
+                                                className="hidden"
                                                     accept=".jpg,.jpeg,.png"
                                                     theme={customFileInputTheme}
                                                     color={"gray"}
                                                     id="file-upload-helper-text"
-                                                    helperText="SVG, PNG, JPG or GIF (MAX. 800x400px)."
+                                                    helperText="PNG, JPG or GIF (MAX. 800x400px)."
                                                     onChange={(
                                                         e: React.ChangeEvent<HTMLInputElement>,
                                                     ) => {
