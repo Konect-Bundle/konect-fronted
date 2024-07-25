@@ -100,8 +100,8 @@ export default function KuserBlock({
                                     className="w-52 h-52 rounded-xl"
                                     animated={false}
                                 />
-                            ) : (
-                                user.profile_photo_url ? <span className="rounded-xl max-w-52 min-h-52 overflow-hidden flex justify-center items-center">
+                            ) : user.profile_photo_url ? (
+                                <span className="rounded-xl max-w-52 min-h-52 overflow-hidden flex justify-center items-center">
                                     <Avatar
                                         img={
                                             ROOT_FILES_URL +
@@ -112,10 +112,12 @@ export default function KuserBlock({
                                         alt="Kuser Image"
                                         theme={customAvatarTheme}
                                     />
-                                </span> : <Avatar theme={customAvatarTheme} size={"sxl"} />
-
-
-
+                                </span>
+                            ) : (
+                                <Avatar
+                                    theme={customAvatarTheme}
+                                    size={"sxl"}
+                                />
                             )}
                         </span>
 
@@ -190,9 +192,9 @@ export default function KuserBlock({
                                 href={
                                     kuser
                                         ? ROOT_FILES_URL +
-                                        "/vcards/" +
-                                        user.uuid! +
-                                        ".vcf"
+                                          "/vcards/" +
+                                          user.uuid! +
+                                          ".vcf"
                                         : ""
                                 }
                                 ref={aRef}
@@ -315,8 +317,6 @@ export default function KuserBlock({
                                                     href={
                                                         "https://www.google.com/maps/search/?api=1&query=" +
                                                         vinfo.location.city +
-                                                        "+" +
-                                                        vinfo.location.state +
                                                         "+" +
                                                         vinfo.location.iso_code
                                                     }

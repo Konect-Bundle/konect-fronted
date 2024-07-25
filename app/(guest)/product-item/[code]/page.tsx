@@ -38,7 +38,7 @@ import { getCookie, setCookie } from "cookies-next";
 import { IntentInterface } from "../../../_core/interfaces/appInterfaces";
 import LoadingLayout from "@/app/_components/Layouts/LoadingLayout";
 
-export interface KwidgetItemProps { }
+export interface KwidgetItemProps {}
 
 export default function KwidgetItemPage({
     params,
@@ -54,7 +54,6 @@ export default function KwidgetItemPage({
     const T = useTranslations("Kgadgets");
     const __A = useTranslations("Actions");
     const [isLoading, setIsLoading] = useState(false);
-
 
     useEffect(() => {
         GadgetService.getKwidget(params.code).then((rs) => {
@@ -136,20 +135,26 @@ export default function KwidgetItemPage({
                                             className="py-6"
                                         >
                                             <Breadcrumb.Item
-                                                theme={customBreadCrumbTheme?.item}
+                                                theme={
+                                                    customBreadCrumbTheme?.item
+                                                }
                                                 href="/"
                                                 icon={TbHomeFilled}
                                             >
                                                 Home
                                             </Breadcrumb.Item>
                                             <Breadcrumb.Item
-                                                theme={customBreadCrumbTheme?.item}
+                                                theme={
+                                                    customBreadCrumbTheme?.item
+                                                }
                                                 href={productsRoute.path}
                                             >
                                                 {productsRoute.name}
                                             </Breadcrumb.Item>
                                             <Breadcrumb.Item
-                                                theme={customBreadCrumbTheme?.item}
+                                                theme={
+                                                    customBreadCrumbTheme?.item
+                                                }
                                             >
                                                 {gadgetItem.code}
                                             </Breadcrumb.Item>
@@ -226,7 +231,10 @@ export default function KwidgetItemPage({
                                             </p>
                                         </div>
 
-                                        <h3 className="md:py-6 py-3 font-bold md:text-2xl text-xl" id="customizeSection">
+                                        <h3
+                                            className="md:py-6 py-3 font-bold md:text-2xl text-xl"
+                                            id="customizeSection"
+                                        >
                                             {"Customization"}
                                         </h3>
                                         <div className="grid grid-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
@@ -241,7 +249,9 @@ export default function KwidgetItemPage({
                                                     theme={customTextInputTheme}
                                                     id="givenName"
                                                     type="text"
-                                                    placeholder={"Your firstname"}
+                                                    placeholder={
+                                                        "Your firstname"
+                                                    }
                                                     sizing="md"
                                                     required
                                                     onChange={(e) => {
@@ -274,7 +284,9 @@ export default function KwidgetItemPage({
                                                 <div className="mb-2 block">
                                                     <Label
                                                         htmlFor="companyName"
-                                                        value={"Your Company name"}
+                                                        value={
+                                                            "Your Company name"
+                                                        }
                                                     />
                                                 </div>
                                                 <TextInput
@@ -479,7 +491,8 @@ export default function KwidgetItemPage({
                                                     <span
                                                         className="group py-2 px-2 border border-gray-300/45 rounded-r-lg bg-white transition-all duration-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-300 cursor-pointer"
                                                         onClick={() => {
-                                                            var newQty = qty + 1;
+                                                            var newQty =
+                                                                qty + 1;
                                                             setQty(newQty);
                                                         }}
                                                     >

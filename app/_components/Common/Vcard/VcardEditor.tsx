@@ -145,19 +145,26 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                 >
                                     <div className="flex md:flex-row md:justify-start justify-center flex-col items-center md:space-x-8 space-x-0 px-8 pb-8 pt-5">
                                         <div className="w-40 h-40 flex justify-center rounded-xl overflow-hidden">
-                                            {user.profile_photo_url || selectedImage ?
-                                                    <Avatar
-                                                        img={
-                                                            selectedImage ? (selectedImage as string) : ROOT_FILES_URL +
-                                                                "/" +
-                                                                user.profile_photo_url!
-                                                        }
-                                                        size={"pxl"}
-                                                        alt="Kuser Image"
-                                                        theme={customAvatarTheme}
-                                                    /> :
-                                                    <Avatar theme={customAvatarTheme} size={"pxl"} />
-                                            }
+                                            {user.profile_photo_url ||
+                                            selectedImage ? (
+                                                <Avatar
+                                                    img={
+                                                        selectedImage
+                                                            ? (selectedImage as string)
+                                                            : ROOT_FILES_URL +
+                                                              "/" +
+                                                              user.profile_photo_url!
+                                                    }
+                                                    size={"pxl"}
+                                                    alt="Kuser Image"
+                                                    theme={customAvatarTheme}
+                                                />
+                                            ) : (
+                                                <Avatar
+                                                    theme={customAvatarTheme}
+                                                    size={"pxl"}
+                                                />
+                                            )}
                                         </div>
 
                                         <div className="md:mt-0 mt-4">
@@ -167,7 +174,9 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                                     <Label
                                                         className="text-gray-500 font-normal cursor-pointer hover:text-gray-600 transition-colors"
                                                         htmlFor="file-upload-helper-text"
-                                                        value={TAction("choose_image")}
+                                                        value={TAction(
+                                                            "choose_image",
+                                                        )}
                                                     />
                                                 </div>
                                                 <FileInput
