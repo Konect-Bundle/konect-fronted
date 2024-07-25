@@ -42,7 +42,7 @@ import { logout } from "@/app/_store/slices/authSlice";
 import { customAvatarTheme } from "@/app/_styles/flowbite/avatar";
 import { ucfirst, ucwords } from "@/app/_core/utils/functions";
 
-export interface IAppProps {}
+export interface IAppProps { }
 
 export default function Header(props: IAppProps) {
     const pathname = usePathname();
@@ -97,7 +97,7 @@ export default function Header(props: IAppProps) {
                                     arrowIcon={false}
                                     inline
                                     label={
-                                        <span className="flex items-center space-x-1 rounded-full p-1 border-2 border-gray-600">
+                                        user.profile_photo_url ? <span className="flex items-center space-x-1 rounded-full p-1 border-2 border-gray-600">
                                             <Avatar
                                                 theme={customAvatarTheme}
                                                 rounded
@@ -113,7 +113,12 @@ export default function Header(props: IAppProps) {
                                                 size={28}
                                                 className="text-gray-500"
                                             />
-                                        </span>
+                                        </span> : <Avatar
+                                            theme={customAvatarTheme}
+                                            rounded
+                                            className="w-full"
+                                            size="md"
+                                        />
                                     }
                                 >
                                     <Dropdown.Header>

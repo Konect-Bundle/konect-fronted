@@ -101,7 +101,7 @@ export default function KuserBlock({
                                     animated={false}
                                 />
                             ) : (
-                                <span className="rounded-xl max-w-52 min-h-52 overflow-hidden flex justify-center items-center">
+                                user.profile_photo_url ? <span className="rounded-xl max-w-52 min-h-52 overflow-hidden flex justify-center items-center">
                                     <Avatar
                                         img={
                                             ROOT_FILES_URL +
@@ -112,7 +112,10 @@ export default function KuserBlock({
                                         alt="Kuser Image"
                                         theme={customAvatarTheme}
                                     />
-                                </span>
+                                </span> : <Avatar theme={customAvatarTheme} size={"sxl"} />
+
+
+
                             )}
                         </span>
 
@@ -187,9 +190,9 @@ export default function KuserBlock({
                                 href={
                                     kuser
                                         ? ROOT_FILES_URL +
-                                          "/vcards/" +
-                                          user.uuid! +
-                                          ".vcf"
+                                        "/vcards/" +
+                                        user.uuid! +
+                                        ".vcf"
                                         : ""
                                 }
                                 ref={aRef}

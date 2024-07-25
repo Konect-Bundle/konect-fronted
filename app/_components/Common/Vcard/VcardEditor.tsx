@@ -145,8 +145,7 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                 >
                                     <div className="flex md:flex-row md:justify-start justify-center flex-col items-center md:space-x-8 space-x-0 px-8 pb-8 pt-5">
                                         <div className="w-40 h-40 flex justify-center rounded-xl overflow-hidden">
-                                            {
-                                                user.profile_photo_url || selectedImage ?
+                                            {user.profile_photo_url || selectedImage ?
                                                     <Avatar
                                                         img={
                                                             selectedImage ? (selectedImage as string) : ROOT_FILES_URL +
@@ -157,7 +156,7 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                                         alt="Kuser Image"
                                                         theme={customAvatarTheme}
                                                     /> :
-                                                    <Avatar size={"pxl"} />
+                                                    <Avatar theme={customAvatarTheme} size={"pxl"} />
                                             }
                                         </div>
 
