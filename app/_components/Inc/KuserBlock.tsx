@@ -192,9 +192,9 @@ export default function KuserBlock({
                                 href={
                                     kuser
                                         ? ROOT_FILES_URL +
-                                          "/vcards/" +
-                                          user.uuid! +
-                                          ".vcf"
+                                        "/vcards/" +
+                                        user.uuid! +
+                                        ".vcf"
                                         : ""
                                 }
                                 ref={aRef}
@@ -316,16 +316,13 @@ export default function KuserBlock({
                                                 <a
                                                     href={
                                                         "https://www.google.com/maps/search/?api=1&query=" +
-                                                        vinfo.location.city +
-                                                        "+" +
-                                                        vinfo.location.iso_code
+                                                        vinfo.location.city
                                                     }
                                                     target="_blank"
                                                     className="hover:underline text-gray-700 break-words"
                                                 >
                                                     {vinfo.location.city +
-                                                        ", " +
-                                                        vinfo.location.state +
+
                                                         ", " +
                                                         vinfo.location.iso_code}
                                                 </a>
