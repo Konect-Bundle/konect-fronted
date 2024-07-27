@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import flowbite from "flowbite-react/tailwind";
+import { ROOT_ASSETS_URL } from "./app/_core/config/constants";
 
 const config: Config = {
     content: [
@@ -11,6 +12,9 @@ const config: Config = {
     ],
     theme: {
         extend: {
+            backgroundImage: {
+                'auth-bg': `url('${ROOT_ASSETS_URL}/images/background/auth_bg.jpg')`,
+              },
             colors: {
                 yellow: {
                     50: "#fefcbb",

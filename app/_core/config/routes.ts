@@ -50,3 +50,8 @@ export const dashboardRoute: RouteNameInterface = {
     name: "dashboard",
     path: "/dashboard",
 };
+
+export const passwordResetRoute: RouteNameInterface = {
+    name: "password-reset",
+    path: "/password-reset",
+};

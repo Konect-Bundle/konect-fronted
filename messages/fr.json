@@ -213,6 +213,13 @@
         "vcard_updated": "Fiche de contact mis à jour"
     },
     "Text": {
+        "password_update": "Mise à jour du mot de passe",
+        "password_update_text": "Mettez à jour votre mot de passe pour continuer",
+        "password_update_successfully": "Mise à jour avec succès",
+        "password_confirm": "Confirmer le mot de passe",
+        "email": "Email",
+        "password": "Mot de passe",
+        "confirm_email": "Confirmer l'email",
         "general_infos": "Informations générales",
         "social_networks": "Réseaux sociaux",
         "video": "Vidéo",

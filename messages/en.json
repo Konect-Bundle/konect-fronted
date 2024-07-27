@@ -213,6 +213,13 @@
         "vcard_updated": "Contact sheet successfully updated"
     },
     "Text": {
+        "password_update": "Update password",
+        "password_update_text": "Set your new password to continue",
+        "password_update_successfully": "Password successfully updated",
+        "password_confirm": "Confirm password",
+        "email": "Email",
+        "password": "Password",
+        "confirm_email": "Confirm email",
         "general_infos": "General informations",
         "social_networks": "Social networks",
         "video": "Video",

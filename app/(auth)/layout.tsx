@@ -24,7 +24,9 @@ export default function AuthLayout({
 
                 {children}
             </div>
-            <div className="h-full bg-black-light md:block hidden"></div>
+            <div className="h-full w-full md:block hidden bg-auth-bg bg-cover bg-center">
+                
+            </div>
         </section>
     );
 }
