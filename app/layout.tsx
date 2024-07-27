@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     twitter: {
         card: "summary_large_image",
         creator: "@_uziel_mvuama",
-        images: ROOT_ASSETS_URL + "/images/logo.png",
+        images: ROOT_ASSETS_URL + "/images/logo-yellow-bg.png",
         site: "https://www.ikonect.me",
         title: "Konect - " + "A link for your value",
         description: "Networking platform",
@@ -42,6 +42,7 @@ export const metadata: Metadata = {
         title: "Konect - " + "A link for your value",
         siteName: "https://www.ikonect.me/sitemap.xml",
         description: "Networking platform",
+        images: [ROOT_ASSETS_URL + "/images/logo-yellow-bg.png"],
     },
 };
 
