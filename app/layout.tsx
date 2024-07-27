@@ -14,7 +14,7 @@ const inter = Onest({
 
 export const metadata: Metadata = {
     title: "Konect - " + "A link for your value",
-    description: "Networking platform",
+    description: "Networking tools and platform",
     authors: { name: "uziel mvuama", url: "https://www.mrlezi.com" },
     applicationName: "Konect",
     keywords: [
@@ -35,13 +35,13 @@ export const metadata: Metadata = {
         images: ROOT_ASSETS_URL + "/images/logo-yellow-bg.png",
         site: "https://www.ikonect.me",
         title: "Konect - " + "A link for your value",
-        description: "Networking platform",
+        description: "Networking tools and  platform",
     },
     openGraph: {
         url: "https://www.ikonect.me",
         title: "Konect - " + "A link for your value",
         siteName: "https://www.ikonect.me/sitemap.xml",
-        description: "Networking platform",
+        description: "Networking tools and platform",
         images: [ROOT_ASSETS_URL + "/images/logo-yellow-bg.png"],
     },
 };
