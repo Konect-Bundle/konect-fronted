@@ -4,7 +4,7 @@ import { Button, Checkbox, Label } from "flowbite-react";
 import { TbEyeOff, TbEye } from "react-icons/tb";
 import $ from "jquery";
 import { UserService } from "@/app/_core/api/services/UserService";
-import { dashboardRoute } from "@/app/_core/config/routes";
+import { vcardRoute } from "@/app/_core/config/routes";
 import Swal from "sweetalert2";
 import { getCookie, setCookie } from "cookies-next";
 import {
@@ -101,7 +101,7 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
                         });
                     } else {
                         closeLoading();
-                        window.location.href = dashboardRoute.path;
+                        window.location.href = vcardRoute.path;
                     }
                 });
             } else {

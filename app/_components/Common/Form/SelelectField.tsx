@@ -1,28 +1,28 @@
-import { customTextInputTheme } from "@/app/_styles/flowbite/form";
-import { Label, TextInput } from "flowbite-react";
-import { Field, FieldConfig } from "formik";
-import React, { ReactSVGElement } from "react";
+import { customCheckBoxTheme, customSelectTheme } from "@/app/_styles/flowbite/form";
+import { ICountry } from "country-state-city";
+import { Select } from "flowbite-react";
+import { Field } from "formik";
+import React from "react";
 
-interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface SelectFieldProps
+    extends React.InputHTMLAttributes<HTMLInputElement> {
     disabled?: boolean;
     labelFor: string;
     className?: string;
-    manualType?: string;
     name?: string;
-    rightIcon?: React.FC<React.SVGProps<SVGSVGElement>>;
+    options: Array<ICountry>;
 }
 
-const InputField: React.FC<InputFieldProps> = ({
+const SelectField: React.FC<SelectFieldProps> = ({
     disabled = false,
     className = "",
     labelFor = "",
     name,
-    manualType = "text",
-    rightIcon,
+    options,
     ...props
 }) => {
     return (
-        <Field id={labelFor} disabled={disabled} name={name}>
+        <Field id={labelFor} as="select" disabled={disabled} name={name}>
             {(fieldProps: any) => {
                 const {
                     field, // { name, value, onChange, onBlur }
@@ -32,15 +32,19 @@ const InputField: React.FC<InputFieldProps> = ({
 
                 return (
                     <div>
-                        <TextInput
+                        <Select
                             id={labelFor}
-                            theme={customTextInputTheme}
-                            rightIcon={rightIcon && rightIcon}
-                            type={manualType}
+                            theme={customSelectTheme}
                             {...field}
-                            // {...props}
-                        />
+                            checked={field.value}
+                        >
+                            {options.map((country, i) => 
+                            <option key={i} value={country.isoCode}>
+                                {country.name}
+                            </option>
+                            )}
 
+                        </Select>
                         {meta.touched && meta.error && (
                             <div className="error mt-2 text-xs text-red-500">
                                 {meta.error}
@@ -53,4 +57,4 @@ const InputField: React.FC<InputFieldProps> = ({
     );
 };
 
-export default InputField;
+export default SelectField;

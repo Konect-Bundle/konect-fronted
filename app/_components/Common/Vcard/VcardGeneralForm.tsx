@@ -1,23 +1,37 @@
 import UserVcard from "@/app/_core/models/vcard/UserVcard";
-import React, { ReactElement, ReactNode } from "react";
-import { Field } from "formik";
-import { Label, Textarea, TextInput } from "flowbite-react";
-import { customTextInputTheme } from "@/app/_styles/flowbite/form";
+import React, { ReactElement, ReactNode, useEffect, useState } from "react";
+import { Field, useFormik } from "formik";
+
+import { Country, ICountry } from 'country-state-city';
+
 import InputWithLabel from "../Form/InputWithLabel";
 import InputField from "../Form/InputField";
 import InputPrefixedIcon from "../Form/InputPrefixedIcon";
 import { TbMail, TbPhone } from "react-icons/tb";
+import Script from "next/script";
 import { useTranslations } from "next-intl";
+import SelectCountryField from "../Form/Country/SelectCountryField";
+import SelectStateFromCountryField from "../Form/Country/SelectStateFromCountryField";
+import { UserVcardInterface } from "@/app/_core/interfaces/vcardInterfaces";
 
-interface VcardGeneralFormProps extends React.PropsWithChildren {}
+interface VcardGeneralFormProps extends React.PropsWithChildren {
+    formikValues: UserVcardInterface;
+ }
 
 const VcardGeneralForm: React.FC<
     VcardGeneralFormProps
-> = ({}: VcardGeneralFormProps) => {
+> = ({ formikValues}: VcardGeneralFormProps) => {
     // const CustomTextAreaComponent = (props: any) => (
     //     <Textarea id="comment" placeholder="Leave a comment..." required rows={4} {...props} />
     // );
     const __ = useTranslations("Text");
+
+    const allCountries = Country.getAllCountries();
+
+    // useEffect(() => {
+    // console.log(allCountries);
+    // }, []);
+
     return (
         <div className="grid grid-2 gap-4">
             <div className="grid grid-cols-6 col-span-2 gap-4">
@@ -64,7 +78,7 @@ const VcardGeneralForm: React.FC<
                 <InputWithLabel
                     isRequired={true}
                     labelFor={__("family_name")}
-                    labelTitle={"Nom"}
+                    labelTitle={__("family_name")}
                 >
                     <InputField
                         labelFor="familyName"
@@ -114,6 +128,43 @@ const VcardGeneralForm: React.FC<
                     />
                 </InputWithLabel>
             </div>
+
+            <div className="pt-5 col-span-2">
+                <h2 className="pb-6 font-semibold text-xl ">
+                    {__("location")}
+                </h2>
+                <div className="grid grid-cols-2 gap-2">
+                    <div className="">
+                        <InputWithLabel
+                            labelFor={"country"}
+                            labelTitle={__("country")}
+                            isRequired={true}
+                        >
+                            <SelectCountryField options={allCountries}
+                                defaultSelected={formikValues.location.country!}
+                                labelFor="country"
+                                name="location.country"
+                                required
+                            />
+                        </InputWithLabel>
+                    </div>
+
+                    <div className="">
+                        <InputWithLabel
+                            labelFor={"state"}
+                            labelTitle={__("state")}
+                            isRequired={true}
+                        >
+                            <SelectStateFromCountryField selectedCountryCode={formikValues.location.country!}
+                                labelFor="state"
+                                name="location.state"
+                                required
+                            />
+                        </InputWithLabel>
+                    </div>
+
+                </div>
+            </div>
             <div className="pt-5 col-span-2">
                 <h2 className="pb-6 font-semibold text-xl ">
                     {__("description_note")}
@@ -128,6 +179,7 @@ const VcardGeneralForm: React.FC<
                     />
                 </div>
             </div>
+            <Script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyY3bvg1_dAMLwu-XPcT9B7g5OpPuVmG8&libraries=places" />
         </div>
     );
 };
