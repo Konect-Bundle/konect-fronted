@@ -2,7 +2,7 @@ import UserVcard from "@/app/_core/models/vcard/UserVcard";
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
 import { Field, useFormik } from "formik";
 
-import { Country, ICountry } from 'country-state-city';
+import { Country, ICountry } from "country-state-city";
 
 import InputWithLabel from "../Form/InputWithLabel";
 import InputField from "../Form/InputField";
@@ -16,11 +16,11 @@ import { UserVcardInterface } from "@/app/_core/interfaces/vcardInterfaces";
 
 interface VcardGeneralFormProps extends React.PropsWithChildren {
     formikValues: UserVcardInterface;
- }
+}
 
-const VcardGeneralForm: React.FC<
-    VcardGeneralFormProps
-> = ({ formikValues}: VcardGeneralFormProps) => {
+const VcardGeneralForm: React.FC<VcardGeneralFormProps> = ({
+    formikValues,
+}: VcardGeneralFormProps) => {
     // const CustomTextAreaComponent = (props: any) => (
     //     <Textarea id="comment" placeholder="Leave a comment..." required rows={4} {...props} />
     // );
@@ -140,7 +140,8 @@ const VcardGeneralForm: React.FC<
                             labelTitle={__("country")}
                             isRequired={true}
                         >
-                            <SelectCountryField options={allCountries}
+                            <SelectCountryField
+                                options={allCountries}
                                 defaultSelected={formikValues.location.country!}
                                 labelFor="country"
                                 name="location.country"
@@ -155,14 +156,16 @@ const VcardGeneralForm: React.FC<
                             labelTitle={__("state")}
                             isRequired={true}
                         >
-                            <SelectStateFromCountryField selectedCountryCode={formikValues.location.country!}
+                            <SelectStateFromCountryField
+                                selectedCountryCode={
+                                    formikValues.location.country!
+                                }
                                 labelFor="state"
                                 name="location.state"
                                 required
                             />
                         </InputWithLabel>
                     </div>
-
                 </div>
             </div>
             <div className="pt-5 col-span-2">

@@ -168,5 +168,4 @@ export const customCheckBoxTheme: CustomFlowbiteTheme["checkbox"] = {
     },
 };
 
-
-export const customSelectTheme: CustomFlowbiteTheme["select"] ={}
+export const customSelectTheme: CustomFlowbiteTheme["select"] = {};

@@ -51,7 +51,12 @@ export default function Footer(props: IFooterProps) {
                         <div>
                             <FooterFb.Title title={tLinks("legal")} />
                             <FooterFb.LinkGroup col>
-                                <FooterFb.Link href={ROOT_ASSETS_URL + "/documents/privacy.pdf"}>
+                                <FooterFb.Link
+                                    href={
+                                        ROOT_ASSETS_URL +
+                                        "/documents/privacy.pdf"
+                                    }
+                                >
                                     {tLinks("privacy_policy")}
                                 </FooterFb.Link>
                                 <FooterFb.Link href="#">

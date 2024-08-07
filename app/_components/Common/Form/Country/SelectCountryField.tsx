@@ -1,4 +1,7 @@
-import { customCheckBoxTheme, customSelectTheme } from "@/app/_styles/flowbite/form";
+import {
+    customCheckBoxTheme,
+    customSelectTheme,
+} from "@/app/_styles/flowbite/form";
 import { ICountry } from "country-state-city";
 import { Select } from "flowbite-react";
 import { Field } from "formik";
@@ -25,7 +28,8 @@ const SelectCountryField: React.FC<SelectCountryFieldProps> = ({
     onChangeCallBack,
     ...props
 }) => {
-    const [selectedCoundtry, setSelectedCountry]= useState<string>(defaultSelected); 
+    const [selectedCoundtry, setSelectedCountry] =
+        useState<string>(defaultSelected);
     // console.log(defaultSelected);
     return (
         <Field id={labelFor} as="select" disabled={disabled} name={name}>
@@ -43,19 +47,18 @@ const SelectCountryField: React.FC<SelectCountryFieldProps> = ({
                             theme={customSelectTheme}
                             {...field}
                             // onChange={(e)=>{
-                                
+
                             //     // setSelectedCountry(e.target.value);
                             //     // onChangeCallBack!(e.target.value);
                             //     console.log(selectedCoundtry);
                             // }}
                             // checked={selectedCoundtry}
                         >
-                            {options.map((country, i) =>
+                            {options.map((country, i) => (
                                 <option key={i} value={country.isoCode}>
                                     {country.name}
                                 </option>
-                            )}
-
+                            ))}
                         </Select>
                         {meta.touched && meta.error && (
                             <div className="error mt-2 text-xs text-red-500">

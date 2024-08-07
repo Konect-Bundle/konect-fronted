@@ -35,10 +35,19 @@ export class UserService {
         return await fetchData("/api/auth/user", "", {}, "GET", token);
     }
 
-    static async updatePassword(newPassword: string, oldPassword: string, token: string) {
+    static async updatePassword(
+        newPassword: string,
+        oldPassword: string,
+        token: string,
+    ) {
         return await fetchData(
             "/api/user/custom-update",
-            serialize({passwords: {oldPassword: oldPassword, newPassword: newPassword} }),
+            serialize({
+                passwords: {
+                    oldPassword: oldPassword,
+                    newPassword: newPassword,
+                },
+            }),
             {},
             "POST",
             token,

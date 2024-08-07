@@ -82,7 +82,7 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
         },
         location: {
             state: vcard.location.state ? vcard.location.state : "",
-            country: vcard.location.iso_code ? vcard.location.iso_code : "CA"
+            country: vcard.location.iso_code ? vcard.location.iso_code : "CA",
         },
         urls: urls as UrlVcardInterface[],
         videoLinks: videos as VideoLinkVcardInterface[],
@@ -149,14 +149,14 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                     <div className="flex md:flex-row md:justify-start justify-center flex-col items-center md:space-x-8 space-x-0 px-8 pb-8 pt-5">
                                         <div className="w-40 h-40 flex justify-center rounded-xl overflow-hidden">
                                             {user.profile_photo_url ||
-                                                selectedImage ? (
+                                            selectedImage ? (
                                                 <Avatar
                                                     img={
                                                         selectedImage
                                                             ? (selectedImage as string)
                                                             : ROOT_FILES_URL +
-                                                            "/" +
-                                                            user.profile_photo_url!
+                                                              "/" +
+                                                              user.profile_photo_url!
                                                     }
                                                     size={"pxl"}
                                                     alt="Kuser Image"
@@ -210,7 +210,9 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                         <h2 className="pb-6 font-semibold text-xl ">
                                             {Ttext("general_infos")}
                                         </h2>
-                                        <VcardGeneralForm formikValues={formProps.values} />
+                                        <VcardGeneralForm
+                                            formikValues={formProps.values}
+                                        />
                                     </div>
                                 </Tabs.Item>
                                 <Tabs.Item
@@ -278,7 +280,6 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                     </Form>
                 )}
             </Formik>
-
         </LoadingLayout>
     );
 };

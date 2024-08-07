@@ -4,7 +4,7 @@ import Header from "@/app/_components/Common/Headers/Header";
 import { useAppSelector } from "@/app/_store/hooks";
 import { useTranslations } from "next-intl";
 import { MutatingDots } from "react-loader-spinner";
-export interface IDashboardPageProps { }
+export interface IDashboardPageProps {}
 
 export default function DashboardPage(props: IDashboardPageProps) {
     const user = useAppSelector((state) => state.auth.currentUser);
@@ -28,10 +28,5 @@ export default function DashboardPage(props: IDashboardPageProps) {
             </div>
         );
 
-
-    return (
-        <>
-            Dashboard
-        </>
-    );
+    return <>Dashboard</>;
 }

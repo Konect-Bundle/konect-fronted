@@ -13,8 +13,8 @@ const config: Config = {
     theme: {
         extend: {
             backgroundImage: {
-                'auth-bg': `url('${ROOT_ASSETS_URL}/images/background/auth_bg.jpg')`,
-              },
+                "auth-bg": `url('${ROOT_ASSETS_URL}/images/background/auth_bg.jpg')`,
+            },
             colors: {
                 yellow: {
                     50: "#fefcbb",

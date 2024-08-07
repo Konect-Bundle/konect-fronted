@@ -1,11 +1,13 @@
-import { customCheckBoxTheme, customSelectTheme } from "@/app/_styles/flowbite/form";
+import {
+    customCheckBoxTheme,
+    customSelectTheme,
+} from "@/app/_styles/flowbite/form";
 import { ICountry } from "country-state-city";
 import { Select } from "flowbite-react";
 import { Field } from "formik";
 import React from "react";
 
-interface SelectFieldProps
-    extends React.InputHTMLAttributes<HTMLInputElement> {
+interface SelectFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
     disabled?: boolean;
     labelFor: string;
     className?: string;
@@ -38,12 +40,11 @@ const SelectField: React.FC<SelectFieldProps> = ({
                             {...field}
                             checked={field.value}
                         >
-                            {options.map((country, i) => 
-                            <option key={i} value={country.isoCode}>
-                                {country.name}
-                            </option>
-                            )}
-
+                            {options.map((country, i) => (
+                                <option key={i} value={country.isoCode}>
+                                    {country.name}
+                                </option>
+                            ))}
                         </Select>
                         {meta.touched && meta.error && (
                             <div className="error mt-2 text-xs text-red-500">

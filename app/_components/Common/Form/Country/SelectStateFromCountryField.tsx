@@ -1,4 +1,7 @@
-import { customCheckBoxTheme, customSelectTheme } from "@/app/_styles/flowbite/form";
+import {
+    customCheckBoxTheme,
+    customSelectTheme,
+} from "@/app/_styles/flowbite/form";
 import { ICountry, State } from "country-state-city";
 import { Select } from "flowbite-react";
 import { Field } from "formik";
@@ -13,7 +16,9 @@ interface SelectStateFromCountryFieldProps
     selectedCountryCode: string;
 }
 
-const SelectStateFromCountryField: React.FC<SelectStateFromCountryFieldProps> = ({
+const SelectStateFromCountryField: React.FC<
+    SelectStateFromCountryFieldProps
+> = ({
     disabled = false,
     className = "",
     labelFor = "",
@@ -21,7 +26,7 @@ const SelectStateFromCountryField: React.FC<SelectStateFromCountryFieldProps> = 
     selectedCountryCode,
     ...props
 }) => {
-    const states= State.getStatesOfCountry(selectedCountryCode);
+    const states = State.getStatesOfCountry(selectedCountryCode);
 
     return (
         <Field id={labelFor} as="select" disabled={disabled} name={name}>
@@ -40,12 +45,11 @@ const SelectStateFromCountryField: React.FC<SelectStateFromCountryFieldProps> = 
                             {...field}
                             checked={field.value}
                         >
-                            {states.map((state, i) => 
-                            <option key={i} value={state.isoCode}>
-                                {state.name}
-                            </option>
-                            )}
-
+                            {states.map((state, i) => (
+                                <option key={i} value={state.isoCode}>
+                                    {state.name}
+                                </option>
+                            ))}
                         </Select>
                         {meta.touched && meta.error && (
                             <div className="error mt-2 text-xs text-red-500">

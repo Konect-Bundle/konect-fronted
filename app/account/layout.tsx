@@ -1,4 +1,3 @@
-
 "use client";
 import { getCookie } from "cookies-next";
 import { UserService } from "@/app/_core/api/services/UserService";
@@ -14,17 +13,18 @@ import Header from "@/app/_components/Common/Headers/Header";
 import { useAppSelector } from "@/app/_store/hooks";
 import { MutatingDots } from "react-loader-spinner";
 
-export interface IDashboardPageProps { }
+export interface IDashboardPageProps {}
 
 export default function ProfilLayout({
     children,
 }: {
-    children: React.ReactNode
+    children: React.ReactNode;
 }) {
     const user = useAppSelector((state) => state.auth.currentUser);
-return <>
-    <Header />
-    <ContainerLayout>{children}</ContainerLayout>
-</>
+    return (
+        <>
+            <Header />
+            <ContainerLayout>{children}</ContainerLayout>
+        </>
+    );
 }
-
