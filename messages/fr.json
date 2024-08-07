@@ -364,8 +364,10 @@
         "networking_taken_to_the_next_level": "Le réseautage à l'étape supérieure",
         "should_see": "Decidez de qu'est ce que doivent voir les personnes à qui vous partagez votre contact",
         "enable_card": "Activer ma carte",
-        "enable_localization": "Afficher ma localization",
+        "enable_localization": "Afficher ma localisation",
+        "location":"Localisation",
         "enable_show_konects": "Afficher mes konects",
-        "add": "Ajouter"
+        "add": "Ajouter",
+        "state":"Province"
     }
 }

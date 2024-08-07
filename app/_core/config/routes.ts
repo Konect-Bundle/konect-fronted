@@ -48,10 +48,15 @@ export const productItemRoute: RouteNameInterface = {
 ========================= */
 export const dashboardRoute: RouteNameInterface = {
     name: "dashboard",
-    path: "/dashboard",
+    path: "/account/dashboard",
+};
+
+export const vcardRoute: RouteNameInterface = {
+    name: "vcard",
+    path: "/account/vcard",
 };
 
 export const passwordResetRoute: RouteNameInterface = {
     name: "password-reset",
-    path: "/password-reset",
+    path: "/account/password-reset",
 };
