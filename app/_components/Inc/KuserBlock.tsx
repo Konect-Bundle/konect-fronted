@@ -316,7 +316,7 @@ export default function KuserBlock({
                                                 <a
                                                     href={
                                                         "https://www.google.com/maps/search/?api=1&query=" +
-                                                        vinfo.location.city
+                                                        vinfo.location.state
                                                     }
                                                     target="_blank"
                                                     className="hover:underline text-gray-700 break-words"
