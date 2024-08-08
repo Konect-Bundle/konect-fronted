@@ -321,7 +321,7 @@ export default function KuserBlock({
                                                     target="_blank"
                                                     className="hover:underline text-gray-700 break-words"
                                                 >
-                                                    {vinfo.location.city +
+                                                    {vinfo.location.state +
                                                         ", " +
                                                         vinfo.location.iso_code}
                                                 </a>
