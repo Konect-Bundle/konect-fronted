@@ -82,7 +82,9 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
         },
         location: {
             state: vcard.location.state ? vcard.location.state : "",
-            country: vcard.location.iso_code ? vcard.location.iso_code.toUpperCase() : "CA",
+            country: vcard.location.iso_code
+                ? vcard.location.iso_code.toUpperCase()
+                : "CA",
         },
         urls: urls as UrlVcardInterface[],
         videoLinks: videos as VideoLinkVcardInterface[],
