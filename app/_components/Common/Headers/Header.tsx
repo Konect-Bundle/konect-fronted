@@ -25,6 +25,7 @@ import {
     howItRoute,
     loginRoute,
     productsRoute,
+    vcardRoute,
 } from "@/app/_core/config/routes";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -34,6 +35,7 @@ import {
     TbChevronDown,
     TbDashboard,
     TbDotsVertical,
+    TbId,
     TbLayoutDashboardFilled,
     TbPower,
 } from "react-icons/tb";
@@ -48,6 +50,7 @@ export default function Header(props: IAppProps) {
     const pathname = usePathname();
     const tAction = useTranslations("Actions");
     const tLinks = useTranslations("Links");
+    const __ = useTranslations("Text");
     const dispatch = useAppDispatch();
     const user = useAppSelector((state) => state.auth.currentUser);
 
@@ -141,6 +144,16 @@ export default function Header(props: IAppProps) {
                                                 <TbLayoutDashboardFilled />
                                                 <span>
                                                     {tLinks("dashboard")}
+                                                </span>
+                                            </span>
+                                        </Link>
+                                    </Dropdown.Item>
+                                    <Dropdown.Item>
+                                        <Link href={vcardRoute.path}>
+                                            <span className="flex items-center space-x-1">
+                                                <TbId />
+                                                <span>
+                                                    {__("my_contact_sheet")}
                                                 </span>
                                             </span>
                                         </Link>

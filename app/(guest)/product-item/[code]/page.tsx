@@ -435,7 +435,7 @@ export default function KwidgetItemPage({
                                                         </svg>
                                                     </div>
                                                     <span className="pl-2 font-normal leading-7 text-gray-500 text-sm ">
-                                                        1624 review
+                                                        124 review
                                                     </span>
                                                 </div>
                                             </div>

@@ -30,16 +30,16 @@ export default function Home() {
     }, []);
     return (
         <main className="flex flex-col">
-            <div className="flex flex-col md:h-screen h-[80vh]">
+            <div className="flex flex-col h-screen">
                 <Header />
                 <ContainerLayout className="mt-6 md:mt-1 h-[inherit] flex items-center">
                     <div className=" flex items-center bg-white rounded-2xl h-full w-full overflow-hidden">
                         <section className="flex items-center justify-center bg-white">
                             <div className="bg-white dark:bg-gray-900 flex justify-between items-center">
                                 <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-                                    <div className="mr-auto place-self-center lg:col-span-6 md:ms-20 ms-4">
+                                    <div className="mr-auto place-self-center lg:col-span-6 md:ms-20 md:ms-4">
                                         <span className="mb-8 inline-flex items-center space-x-2 rounded-full bg-gray-100 p-1 pe-6">
-                                            <span className="h-12 w-12 rounded-full bg-orange-700 flex justify-center items-center">
+                                            <span className="h-[48px] md:w-[48px] w-[60px] rounded-full bg-orange-700 flex justify-center items-center">
                                                 <MdOutlineConnectWithoutContact className="w-6 h-6 text-gray-50" />
                                             </span>
                                             <span>{t("label_01")}</span>
@@ -166,7 +166,7 @@ export default function Home() {
                 </div>
             </ContainerLayout> */}
 
-            <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+            <ContainerLayout className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
                 <div className="max-w-2xl mx-auto">
                     {/* -- Grid --*/}
                     <div className="grid gap-12">
@@ -228,7 +228,7 @@ export default function Home() {
                                 className="flex"
                             >
                                 <svg
-                                    className="w-6 h-6 text-gray-800 dark:text-white"
+                                    className="flex-shrink-0  size-6 text-gray-800 dark:text-white"
                                     aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -291,7 +291,7 @@ export default function Home() {
                     </div>
                     {/*End Grid*/}
                 </div>
-            </div>
+            </ContainerLayout>
             {/*Features*/}
             <div className="h-screen w-full px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
                 <div

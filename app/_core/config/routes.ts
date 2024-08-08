@@ -15,7 +15,7 @@ export const kuserRoute: RouteNameInterface = {
 
 export const howItRoute: RouteNameInterface = {
     name: "how-it",
-    path: "/how-it",
+    path: "/howit",
 };
 
 // Auth proccess

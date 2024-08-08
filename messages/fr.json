@@ -48,7 +48,7 @@
             "take_control": "Prenez en main très facilement votre fiche de contact."
         },
         "Dashboard": {
-            "dashboard_hello": "Bonjour, :name"
+            "dashboard_hello": "Bonjour, {{name}}"
         },
         "Organization": {
             "add_card_index_title": "Créez votre organisation et commandez un gadget konect pour les membres de votre équipe",

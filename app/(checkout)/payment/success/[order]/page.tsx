@@ -4,6 +4,7 @@ import { PaymentService } from "@/app/_core/api/services/PaymentService";
 import { TbCircleCheckFilled } from "react-icons/tb";
 import { cookies } from "next/headers";
 import { AUTH_TOKEN_NAME } from "@/app/_core/config/constants";
+import ConfettiLayout from "@/app/_components/Layouts/ConfettiLayout";
 
 export interface IPaymentSuccessPageProps {}
 
@@ -19,9 +20,10 @@ export default async function PaymentSuccessPage({
         params.order,
         token,
     );
-    console.log(order, token, "K");
+    // console.log(order, token, "K");
+
     return (
-        <div className="h-screen">
+        <ConfettiLayout className="h-screen">
             <Header />
             <ContainerLayout className="flex space-y-2 flex-col items-center pt-8 mb-2">
                 <TbCircleCheckFilled className="text-green-600 text-7xl" />
@@ -32,6 +34,6 @@ export default async function PaymentSuccessPage({
                     Vos achat a bien été effetué
                 </p>
             </ContainerLayout>
-        </div>
+        </ConfettiLayout>
     );
 }
