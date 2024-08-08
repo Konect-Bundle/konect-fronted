@@ -27,7 +27,6 @@ const SelectStateFromCountryField: React.FC<
     ...props
 }) => {
     const states = State.getStatesOfCountry(selectedCountryCode);
-
     return (
         <Field id={labelFor} as="select" disabled={disabled} name={name}>
             {(fieldProps: any) => {
@@ -46,7 +45,7 @@ const SelectStateFromCountryField: React.FC<
                             checked={field.value}
                         >
                             {states.map((state, i) => (
-                                <option key={i} value={state.isoCode}>
+                                <option key={i} value={state.name}>
                                     {state.name}
                                 </option>
                             ))}

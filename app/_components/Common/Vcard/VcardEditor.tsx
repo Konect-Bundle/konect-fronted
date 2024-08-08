@@ -82,7 +82,7 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
         },
         location: {
             state: vcard.location.state ? vcard.location.state : "",
-            country: vcard.location.iso_code ? vcard.location.iso_code : "CA",
+            country: vcard.location.iso_code ? vcard.location.iso_code.toUpperCase() : "CA",
         },
         urls: urls as UrlVcardInterface[],
         videoLinks: videos as VideoLinkVcardInterface[],
@@ -121,6 +121,7 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
     };
 
     useEffect(() => {
+        // console.log(initialValues);
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
