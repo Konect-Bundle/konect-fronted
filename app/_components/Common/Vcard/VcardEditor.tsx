@@ -39,6 +39,7 @@ import { customFileInputTheme } from "@/app/_styles/flowbite/form";
 import LoadingLayout from "../../Layouts/LoadingLayout";
 import { useTranslations } from "next-intl";
 import { customAvatarTheme } from "@/app/_styles/flowbite/avatar";
+import { ucfirst } from "@/app/_core/utils/functions";
 
 interface VcardEditorProps extends React.PropsWithChildren {
     user: User;
@@ -81,7 +82,7 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
             linkedin: vcard.socialProfils.linkedin.uri,
         },
         location: {
-            state: vcard.location.state ? vcard.location.state : "",
+            state: vcard.location.state ? ucfirst(vcard.location.state) : "",
             country: vcard.location.iso_code
                 ? vcard.location.iso_code.toUpperCase()
                 : "CA",
