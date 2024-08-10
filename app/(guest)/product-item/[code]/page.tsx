@@ -6,11 +6,13 @@ import { useEffect } from "react";
 import { GadgetService } from "@/app/_core/api/services/GadgetService";
 import { Breadcrumb, Button, Label, TextInput } from "flowbite-react";
 import {
+    TbCheck,
     TbHomeFilled,
     TbMinus,
     TbPlus,
     TbRotateClockwise2,
     TbShoppingCart,
+    TbTruckDelivery,
 } from "react-icons/tb";
 import {
     loginRoute,
@@ -38,7 +40,7 @@ import { getCookie, setCookie } from "cookies-next";
 import { IntentInterface } from "../../../_core/interfaces/appInterfaces";
 import LoadingLayout from "@/app/_components/Layouts/LoadingLayout";
 
-export interface KwidgetItemProps {}
+export interface KwidgetItemProps { }
 
 export default function KwidgetItemPage({
     params,
@@ -53,6 +55,7 @@ export default function KwidgetItemPage({
     const [qty, setQty] = useState(1);
     const T = useTranslations("Kgadgets");
     const __A = useTranslations("Actions");
+    const __ = useTranslations("Text");
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -285,7 +288,7 @@ export default function KwidgetItemPage({
                                                     <Label
                                                         htmlFor="companyName"
                                                         value={
-                                                            "Your Company name"
+                                                            __("title_or_company")
                                                         }
                                                     />
                                                 </div>
@@ -307,7 +310,7 @@ export default function KwidgetItemPage({
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="data w-full lg:pr-8 pr-0 xl:justify-start justify-center flex items-center max-lg:pb-10 xl:my-2 lg:my-5 my-0 bg-white rounded-lg ps-8 pe-8 lg:pt-0 pt-6 border border-gray-300/25">
+                                    <div className="data w-full lg:pr-8 pr-8 xl:justify-start justify-center flex items-center xl:my-2 lg:my-5 my-0 bg-white rounded-lg ps-6 pe-6 lg:pt-0 pt-6 border border-gray-300/25">
                                         <div className="data w-full max-w-xl">
                                             <h2 className="font-manrope font-bold md:text-3xl text-2xl leading-10 text-gray-900 mb-2 capitalize">
                                                 {"Konect " + gadgetItem?.name}
@@ -442,69 +445,61 @@ export default function KwidgetItemPage({
                                             <p className="text-gray-500 text-base font-normal mb-5">
                                                 {T!(gadgetItem?.description)}
                                             </p>
-                                            <ul className="grid gap-y-4 mb-8">
+                                            <ul className="grid gap-y-4">
                                                 <li className="flex items-center gap-3">
-                                                    <svg
-                                                        width="26"
-                                                        height="26"
-                                                        viewBox="0 0 26 26"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <rect
-                                                            width="26"
-                                                            height="26"
-                                                            rx="13"
-                                                            fill="#4F46E5"
-                                                        />
-                                                        <path
-                                                            d="M7.66669 12.629L10.4289 15.3913C10.8734 15.8357 11.0956 16.0579 11.3718 16.0579C11.6479 16.0579 11.8701 15.8357 12.3146 15.3913L18.334 9.37183"
-                                                            stroke="white"
-                                                            strokeWidth="1.6"
-                                                            strokeLinecap="round"
-                                                        />
-                                                    </svg>
+                                                    <TbCheck className="bg-yellow-800 rounded-full p-1 text-xl"/>
                                                     <span className="font-normal text-base text-gray-900 ">
                                                         {ucfirst(
                                                             gadgetItem?.material!,
                                                         )}
                                                     </span>
                                                 </li>
+                                                <li className="flex items-center space-x-2 text-gray-400">
+                                                    <TbTruckDelivery className="sm:text-2xl text-3xl w-max" />
+                                                    <span>
+                                                        {__("delivery_time")}
+                                                    </span>
+                                                </li>
                                             </ul>
 
-                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 py-8">
-                                                <div className="flex space-x-2 sm:items-center sm:justify-center w-full">
-                                                    <span
-                                                        className="group py-2 px-2 border border-gray-300/45 rounded-l-lg bg-white transition-all duration-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-300 cursor-pointer"
-                                                        onClick={() => {
-                                                            if (qty > 1) {
-                                                                setQty(qty - 1);
-                                                            }
-                                                        }}
-                                                    >
-                                                        <TbMinus />
-                                                    </span>
-                                                    <span className="font-semibold text-gray-900 text-lg py-[13px] px-8 sm:max-w-[118px] outline-0 border rounded-lg border-gray-300/50 bg-transparent placeholder:text-gray-900 text-center hover:bg-gray-50">
-                                                        {qty}
-                                                    </span>
+                                            <div className="flex flex-wrap justify-center sm:justify-start space-x-3 space-y-4 py-8">
+                                                <div className="flex items-center space-3">
+                                                    <div className="flex space-x-2 items-center justify-center w-full">
+                                                        <span>
+                                                        {__("quantity")} : 
+                                                        </span>
+                                                        <span
+                                                            className="group py-2 px-2 border border-gray-300/45 rounded-l-lg bg-white transition-all duration-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-300 cursor-pointer flex justify-center items-center"
+                                                            onClick={() => {
+                                                                if (qty > 1) {
+                                                                    setQty(qty - 1);
+                                                                }
+                                                            }}
+                                                        >
+                                                            <TbMinus />
+                                                        </span>
+                                                        <span className="flex justify-center items-center font-semibold text-gray-900 text-lg py-[13px] px-8 sm:max-w-[118px] outline-0 border rounded-lg border-gray-300/50 bg-transparent placeholder:text-gray-900 text-center">
+                                                            {qty}
+                                                        </span>
 
-                                                    <span
-                                                        className="group py-2 px-2 border border-gray-300/45 rounded-r-lg bg-white transition-all duration-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-300 cursor-pointer"
-                                                        onClick={() => {
-                                                            var newQty =
-                                                                qty + 1;
-                                                            setQty(newQty);
-                                                        }}
-                                                    >
-                                                        <TbPlus />
-                                                    </span>
+                                                        <span
+                                                            className="group py-2 px-2 border border-gray-300/45 rounded-r-lg bg-white transition-all duration-300 hover:bg-gray-50 hover:shadow-sm hover:shadow-gray-300 cursor-pointer flex justify-center items-center"
+                                                            onClick={() => {
+                                                                var newQty =
+                                                                    qty + 1;
+                                                                setQty(newQty);
+                                                            }}
+                                                        >
+                                                            <TbPlus />
+                                                        </span>
+                                                    </div>
                                                 </div>
                                                 <Button
                                                     type="submit"
                                                     theme={customButtonTheme}
                                                     size="md"
                                                     color="dark"
-                                                    className="flex justify-center space-x-2"
+                                                    className="grow flex justify-center space-x-2"
                                                 >
                                                     <TbShoppingCart className="text-lg" />
                                                     <span className="ml-1 font-bold">

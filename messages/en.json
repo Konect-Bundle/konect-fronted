@@ -368,6 +368,9 @@
         "location": "Location",
         "enable_show_konects": "Show my konects",
         "add": "Add",
-        "state": "State"
+        "state": "State",
+        "delivery_time": "Free delivery within 3-5 business days after purchase",
+        "quantity": "Quantity",
+        "title_or_company" : "Job title or company"
     }
 }
