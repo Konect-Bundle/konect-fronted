@@ -4,6 +4,7 @@ import { fetchData } from "@/app/_core/api/functions";
 
 export class PaymentService {
     static async makePayment(
+        file: File | null,
         kGadgetCode: string,
         givenName: string,
         familyName: string,
@@ -11,17 +12,22 @@ export class PaymentService {
         qteValue: number,
         token: string,
     ) {
+        const formData = new FormData();
+        formData.append("givenName", givenName);
+        formData.append("familyName", familyName);
+        formData.append("companyName", companyName);
+        formData.append("qteValue", qteValue.toString());
+
+        if (file) {
+            formData.append("img", file);
+        }
         return await fetchData(
             "/api/payment/stripe/" + kGadgetCode,
-            serialize({
-                givenName: givenName,
-                familyName: familyName,
-                companyName: companyName,
-                qteValue: qteValue,
-            }),
+            formData,
             {},
             "POST",
             token,
+            true,
         );
     }
 

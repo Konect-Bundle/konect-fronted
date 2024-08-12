@@ -14,9 +14,10 @@ export async function fetchData(
         config = {
             ...config,
             headers: {
-                "Content-Type": withFile
-                    ? "application/json"
-                    : "multipart/form-data",
+                "Content-Type":
+                    withFile == false
+                        ? "application/json"
+                        : "multipart/form-data",
                 Authorization: `Bearer ${bearer}`,
             },
         };

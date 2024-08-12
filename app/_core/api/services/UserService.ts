@@ -60,6 +60,7 @@ export class UserService {
             {},
             "POST",
             token,
+            true,
         );
     }
 }

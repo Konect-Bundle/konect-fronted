@@ -31,6 +31,7 @@ export async function intent_processor(
     if (intentData.from == productItemRoute.name) {
         return (
             await PaymentService.makePayment(
+                intentData.data.file,
                 intentData.data.code,
                 intentData.data.name,
                 intentData.data.familyName,

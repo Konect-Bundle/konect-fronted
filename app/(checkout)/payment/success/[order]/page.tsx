@@ -5,6 +5,7 @@ import { TbCircleCheckFilled } from "react-icons/tb";
 import { cookies } from "next/headers";
 import { AUTH_TOKEN_NAME } from "@/app/_core/config/constants";
 import ConfettiLayout from "@/app/_components/Layouts/ConfettiLayout";
+import { redirect } from "next/navigation";
 
 export interface IPaymentSuccessPageProps {}
 
@@ -20,7 +21,10 @@ export default async function PaymentSuccessPage({
         params.order,
         token,
     );
-    // console.log(order, token, "K");
+    if (order.state == false) {
+        // console.log(order.msg);
+        redirect(order.data.url);
+    }
 
     return (
         <ConfettiLayout className="h-screen">

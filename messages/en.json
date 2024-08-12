@@ -371,6 +371,9 @@
         "state": "State",
         "delivery_time": "Free delivery within 3-5 business days after purchase",
         "quantity": "Quantity",
-        "title_or_company" : "Job title or company"
+        "title_or_company": "Job title or company",
+        "card_customization": "Customize your card",
+        "customized_logo": "Customized logo",
+        "visible_on_white": "Please drop visible logo on white color"
     }
 }
