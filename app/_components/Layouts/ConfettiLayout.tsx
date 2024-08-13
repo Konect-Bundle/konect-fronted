@@ -18,7 +18,7 @@ const ConfettiLayout: React.FC<ConfettiLayoutProps> = ({
     const jsConfetti = new JSConfetti();
     useEffect(() => {
         jsConfetti.addConfetti();
-    }, []);
+    }, [jsConfetti]);
     return <div {...divProps}>{children}</div>;
 };
 

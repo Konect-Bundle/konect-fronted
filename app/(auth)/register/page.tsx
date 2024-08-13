@@ -237,9 +237,9 @@ export default function RegisterFormPage(props: IRegisterFormPageProps) {
                             {T("register")}
                         </Button>
                         {generalsErrors.length>0 && <ul className="py-2 text-center">
-                            {generalsErrors.map(error => {
+                            {generalsErrors.map((error,key) => {
                                 return (
-                                    <li className="text-red-500">{error}</li>
+                                    <li className="text-red-500" key={key}>{error}</li>
                                 )
                             })}
                         </ul>}
