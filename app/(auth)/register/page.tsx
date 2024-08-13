@@ -4,7 +4,12 @@ import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import { TbEyeOff, TbEye } from "react-icons/tb";
 import $ from "jquery";
 import { UserService } from "@/app/_core/api/services/UserService";
-import { homeRoute, loginRoute, registerRoute, vcardRoute } from "@/app/_core/config/routes";
+import {
+    homeRoute,
+    loginRoute,
+    registerRoute,
+    vcardRoute,
+} from "@/app/_core/config/routes";
 import { cookies } from "next/headers";
 import LoadingLayout from "@/app/_components/Layouts/LoadingLayout";
 import { Form, Formik } from "formik";
@@ -16,12 +21,14 @@ import CheckBoxField from "@/app/_components/Common/Form/CheckBoxField";
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
 import Swal from "sweetalert2";
 import { IntentInterface } from "@/app/_core/interfaces/appInterfaces";
-import { AUTH_TOKEN_NAME, INTENT_COOKIE_NAME } from "@/app/_core/config/constants";
+import {
+    AUTH_TOKEN_NAME,
+    INTENT_COOKIE_NAME,
+} from "@/app/_core/config/constants";
 import { getCookie, setCookie } from "cookies-next";
 import { intent_processor } from "@/app/_core/utils/functions";
 
-
-export interface IRegisterFormPageProps { }
+export interface IRegisterFormPageProps {}
 
 export default function RegisterFormPage(props: IRegisterFormPageProps) {
     const [intentData, setIntentData] = useState<IntentInterface | null>(null);
@@ -29,15 +36,12 @@ export default function RegisterFormPage(props: IRegisterFormPageProps) {
     const [isLoading, setIsLoading] = useState(false);
     const [generalsErrors, setgeneralsErrors] = useState([]);
 
-
     const T = useTranslations("Auth");
     const __ = useTranslations("Text");
 
     const SignupSchema = Yup.object().shape({
-        name: Yup.string()
-            .required(T("validate_required")),
-        firstname: Yup.string()
-            .required(T("validate_required")),
+        name: Yup.string().required(T("validate_required")),
+        firstname: Yup.string().required(T("validate_required")),
         email: Yup.string()
             .email(T("validate_email"))
             .required(T("validate_required")),
@@ -45,10 +49,10 @@ export default function RegisterFormPage(props: IRegisterFormPageProps) {
             .min(8, T("Password.validate_min"))
             .required(T("validate_required")),
         passwordRe: Yup.string()
-            .min(8, T("Password.validate_min")).oneOf([Yup.ref('password')], __("confirm_password_doesnt_match"))
+            .min(8, T("Password.validate_min"))
+            .oneOf([Yup.ref("password")], __("confirm_password_doesnt_match"))
             .required(T("validate_required")),
     });
-
 
     useEffect(() => {
         if (localStorage.getItem(INTENT_COOKIE_NAME) && !intentData) {
@@ -71,8 +75,8 @@ export default function RegisterFormPage(props: IRegisterFormPageProps) {
     }, [showPassword]);
 
     function doAuth(values: {
-        name: string,
-        firstname: string,
+        name: string;
+        firstname: string;
         email: string;
         password: string;
         passwordRe: string;
@@ -91,61 +95,69 @@ export default function RegisterFormPage(props: IRegisterFormPageProps) {
             },
         });
 
-        UserService.register(values.name, values.firstname, values.email, values.password).then(async (res) => {
-
-
-            if (res.state) {
-                // SET COOKIE
-                setCookie(AUTH_TOKEN_NAME, res.data.authToken, {
-                    // httpOnly: true,
-                    // path: "/"
-                });
-                Toast.fire({
-                    icon: "success",
-                    title: T("login_success"),
-                }).then(() => {
-                    if (intentData) {
-                        intent_processor(
-                            intentData,
-                            getCookie(AUTH_TOKEN_NAME)!,
-                        ).then((urlIntent) => {
-                            localStorage.removeItem(INTENT_COOKIE_NAME);
+        UserService.register(
+            values.name,
+            values.firstname,
+            values.email,
+            values.password,
+        )
+            .then(async (res) => {
+                if (res.state) {
+                    // SET COOKIE
+                    setCookie(AUTH_TOKEN_NAME, res.data.authToken, {
+                        // httpOnly: true,
+                        // path: "/"
+                    });
+                    Toast.fire({
+                        icon: "success",
+                        title: T("login_success"),
+                    }).then(() => {
+                        if (intentData) {
+                            intent_processor(
+                                intentData,
+                                getCookie(AUTH_TOKEN_NAME)!,
+                            ).then((urlIntent) => {
+                                localStorage.removeItem(INTENT_COOKIE_NAME);
+                                closeLoading();
+                                window.location.href = urlIntent;
+                            });
+                        } else {
                             closeLoading();
-                            window.location.href = urlIntent;
-                        });
-                    } else {
-                        closeLoading();
-                        window.location.href = vcardRoute.path;
-                    }
-                });
-            } else {
-                closeLoading();
-                Toast.fire({
-                    icon: "error",
-                    title: res.msg,
-                });
-            }
-        }).catch((error) => {
-            if (error.response) {
-                var res = error.response.data;
-
-                if (error.response.status == 422) {
-                    closeLoading();
-                    for (const key in res.data) {
-                        if (Object.prototype.hasOwnProperty.call(res.data, key)) {
-                            const errors = res.data[key];
-                            setgeneralsErrors(errors);
+                            window.location.href = vcardRoute.path;
                         }
-                    }
-                    // Toast.fire({
-                    //     icon: "error",
-                    //     title: res.msg,
-                    // });
-
-
+                    });
+                } else {
+                    closeLoading();
+                    Toast.fire({
+                        icon: "error",
+                        title: res.msg,
+                    });
                 }
-            }
-        });
+            })
+            .catch((error) => {
+                if (error.response) {
+                    var res = error.response.data;
+
+                    if (error.response.status == 422) {
+                        closeLoading();
+                        for (const key in res.data) {
+                            if (
+                                Object.prototype.hasOwnProperty.call(
+                                    res.data,
+                                    key,
+                                )
+                            ) {
+                                const errors = res.data[key];
+                                setgeneralsErrors(errors);
+                            }
+                        }
+                        // Toast.fire({
+                        //     icon: "error",
+                        //     title: res.msg,
+                        // });
+                    }
+                }
+            });
     }
     const closeLoading = () => {
         setIsLoading(false);
@@ -173,11 +185,7 @@ export default function RegisterFormPage(props: IRegisterFormPageProps) {
                             labelFor="name"
                             labelTitle={T("your_name")}
                         >
-                            <InputField
-                                labelFor="name"
-                                name="name"
-                                required
-                            />
+                            <InputField labelFor="name" name="name" required />
                         </InputWithLabel>
 
                         <InputWithLabel
@@ -228,7 +236,6 @@ export default function RegisterFormPage(props: IRegisterFormPageProps) {
                             />
                         </InputWithLabel>
 
-
                         <Button
                             color="dark"
                             theme={customButtonTheme}
@@ -236,20 +243,29 @@ export default function RegisterFormPage(props: IRegisterFormPageProps) {
                         >
                             {T("register")}
                         </Button>
-                        {generalsErrors.length>0 && <ul className="py-2 text-center">
-                            {generalsErrors.map((error,key) => {
-                                return (
-                                    <li className="text-red-500" key={key}>{error}</li>
-                                )
-                            })}
-                        </ul>}
-                        
+                        {generalsErrors.length > 0 && (
+                            <ul className="py-2 text-center">
+                                {generalsErrors.map((error, key) => {
+                                    return (
+                                        <li className="text-red-500" key={key}>
+                                            {error}
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        )}
+
                         <p className="text-sm py-2 text-end font-light text-gray-500 dark:text-gray-400">
-                            {T("dont_yet")}? <a href={loginRoute.path} className="font-medium text-gray-900 hover:underline dark:text-primary-500">{T("login")}</a>
+                            {T("dont_yet")}?{" "}
+                            <a
+                                href={loginRoute.path}
+                                className="font-medium text-gray-900 hover:underline dark:text-primary-500"
+                            >
+                                {T("login")}
+                            </a>
                         </p>
                     </Form>
                 </Formik>
-
             </div>
         </LoadingLayout>
     );

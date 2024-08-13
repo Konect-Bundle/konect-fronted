@@ -63,7 +63,7 @@
     },
     "Auth": {
         "login": "Se connecter",
-        "dont_yet":"Pas encore de compte",
+        "dont_yet": "Pas encore de compte",
         "register": "S'inscrire",
         "forgot_password": "Mot de passe oublié?",
         "confirm_password": "Confirmer le mot de passe",

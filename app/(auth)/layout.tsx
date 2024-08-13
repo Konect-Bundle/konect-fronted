@@ -23,7 +23,7 @@ export default function AuthLayout({
                 </div> */}
 
                 <div className="bg-white rounded-lg w-max h-max md:py-4 px-8 py-8 border border-gray-300/20">
-                {children}
+                    {children}
                 </div>
             </div>
             <div className="h-full w-full md:block hidden bg-auth-bg bg-cover bg-center"></div>

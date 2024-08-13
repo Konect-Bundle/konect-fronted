@@ -22,7 +22,7 @@ import { useTranslations } from "next-intl";
 import * as Yup from "yup";
 import LoadingLayout from "@/app/_components/Layouts/LoadingLayout";
 
-export interface ILoginFormPageProps { }
+export interface ILoginFormPageProps {}
 
 export default function LoginFormPage(props: ILoginFormPageProps) {
     const [showPassword, setShowPassword] = useState(false);
@@ -175,7 +175,13 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
                             {T("login")}
                         </Button>
                         <p className="text-sm py-2 text-end font-light text-gray-500 dark:text-gray-400">
-                            {T("dont_yet")}? <a href={registerRoute.path} className="font-medium text-gray-900 hover:underline dark:text-primary-500">{T("register")}</a>
+                            {T("dont_yet")}?{" "}
+                            <a
+                                href={registerRoute.path}
+                                className="font-medium text-gray-900 hover:underline dark:text-primary-500"
+                            >
+                                {T("register")}
+                            </a>
                         </p>
                     </Form>
                 </Formik>
