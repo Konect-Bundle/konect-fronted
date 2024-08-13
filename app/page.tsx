@@ -29,7 +29,7 @@ export default function Home() {
         AOS.init();
     }, []);
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col bg-gray-50">
             <div className="flex flex-col h-min md:h-screen">
                 <Header />
                 <ContainerLayout className="mt-6 md:mt-1 h-[inherit] flex items-center">

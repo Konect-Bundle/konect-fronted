@@ -5,7 +5,9 @@ import {
     BsFacebook,
     BsGithub,
     BsInstagram,
+    BsTiktok,
     BsTwitter,
+    BsYoutube,
 } from "react-icons/bs";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -80,8 +82,14 @@ export default function Footer(props: IFooterProps) {
                             icon={BsInstagram}
                         />
                         <FooterFb.Icon href="#" icon={BsTwitter} />
-                        <FooterFb.Icon href="#" icon={BsGithub} />
-                        <FooterFb.Icon href="#" icon={BsDribbble} />
+                        <FooterFb.Icon
+                            href="https://www.youtube.com/@Konect-t6g"
+                            icon={BsYoutube}
+                        />
+                        <FooterFb.Icon
+                            href="https://tiktok.com/@konect.networking"
+                            icon={BsTiktok}
+                        />
                     </div>
                 </div>
             </div>
