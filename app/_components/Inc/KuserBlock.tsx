@@ -1,6 +1,6 @@
 "use client";
 import KuserHeader from "@/app/_components/Common/Headers/KuserHeader";
-import { esser, ucfirst } from "@/app/_core/utils/functions";
+import { convertYouTubeLinkToEmbed, esser, ucfirst } from "@/app/_core/utils/functions";
 import Image from "next/image";
 import Link from "next/link";
 import { TbExternalLink, TbMail, TbPhone, TbShare3 } from "react-icons/tb";
@@ -192,9 +192,9 @@ export default function KuserBlock({
                                 href={
                                     kuser
                                         ? ROOT_FILES_URL +
-                                          "/vcards/" +
-                                          user.uuid! +
-                                          ".vcf"
+                                        "/vcards/" +
+                                        user.uuid! +
+                                        ".vcf"
                                         : ""
                                 }
                                 ref={aRef}
@@ -433,7 +433,7 @@ export default function KuserBlock({
                                             key={i}
                                         >
                                             <iframe
-                                                src={video.uri}
+                                                src={convertYouTubeLinkToEmbed(video.uri)}
                                                 title="W3Schools Free Online Web Tutorials"
                                                 className="w-full h-52"
                                                 loading="lazy"

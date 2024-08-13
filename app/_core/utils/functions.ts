@@ -43,3 +43,16 @@ export async function intent_processor(
     }
     return "";
 }
+
+export function convertYouTubeLinkToEmbed(url: string): string {
+    // Expression régulière pour extraire l'ID de la vidéo
+    const videoIdMatch = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i);
+    const videoId = videoIdMatch ? videoIdMatch[1] : url;
+
+    if (videoId) {
+        // Construire l'URL d'intégration
+        return `https://www.youtube.com/embed/${videoId}`;
+    }
+
+    return url; // Retourne null si l'ID de la vidéo n'a pas pu être extrait
+}
