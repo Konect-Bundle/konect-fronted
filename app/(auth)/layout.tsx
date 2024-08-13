@@ -7,9 +7,9 @@ export default function AuthLayout({
     children: React.ReactNode;
 }) {
     return (
-        <section className="h-screen bg-white w-screen grid md:grid-cols-2 grid-cols-1">
-            <div className="h-full w-full">
-                <div className="flex justify-center items-center">
+        <section className="h-full bg-gray-50 w-screen grid md:grid-cols-2 grid-cols-1">
+            <div className="h-full w-full flex justify-center items-center p-8">
+                {/* <div className="flex justify-center items-center">
                     <div className="absolute top-6">
                         <Image
                             width={500}
@@ -20,9 +20,11 @@ export default function AuthLayout({
                             priority={true}
                         />
                     </div>
-                </div>
+                </div> */}
 
+                <div className="bg-white rounded-lg w-max h-max md:py-4 px-8 py-8 border border-gray-300/20">
                 {children}
+                </div>
             </div>
             <div className="h-full w-full md:block hidden bg-auth-bg bg-cover bg-center"></div>
         </section>

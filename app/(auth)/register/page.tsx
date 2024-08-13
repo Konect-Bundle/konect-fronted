@@ -4,16 +4,60 @@ import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import { TbEyeOff, TbEye } from "react-icons/tb";
 import $ from "jquery";
 import { UserService } from "@/app/_core/api/services/UserService";
-import { homeRoute } from "@/app/_core/config/routes";
+import { homeRoute, loginRoute, registerRoute, vcardRoute } from "@/app/_core/config/routes";
 import { cookies } from "next/headers";
+import LoadingLayout from "@/app/_components/Layouts/LoadingLayout";
+import { Form, Formik } from "formik";
+import InputWithLabel from "@/app/_components/Common/Form/InputWithLabel";
+import InputField from "@/app/_components/Common/Form/InputField";
+import { useTranslations } from "next-intl";
+import * as Yup from "yup";
+import CheckBoxField from "@/app/_components/Common/Form/CheckBoxField";
+import { customButtonTheme } from "@/app/_styles/flowbite/button";
+import Swal from "sweetalert2";
+import { IntentInterface } from "@/app/_core/interfaces/appInterfaces";
+import { AUTH_TOKEN_NAME, INTENT_COOKIE_NAME } from "@/app/_core/config/constants";
+import { getCookie, setCookie } from "cookies-next";
+import { intent_processor } from "@/app/_core/utils/functions";
 
-export interface IRegisterFormPageProps {}
+
+export interface IRegisterFormPageProps { }
 
 export default function RegisterFormPage(props: IRegisterFormPageProps) {
-    const [email, setEmail] = useState("");
-    const [rememberMe, setRemberMe] = useState("off");
-    const [password, setPassword] = useState("");
+    const [intentData, setIntentData] = useState<IntentInterface | null>(null);
     const [showPassword, setShowPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [generalsErrors, setgeneralsErrors] = useState([]);
+
+
+    const T = useTranslations("Auth");
+    const __ = useTranslations("Text");
+
+    const SignupSchema = Yup.object().shape({
+        name: Yup.string()
+            .required(T("validate_required")),
+        firstname: Yup.string()
+            .required(T("validate_required")),
+        email: Yup.string()
+            .email(T("validate_email"))
+            .required(T("validate_required")),
+        password: Yup.string()
+            .min(8, T("Password.validate_min"))
+            .required(T("validate_required")),
+        passwordRe: Yup.string()
+            .min(8, T("Password.validate_min")).oneOf([Yup.ref('password')], __("confirm_password_doesnt_match"))
+            .required(T("validate_required")),
+    });
+
+
+    useEffect(() => {
+        if (localStorage.getItem(INTENT_COOKIE_NAME) && !intentData) {
+            // window.location.href = dashboardRoute.path;
+            setIntentData(
+                JSON.parse(localStorage.getItem(INTENT_COOKIE_NAME)!),
+            );
+        }
+    }, [intentData]);
 
     useEffect(() => {
         var iconDiv = $("#password").parent().find("div");
@@ -26,71 +70,187 @@ export default function RegisterFormPage(props: IRegisterFormPageProps) {
         }
     }, [showPassword]);
 
-    function doAuth(e: any) {
-        e.preventDefault();
-        if (!email || !password) return;
+    function doAuth(values: {
+        name: string,
+        firstname: string,
+        email: string;
+        password: string;
+        passwordRe: string;
+    }) {
+        setIsLoading(true);
+        // if (!values.email || !values.password) return;
 
-        UserService.login(email, password).then((res) => {
-            console.log(res);
-            // if (res.data.token) {
-            //     cookies().set('client_token', res.data.token)
-            //     // localStorage.setItem("client_token", res.data.token)
-            //     window.location.href = homeRoute.path
-            // } else {
-            //     console.log(res.message)
-            // }
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "bottom-right",
+            showConfirmButton: false,
+            timer: 3500,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            },
         });
 
-        // setEmail("")
-        // setPassword("")
-    }
+        UserService.register(values.name, values.firstname, values.email, values.password).then(async (res) => {
 
+
+            if (res.state) {
+                // SET COOKIE
+                setCookie(AUTH_TOKEN_NAME, res.data.authToken, {
+                    // httpOnly: true,
+                    // path: "/"
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: T("login_success"),
+                }).then(() => {
+                    if (intentData) {
+                        intent_processor(
+                            intentData,
+                            getCookie(AUTH_TOKEN_NAME)!,
+                        ).then((urlIntent) => {
+                            localStorage.removeItem(INTENT_COOKIE_NAME);
+                            closeLoading();
+                            window.location.href = urlIntent;
+                        });
+                    } else {
+                        closeLoading();
+                        window.location.href = vcardRoute.path;
+                    }
+                });
+            } else {
+                closeLoading();
+                Toast.fire({
+                    icon: "error",
+                    title: res.msg,
+                });
+            }
+        }).catch((error) => {
+            if (error.response) {
+                var res = error.response.data;
+
+                if (error.response.status == 422) {
+                    closeLoading();
+                    for (const key in res.data) {
+                        if (Object.prototype.hasOwnProperty.call(res.data, key)) {
+                            const errors = res.data[key];
+                            setgeneralsErrors(errors);
+                        }
+                    }
+                    // Toast.fire({
+                    //     icon: "error",
+                    //     title: res.msg,
+                    // });
+
+
+                }
+            }
+        });
+    }
+    const closeLoading = () => {
+        setIsLoading(false);
+    };
     return (
-        <form className="flex max-w-md flex-col gap-4" onSubmit={doAuth}>
-            <div>
-                <div className="mb-2 block">
-                    <Label htmlFor="email1" value="Your email" />
-                </div>
-                <TextInput
-                    id="email1"
-                    type="email"
-                    placeholder={"Email"}
-                    required
-                    value={email}
-                    onChange={(e) => {
-                        setEmail(e.target.value);
+        <LoadingLayout isLoading={isLoading}>
+            <div className="w-full h-full flex  flex-col justify-center items-center">
+                <h2 className="text-2xl text-black-semibold text-center font-bold md:py-6 p-4">
+                    {T("register")}
+                </h2>
+
+                <Formik
+                    onSubmit={doAuth}
+                    validationSchema={SignupSchema}
+                    initialValues={{
+                        name: "",
+                        firstname: "",
+                        email: "",
+                        password: "",
+                        passwordRe: "",
                     }}
-                />
+                >
+                    <Form className="flex lg:w-96 sm:w-80 w-72 flex-col gap-4">
+                        <InputWithLabel
+                            labelFor="name"
+                            labelTitle={T("your_name")}
+                        >
+                            <InputField
+                                labelFor="name"
+                                name="name"
+                                required
+                            />
+                        </InputWithLabel>
+
+                        <InputWithLabel
+                            labelFor="firstname"
+                            labelTitle={__("your_firstname")}
+                        >
+                            <InputField
+                                labelFor="firstname"
+                                name="firstname"
+                                required
+                            />
+                        </InputWithLabel>
+
+                        <InputWithLabel
+                            labelFor="email"
+                            labelTitle={T("your_email")}
+                        >
+                            <InputField
+                                labelFor="email"
+                                name="email"
+                                required
+                            />
+                        </InputWithLabel>
+
+                        <InputWithLabel
+                            labelFor="password"
+                            labelTitle={T("your_password")}
+                        >
+                            <InputField
+                                rightIcon={showPassword ? TbEyeOff : TbEye}
+                                manualType={showPassword ? "text" : "password"}
+                                labelFor="password"
+                                name="password"
+                                required
+                            />
+                        </InputWithLabel>
+
+                        <InputWithLabel
+                            labelFor="passwordRe"
+                            labelTitle={T("confirm_password")}
+                        >
+                            <InputField
+                                rightIcon={showPassword ? TbEyeOff : TbEye}
+                                manualType={showPassword ? "text" : "password"}
+                                labelFor="passwordRe"
+                                name="passwordRe"
+                                required
+                            />
+                        </InputWithLabel>
+
+
+                        <Button
+                            color="dark"
+                            theme={customButtonTheme}
+                            type="submit"
+                        >
+                            {T("register")}
+                        </Button>
+                        {generalsErrors.length>0 && <ul className="py-2 text-center">
+                            {generalsErrors.map(error => {
+                                return (
+                                    <li className="text-red-500">{error}</li>
+                                )
+                            })}
+                        </ul>}
+                        
+                        <p className="text-sm py-2 text-end font-light text-gray-500 dark:text-gray-400">
+                            {T("dont_yet")}? <a href={loginRoute.path} className="font-medium text-gray-900 hover:underline dark:text-primary-500">{T("login")}</a>
+                        </p>
+                    </Form>
+                </Formik>
+
             </div>
-            <div>
-                <div className="mb-2 block">
-                    <Label htmlFor="password1" value="Your password" />
-                </div>
-                <TextInput
-                    id="password"
-                    type={showPassword ? "text" : "password"}
-                    rightIcon={showPassword ? TbEyeOff : TbEye}
-                    value={password}
-                    onChange={(e) => {
-                        setPassword(e.target.value);
-                    }}
-                    required
-                    placeholder={"Password"}
-                />
-            </div>
-            <div className="flex items-center gap-2">
-                <Checkbox
-                    id="remember"
-                    defaultChecked={rememberMe == "on"}
-                    onClick={(e) => {
-                        setRemberMe(rememberMe == "on" ? "off" : "on");
-                    }}
-                />
-                <Label htmlFor="remember">Remember me</Label>
-            </div>
-            <Button color="dark" type="submit">
-                Submit
-            </Button>
-        </form>
+        </LoadingLayout>
     );
 }

@@ -4,7 +4,7 @@ import { Button, Checkbox, Label } from "flowbite-react";
 import { TbEyeOff, TbEye } from "react-icons/tb";
 import $ from "jquery";
 import { UserService } from "@/app/_core/api/services/UserService";
-import { vcardRoute } from "@/app/_core/config/routes";
+import { registerRoute, vcardRoute } from "@/app/_core/config/routes";
 import Swal from "sweetalert2";
 import { getCookie, setCookie } from "cookies-next";
 import {
@@ -22,7 +22,7 @@ import { useTranslations } from "next-intl";
 import * as Yup from "yup";
 import LoadingLayout from "@/app/_components/Layouts/LoadingLayout";
 
-export interface ILoginFormPageProps {}
+export interface ILoginFormPageProps { }
 
 export default function LoginFormPage(props: ILoginFormPageProps) {
     const [showPassword, setShowPassword] = useState(false);
@@ -120,7 +120,7 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
     return (
         <LoadingLayout isLoading={isLoading}>
             <div className="w-full h-full flex  flex-col justify-center items-center">
-                <h2 className="text-2xl text-black-semibold text-center font-bold md:py-10 p-4">
+                <h2 className="text-2xl text-black-semibold text-center font-bold md:py-6 p-4">
                     {T("login")}
                 </h2>
 
@@ -130,6 +130,7 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
                     initialValues={{
                         email: "",
                         password: "",
+                        passwordRe: "",
                         rememberMe: true,
                     }}
                 >
@@ -173,6 +174,9 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
                         >
                             {T("login")}
                         </Button>
+                        <p className="text-sm py-2 text-end font-light text-gray-500 dark:text-gray-400">
+                            {T("dont_yet")}? <a href={registerRoute.path} className="font-medium text-gray-900 hover:underline dark:text-primary-500">{T("register")}</a>
+                        </p>
                     </Form>
                 </Formik>
             </div>

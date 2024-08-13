@@ -31,6 +31,15 @@ export class UserService {
         );
     }
 
+    static async register(name: string, firstname: string, email: string, password: string) {
+        return await fetchData(
+            "/api/auth/register",
+            serialize({ name: name, firstname: firstname, email: email, password: password }),
+            {},
+            "POST",
+        );
+    }
+
     static async getLoggedUser(token: string) {
         return await fetchData("/api/auth/user", "", {}, "GET", token);
     }
