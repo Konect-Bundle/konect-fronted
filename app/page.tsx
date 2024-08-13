@@ -29,11 +29,11 @@ export default function Home() {
         AOS.init();
     }, []);
     return (
-        <main className="flex flex-col">
-            <div className="flex flex-col h-screen">
+        <div className="flex flex-col">
+            <div className="flex flex-col h-min md:h-screen">
                 <Header />
                 <ContainerLayout className="mt-6 md:mt-1 h-[inherit] flex items-center">
-                    <div className=" flex items-center bg-white rounded-2xl h-full w-full overflow-hidden">
+                    <div className=" flex items-center bg-white  py-14 md:py-0 rounded-2xl h-full w-full overflow-hidden">
                         <section className="flex items-center justify-center bg-white">
                             <div className="bg-white dark:bg-gray-900 flex justify-between items-center">
                                 <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
@@ -344,6 +344,6 @@ export default function Home() {
             {/*End Features*/}
 
             <Footer />
-        </main>
+        </div>
     );
 }

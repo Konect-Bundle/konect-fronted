@@ -319,6 +319,10 @@ export default function ProductItemBlock({
                                                                     "file",
                                                                     null,
                                                                 );
+                                                                formProps.setFieldValue(
+                                                                    "withCustomLogo",
+                                                                    false,
+                                                                );
                                                             }}
                                                             className="relative text-gray-500 hover:text-gray-800 focus:outline-none focus:text-gray-800 disabled:opacity-50 disabled:pointer-events-none dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus:text-neutral-200"
                                                         >

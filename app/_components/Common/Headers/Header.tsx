@@ -31,6 +31,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { getCookie, deleteCookie } from "cookies-next";
 import {
+    TbAlignBoxBottomRight,
     TbArrowDown,
     TbChevronDown,
     TbDashboard,
@@ -69,20 +70,21 @@ export default function Header(props: IAppProps) {
                         />
                     </div>
                 </NavbarBrand>
+
                 <div className="bg-gray-900 w-[inherit] py-3 rounded-xl flex md:items-center items-end justify-end md:order-2 md:flex-row flex-col space-x-4 rtl:space-x-reverse md:pe-6 pe-2">
                     <div className="ml-4 flex md:order-2 md:space-x-4 space-x-3">
+                        <Link href={productsRoute.path}>
+                            <Button
+                                theme={customButtonTheme}
+                                color="primary"
+                                size="md"
+                            >
+                                {tAction("get_card")}
+                            </Button>
+                        </Link>
+
                         {!user ? (
                             <>
-                                <Link href={productsRoute.path}>
-                                    <Button
-                                        theme={customButtonTheme}
-                                        color="primary"
-                                        size="md"
-                                    >
-                                        {tAction("get_card")}
-                                    </Button>
-                                </Link>
-
                                 <Link href={loginRoute.path}>
                                     <Button
                                         theme={customButtonTheme}
@@ -101,7 +103,7 @@ export default function Header(props: IAppProps) {
                                     inline
                                     label={
                                         user.profile_photo_url ? (
-                                            <span className="flex items-center space-x-1 rounded-full p-1 border-2 border-gray-600">
+                                            <span className="flex items-center space-x-1 rounded-full p-1 border-2 border-gray-500">
                                                 <Avatar
                                                     theme={customAvatarTheme}
                                                     rounded
@@ -115,7 +117,7 @@ export default function Header(props: IAppProps) {
                                                 />
                                                 <TbChevronDown
                                                     size={28}
-                                                    className="text-gray-500"
+                                                    className="text-gray-300"
                                                 />
                                             </span>
                                         ) : (
