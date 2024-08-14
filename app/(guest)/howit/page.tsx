@@ -1,21 +1,42 @@
-import * as React from "react";
-import Button from "@/app/_components/Common/Buttons/Button";
+"use client";
+import React, { useEffect, useState } from "react";
+import ReactPlayer from "react-player/youtube";
 import Header from "@/app/_components/Common/Headers/Header";
+import { useTranslations } from "next-intl";
+import ContainerLayout from "@/app/_components/Layouts/Container";
+import { tuple } from "yup";
 
 export interface IHowitPageProps {}
 
 export default function HowitPage(props: IHowitPageProps) {
+    const __h = useTranslations("Home");
+    const __ = useTranslations("Text");
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
     return (
         <main className="min-h-screen">
             <Header />
-            <Button
-                onClick={() => {
-                    console.log("OK");
-                }}
-                outlined={true}
-            >
-                Howit
-            </Button>
+            <ContainerLayout>
+                <h2 className="text-2xl py-4 font-bold">
+                    {__h("how_does_section")}
+                </h2>
+                {isClient && (
+                    <div className="py-4 w-full">
+                        {/* width={"100%"} height={"90vh"}  */}
+                        <ReactPlayer
+                            url="https://www.youtube.com/watch?v=G6a4zVOLK9M"
+                            controls={true}
+                            style={{
+                                width: "100%",
+                            }}
+                        />
+                    </div>
+                )}
+            </ContainerLayout>
         </main>
     );
 }
