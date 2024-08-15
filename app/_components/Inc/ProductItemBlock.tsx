@@ -41,7 +41,7 @@ interface productItemInterface {
 export default function ProductItemBlock({
     formProps,
     gadgetItem,
-    errors
+    errors,
 }: productItemInterface) {
     const [isFlipped, setIsFlipped] = useState(false);
     const T = useTranslations("Kgadgets");
@@ -587,7 +587,6 @@ export default function ProductItemBlock({
                                     </div>
 
                                     <ErrorsViewer errors={errors} />
-
 
                                     <Button
                                         type="submit"

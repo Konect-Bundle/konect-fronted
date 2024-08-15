@@ -30,14 +30,13 @@ import { intent_processor } from "@/app/_core/utils/functions";
 import ApiErrorsManagement from "@/app/_core/api/errors/apiErrorsManagement";
 import ErrorsViewer from "@/app/_components/Common/Errors/ErrorsViewer";
 
-export interface IRegisterFormPageProps { }
+export interface IRegisterFormPageProps {}
 
 export default function RegisterFormPage(props: IRegisterFormPageProps) {
     const [intentData, setIntentData] = useState<IntentInterface | null>(null);
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState<string | Array<string>>("");
-
 
     const T = useTranslations("Auth");
     const __ = useTranslations("Text");
@@ -134,12 +133,16 @@ export default function RegisterFormPage(props: IRegisterFormPageProps) {
                         title: res.msg,
                     });
                 }
-            }).catch((error) => {
+            })
+            .catch((error) => {
                 if (error.response) {
-                    var res: ApiErrorsManagement = new ApiErrorsManagement(error);
+                    var res: ApiErrorsManagement = new ApiErrorsManagement(
+                        error,
+                    );
                     setErrors(res.proccess());
                 }
-            }).finally(() => {
+            })
+            .finally(() => {
                 closeLoading();
             });
     }
@@ -229,7 +232,6 @@ export default function RegisterFormPage(props: IRegisterFormPageProps) {
                         </Button>
 
                         <ErrorsViewer errors={errors} />
-
 
                         <p className="text-sm py-2 text-end font-light text-gray-500 dark:text-gray-400">
                             {T("dont_yet")}?{" "}

@@ -24,7 +24,7 @@ import LoadingLayout from "@/app/_components/Layouts/LoadingLayout";
 import ApiErrorsManagement from "@/app/_core/api/errors/apiErrorsManagement";
 import ErrorsViewer from "@/app/_components/Common/Errors/ErrorsViewer";
 
-export interface ILoginFormPageProps { }
+export interface ILoginFormPageProps {}
 
 export default function LoginFormPage(props: ILoginFormPageProps) {
     const [showPassword, setShowPassword] = useState(false);
@@ -71,54 +71,59 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
         setIsLoading(true);
         // if (!values.email || !values.password) return;
 
-        UserService.login(values.email, values.password).then(async (res) => {
-            setErrors("");
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "bottom-right",
-                showConfirmButton: false,
-                timer: 3500,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                },
+        UserService.login(values.email, values.password)
+            .then(async (res) => {
+                setErrors("");
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "bottom-right",
+                    showConfirmButton: false,
+                    timer: 3500,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    },
+                });
+                if (res.state) {
+                    // SET COOKIE
+                    setCookie(AUTH_TOKEN_NAME, res.data.authToken, {
+                        // httpOnly: true,
+                        // path: "/"
+                    });
+                    Toast.fire({
+                        icon: "success",
+                        title: T("login_success"),
+                    }).then(() => {
+                        if (intentData) {
+                            intent_processor(
+                                intentData,
+                                getCookie(AUTH_TOKEN_NAME)!,
+                            ).then((urlIntent) => {
+                                localStorage.removeItem(INTENT_COOKIE_NAME);
+                                window.location.href = urlIntent;
+                            });
+                        } else {
+                            window.location.href = vcardRoute.path;
+                        }
+                    });
+                } else {
+                    Toast.fire({
+                        icon: "error",
+                        title: T("login_fail"),
+                    });
+                }
+            })
+            .catch((error) => {
+                if (error.response) {
+                    var res: ApiErrorsManagement = new ApiErrorsManagement(
+                        error,
+                    );
+                    setErrors(res.proccess());
+                }
+            })
+            .finally(() => {
+                closeLoading();
             });
-            if (res.state) {
-                // SET COOKIE
-                setCookie(AUTH_TOKEN_NAME, res.data.authToken, {
-                    // httpOnly: true,
-                    // path: "/"
-                });
-                Toast.fire({
-                    icon: "success",
-                    title: T("login_success"),
-                }).then(() => {
-                    if (intentData) {
-                        intent_processor(
-                            intentData,
-                            getCookie(AUTH_TOKEN_NAME)!,
-                        ).then((urlIntent) => {
-                            localStorage.removeItem(INTENT_COOKIE_NAME);
-                            window.location.href = urlIntent;
-                        });
-                    } else {
-                        window.location.href = vcardRoute.path;
-                    }
-                });
-            } else {
-                Toast.fire({
-                    icon: "error",
-                    title: T("login_fail"),
-                });
-            }
-        }).catch((error) => {
-            if (error.response) {
-                var res: ApiErrorsManagement = new ApiErrorsManagement(error);
-                setErrors(res.proccess());
-            }
-        }).finally(() => {
-            closeLoading();
-        });
     }
     const closeLoading = () => {
         setIsLoading(false);

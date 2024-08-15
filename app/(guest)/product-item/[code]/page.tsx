@@ -89,16 +89,21 @@ export default function KwidgetItemPage({
                 values.title,
                 values.quantity,
                 token,
-            ).then((rs) => {
-                window.location.href = rs.data.url;
-            }).catch((error) => {
-                if (error.response) {
-                    var res: ApiErrorsManagement = new ApiErrorsManagement(error);
-                    setErrors(res.proccess());
-                }
-            }).finally(() => {
-                setIsLoading(false);
-            });
+            )
+                .then((rs) => {
+                    window.location.href = rs.data.url;
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        var res: ApiErrorsManagement = new ApiErrorsManagement(
+                            error,
+                        );
+                        setErrors(res.proccess());
+                    }
+                })
+                .finally(() => {
+                    setIsLoading(false);
+                });
         } else {
             var intent: IntentInterface = {
                 path: window.location.href,
@@ -130,7 +135,8 @@ export default function KwidgetItemPage({
                     {(formProps) => (
                         <div className="min-h-screen">
                             <Header />
-                            <ProductItemBlock errors={errors}
+                            <ProductItemBlock
+                                errors={errors}
                                 formProps={formProps}
                                 gadgetItem={gadgetItem}
                             />

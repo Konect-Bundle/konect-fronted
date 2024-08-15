@@ -3,7 +3,7 @@ import {
     StatusCodes,
     getReasonPhrase,
     getStatusCode,
-} from 'http-status-codes';
+} from "http-status-codes";
 
 interface ErrorInterface {
     state: boolean;
@@ -11,11 +11,9 @@ interface ErrorInterface {
     data: object;
 }
 export default class ApiErrorsManagement {
-
     public state: boolean;
     public status: number;
     public data: any;
-
 
     constructor(errors: any) {
         const rs: ErrorInterface = errors.response.data;
@@ -30,9 +28,7 @@ export default class ApiErrorsManagement {
 
             if (this.status == StatusCodes.UNPROCESSABLE_ENTITY) {
                 for (const key in this.data) {
-                    if (Object.prototype.hasOwnProperty.call(
-                        this.data,
-                        key,)) {
+                    if (Object.prototype.hasOwnProperty.call(this.data, key)) {
                         const error = this.data[key];
                         rs.push(`${error}`);
                     }

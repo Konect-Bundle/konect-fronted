@@ -113,23 +113,28 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
         var token = getCookie(AUTH_TOKEN_NAME);
 
         if (token) {
-            UserService.updateVcard(formData, token).then((rs) => {
-                setErrors("");
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: TAction("vcard_updated"),
-                    showConfirmButton: false,
-                    timer: 2500,
+            UserService.updateVcard(formData, token)
+                .then((rs) => {
+                    setErrors("");
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: TAction("vcard_updated"),
+                        showConfirmButton: false,
+                        timer: 2500,
+                    });
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        var res: ApiErrorsManagement = new ApiErrorsManagement(
+                            error,
+                        );
+                        setErrors(res.proccess());
+                    }
+                })
+                .finally(() => {
+                    setIsLoading(false);
                 });
-            }).catch((error) => {
-                if (error.response) {
-                    var res: ApiErrorsManagement = new ApiErrorsManagement(error);
-                    setErrors(res.proccess());
-                }
-            }).finally(() => {
-                setIsLoading(false);
-            });
         }
     };
 
@@ -163,14 +168,14 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                     <div className="flex md:flex-row md:justify-start justify-center flex-col items-center md:space-x-8 space-x-0 px-8 pb-8 pt-5">
                                         <div className="w-40 h-40 flex justify-center rounded-xl overflow-hidden">
                                             {user.profile_photo_url ||
-                                                selectedImage ? (
+                                            selectedImage ? (
                                                 <Avatar
                                                     img={
                                                         selectedImage
                                                             ? (selectedImage as string)
                                                             : ROOT_FILES_URL +
-                                                            "/" +
-                                                            user.profile_photo_url!
+                                                              "/" +
+                                                              user.profile_photo_url!
                                                     }
                                                     size={"pxl"}
                                                     alt="Kuser Image"
