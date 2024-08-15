@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import ContainerLayout from "@/app/_components/Layouts/Container";
 import { tuple } from "yup";
 
-export interface IHowitPageProps {}
+export interface IHowitPageProps { }
 
 export default function HowitPage(props: IHowitPageProps) {
     const __h = useTranslations("Home");
@@ -27,13 +27,16 @@ export default function HowitPage(props: IHowitPageProps) {
                 {isClient && (
                     <div className="py-4 w-full">
                         {/* width={"100%"} height={"90vh"}  */}
-                        <ReactPlayer
-                            url="https://www.youtube.com/watch?v=G6a4zVOLK9M"
-                            controls={true}
-                            style={{
-                                width: "100%",
-                            }}
-                        />
+                        <div className='player-wrapper'>
+                            <ReactPlayer
+                                className='react-player'
+                                url="https://www.youtube.com/watch?v=G6a4zVOLK9M"
+                                controls={true}
+                                width='100%'
+          height='100%'
+                            />
+                        </div>
+
                     </div>
                 )}
             </ContainerLayout>

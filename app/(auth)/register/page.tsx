@@ -27,14 +27,17 @@ import {
 } from "@/app/_core/config/constants";
 import { getCookie, setCookie } from "cookies-next";
 import { intent_processor } from "@/app/_core/utils/functions";
+import ApiErrorsManagement from "@/app/_core/api/errors/apiErrorsManagement";
+import ErrorsViewer from "@/app/_components/Common/Errors/ErrorsViewer";
 
-export interface IRegisterFormPageProps {}
+export interface IRegisterFormPageProps { }
 
 export default function RegisterFormPage(props: IRegisterFormPageProps) {
     const [intentData, setIntentData] = useState<IntentInterface | null>(null);
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [generalsErrors, setgeneralsErrors] = useState([]);
+    const [errors, setErrors] = useState<string | Array<string>>("");
+
 
     const T = useTranslations("Auth");
     const __ = useTranslations("Text");
@@ -102,6 +105,7 @@ export default function RegisterFormPage(props: IRegisterFormPageProps) {
             values.password,
         )
             .then(async (res) => {
+                setErrors("");
                 if (res.state) {
                     // SET COOKIE
                     setCookie(AUTH_TOKEN_NAME, res.data.authToken, {
@@ -118,45 +122,25 @@ export default function RegisterFormPage(props: IRegisterFormPageProps) {
                                 getCookie(AUTH_TOKEN_NAME)!,
                             ).then((urlIntent) => {
                                 localStorage.removeItem(INTENT_COOKIE_NAME);
-                                closeLoading();
                                 window.location.href = urlIntent;
                             });
                         } else {
-                            closeLoading();
                             window.location.href = vcardRoute.path;
                         }
                     });
                 } else {
-                    closeLoading();
                     Toast.fire({
                         icon: "error",
                         title: res.msg,
                     });
                 }
-            })
-            .catch((error) => {
+            }).catch((error) => {
                 if (error.response) {
-                    var res = error.response.data;
-
-                    if (error.response.status == 422) {
-                        closeLoading();
-                        for (const key in res.data) {
-                            if (
-                                Object.prototype.hasOwnProperty.call(
-                                    res.data,
-                                    key,
-                                )
-                            ) {
-                                const errors = res.data[key];
-                                setgeneralsErrors(errors);
-                            }
-                        }
-                        // Toast.fire({
-                        //     icon: "error",
-                        //     title: res.msg,
-                        // });
-                    }
+                    var res: ApiErrorsManagement = new ApiErrorsManagement(error);
+                    setErrors(res.proccess());
                 }
+            }).finally(() => {
+                closeLoading();
             });
     }
     const closeLoading = () => {
@@ -243,17 +227,9 @@ export default function RegisterFormPage(props: IRegisterFormPageProps) {
                         >
                             {T("register")}
                         </Button>
-                        {generalsErrors.length > 0 && (
-                            <ul className="py-2 text-center">
-                                {generalsErrors.map((error, key) => {
-                                    return (
-                                        <li className="text-red-500" key={key}>
-                                            {error}
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        )}
+
+                        <ErrorsViewer errors={errors} />
+
 
                         <p className="text-sm py-2 text-end font-light text-gray-500 dark:text-gray-400">
                             {T("dont_yet")}?{" "}

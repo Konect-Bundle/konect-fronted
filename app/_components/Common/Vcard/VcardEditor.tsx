@@ -40,6 +40,8 @@ import LoadingLayout from "../../Layouts/LoadingLayout";
 import { useTranslations } from "next-intl";
 import { customAvatarTheme } from "@/app/_styles/flowbite/avatar";
 import { ucfirst } from "@/app/_core/utils/functions";
+import ApiErrorsManagement from "@/app/_core/api/errors/apiErrorsManagement";
+import ErrorsViewer from "../Errors/ErrorsViewer";
 
 interface VcardEditorProps extends React.PropsWithChildren {
     user: User;
@@ -61,6 +63,7 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
     const [isLoading, setIsLoading] = useState(false);
     const TAction = useTranslations("Actions");
     const Ttext = useTranslations("Text");
+    const [errors, setErrors] = useState<string | Array<string>>("");
     const initialValues: UserVcardInterface = {
         names: {
             givenName: vcard.names.givenName,
@@ -111,7 +114,7 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
 
         if (token) {
             UserService.updateVcard(formData, token).then((rs) => {
-                setIsLoading(false);
+                setErrors("");
                 Swal.fire({
                     position: "center",
                     icon: "success",
@@ -119,6 +122,13 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                     showConfirmButton: false,
                     timer: 2500,
                 });
+            }).catch((error) => {
+                if (error.response) {
+                    var res: ApiErrorsManagement = new ApiErrorsManagement(error);
+                    setErrors(res.proccess());
+                }
+            }).finally(() => {
+                setIsLoading(false);
             });
         }
     };
@@ -153,14 +163,14 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                     <div className="flex md:flex-row md:justify-start justify-center flex-col items-center md:space-x-8 space-x-0 px-8 pb-8 pt-5">
                                         <div className="w-40 h-40 flex justify-center rounded-xl overflow-hidden">
                                             {user.profile_photo_url ||
-                                            selectedImage ? (
+                                                selectedImage ? (
                                                 <Avatar
                                                     img={
                                                         selectedImage
                                                             ? (selectedImage as string)
                                                             : ROOT_FILES_URL +
-                                                              "/" +
-                                                              user.profile_photo_url!
+                                                            "/" +
+                                                            user.profile_photo_url!
                                                     }
                                                     size={"pxl"}
                                                     alt="Kuser Image"
@@ -272,6 +282,9 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
 </Tabs.Item> */}
                             </Tabs>
                         </div>
+
+                        <ErrorsViewer errors={errors} />
+
                         <Button
                             type="submit"
                             theme={customButtonTheme}

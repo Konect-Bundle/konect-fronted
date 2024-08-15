@@ -66,7 +66,7 @@ export default async function RootLayout({
                 <NextIntlClientProvider messages={messages}>
                     <StoreProvider>
                         <ReduxInitLayout>
-                            <main className="bg-gray-50 h-screen w-screen">
+                            <main className="bg-gray-50 h-full w-full">
                                 {children}
                             </main>
                         </ReduxInitLayout>

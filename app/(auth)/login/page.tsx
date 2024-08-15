@@ -21,13 +21,16 @@ import { customButtonTheme } from "@/app/_styles/flowbite/button";
 import { useTranslations } from "next-intl";
 import * as Yup from "yup";
 import LoadingLayout from "@/app/_components/Layouts/LoadingLayout";
+import ApiErrorsManagement from "@/app/_core/api/errors/apiErrorsManagement";
+import ErrorsViewer from "@/app/_components/Common/Errors/ErrorsViewer";
 
-export interface ILoginFormPageProps {}
+export interface ILoginFormPageProps { }
 
 export default function LoginFormPage(props: ILoginFormPageProps) {
     const [showPassword, setShowPassword] = useState(false);
     const [intentData, setIntentData] = useState<IntentInterface | null>(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [errors, setErrors] = useState<string | Array<string>>("");
 
     const T = useTranslations("Auth");
 
@@ -69,6 +72,7 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
         // if (!values.email || !values.password) return;
 
         UserService.login(values.email, values.password).then(async (res) => {
+            setErrors("");
             const Toast = Swal.mixin({
                 toast: true,
                 position: "bottom-right",
@@ -79,7 +83,6 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
                     toast.onmouseleave = Swal.resumeTimer;
                 },
             });
-
             if (res.state) {
                 // SET COOKIE
                 setCookie(AUTH_TOKEN_NAME, res.data.authToken, {
@@ -96,21 +99,25 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
                             getCookie(AUTH_TOKEN_NAME)!,
                         ).then((urlIntent) => {
                             localStorage.removeItem(INTENT_COOKIE_NAME);
-                            closeLoading();
                             window.location.href = urlIntent;
                         });
                     } else {
-                        closeLoading();
                         window.location.href = vcardRoute.path;
                     }
                 });
             } else {
-                closeLoading();
                 Toast.fire({
                     icon: "error",
                     title: T("login_fail"),
                 });
             }
+        }).catch((error) => {
+            if (error.response) {
+                var res: ApiErrorsManagement = new ApiErrorsManagement(error);
+                setErrors(res.proccess());
+            }
+        }).finally(() => {
+            closeLoading();
         });
     }
     const closeLoading = () => {
@@ -174,6 +181,9 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
                         >
                             {T("login")}
                         </Button>
+
+                        <ErrorsViewer errors={errors} />
+
                         <p className="text-sm py-2 text-end font-light text-gray-500 dark:text-gray-400">
                             {T("dont_yet")}?{" "}
                             <a

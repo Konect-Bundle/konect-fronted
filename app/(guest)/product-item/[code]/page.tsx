@@ -19,6 +19,7 @@ import ProductItemBlock from "@/app/_components/Inc/ProductItemBlock";
 import { loginRoute, productItemRoute } from "@/app/_core/config/routes";
 import { IntentInterface } from "@/app/_core/interfaces/appInterfaces";
 import { PaymentService } from "@/app/_core/api/services/PaymentService";
+import ApiErrorsManagement from "@/app/_core/api/errors/apiErrorsManagement";
 
 export interface KwidgetItemProps {}
 export interface CustomConfigInterface {
@@ -40,6 +41,8 @@ export default function KwidgetItemPage({
     const __A = useTranslations("Actions");
     const __ = useTranslations("Text");
     const [isLoading, setIsLoading] = useState(false);
+    const [errors, setErrors] = useState<string | Array<string>>("");
+
     // const [selectedImage, setSelectedImage] = useState<
     //     string | ArrayBuffer | null
     // >(null);
@@ -87,8 +90,14 @@ export default function KwidgetItemPage({
                 values.quantity,
                 token,
             ).then((rs) => {
-                setIsLoading(false);
                 window.location.href = rs.data.url;
+            }).catch((error) => {
+                if (error.response) {
+                    var res: ApiErrorsManagement = new ApiErrorsManagement(error);
+                    setErrors(res.proccess());
+                }
+            }).finally(() => {
+                setIsLoading(false);
             });
         } else {
             var intent: IntentInterface = {
@@ -121,7 +130,7 @@ export default function KwidgetItemPage({
                     {(formProps) => (
                         <div className="min-h-screen">
                             <Header />
-                            <ProductItemBlock
+                            <ProductItemBlock errors={errors}
                                 formProps={formProps}
                                 gadgetItem={gadgetItem}
                             />

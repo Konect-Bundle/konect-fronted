@@ -31,14 +31,17 @@ import { ucfirst } from "@/app/_core/utils/functions";
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
 import { productsRoute } from "@/app/_core/config/routes";
 import { ROOT_FILES_URL } from "@/app/_core/config/constants";
+import ErrorsViewer from "../Common/Errors/ErrorsViewer";
 
 interface productItemInterface {
     formProps: FormikProps<CustomConfigInterface>;
     gadgetItem: KoGadgetItem;
+    errors: string | Array<string>;
 }
 export default function ProductItemBlock({
     formProps,
     gadgetItem,
+    errors
 }: productItemInterface) {
     const [isFlipped, setIsFlipped] = useState(false);
     const T = useTranslations("Kgadgets");
@@ -582,6 +585,10 @@ export default function ProductItemBlock({
                                             </span>
                                         </div>
                                     </div>
+
+                                    <ErrorsViewer errors={errors} />
+
+
                                     <Button
                                         type="submit"
                                         // onClick={() => formProps.submitForm()}
