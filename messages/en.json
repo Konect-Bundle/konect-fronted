@@ -254,7 +254,7 @@
         "plan": "Plan",
         "account_settings": "Account Settings",
         "your_name": "Your Name",
-        "your_firstname": "Your First Name",
+        "your_firstname": "Your Firstname",
         "phone_number": "Phone Number",
         "tell_me_about_you": "Tell Me About You",
         "help": "Help",
@@ -263,7 +263,7 @@
         "new_konect_sharing": "New Konect Sharing",
         "a_konecter_shared_you_theirs_informations": "A Konecter shared their information with you",
         "view_my_profile": "View My Profile",
-        "firstname": "First Name",
+        "firstname": "Firstname",
         "accumulated": "Accumulated",
         "subscription": "Subscription",
         "free": "Free",
@@ -376,6 +376,8 @@
         "title_or_company": "Job title or company",
         "card_customization": "Customize your card",
         "customized_logo": "Customized logo",
-        "visible_on_white": "Please drop visible logo on white color"
+        "visible_on_white": "Please drop visible logo on white color",
+        "your_message": "Your message",
+        "email_success": "Email successfully sent"
     }
 }

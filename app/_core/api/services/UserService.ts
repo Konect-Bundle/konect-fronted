@@ -50,6 +50,24 @@ export class UserService {
         );
     }
 
+    static async sendEmail(
+        name: string,
+        firstname: string,
+        email: string,
+        content: string,
+    ) {
+        return await fetchData(
+            "/api/app/contact",
+            serialize({
+                name: name,
+                firstname: firstname,
+                email: email,
+                content: content,
+            }),
+            {},
+            "POST",
+        );
+    }
     static async getLoggedUser(token: string) {
         return await fetchData("/api/auth/user", "", {}, "GET", token);
     }

@@ -4,10 +4,11 @@ import { Field, FieldConfig } from "formik";
 import React from "react";
 
 interface TextAreaFieldProps
-    extends React.InputHTMLAttributes<HTMLInputElement> {
+    extends React.InputHTMLAttributes<HTMLTextAreaElement> {
     disabled?: boolean;
     labelFor: string;
     className?: string;
+    rows?: number;
     name?: string;
 }
 

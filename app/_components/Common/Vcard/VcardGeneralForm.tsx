@@ -121,6 +121,7 @@ const VcardGeneralForm: React.FC<VcardGeneralFormProps> = ({
                     isRequired={true}
                 >
                     <InputPrefixedIcon
+                        type="email"
                         icon={<TbMail />}
                         labelFor="email"
                         name="email.text"
