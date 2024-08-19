@@ -5,7 +5,7 @@ import Footer from "@/app/_components/Common/Footers/Footer";
 import ContainerLayout from "@/app/_components/Layouts/Container";
 import { Button } from "flowbite-react";
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
-import { Field, Form, Formik } from "formik";
+import { Field, Form, Formik, FormikHelpers } from "formik";
 import InputWithLabel from "@/app/_components/Common/Form/InputWithLabel";
 import { useTranslations } from "next-intl";
 import InputField from "@/app/_components/Common/Form/InputField";
@@ -14,7 +14,7 @@ import Swal from "sweetalert2";
 import ApiErrorsManagement from "@/app/_core/api/errors/apiErrorsManagement";
 import ErrorsViewer from "@/app/_components/Common/Errors/ErrorsViewer";
 
-export interface IContactPageProps {}
+export interface IContactPageProps { }
 export interface ContactFormProps {
     email: string;
     content: string;
@@ -34,8 +34,7 @@ export default function ContactPage(props: IContactPageProps) {
     const [isLoading, setIsLoading] = React.useState(false);
     const [errors, setErrors] = React.useState<string | Array<string>>("");
 
-    const doContact = (values: ContactFormProps) => {
-        console.log(values);
+    const doContact = (values: ContactFormProps, formikHelpers: FormikHelpers<ContactFormProps>) => {
         UserService.sendEmail(
             values.name,
             values.firstname,
@@ -58,7 +57,7 @@ export default function ContactPage(props: IContactPageProps) {
                     Toast.fire({
                         icon: "success",
                         title: __("email_success"),
-                    }).then(null);
+                    }).then(() => formikHelpers.resetForm());
                 } else {
                 }
             })
