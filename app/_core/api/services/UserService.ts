@@ -9,18 +9,21 @@ export class UserService {
     static buildObjectParser(data: any) {
         var user: User = new User();
         var konects: Konect[] = [];
-        data.data.konects.forEach((konect: any) => {
-            konects.push(
-                new Konect(
-                    konect.ko_ip_konect,
-                    JSON.parse(konect.ko_ip_locations),
-                    konect.ko_social_clicked,
-                    konect.ko_phone_clicked,
-                    konect.user_id,
-                    konect.konect_category_id,
-                ),
-            );
-        });
+        console.log(data.data);
+        if(data.data.konects){
+            data.data.konects.forEach((konect: any) => {
+                konects.push(
+                    new Konect(
+                        konect.ko_ip_konect,
+                        JSON.parse(konect.ko_ip_locations),
+                        konect.ko_social_clicked,
+                        konect.ko_phone_clicked,
+                        konect.user_id,
+                        konect.konect_category_id,
+                    ),
+                );
+            });
+        }
 
         user.uuid = data.data.uuid;
         user.name = data.data.name;
