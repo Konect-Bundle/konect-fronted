@@ -14,7 +14,7 @@ import Swal from "sweetalert2";
 import ApiErrorsManagement from "@/app/_core/api/errors/apiErrorsManagement";
 import ErrorsViewer from "@/app/_components/Common/Errors/ErrorsViewer";
 
-export interface IContactPageProps { }
+export interface IContactPageProps {}
 export interface ContactFormProps {
     email: string;
     content: string;
@@ -34,7 +34,10 @@ export default function ContactPage(props: IContactPageProps) {
     const [isLoading, setIsLoading] = React.useState(false);
     const [errors, setErrors] = React.useState<string | Array<string>>("");
 
-    const doContact = (values: ContactFormProps, formikHelpers: FormikHelpers<ContactFormProps>) => {
+    const doContact = (
+        values: ContactFormProps,
+        formikHelpers: FormikHelpers<ContactFormProps>,
+    ) => {
         UserService.sendEmail(
             values.name,
             values.firstname,

@@ -82,12 +82,20 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                 ))
                             }
                         </Geographies>
-                        <Marker
-                            coordinates={[-74.006, 40.7128]}
-                            className="animate-pulse"
-                        >
-                            <circle r={8} fill="#0f0f0f" />
-                        </Marker>
+                        {user.konects?.map((konect, i) => {
+                            return (
+                                <Marker
+                                    key={i}
+                                    coordinates={[
+                                        konect.ko_ip_locations.lat!,
+                                        konect.ko_ip_locations.lon!,
+                                    ]}
+                                    className=""
+                                >
+                                    <circle r={5} fill="#0f0f0f" />
+                                </Marker>
+                            );
+                        })}
                     </ComposableMap>
                 </div>
 

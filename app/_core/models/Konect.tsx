@@ -1,8 +1,9 @@
+import { LocationVcardInterface } from "../interfaces/vcardInterfaces";
 import { User } from "./User";
 
 export class Konect {
     ko_ip_konect: string;
-    ko_ip_locations: string;
+    ko_ip_locations: LocationVcardInterface;
     ko_social_clicked: string;
     ko_phone_clicked: string;
     user_id: number;
@@ -10,7 +11,7 @@ export class Konect {
 
     constructor(
         ko_ip_konect: string,
-        ko_ip_locations: string,
+        ko_ip_locations: LocationVcardInterface,
         ko_social_clicked: string,
         ko_phone_clicked: string,
         user_id: number,
@@ -22,10 +23,5 @@ export class Konect {
         this.ko_phone_clicked = ko_phone_clicked;
         this.user_id = user_id;
         this.konect_category_id = konect_category_id;
-    }
-
-    owner(): User | null {
-        // Implémentez cette méthode selon vos besoins
-        return null;
     }
 }

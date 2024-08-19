@@ -3,10 +3,25 @@ import { serialize } from "object-to-formdata";
 import { User } from "@/app/_core/models/User";
 import { fetchData } from "@/app/_core/api/functions";
 import { cookies } from "next/headers";
+import { Konect } from "../../models/Konect";
 
 export class UserService {
     static buildObjectParser(data: any) {
         var user: User = new User();
+        var konects: Konect[] = [];
+        data.data.konects.forEach((konect: any) => {
+            konects.push(
+                new Konect(
+                    konect.ko_ip_konect,
+                    JSON.parse(konect.ko_ip_locations),
+                    konect.ko_social_clicked,
+                    konect.ko_phone_clicked,
+                    konect.user_id,
+                    konect.konect_category_id,
+                ),
+            );
+        });
+
         user.uuid = data.data.uuid;
         user.name = data.data.name;
         user.firstname = data.data.firstname;
@@ -15,6 +30,7 @@ export class UserService {
         user.vconfig = data.data.vconfig;
         user.profile_photo_url = data.data.profile_photo_path;
         user.konect_count = data.data.konect_count;
+        user.konects = konects;
         return user;
     }
 
