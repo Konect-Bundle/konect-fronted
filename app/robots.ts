@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
         rules: {
             userAgent: "*",
             allow: "/",
-            disallow: "/kuser/",
+            disallow: ["/kuser/", "/account/"],
         },
         sitemap: "https://ikonect.me/sitemap.xml",
     };

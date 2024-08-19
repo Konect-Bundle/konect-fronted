@@ -9,7 +9,6 @@ import { Field, Form, Formik } from "formik";
 import InputWithLabel from "@/app/_components/Common/Form/InputWithLabel";
 import { useTranslations } from "next-intl";
 import InputField from "@/app/_components/Common/Form/InputField";
-import TextAreaField from "@/app/_components/Common/Form/TextAreaField";
 import { UserService } from "@/app/_core/api/services/UserService";
 import Swal from "sweetalert2";
 import ApiErrorsManagement from "@/app/_core/api/errors/apiErrorsManagement";
