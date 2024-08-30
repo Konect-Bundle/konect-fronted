@@ -10,7 +10,7 @@ export class UserService {
         var user: User = new User();
         var konects: Konect[] = [];
         // console.log(data.data);
-        if(data.data.konects){
+        if (data.data.konects) {
             data.data.konects.forEach((konect: any) => {
                 konects.push(
                     new Konect(

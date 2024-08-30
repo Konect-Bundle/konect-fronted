@@ -10,7 +10,7 @@ import { useTranslations } from "next-intl";
 import { MutatingDots } from "react-loader-spinner";
 import { ucfirst } from "@/app/_core/utils/functions";
 import IMap from "@/app/_components/Common/Map/IMap";
-export interface IDashboardPageProps { }
+export interface IDashboardPageProps {}
 
 export default function DashboardPage(props: IDashboardPageProps) {
     const user = useAppSelector((state) => state.auth.currentUser);
@@ -63,14 +63,12 @@ export default function DashboardPage(props: IDashboardPageProps) {
 
                     <div className="w-full overflow-hidden rounded-xl">
                         <div className="w-full scale-[1.35]">
-                        <IMap konects={user.konects!} />
+                            <IMap konects={user.konects!} />
                         </div>
                     </div>
                 </div>
 
-                <div className="lg:col-span-4 col-span-11">
-
-                </div>
+                <div className="lg:col-span-4 col-span-11"></div>
             </div>
         </>
     );
