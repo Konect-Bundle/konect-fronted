@@ -9,7 +9,7 @@ export class UserService {
     static buildObjectParser(data: any) {
         var user: User = new User();
         var konects: Konect[] = [];
-        console.log(data.data);
+        // console.log(data.data);
         if(data.data.konects){
             data.data.konects.forEach((konect: any) => {
                 konects.push(

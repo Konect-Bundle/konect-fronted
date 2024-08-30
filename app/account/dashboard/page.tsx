@@ -9,7 +9,8 @@ import { useAppSelector } from "@/app/_store/hooks";
 import { useTranslations } from "next-intl";
 import { MutatingDots } from "react-loader-spinner";
 import { ucfirst } from "@/app/_core/utils/functions";
-export interface IDashboardPageProps {}
+import IMap from "@/app/_components/Common/Map/IMap";
+export interface IDashboardPageProps { }
 
 export default function DashboardPage(props: IDashboardPageProps) {
     const user = useAppSelector((state) => state.auth.currentUser);
@@ -48,7 +49,7 @@ export default function DashboardPage(props: IDashboardPageProps) {
                 </p>
             </div>
             <div className="grid gap-3 grid-cols-11">
-                <div className="rounded-lg border border-noir-medium/35 bg-white mb-4 md:mt-0 mt-2 lg:col-span-7 col-span-11 py-4">
+                <div className="rounded-lg border border-noir-medium/35 bg-white mb-4 md:mt-0 mt-2 lg:col-span-7 col-span-11 py-4 px-6">
                     <div className="border-b border-noir-medium/35 mb-6 p-4">
                         <h5 className="leading-none text-xl font-semibold text-gray-900 pb-2">
                             {__t("geographical_overview")}
@@ -59,47 +60,17 @@ export default function DashboardPage(props: IDashboardPageProps) {
                             )}
                         </p>
                     </div>
-                    <ComposableMap height={455}>
-                        <Geographies geography={geoUrl}>
-                            {({ geographies }) =>
-                                geographies.map((geo) => (
-                                    <Geography
-                                        key={geo.rsmKey}
-                                        geography={geo}
-                                        style={{
-                                            default: {
-                                                fill: "#f6f6f6",
-                                                stroke: "#dcdcdc",
-                                            },
-                                            hover: {
-                                                fill: "#f6f6f6",
-                                            },
-                                            pressed: {
-                                                fill: "#f6f6f6",
-                                            },
-                                        }}
-                                    />
-                                ))
-                            }
-                        </Geographies>
-                        {user.konects?.map((konect, i) => {
-                            return (
-                                <Marker
-                                    key={i}
-                                    coordinates={[
-                                        konect.ko_ip_locations.lat!,
-                                        konect.ko_ip_locations.lon!,
-                                    ]}
-                                    className=""
-                                >
-                                    <circle r={5} fill="#0f0f0f" />
-                                </Marker>
-                            );
-                        })}
-                    </ComposableMap>
+
+                    <div className="w-full overflow-hidden rounded-xl">
+                        <div className="w-full scale-[1.35]">
+                        <IMap konects={user.konects!} />
+                        </div>
+                    </div>
                 </div>
 
-                <div className="lg:col-span-4 col-span-11"></div>
+                <div className="lg:col-span-4 col-span-11">
+
+                </div>
             </div>
         </>
     );

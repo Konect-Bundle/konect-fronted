@@ -292,6 +292,7 @@ export default function Home() {
                     {/*End Grid*/}
                 </div>
             </ContainerLayout>
+
             {/*Features*/}
             <div className="h-screen w-full px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
                 <div
