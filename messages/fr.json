@@ -74,6 +74,7 @@
         "your_name": "Votre nom",
         "your_password": "Votre mot de passe",
         "login_success": "Utilisateur connecté avec success",
+        "register_success": "Utilisateur crée avec success",
         "login_fail": "Adresse emai ou mot de passe incorrect",
         "validate_email": "Veuillez taper une adresse email valide",
         "validate_required": "Ce champ ne peut pas etre vide",

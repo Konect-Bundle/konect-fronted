@@ -1,10 +1,4 @@
 "use client";
-import {
-    ComposableMap,
-    Geographies,
-    Geography,
-    Marker,
-} from "react-simple-maps";
 import { useAppSelector } from "@/app/_store/hooks";
 import { useTranslations } from "next-intl";
 import { MutatingDots } from "react-loader-spinner";
@@ -14,10 +8,9 @@ export interface IDashboardPageProps {}
 
 export default function DashboardPage(props: IDashboardPageProps) {
     const user = useAppSelector((state) => state.auth.currentUser);
+    const googleKey= process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string;
     const __ = useTranslations("Profile");
     const __t = useTranslations("Text");
-    const geoUrl =
-        "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
     if (!user)
         return (
@@ -63,7 +56,7 @@ export default function DashboardPage(props: IDashboardPageProps) {
 
                     <div className="w-full overflow-hidden rounded-xl">
                         <div className="w-full scale-[1.35]">
-                            <IMap konects={user.konects!} />
+                            {(googleKey) && <IMap konects={user.konects!} googleKey={googleKey}/>}
                         </div>
                     </div>
                 </div>

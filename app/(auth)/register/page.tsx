@@ -1,4 +1,5 @@
 "use client";
+import dd from "dump-die";
 import { useEffect, useState } from "react";
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import { TbEyeOff, TbEye } from "react-icons/tb";
@@ -105,6 +106,7 @@ export default function RegisterFormPage(props: IRegisterFormPageProps) {
         )
             .then(async (res) => {
                 setErrors("");
+
                 if (res.state) {
                     // SET COOKIE
                     setCookie(AUTH_TOKEN_NAME, res.data.authToken, {
@@ -113,7 +115,7 @@ export default function RegisterFormPage(props: IRegisterFormPageProps) {
                     });
                     Toast.fire({
                         icon: "success",
-                        title: T("login_success"),
+                        title: T("register_success"),
                     }).then(() => {
                         if (intentData) {
                             intent_processor(

@@ -58,7 +58,7 @@ export default async function RootLayout({
     // Providing all messages to the client
     // side is the easiest way to get started
     const messages = await getMessages();
-    console.log(`\nHOST NAME => ${process.env.NEXT_PUBLIC_BACKEND_URL}\n`);
+    // console.log(`\nHOST NAME => ${process.env.NEXT_PUBLIC_BACKEND_URL}\n`);
 
     return (
         <html lang={locale}>

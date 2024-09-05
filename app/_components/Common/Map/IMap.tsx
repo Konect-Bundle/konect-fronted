@@ -1,18 +1,12 @@
-import React, { ReactElement, ReactNode } from "react";
+'use client';
+import React, { ReactElement, ReactNode, useEffect, useState } from "react";
 import {
     GoogleMap,
-    MapContext,
-    Marker,
-    MarkerF,
     OverlayView,
     useJsApiLoader,
 } from "@react-google-maps/api";
 import { Konect } from "@/app/_core/models/Konect";
 import {
-    TbIcons,
-    TbCircleCheckFilled,
-    TbCircleDotFilled,
-    TbCircleLetterK,
     TbCircleLetterKFilled,
 } from "react-icons/tb";
 
@@ -31,7 +25,7 @@ const mapStyle = [
         elementType: "geometry",
         stylers: [
             {
-                color: "#f5f5f5",
+                color: "#929292",
             },
         ],
     },
@@ -90,7 +84,7 @@ const mapStyle = [
         elementType: "geometry.fill",
         stylers: [
             {
-                color: "#fdfbfa",
+                color: "#ffffff",
             },
         ],
     },
@@ -252,7 +246,7 @@ const mapStyle = [
         elementType: "geometry.fill",
         stylers: [
             {
-                color: "#b6b8b6",
+                color: "#ebebeb",
             },
         ],
     },
@@ -267,6 +261,7 @@ const mapStyle = [
     },
 ];
 interface IMapProps extends React.PropsWithChildren {
+    googleKey: string;
     konects: Konect[];
 }
 
@@ -288,12 +283,13 @@ const CustomMarker: React.FC<CustomMarkerProps> = ({ position, children }) => {
     );
 };
 
-const IMap: React.FC<IMapProps> = ({ children, konects }) => {
-    const { isLoaded } = useJsApiLoader({
-        id: "google-map-script",
-        googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
-    });
+const IMap: React.FC<IMapProps> = ({ children, konects, googleKey }) => {
 
+    const { isLoaded, loadError } = useJsApiLoader({
+        id: "google-map-script",
+        googleMapsApiKey: googleKey,
+    });
+  
     const [map, setMap] = React.useState(null);
 
     const onLoad = React.useCallback(function callback(map: any) {

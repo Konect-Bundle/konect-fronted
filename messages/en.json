@@ -74,6 +74,7 @@
         "your_name": "Your name",
         "your_password": "Your password",
         "login_success": "User successfully logged in",
+        "register_success": "User successfully created",
         "login_fail": "Incorrect email address or password",
         "validate_email": "Please enter a valid email address",
         "validate_required": "This field can not be empty",

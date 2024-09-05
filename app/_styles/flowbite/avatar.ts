@@ -25,7 +25,7 @@ export const customAvatarTheme: CustomFlowbiteTheme["avatar"] = {
         size: {
             xs: "h-6 w-6",
             sm: "h-8 w-8",
-            md: "h-10 w-10",
+            md: "h-12 w-12",
             lg: "h-20 w-20",
             xl: "h-36 w-36",
             pxl: "h-40 w-40",

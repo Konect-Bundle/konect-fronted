@@ -97,7 +97,7 @@ export default function Header(props: IAppProps) {
                                 <NavbarToggle />
                             </>
                         ) : (
-                            <div className="flex space-x-4">
+                            <div className="flex space-x-4 pe-3">
                                 <Dropdown
                                     arrowIcon={false}
                                     inline
@@ -177,7 +177,7 @@ export default function Header(props: IAppProps) {
                                         </span>
                                     </Dropdown.Item>
                                 </Dropdown>
-                                <Navbar.Toggle />
+                                {/* <Navbar.Toggle /> */}
                             </div>
                         )}
                     </div>
