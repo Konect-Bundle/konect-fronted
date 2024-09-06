@@ -87,7 +87,7 @@ export default function Footer(props: IFooterProps) {
                             icon={BsYoutube}
                         />
                         <FooterFb.Icon
-                            href="https://tiktok.com/@konect.networking"
+                            href="https://www.tiktok.com/@konect.network"
                             icon={BsTiktok}
                         />
                     </div>

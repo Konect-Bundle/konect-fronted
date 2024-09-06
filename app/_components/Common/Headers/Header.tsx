@@ -24,6 +24,7 @@ import {
     homeRoute,
     howItRoute,
     loginRoute,
+    ordersHistoryRoute,
     productsRoute,
     vcardRoute,
 } from "@/app/_core/config/routes";
@@ -36,6 +37,7 @@ import {
     TbChevronDown,
     TbDashboard,
     TbDotsVertical,
+    TbHistory,
     TbId,
     TbLayoutDashboardFilled,
     TbPower,
@@ -163,6 +165,18 @@ export default function Header(props: IAppProps) {
                                     {/* <Dropdown.Item>Settings</Dropdown.Item>
                                     <Dropdown.Item>Earnings</Dropdown.Item> */}
                                     <Dropdown.Divider />
+                                    <Dropdown.Item>
+                                        <Link href={ordersHistoryRoute.path}>
+                                            <span className="flex items-center space-x-1">
+                                                <TbHistory />
+                                                <span>
+                                                    {__("order_history")}
+                                                </span>
+                                            </span>
+                                        </Link>
+                                    </Dropdown.Item>
+                                    <Dropdown.Divider />
+
                                     <Dropdown.Item
                                         onClick={() => {
                                             // dispatch(logout)
@@ -182,22 +196,24 @@ export default function Header(props: IAppProps) {
                         )}
                     </div>
 
-                    <NavbarCollapse className="">
-                        <NavbarLink
-                            className="uppercase"
-                            href={howItRoute.path}
-                            active={pathname == "/howit" ? true : false}
-                        >
-                            {tLinks("how_it_works")}
-                        </NavbarLink>
-                        <NavbarLink
-                            className="uppercase"
-                            href="/contact"
-                            active={pathname == "/contact" ? true : false}
-                        >
-                            {tLinks("contact_us")}
-                        </NavbarLink>
-                    </NavbarCollapse>
+                    {!user && (
+                        <NavbarCollapse className="">
+                            <NavbarLink
+                                className="uppercase"
+                                href={howItRoute.path}
+                                active={pathname == "/howit" ? true : false}
+                            >
+                                {tLinks("how_it_works")}
+                            </NavbarLink>
+                            <NavbarLink
+                                className="uppercase"
+                                href="/contact"
+                                active={pathname == "/contact" ? true : false}
+                            >
+                                {tLinks("contact_us")}
+                            </NavbarLink>
+                        </NavbarCollapse>
+                    )}
                 </div>
             </div>
         </Navbar>

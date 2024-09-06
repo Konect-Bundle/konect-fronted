@@ -1,1 +1,1 @@
-declare module 'dump-die';
+declare module "dump-die";

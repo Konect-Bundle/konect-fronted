@@ -60,3 +60,8 @@ export const passwordResetRoute: RouteNameInterface = {
     name: "password-reset",
     path: "/account/password-reset",
 };
+
+export const ordersHistoryRoute: RouteNameInterface = {
+    name: "order-history",
+    path: "/account/orders",
+};

@@ -1,14 +1,8 @@
-'use client';
+"use client";
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
-import {
-    GoogleMap,
-    OverlayView,
-    useJsApiLoader,
-} from "@react-google-maps/api";
+import { GoogleMap, OverlayView, useJsApiLoader } from "@react-google-maps/api";
 import { Konect } from "@/app/_core/models/Konect";
-import {
-    TbCircleLetterKFilled,
-} from "react-icons/tb";
+import { TbCircleLetterKFilled } from "react-icons/tb";
 
 const containerStyle = {
     width: "100%",
@@ -284,12 +278,11 @@ const CustomMarker: React.FC<CustomMarkerProps> = ({ position, children }) => {
 };
 
 const IMap: React.FC<IMapProps> = ({ children, konects, googleKey }) => {
-
     const { isLoaded, loadError } = useJsApiLoader({
         id: "google-map-script",
         googleMapsApiKey: googleKey,
     });
-  
+
     const [map, setMap] = React.useState(null);
 
     const onLoad = React.useCallback(function callback(map: any) {

@@ -8,7 +8,7 @@ export interface IDashboardPageProps {}
 
 export default function DashboardPage(props: IDashboardPageProps) {
     const user = useAppSelector((state) => state.auth.currentUser);
-    const googleKey= process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string;
+    const googleKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string;
     const __ = useTranslations("Profile");
     const __t = useTranslations("Text");
 
@@ -56,7 +56,12 @@ export default function DashboardPage(props: IDashboardPageProps) {
 
                     <div className="w-full overflow-hidden rounded-xl">
                         <div className="w-full scale-[1.35]">
-                            {(googleKey) && <IMap konects={user.konects!} googleKey={googleKey}/>}
+                            {googleKey && (
+                                <IMap
+                                    konects={user.konects!}
+                                    googleKey={googleKey}
+                                />
+                            )}
                         </div>
                     </div>
                 </div>

@@ -379,6 +379,7 @@
         "customized_logo": "Customized logo (Optional)",
         "visible_on_white": "Please drop visible logo on white color",
         "your_message": "Your message",
-        "email_success": "Email successfully sent"
+        "email_success": "Email successfully sent",
+        "order_history": "Order history"
     }
 }
