@@ -2,13 +2,18 @@ import { SERVER_API_URL } from "../constants";
 import { serialize } from "object-to-formdata";
 import { User } from "@/app/_core/models/User";
 import { fetchData } from "@/app/_core/api/functions";
-import { cookies } from "next/headers";
 import { Konect } from "../../models/Konect";
+import { Order, PayloadOrderInterface } from "../../models/Order";
+
+import { KoGadgetItem, CardCustomDetails } from "../../models/KoGadgetItem";
 
 export class UserService {
     static buildObjectParser(data: any) {
         var user: User = new User();
         var konects: Konect[] = [];
+        var orders: Order[] = [];
+        var gadgets: KoGadgetItem[] = [];
+
         // console.log(data.data);
         if (data.data.konects) {
             data.data.konects.forEach((konect: any) => {
@@ -25,6 +30,46 @@ export class UserService {
             });
         }
 
+        // console.log(data.data);
+        if (data.data.gadgets) {
+            data.data.gadgets.forEach((gadget: any) => {
+                const order = gadget.order;
+                const ga = gadget.gadget;
+                const customs: CardCustomDetails = {
+                    name: JSON.parse(gadget.custom_details).name,
+                    title: JSON.parse(gadget.custom_details).title,
+                    firstname: JSON.parse(gadget.custom_details).firstname,
+                    quantity: JSON.parse(gadget.custom_details).quantity,
+                    file: JSON.parse(gadget.custom_details).file,
+                };
+
+                orders.push(
+                    new Order(
+                        order.id,
+                        order.created_at,
+                        order.paymentMethod,
+                        JSON.parse(order.payload) as PayloadOrderInterface,
+                        !order.is_active,
+                    ),
+                );
+
+                gadgets.push(
+                    new KoGadgetItem(
+                        JSON.parse(ga.kg_details).name,
+                        ga.kg_code,
+                        JSON.parse(ga.kg_details).description,
+                        JSON.parse(ga.kg_details).price,
+                        JSON.parse(ga.kg_details).weightDimensions,
+                        JSON.parse(ga.kg_details).color,
+                        JSON.parse(ga.kg_details).material,
+                        JSON.parse(ga.kg_details).type,
+                        JSON.parse(ga.kg_details).imageURL,
+                        customs,
+                    ),
+                );
+            });
+        }
+
         user.uuid = data.data.uuid;
         user.name = data.data.name;
         user.firstname = data.data.firstname;
@@ -34,6 +79,8 @@ export class UserService {
         user.profile_photo_url = data.data.profile_photo_path;
         user.konect_count = data.data.konect_count;
         user.konects = konects;
+        user.orders = orders;
+        user.gadgets = gadgets;
         return user;
     }
 
@@ -118,5 +165,9 @@ export class UserService {
             token,
             true,
         );
+    }
+
+    static async getOrders(token: string) {
+        return await fetchData("/api/gadget", null, {}, "GET", token);
     }
 }

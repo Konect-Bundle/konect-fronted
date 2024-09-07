@@ -15,6 +15,14 @@ interface Gadget {
     imageURL: string[];
 }
 
+export interface CardCustomDetails {
+    name: string;
+    firstname: string;
+    title: string;
+    quantity: number;
+    file: string | null;
+}
+
 export class KoGadgetItem implements Gadget {
     name: string;
     code: string;
@@ -25,6 +33,7 @@ export class KoGadgetItem implements Gadget {
     material: string;
     type: string;
     imageURL: string[];
+    cardCustomDetails?: CardCustomDetails | null;
 
     constructor(
         name: string,
@@ -36,6 +45,7 @@ export class KoGadgetItem implements Gadget {
         material: string,
         type: string,
         imageURL: string[],
+        cardCustomDetails?: CardCustomDetails | null,
     ) {
         this.name = name;
         this.code = code;
@@ -46,6 +56,7 @@ export class KoGadgetItem implements Gadget {
         this.material = material;
         this.type = type;
         this.imageURL = imageURL;
+        this.cardCustomDetails = cardCustomDetails;
     }
 
     static empty() {
@@ -59,6 +70,7 @@ export class KoGadgetItem implements Gadget {
             "",
             "",
             [],
+            null,
         );
         return ko;
     }
@@ -73,5 +85,6 @@ export class KoGadgetItem implements Gadget {
         console.log(`Material: ${this.material}`);
         console.log(`Type: ${this.type}`);
         console.log(`Images: ${this.imageURL.join(", ")}`);
+        console.log(`Custom details: ${this.cardCustomDetails}}`);
     }
 }
