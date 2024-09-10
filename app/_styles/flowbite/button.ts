@@ -5,6 +5,7 @@ export const customButtonTheme: CustomFlowbiteTheme["button"] = {
     fullSized: "w-full",
     color: {
         primary: "bg-yellow-700 hover:bg-yellow-800 text-black-normal",
+        yellow: "bg-yellow-900 hover:bg-yellow-700 text-white",
         light: "border border-gray-300/45 bg-white text-gray-900 focus:ring-4 focus:ring-gray-100 enabled:hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-600 dark:text-white dark:focus:ring-gray-700 dark:enabled:hover:border-gray-700 dark:enabled:hover:bg-gray-700",
         "primary-light":
             "bg-white text-gray-900 focus:ring-4 focus:bg-yellow-700 enabled:hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-600 dark:text-white dark:focus:ring-gray-700 dark:enabled:hover:border-gray-700 dark:enabled:hover:bg-gray-700",
@@ -84,10 +85,11 @@ export const customButtonTheme: CustomFlowbiteTheme["button"] = {
         on: "rounded-full",
     },
     size: {
-        xs: "px-2 py-1 text-xs",
+        xs: "px-2 py-1.5 text-xs font-medium",
         sm: "px-3 py-1.5 text-sm",
         md: "md:px-4 py-4 px-3 text-sm",
         lg: "px-5 py-2.5 text-base",
         xl: "px-6 py-3 text-base",
+        
     },
 };
