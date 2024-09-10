@@ -2,8 +2,10 @@
 import { useAppSelector } from "@/app/_store/hooks";
 import { useTranslations } from "next-intl";
 import { MutatingDots } from "react-loader-spinner";
-import { ucfirst } from "@/app/_core/utils/functions";
+import { esser, ucfirst } from "@/app/_core/utils/functions";
 import IMap from "@/app/_components/Common/Map/IMap";
+import { useEffect } from "react";
+
 export interface IDashboardPageProps {}
 
 export default function DashboardPage(props: IDashboardPageProps) {
@@ -11,6 +13,15 @@ export default function DashboardPage(props: IDashboardPageProps) {
     const googleKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string;
     const __ = useTranslations("Profile");
     const __t = useTranslations("Text");
+
+    useEffect(() => {
+        console.log(user);
+        // initFlowbite();
+        // if (document.getElementById("area-chart") && typeof ApexCharts !== 'undefined') {
+        //     const chart = new ApexCharts(document.getElementById("area-chart"), options);
+        //     chart.render();
+        //   }
+    }, []);
 
     if (!user)
         return (
@@ -45,7 +56,13 @@ export default function DashboardPage(props: IDashboardPageProps) {
                     <div className="rounded-lg border border-noir-medium/35 bg-white mb-4 md:mt-0 mt-2 lg:col-span-7 col-span-11 py-4 px-6">
                         <div className="border-b border-noir-medium/35 mb-6 p-4">
                             <h5 className="leading-none text-xl font-semibold text-gray-900 pb-2">
-                                {__t("geographical_overview")}
+                                {__t("geographical_overview")} -{" "}
+                                <span className="text-yellow-900">
+                                    {esser(
+                                        `${user.konects?.length} Konect`,
+                                        user.konects!.length,
+                                    )}
+                                </span>
                             </h5>
                             <p className="text-md font-normal text-gray-500">
                                 {__t(
