@@ -2,7 +2,7 @@ import UserVcard from "@/app/_core/models/vcard/UserVcard";
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
 import { Field, useFormik } from "formik";
 
-import { Country, ICountry } from "country-state-city";
+import { Country } from "country-state-city";
 
 import InputWithLabel from "../Form/InputWithLabel";
 import InputField from "../Form/InputField";
@@ -183,7 +183,6 @@ const VcardGeneralForm: React.FC<VcardGeneralFormProps> = ({
                     />
                 </div>
             </div>
-            <Script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyY3bvg1_dAMLwu-XPcT9B7g5OpPuVmG8&libraries=places" />
         </div>
     );
 };

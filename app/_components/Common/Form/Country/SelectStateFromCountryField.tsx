@@ -2,7 +2,7 @@ import {
     customCheckBoxTheme,
     customSelectTheme,
 } from "@/app/_styles/flowbite/form";
-import { ICountry, State } from "country-state-city";
+import { State } from "country-state-city";
 import { Select } from "flowbite-react";
 import { Field } from "formik";
 import React from "react";

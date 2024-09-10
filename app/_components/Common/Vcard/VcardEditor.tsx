@@ -1,5 +1,6 @@
+"use_client";
 import UserVcard from "@/app/_core/models/vcard/UserVcard";
-import React, { ReactElement, useState } from "react";
+import React, { useState } from "react";
 import { Avatar, Button, FileInput, Label, Tabs } from "flowbite-react";
 
 import { Formik, Form } from "formik";
@@ -14,7 +15,6 @@ import {
     TbEdit,
     TbLinkPlus,
     TbToggleLeft,
-    TbUser,
     TbUserQuestion,
     TbVideo,
 } from "react-icons/tb";
@@ -27,7 +27,6 @@ import VcardConfigsForm from "./VcardConfigsForm";
 import { customTabsTheme } from "@/app/_styles/flowbite/tabs";
 import { UrlVcardInterface } from "../../../_core/interfaces/vcardInterfaces";
 import VcardConfigInterface from "@/app/_core/interfaces/vconfigInterfaces";
-import Image from "next/image";
 import { User } from "@/app/_core/models/User";
 import VcardConfig from "@/app/_core/models/vcard/VcardConfig";
 import { AUTH_TOKEN_NAME, ROOT_FILES_URL } from "@/app/_core/config/constants";

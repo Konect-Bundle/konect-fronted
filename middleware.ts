@@ -19,7 +19,7 @@ export async function middleware(request: NextRequest) {
         const user = await UserService.getLoggedUser(
             cookie.get(AUTH_TOKEN_NAME)?.value!,
         );
-        if (user.state && user.data.id) {
+        if (user.state && user.data.email) {
             return NextResponse.next();
         } else {
             return NextResponse.redirect(new URL(loginRoute.path, request.url));
