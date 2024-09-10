@@ -38,6 +38,7 @@ export async function intent_processor(
                 intentData.data.companyName,
                 intentData.data.qty,
                 token,
+                intentData.data.fileName,
             )
         ).data.url;
     }
@@ -57,4 +58,31 @@ export function convertYouTubeLinkToEmbed(url: string): string {
     }
 
     return url; // Retourne null si l'ID de la vidéo n'a pas pu être extrait
+}
+
+export function dataURLToBlob(dataURL: string): Blob {
+    // Extraire la partie Base64 après "base64,"
+    const byteString = atob(dataURL.split(",")[1]);
+
+    // Créer un tableau d'octets
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+
+    for (let i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+
+    // Extraire le type MIME de la chaîne DataURL
+    const mimeString = dataURL.split(",")[0].split(":")[1].split(";")[0];
+
+    // Créer un Blob à partir du tableau d'octets et du type MIME
+    return new Blob([ia], { type: mimeString });
+}
+
+export function dataURLToFile(dataURL: string, fileName: string): File {
+    // Convertir la DataURL en Blob
+    const blob = dataURLToBlob(dataURL);
+
+    // Créer un objet File à partir du Blob
+    return new File([blob], fileName, { type: blob.type });
 }

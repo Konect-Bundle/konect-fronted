@@ -105,22 +105,59 @@ export default function KwidgetItemPage({
                     setIsLoading(false);
                 });
         } else {
-            var intent: IntentInterface = {
-                path: window.location.href,
-                from: productItemRoute.name,
-                data: {
-                    code: params.code,
-                    name: values.firstname,
-                    familyName: values.name,
-                    companyName: values.title,
-                    qty: values.quantity,
-                    withCustomLogo: values.withCustomLogo,
-                    file: values.file,
-                },
-            };
-            localStorage.setItem(INTENT_COOKIE_NAME, JSON.stringify(intent));
-            setIsLoading(false);
-            window.location.href = loginRoute.path;
+            if (values.file) {
+                // if there is file uploaded
+                const reader = new FileReader();
+
+                reader.onload = function (event) {
+                    const base64String = event.target?.result as string;
+
+                    var intent: IntentInterface = {
+                        path: window.location.href,
+                        from: productItemRoute.name,
+                        data: {
+                            code: params.code,
+                            name: values.firstname,
+                            familyName: values.name,
+                            companyName: values.title,
+                            qty: values.quantity,
+                            withCustomLogo: values.withCustomLogo,
+                            fileName: values.file?.name,
+                            file: base64String,
+                        },
+                    };
+                    localStorage.setItem(
+                        INTENT_COOKIE_NAME,
+                        JSON.stringify(intent),
+                    );
+                    setIsLoading(false);
+                    window.location.href = loginRoute.path;
+                };
+
+                reader.readAsDataURL(values.file);
+            } else {
+                // if there is no file uploaded
+
+                var intent: IntentInterface = {
+                    path: window.location.href,
+                    from: productItemRoute.name,
+                    data: {
+                        code: params.code,
+                        name: values.firstname,
+                        familyName: values.name,
+                        companyName: values.title,
+                        qty: values.quantity,
+                        withCustomLogo: values.withCustomLogo,
+                        file: values.file,
+                    },
+                };
+                localStorage.setItem(
+                    INTENT_COOKIE_NAME,
+                    JSON.stringify(intent),
+                );
+                setIsLoading(false);
+                window.location.href = loginRoute.path;
+            }
         }
     };
 

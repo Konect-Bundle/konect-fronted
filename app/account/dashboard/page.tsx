@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { MutatingDots } from "react-loader-spinner";
 import { ucfirst } from "@/app/_core/utils/functions";
 import IMap from "@/app/_components/Common/Map/IMap";
-export interface IDashboardPageProps { }
+export interface IDashboardPageProps {}
 
 export default function DashboardPage(props: IDashboardPageProps) {
     const user = useAppSelector((state) => state.auth.currentUser);
@@ -71,5 +71,4 @@ export default function DashboardPage(props: IDashboardPageProps) {
             </>
         );
     }
-
 }

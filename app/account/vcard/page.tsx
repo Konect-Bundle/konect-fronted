@@ -6,7 +6,7 @@ import VcardEditor from "../../_components/Common/Vcard/VcardEditor";
 import { useAppSelector } from "@/app/_store/hooks";
 import { MutatingDots } from "react-loader-spinner";
 import { useTranslations } from "next-intl";
-export interface IDashboardPageProps { }
+export interface IDashboardPageProps {}
 
 export default function VcardEditPage(props: IDashboardPageProps) {
     const user = useAppSelector((state) => state.auth.currentUser);
