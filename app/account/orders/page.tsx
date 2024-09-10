@@ -56,7 +56,7 @@ export default function OrderHistoryPage(props: OrderHistoryProps) {
                 </div>
                 <div className="lg:col-span-6 col-span-8 md:space-y-6 space-y-4">
                     {user.orders?.map((order, i) => (
-                        <div className="grid grid-cols-12 md:gap-8 gap-3 border bg-white p-6 rounded-lg">
+                        <div className="grid grid-cols-12 md:gap-8 gap-3 border bg-white p-6 rounded-lg" key={i}>
                             <div className="col-span-12">
                                 <h2 className="py-1 font-normal italic">
                                    {
@@ -83,7 +83,7 @@ export default function OrderHistoryPage(props: OrderHistoryProps) {
                             <div className="lg:col-span-9 col-span-8">
                                 <div className="flex flex-col justify-center">
                                     <span className="truncate md:text-lg font-medium text-sm">{user.gadgets![i].name}</span>
-                                    <span className="truncate md:text-md font-normal text-sm text-gray-500 py-2">Retour admissible jusqu'au </span>
+                                    <span className="truncate md:text-md font-normal text-sm text-gray-500 py-2">{"Retour admissible jusqu'au"} </span>
                                     <div className="flex flex-wrap sm:space-x-3 space-x-0 sm:space-y-0 space-y-2 justify-start">
                                         <Link href={productItemRoute.path + `/${user.gadgets![i].code}`}>
                                             <Button
