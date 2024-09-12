@@ -93,9 +93,9 @@ export default function Header(props: IAppProps) {
                                     color="bordered"
                                 >
                                     <span>{`${user.points} `}</span>{" "}
-                                    <span className="font-light text-gray-200 text-xs">
+                                    {/* <span className="font-light text-gray-200 text-xs">
                                         {"kp"}
-                                    </span>
+                                    </span> */}
                                 </Badge>
                             )}
                             <Link href={productsRoute.path}>
