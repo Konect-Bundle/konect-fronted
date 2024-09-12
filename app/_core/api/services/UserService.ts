@@ -6,6 +6,7 @@ import { Konect } from "../../models/Konect";
 import { Order, PayloadOrderInterface } from "../../models/Order";
 
 import { KoGadgetItem, CardCustomDetails } from "../../models/KoGadgetItem";
+import { ScoreType } from "../../utils/enums";
 
 export class UserService {
     static buildObjectParser(data: any) {
@@ -81,6 +82,9 @@ export class UserService {
         user.konects = konects;
         user.orders = orders;
         user.gadgets = gadgets;
+        user.points = data.data.kpoint;
+        user.referal_code = data.data.referal_code;
+
         return user;
     }
 
@@ -102,6 +106,7 @@ export class UserService {
         firstname: string,
         email: string,
         password: string,
+        referal_code: string | null,
     ) {
         return await fetchData(
             "/api/auth/register",
@@ -110,6 +115,7 @@ export class UserService {
                 firstname: firstname,
                 email: email,
                 password: password,
+                referal_from: referal_code,
             }),
             {},
             "POST",
@@ -160,6 +166,17 @@ export class UserService {
         return await fetchData(
             "/api/user/update-vcard",
             data,
+            {},
+            "POST",
+            token,
+            true,
+        );
+    }
+
+    static async addScore(score: ScoreType, token: string) {
+        return await fetchData(
+            "/api/user/score/" + score,
+            {},
             {},
             "POST",
             token,

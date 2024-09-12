@@ -24,16 +24,20 @@ export const customBadgeTheme: CustomFlowbiteTheme["badge"] = {
             red: "bg-red-100 text-red-800 group-hover:bg-red-200 dark:bg-red-200 dark:text-red-900 dark:group-hover:bg-red-300",
             teal: "bg-teal-100 text-teal-800 group-hover:bg-teal-200 dark:bg-teal-200 dark:text-teal-900 dark:group-hover:bg-teal-300",
             yellow: "bg-yellow-100 text-yellow-800 group-hover:bg-yellow-200 dark:bg-yellow-200 dark:text-yellow-900 dark:group-hover:bg-yellow-300",
+            transparent: "bg-transparent text-white group-hover:bg-black-200",
+            bordered:
+                "bg-transparent border-2 border-gray-300 text-gray-200/90 hover:text-gray-200 font-medium group-hover:bg-black-200",
         },
         href: "group",
         size: {
             xs: "p-1 text-xs",
             sm: "p-1.5 text-sm",
+            md: "py-4 px-2 text-sm",
         },
     },
     icon: {
-        off: "rounded px-2 py-0.5",
-        on: "rounded p-1.5",
+        off: "rounded px-2 py-2",
+        on: "rounded px-2 py-2",
         size: {
             xs: "h-2.5 w-2.5",
             sm: "h-3 w-3",

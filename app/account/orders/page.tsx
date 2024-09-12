@@ -14,11 +14,12 @@ import Link from "next/link";
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
 import { TbReload, TbReorder } from "react-icons/tb";
 import { productItemRoute } from "@/app/_core/config/routes";
-export interface OrderHistoryProps { }
+export interface OrderHistoryProps {}
 
 export default function OrderHistoryPage(props: OrderHistoryProps) {
     const user = useAppSelector((state) => state.auth.currentUser);
     const __ = useTranslations("Text");
+    console.log(user?.orders);
 
     if (!user)
         return (
@@ -55,60 +56,77 @@ export default function OrderHistoryPage(props: OrderHistoryProps) {
                 </p> */}
                 </div>
                 <div className="lg:col-span-6 col-span-8 md:space-y-6 space-y-4">
-                    {user.orders?.map((order, i) => (
-                        <div className="grid grid-cols-12 md:gap-8 gap-3 border bg-white p-6 rounded-lg" key={i}>
-                            <div className="col-span-12">
-                                <h2 className="py-1 font-normal italic">
-                                   {
-                                    order.isClosed ? `Ordered ${formatDistanceToNow(order.createdAt)} before` : "En cours"
-                                   }
-                                </h2>
-                            </div>
-                            <div className="lg:col-span-3 col-span-4">
-                                <div className="bg-white border md:rounded-3xl rounded-lg overflow-hidden border-noir-medium/25">
-                                    <Image
-                                        width={500}
-                                        height={500}
-                                        src={
-                                            ROOT_FILES_URL +
-                                            user.gadgets![i].imageURL[0]
-
-                                        }
-                                        alt="face cream image"
-                                    
-                                    />
-                                </div>
-                                {/* <Image src={ROOT_ASSETS_URL+user.} width={500} height={500} alt=""/> */}
-                            </div>
-                            <div className="lg:col-span-9 col-span-8">
-                                <div className="flex flex-col justify-center">
-                                    <span className="truncate md:text-lg font-medium text-sm">{user.gadgets![i].name}</span>
-                                    <span className="truncate md:text-md font-normal text-sm text-gray-500 py-2">{"Retour admissible jusqu'au"} </span>
-                                    <div className="flex flex-wrap sm:space-x-3 space-x-0 sm:space-y-0 space-y-2 justify-start">
-                                        <Link href={productItemRoute.path + `/${user.gadgets![i].code}`}>
-                                            <Button
-                                                theme={customButtonTheme}
-                                                color="dark"
-                                                size="xs"
-                                                className="flex md:py-2.5 items-center"
-                                            >
-                                                <TbReload />
-                                                <span className="ml-1">
-                                                    {__("reorder")}
-                                                </span>
-                                            </Button>
-                                        </Link>
-                                        <Link href={"/"}>
-                                            <Button
-                                                theme={customButtonTheme}
-                                                color="light"
-                                                size="xs"
-                                                className="flex md:py-2.5 items-center"
-                                            >
-                                                {__("get_card")}
-                                            </Button>
-                                        </Link>
-                                        {/* <Link href={"/"}>
+                    {user.orders?.map(
+                        (order, i) =>
+                            (order.payload.session_id &&
+                                order.isClosed === true) ?? (
+                                <div
+                                    className="grid grid-cols-12 md:gap-8 gap-3 border bg-white p-6 rounded-lg"
+                                    key={i}
+                                >
+                                    <div className="col-span-12">
+                                        <h2 className="py-1 font-normal italic">
+                                            {order.isClosed
+                                                ? `Ordered ${formatDistanceToNow(order.createdAt)} before`
+                                                : "En cours"}
+                                        </h2>
+                                    </div>
+                                    <div className="lg:col-span-3 col-span-4">
+                                        <div className="bg-white border md:rounded-3xl rounded-lg overflow-hidden border-noir-medium/25">
+                                            <Image
+                                                width={500}
+                                                height={500}
+                                                src={
+                                                    ROOT_FILES_URL +
+                                                    user.gadgets![i].imageURL[0]
+                                                }
+                                                alt="face cream image"
+                                            />
+                                        </div>
+                                        {/* <Image src={ROOT_ASSETS_URL+user.} width={500} height={500} alt=""/> */}
+                                    </div>
+                                    <div className="lg:col-span-9 col-span-8">
+                                        <div className="flex flex-col justify-center">
+                                            <span className="truncate md:text-lg font-medium text-sm">
+                                                {user.gadgets![i].name}
+                                            </span>
+                                            <span className="truncate md:text-md font-normal text-sm text-gray-500 py-2">
+                                                {"Retour admissible jusqu'au"}{" "}
+                                            </span>
+                                            <div className="flex flex-wrap sm:space-x-3 space-x-0 sm:space-y-0 space-y-2 justify-start">
+                                                <Link
+                                                    href={
+                                                        productItemRoute.path +
+                                                        `/${user.gadgets![i].code}`
+                                                    }
+                                                >
+                                                    <Button
+                                                        theme={
+                                                            customButtonTheme
+                                                        }
+                                                        color="dark"
+                                                        size="xs"
+                                                        className="flex md:py-2.5 items-center"
+                                                    >
+                                                        <TbReload />
+                                                        <span className="ml-1">
+                                                            {__("reorder")}
+                                                        </span>
+                                                    </Button>
+                                                </Link>
+                                                <Link href={"/"}>
+                                                    <Button
+                                                        theme={
+                                                            customButtonTheme
+                                                        }
+                                                        color="light"
+                                                        size="xs"
+                                                        className="flex md:py-2.5 items-center"
+                                                    >
+                                                        {__("get_card")}
+                                                    </Button>
+                                                </Link>
+                                                {/* <Link href={"/"}>
                                             <Button
                                                 theme={customButtonTheme}
                                                 color="light"
@@ -117,15 +135,18 @@ export default function OrderHistoryPage(props: OrderHistoryProps) {
                                                 {__("get_card")}
                                             </Button>
                                         </Link> */}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>))
-                    }
+                            ),
+                    )}
                 </div>
             </section>
         )
     );
 }
 
-{/* {user.orders?.map((order, i) => ( */ }
+{
+    /* {user.orders?.map((order, i) => ( */
+}

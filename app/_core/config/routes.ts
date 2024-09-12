@@ -65,3 +65,8 @@ export const ordersHistoryRoute: RouteNameInterface = {
     name: "order-history",
     path: "/account/orders",
 };
+
+export const shareProfilRoute: RouteNameInterface = {
+    name: "share-profil",
+    path: "/account/share",
+};

@@ -1,3 +1,4 @@
+import { formatNumber } from "../utils/functions";
 import { KoGadgetItem } from "./KoGadgetItem";
 import { Konect } from "./Konect";
 import { Order } from "./Order";
@@ -14,6 +15,8 @@ export class User {
     vconfig?: string;
     uuid?: string;
     profile_photo_url?: string;
+    points: string;
+    referal_code?: string;
 
     constructor(
         name?: string,
@@ -26,6 +29,8 @@ export class User {
         gadgets?: Array<KoGadgetItem>,
         profile_photo_url?: string,
         uuid?: string,
+        referal_code?: string,
+        points: number = 0,
     ) {
         this.name = name;
         this.firstname = firstname;
@@ -36,6 +41,8 @@ export class User {
         this.orders = orders;
         this.gadgets = gadgets;
         this.uuid = uuid;
+        this.points = formatNumber(points);
         this.profile_photo_url = profile_photo_url;
+        this.referal_code = referal_code;
     }
 }

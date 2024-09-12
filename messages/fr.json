@@ -381,8 +381,13 @@
         "your_message": "Votre message",
         "email_success": "Email envoyé avec succès",
         "order_history": "Historique de commande",
-        "your_orders":"Vos commandes",
-        "reorder":"Commander à nouveau"
-
+        "your_orders": "Vos commandes",
+        "reorder": "Commander à nouveau",
+        "share_profil": "Partage de profil",
+        "text_clipbaord": "Texte copié dans votre presse papier",
+        "copy": "Copier",
+        "profile_link": "Lien du profil",
+        "referal_code": "Code de référencement",
+        "referal_link": "Lien de référencement"
     }
 }

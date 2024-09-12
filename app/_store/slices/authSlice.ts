@@ -12,7 +12,7 @@ type userType = {
 };
 const initialState: userType = {
     currentUser: undefined,
-    isLoading: false,
+    isLoading: true,
 };
 
 export const getCurrentUser = createAsyncThunk(

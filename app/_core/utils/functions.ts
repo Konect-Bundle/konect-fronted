@@ -86,3 +86,20 @@ export function dataURLToFile(dataURL: string, fileName: string): File {
     // Créer un objet File à partir du Blob
     return new File([blob], fileName, { type: blob.type });
 }
+
+export function formatNumber(num: number): string {
+    const absNum = Math.abs(num);
+    const sign = num < 0 ? "-" : "";
+
+    if (absNum >= 1e9) {
+        return sign + (absNum / 1e9).toFixed(1).replace(/\.0$/, "") + "B";
+    }
+    if (absNum >= 1e6) {
+        return sign + (absNum / 1e6).toFixed(1).replace(/\.0$/, "") + "M";
+    }
+    if (absNum >= 1e3) {
+        return sign + (absNum / 1e3).toFixed(1).replace(/\.0$/, "") + "K";
+    }
+
+    return sign + absNum.toString();
+}

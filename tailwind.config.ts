@@ -65,6 +65,6 @@ const config: Config = {
             },
         },
     },
-    plugins: [flowbite.plugin()],
+    plugins: [require("flowbite/plugin")],
 };
 export default config;

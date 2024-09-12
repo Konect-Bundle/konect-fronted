@@ -15,7 +15,7 @@ export default function DashboardPage(props: IDashboardPageProps) {
     const __t = useTranslations("Text");
 
     useEffect(() => {
-        console.log(user);
+        // console.log(user);
         // initFlowbite();
         // if (document.getElementById("area-chart") && typeof ApexCharts !== 'undefined') {
         //     const chart = new ApexCharts(document.getElementById("area-chart"), options);

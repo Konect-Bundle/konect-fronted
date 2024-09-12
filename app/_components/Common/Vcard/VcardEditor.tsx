@@ -157,7 +157,7 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                             <Tabs
                                 aria-label="Tabs with icons"
                                 theme={customTabsTheme}
-                                style={"underline"}
+                                variant={"underline"}
                             >
                                 <Tabs.Item
                                     active

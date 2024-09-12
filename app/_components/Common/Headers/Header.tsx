@@ -2,6 +2,7 @@
 import * as React from "react";
 import {
     Button,
+    Badge,
     Navbar,
     NavbarBrand,
     NavbarCollapse,
@@ -26,6 +27,7 @@ import {
     loginRoute,
     ordersHistoryRoute,
     productsRoute,
+    shareProfilRoute,
     vcardRoute,
 } from "@/app/_core/config/routes";
 import Link from "next/link";
@@ -36,16 +38,19 @@ import {
     TbArrowDown,
     TbChevronDown,
     TbDashboard,
+    TbDiamondFilled,
     TbDotsVertical,
     TbHistory,
     TbId,
     TbLayoutDashboardFilled,
     TbPower,
+    TbShare3,
 } from "react-icons/tb";
 import { useAppSelector, useAppDispatch } from "@/app/_store/hooks";
 import { logout } from "@/app/_store/slices/authSlice";
 import { customAvatarTheme } from "@/app/_styles/flowbite/avatar";
-import { ucfirst, ucwords } from "@/app/_core/utils/functions";
+import { esser, ucfirst, ucwords } from "@/app/_core/utils/functions";
+import { customBadgeTheme } from "@/app/_styles/flowbite/badge";
 
 export interface IAppProps {}
 
@@ -56,166 +61,195 @@ export default function Header(props: IAppProps) {
     const __ = useTranslations("Text");
     const dispatch = useAppDispatch();
     const user = useAppSelector((state) => state.auth.currentUser);
+    const isLoading = useAppSelector((state) => state.auth.isLoading);
 
     return (
-        <Navbar fluid rounded theme={customNavbarTheme}>
-            <div className="flex md:flex-nowrap space-x-3 flex-nowrap justify-between mx-auto md:py-2 py-1 w-full md:items-center items-start">
-                <NavbarBrand href={homeRoute.path}>
-                    <div className="md:h-[100%] h-[72px] bg-gray-900 rounded-xl py-3 px-6 flex items-center justify-center">
-                        <Image
-                            width={500}
-                            height={500}
-                            src={ROOT_ASSETS_URL + "/images/logo-yellow.png"}
-                            className="md:w-8 w-12"
-                            alt="Flowbite React Logo"
-                            priority={true}
-                        />
-                    </div>
-                </NavbarBrand>
+        isLoading === false && (
+            <Navbar fluid rounded theme={customNavbarTheme}>
+                <div className="flex md:flex-nowrap space-x-3 flex-nowrap justify-between mx-auto md:py-2 py-1 w-full md:items-center items-start">
+                    <NavbarBrand href={homeRoute.path}>
+                        <div className="md:h-[100%] h-[72px] bg-gray-900 rounded-xl py-3 px-6 flex items-center justify-center">
+                            <Image
+                                width={500}
+                                height={500}
+                                src={
+                                    ROOT_ASSETS_URL + "/images/logo-yellow.png"
+                                }
+                                className="md:w-8 w-12"
+                                alt="Flowbite React Logo"
+                                priority={true}
+                            />
+                        </div>
+                    </NavbarBrand>
 
-                <div className="bg-gray-900 w-[inherit] py-3 rounded-xl flex md:items-center items-end justify-end md:order-2 md:flex-row flex-col space-x-4 rtl:space-x-reverse md:pe-6 pe-2">
-                    <div className="ml-4 flex md:order-2 md:space-x-4 space-x-3">
-                        <Link href={productsRoute.path}>
-                            <Button
-                                theme={customButtonTheme}
-                                color="primary"
-                                size="md"
-                            >
-                                {tAction("get_card")}
-                            </Button>
-                        </Link>
+                    <div className="bg-gray-900 w-[inherit] py-3 rounded-xl flex md:items-center items-end justify-end md:order-2 md:flex-row flex-col space-x-4 rtl:space-x-reverse md:pe-6 pe-2">
+                        <div className="ml-4 flex items-center md:order-2 md:space-x-4 space-x-3">
+                            {user && (
+                                <Badge
+                                    icon={TbDiamondFilled}
+                                    theme={customBadgeTheme}
+                                    size={"md"}
+                                    color="bordered"
+                                >{`${user.points} ${esser("kp", parseInt(user.points))}`}</Badge>
+                            )}
+                            <Link href={productsRoute.path}>
+                                <Button
+                                    theme={customButtonTheme}
+                                    color="primary"
+                                    size="md"
+                                >
+                                    {tAction("get_card")}
+                                </Button>
+                            </Link>
 
-                        {!user ? (
-                            <>
-                                <Link href={loginRoute.path}>
-                                    <Button
-                                        theme={customButtonTheme}
-                                        color="primary-light"
-                                        size="md"
-                                    >
-                                        {tAction("login")}
-                                    </Button>
-                                </Link>
-                                <NavbarToggle />
-                            </>
-                        ) : (
-                            <div className="flex space-x-4 pe-3">
-                                <Dropdown
-                                    arrowIcon={false}
-                                    inline
-                                    label={
-                                        user.profile_photo_url ? (
-                                            <span className="flex items-center space-x-1 rounded-full p-1 border-2 border-gray-500">
+                            {!user ? (
+                                <>
+                                    <Link href={loginRoute.path}>
+                                        <Button
+                                            theme={customButtonTheme}
+                                            color="primary-light"
+                                            size="md"
+                                        >
+                                            {tAction("login")}
+                                        </Button>
+                                    </Link>
+                                    <NavbarToggle />
+                                </>
+                            ) : (
+                                <div className="flex space-x-4 pe-3">
+                                    <Dropdown
+                                        arrowIcon={false}
+                                        inline
+                                        label={
+                                            user.profile_photo_url ? (
+                                                <span className="flex items-center space-x-1 rounded-full p-1 border-2 border-gray-500">
+                                                    <Avatar
+                                                        theme={
+                                                            customAvatarTheme
+                                                        }
+                                                        rounded
+                                                        img={
+                                                            ROOT_FILES_URL +
+                                                            "/" +
+                                                            user.profile_photo_url
+                                                        }
+                                                        className="w-full"
+                                                        size="md"
+                                                    />
+                                                    <TbChevronDown
+                                                        size={28}
+                                                        className="text-gray-300"
+                                                    />
+                                                </span>
+                                            ) : (
                                                 <Avatar
                                                     theme={customAvatarTheme}
                                                     rounded
-                                                    img={
-                                                        ROOT_FILES_URL +
-                                                        "/" +
-                                                        user.profile_photo_url
-                                                    }
                                                     className="w-full"
                                                     size="md"
                                                 />
-                                                <TbChevronDown
-                                                    size={28}
-                                                    className="text-gray-300"
-                                                />
+                                            )
+                                        }
+                                    >
+                                        <Dropdown.Header>
+                                            <span className="block text-sm">
+                                                {ucwords(
+                                                    `${user.firstname} ${user.name}`,
+                                                )}
                                             </span>
-                                        ) : (
-                                            <Avatar
-                                                theme={customAvatarTheme}
-                                                rounded
-                                                className="w-full"
-                                                size="md"
-                                            />
-                                        )
+                                            <span className="block truncate text-sm font-medium">
+                                                {user.email}
+                                            </span>
+                                        </Dropdown.Header>
+                                        <Dropdown.Item>
+                                            <Link href={dashboardRoute.path}>
+                                                <span className="flex items-center space-x-1">
+                                                    <TbLayoutDashboardFilled />
+                                                    <span>
+                                                        {tLinks("dashboard")}
+                                                    </span>
+                                                </span>
+                                            </Link>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item>
+                                            <Link href={vcardRoute.path}>
+                                                <span className="flex items-center space-x-1">
+                                                    <TbId />
+                                                    <span>
+                                                        {__("my_contact_sheet")}
+                                                    </span>
+                                                </span>
+                                            </Link>
+                                        </Dropdown.Item>
+                                        {/* <Dropdown.Item>Settings</Dropdown.Item>
+                                    <Dropdown.Item>Earnings</Dropdown.Item> */}
+                                        <Dropdown.Divider />
+                                        <Dropdown.Item>
+                                            <Link
+                                                href={ordersHistoryRoute.path}
+                                            >
+                                                <span className="flex items-center space-x-1">
+                                                    <TbHistory />
+                                                    <span>
+                                                        {__("order_history")}
+                                                    </span>
+                                                </span>
+                                            </Link>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item>
+                                            <Link href={shareProfilRoute.path}>
+                                                <span className="flex items-center space-x-1">
+                                                    <TbShare3 />
+                                                    <span>
+                                                        {__("share_profil")}
+                                                    </span>
+                                                </span>
+                                            </Link>
+                                        </Dropdown.Item>
+                                        <Dropdown.Divider />
+
+                                        <Dropdown.Item
+                                            onClick={() => {
+                                                // dispatch(logout)
+                                                deleteCookie(AUTH_TOKEN_NAME);
+                                                window.location.href =
+                                                    homeRoute.path;
+                                            }}
+                                        >
+                                            <span className="flex items-center space-x-1">
+                                                <TbPower />
+                                                <span>{tLinks("logout")}</span>
+                                            </span>
+                                        </Dropdown.Item>
+                                    </Dropdown>
+                                    {/* <Navbar.Toggle /> */}
+                                </div>
+                            )}
+                        </div>
+
+                        {!user && (
+                            <NavbarCollapse className="">
+                                <NavbarLink
+                                    className="uppercase"
+                                    href={howItRoute.path}
+                                    active={pathname == "/howit" ? true : false}
+                                >
+                                    {tLinks("how_it_works")}
+                                </NavbarLink>
+                                <NavbarLink
+                                    className="uppercase"
+                                    href="/contact"
+                                    active={
+                                        pathname == "/contact" ? true : false
                                     }
                                 >
-                                    <Dropdown.Header>
-                                        <span className="block text-sm">
-                                            {ucwords(
-                                                `${user.firstname} ${user.name}`,
-                                            )}
-                                        </span>
-                                        <span className="block truncate text-sm font-medium">
-                                            {user.email}
-                                        </span>
-                                    </Dropdown.Header>
-                                    <Dropdown.Item>
-                                        <Link href={dashboardRoute.path}>
-                                            <span className="flex items-center space-x-1">
-                                                <TbLayoutDashboardFilled />
-                                                <span>
-                                                    {tLinks("dashboard")}
-                                                </span>
-                                            </span>
-                                        </Link>
-                                    </Dropdown.Item>
-                                    <Dropdown.Item>
-                                        <Link href={vcardRoute.path}>
-                                            <span className="flex items-center space-x-1">
-                                                <TbId />
-                                                <span>
-                                                    {__("my_contact_sheet")}
-                                                </span>
-                                            </span>
-                                        </Link>
-                                    </Dropdown.Item>
-                                    {/* <Dropdown.Item>Settings</Dropdown.Item>
-                                    <Dropdown.Item>Earnings</Dropdown.Item> */}
-                                    <Dropdown.Divider />
-                                    <Dropdown.Item>
-                                        <Link href={ordersHistoryRoute.path}>
-                                            <span className="flex items-center space-x-1">
-                                                <TbHistory />
-                                                <span>
-                                                    {__("order_history")}
-                                                </span>
-                                            </span>
-                                        </Link>
-                                    </Dropdown.Item>
-                                    <Dropdown.Divider />
-
-                                    <Dropdown.Item
-                                        onClick={() => {
-                                            // dispatch(logout)
-                                            deleteCookie(AUTH_TOKEN_NAME);
-                                            window.location.href =
-                                                homeRoute.path;
-                                        }}
-                                    >
-                                        <span className="flex items-center space-x-1">
-                                            <TbPower />
-                                            <span>{tLinks("logout")}</span>
-                                        </span>
-                                    </Dropdown.Item>
-                                </Dropdown>
-                                {/* <Navbar.Toggle /> */}
-                            </div>
+                                    {tLinks("contact_us")}
+                                </NavbarLink>
+                            </NavbarCollapse>
                         )}
                     </div>
-
-                    {!user && (
-                        <NavbarCollapse className="">
-                            <NavbarLink
-                                className="uppercase"
-                                href={howItRoute.path}
-                                active={pathname == "/howit" ? true : false}
-                            >
-                                {tLinks("how_it_works")}
-                            </NavbarLink>
-                            <NavbarLink
-                                className="uppercase"
-                                href="/contact"
-                                active={pathname == "/contact" ? true : false}
-                            >
-                                {tLinks("contact_us")}
-                            </NavbarLink>
-                        </NavbarCollapse>
-                    )}
                 </div>
-            </div>
-        </Navbar>
+            </Navbar>
+        )
     );
 }

@@ -31,11 +31,17 @@ import { intent_processor } from "@/app/_core/utils/functions";
 import ApiErrorsManagement from "@/app/_core/api/errors/apiErrorsManagement";
 import ErrorsViewer from "@/app/_components/Common/Errors/ErrorsViewer";
 
-export interface IRegisterFormPageProps {}
+export interface IRegisterFormPageProps {
+    referal_code: string | null;
+}
 
-export default function RegisterFormPage(props: IRegisterFormPageProps) {
+export default function RegisterFormPage({
+    referal_code,
+}: IRegisterFormPageProps) {
     const [intentData, setIntentData] = useState<IntentInterface | null>(null);
     const [showPassword, setShowPassword] = useState(false);
+    const [showPasswordRe, setShowPasswordRe] = useState(false);
+
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState<string | Array<string>>("");
 
@@ -75,7 +81,16 @@ export default function RegisterFormPage(props: IRegisterFormPageProps) {
                 setShowPassword(!showPassword);
             });
         }
-    }, [showPassword]);
+
+        var iconDiv = $("#passwordRe").parent().find("div");
+        var data = iconDiv.data("testid");
+        if (data == "right-icon") {
+            iconDiv.addClass("cursor-pointer z-50 pointer-events-auto");
+            iconDiv.on("click", () => {
+                setShowPasswordRe(!showPasswordRe);
+            });
+        }
+    }, [showPassword, showPasswordRe]);
 
     function doAuth(values: {
         name: string;
@@ -103,6 +118,7 @@ export default function RegisterFormPage(props: IRegisterFormPageProps) {
             values.firstname,
             values.email,
             values.password,
+            referal_code,
         )
             .then(async (res) => {
                 setErrors("");
@@ -217,8 +233,10 @@ export default function RegisterFormPage(props: IRegisterFormPageProps) {
                             labelTitle={T("confirm_password")}
                         >
                             <InputField
-                                rightIcon={showPassword ? TbEyeOff : TbEye}
-                                manualType={showPassword ? "text" : "password"}
+                                rightIcon={showPasswordRe ? TbEyeOff : TbEye}
+                                manualType={
+                                    showPasswordRe ? "text" : "password"
+                                }
                                 labelFor="passwordRe"
                                 name="passwordRe"
                                 required
