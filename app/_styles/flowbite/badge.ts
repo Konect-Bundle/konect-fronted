@@ -26,7 +26,7 @@ export const customBadgeTheme: CustomFlowbiteTheme["badge"] = {
             yellow: "bg-yellow-100 text-yellow-800 group-hover:bg-yellow-200 dark:bg-yellow-200 dark:text-yellow-900 dark:group-hover:bg-yellow-300",
             transparent: "bg-transparent text-white group-hover:bg-black-200",
             bordered:
-                "bg-transparent border-2 border-gray-300 text-gray-200/90 hover:text-gray-200 font-medium group-hover:bg-black-200",
+                "bg-transparent border-2 border-gray-300 text-gray-200/90 hover:text-gray-200 font-semibold group-hover:bg-black-200",
         },
         href: "group",
         size: {

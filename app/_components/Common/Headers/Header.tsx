@@ -90,7 +90,7 @@ export default function Header(props: IAppProps) {
                                     theme={customBadgeTheme}
                                     size={"md"}
                                     color="bordered"
-                                >{`${user.points} ${esser("kp", parseInt(user.points))}`}</Badge>
+                                >{`${user.points} `} <span className="font-normal">{esser("kp", parseInt(user.points))}</span></Badge>
                             )}
                             <Link href={productsRoute.path}>
                                 <Button

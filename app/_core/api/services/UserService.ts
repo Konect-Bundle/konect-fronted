@@ -7,6 +7,7 @@ import { Order, PayloadOrderInterface } from "../../models/Order";
 
 import { KoGadgetItem, CardCustomDetails } from "../../models/KoGadgetItem";
 import { ScoreType } from "../../utils/enums";
+import { formatNumber } from "../../utils/functions";
 
 export class UserService {
     static buildObjectParser(data: any) {
@@ -82,7 +83,7 @@ export class UserService {
         user.konects = konects;
         user.orders = orders;
         user.gadgets = gadgets;
-        user.points = data.data.kpoint;
+        user.points = formatNumber(data.data.kpoint);
         user.referal_code = data.data.referal_code;
 
         return user;
