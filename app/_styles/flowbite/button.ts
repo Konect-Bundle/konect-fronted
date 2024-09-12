@@ -81,13 +81,13 @@ export const customButtonTheme: CustomFlowbiteTheme["button"] = {
         },
     },
     pill: {
-        off: "rounded-lg",
+        off: "rounded-md md:rounded-lg",
         on: "rounded-full",
     },
     size: {
         xs: "px-2 py-1.5 text-xs font-medium",
         sm: "px-3 py-1.5 text-sm",
-        md: "md:px-4 py-4 px-3 text-sm",
+        md: "md:px-4 md:py-4 py-3.5 px-1.5 text-xs",
         lg: "px-5 py-2.5 text-base",
         xl: "px-6 py-3 text-base",
     },

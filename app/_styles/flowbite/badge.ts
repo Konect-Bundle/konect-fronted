@@ -26,7 +26,7 @@ export const customBadgeTheme: CustomFlowbiteTheme["badge"] = {
             yellow: "bg-yellow-100 text-yellow-800 group-hover:bg-yellow-200 dark:bg-yellow-200 dark:text-yellow-900 dark:group-hover:bg-yellow-300",
             transparent: "bg-transparent text-white group-hover:bg-black-200",
             bordered:
-                "bg-transparent border-2 border-gray-300 text-gray-200/90 hover:text-gray-200 font-semibold group-hover:bg-black-200",
+                "bg-transparent border-2 border-gray-400 text-gray-200/90 hover:text-gray-200 font-medium group-hover:bg-black-200",
         },
         href: "group",
         size: {
@@ -36,8 +36,8 @@ export const customBadgeTheme: CustomFlowbiteTheme["badge"] = {
         },
     },
     icon: {
-        off: "rounded px-2 py-2",
-        on: "rounded px-2 py-2",
+        off: "rounded md:px-2 px-1 md:py-2 py-1",
+        on: "rounded md:px-2 px-1 md:py-2 py-1.5",
         size: {
             xs: "h-2.5 w-2.5",
             sm: "h-3 w-3",

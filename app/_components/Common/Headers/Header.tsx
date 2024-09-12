@@ -88,9 +88,15 @@ export default function Header(props: IAppProps) {
                                 <Badge
                                     icon={TbDiamondFilled}
                                     theme={customBadgeTheme}
+                                    className="w-max"
                                     size={"md"}
                                     color="bordered"
-                                >{`${user.points} `} <span className="font-normal">{esser("kp", parseInt(user.points))}</span></Badge>
+                                >
+                                    <span>{`${user.points} `}</span>{" "}
+                                    <span className="font-light text-gray-200 text-xs">
+                                        {"kp"}
+                                    </span>
+                                </Badge>
                             )}
                             <Link href={productsRoute.path}>
                                 <Button
