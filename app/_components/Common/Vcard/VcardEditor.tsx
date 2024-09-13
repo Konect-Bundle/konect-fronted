@@ -245,7 +245,7 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                     </div>
                                 </Tabs.Item>
                                 <Tabs.Item
-                                    title={Ttext("external_links")}
+                                    title={Ttext("others_links")}
                                     icon={TbLinkPlus}
                                 >
                                     <div className="px-8 pb-8 pt-5">

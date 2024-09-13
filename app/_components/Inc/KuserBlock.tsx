@@ -28,6 +28,7 @@ import { UserService } from "@/app/_core/api/services/UserService";
 import UserVcard from "@/app/_core/models/vcard/UserVcard";
 import VcardConfig from "@/app/_core/models/vcard/VcardConfig";
 import { customAvatarTheme } from "@/app/_styles/flowbite/avatar";
+import LinkPreviewBlock from "../Common/LinkPreview";
 
 interface KuserBlockProps {
     kuser: any;
@@ -93,6 +94,7 @@ export default function KuserBlock({
                     kuser={user}
                 />
             )}
+
             <KuserHeader />
 
             <div className="grid grid-cols-12 gap-2 h-full w-screen bg-gray-100">
@@ -386,28 +388,7 @@ export default function KuserBlock({
                                 </h3>
                                 <div className="grid gap-3 md:grid-cols-2 grid-cols-1">
                                     {vinfo.urls.map((url, i) => (
-                                        <div
-                                            className="flex justify-start bg-slate-50 rounded-md border  items-center p-2 overflow-hidden"
-                                            key={i}
-                                        >
-                                            <span className="bg-white p-2 border rounded-md">
-                                                <TbExternalLink className="w-6" />
-                                            </span>
-                                            <div className="flex flex-col px-4">
-                                                <span className="text-sm font-bold">
-                                                    {url.type}
-                                                </span>
-                                                <span>
-                                                    <a
-                                                        className="text-gray-500 underline truncate"
-                                                        target="__blank"
-                                                        href={url.uri}
-                                                    >
-                                                        {url.uri}
-                                                    </a>
-                                                </span>
-                                            </div>
-                                        </div>
+                                        <LinkPreviewBlock key={i} url={url} />
                                     ))}
                                 </div>
                             </div>

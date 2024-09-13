@@ -91,7 +91,9 @@ export default function OrderHistoryPage(props: OrderHistoryProps) {
                                                 {user.gadgets![i].name}
                                             </span>
                                             <span className="truncate md:text-md font-normal text-sm text-gray-500 py-2">
-                                                {"Retour admissible jusqu'au"}{" "}
+                                                {
+                                                    "Aucun retour admissible pour l'instant"
+                                                }{" "}
                                             </span>
                                             <div className="flex flex-wrap sm:space-x-3 space-x-0 sm:space-y-0 space-y-2 justify-start">
                                                 <Link

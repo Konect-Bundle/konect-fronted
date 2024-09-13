@@ -168,7 +168,10 @@ export default function Header(props: IAppProps) {
                                             </span>
                                         </Dropdown.Header>
                                         <Dropdown.Item>
-                                            <Link href={dashboardRoute.path}>
+                                            <Link
+                                                href={dashboardRoute.path}
+                                                className="w-full block"
+                                            >
                                                 <span className="flex items-center space-x-1">
                                                     <TbLayoutDashboardFilled />
                                                     <span>
@@ -178,7 +181,10 @@ export default function Header(props: IAppProps) {
                                             </Link>
                                         </Dropdown.Item>
                                         <Dropdown.Item>
-                                            <Link href={vcardRoute.path}>
+                                            <Link
+                                                href={vcardRoute.path}
+                                                className="w-full block"
+                                            >
                                                 <span className="flex items-center space-x-1">
                                                     <TbId />
                                                     <span>
@@ -193,6 +199,7 @@ export default function Header(props: IAppProps) {
                                         <Dropdown.Item>
                                             <Link
                                                 href={ordersHistoryRoute.path}
+                                                className="w-full block"
                                             >
                                                 <span className="flex items-center space-x-1">
                                                     <TbHistory />
@@ -203,7 +210,10 @@ export default function Header(props: IAppProps) {
                                             </Link>
                                         </Dropdown.Item>
                                         <Dropdown.Item>
-                                            <Link href={shareProfilRoute.path}>
+                                            <Link
+                                                href={shareProfilRoute.path}
+                                                className="w-full block"
+                                            >
                                                 <span className="flex items-center space-x-1">
                                                     <TbShare3 />
                                                     <span>

@@ -3,7 +3,6 @@ import { UserService } from "@/app/_core/api/services/UserService";
 import type { Metadata, ResolvingMetadata } from "next";
 import { ROOT_FILES_URL } from "@/app/_core/config/constants";
 import { ucfirst } from "@/app/_core/utils/functions";
-import KuserLayout from "@/app/kuser/[uuid]/layout";
 
 export async function generateMetadata(
     { params }: { params: { uuid: string } },
@@ -14,7 +13,7 @@ export async function generateMetadata(
 
     // fetch data
     var kuser = (await UserService.getUser(uuid)).data;
-    console.log(kuser);
+    // console.log(kuser);
 
     // optionally access and extend (rather than replace) parent metadata
     const previousImages = (await parent).openGraph?.images || [];
@@ -55,9 +54,5 @@ export default async function KuserPage({
 }) {
     var kuser = await UserService.getUser(params.uuid);
 
-    return (
-        <KuserLayout>
-            <KuserBlock kuser={kuser} isLoading={!kuser} />
-        </KuserLayout>
-    );
+    return <KuserBlock kuser={kuser} isLoading={!kuser} />;
 }
