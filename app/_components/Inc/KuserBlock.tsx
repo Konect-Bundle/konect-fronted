@@ -45,7 +45,9 @@ export default function KuserBlock({
     const vinfo: UserVcard = user && new UserVcard(user.vinfo);
     const vconfig: VcardConfig = user && new VcardConfig(user.vconfig);
 
-    const [konectsCount, setKonectCount] = useState<number>(user.konects_count!);
+    const [konectsCount, setKonectCount] = useState<number>(
+        user.konects_count!,
+    );
 
     const handleShareContact = (e: any) => {
         e.preventDefault();

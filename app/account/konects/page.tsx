@@ -13,7 +13,7 @@ import { Konect } from "@/app/_core/models/Konect";
 import { formatDistanceToNow } from "date-fns";
 import { TbMap2, TbMapPin2 } from "react-icons/tb";
 
-export interface KonectsListPage { }
+export interface KonectsListPage {}
 
 export default function KonectsListPage(props: KonectsListPage) {
     const user = useAppSelector((state) => state.auth.currentUser);
@@ -59,17 +59,28 @@ export default function KonectsListPage(props: KonectsListPage) {
                             let city = konect.ko_ip_locations.city;
                             let country = konect.ko_ip_locations.country;
                             let state = konect.ko_ip_locations.state;
-                            let time = formatDistanceToNow(konect.created_at, { addSuffix: true, includeSeconds: true });
+                            let time = formatDistanceToNow(konect.created_at, {
+                                addSuffix: true,
+                                includeSeconds: true,
+                            });
 
-                            return <div className="flex space-y-1 flex-col bg-white p-4 rounded-md border" key={i}>
-                                <h3 className="flex space-x-2 items-center">
-                                    <span><TbMapPin2 /></span>
-                                    <span>{`${city} ${state}, ${country}`}</span>
-                                </h3>
-                                <span className="text-gray-300 text-sm font-normal">{time}</span>
-                            </div>
-                        }
-                        )}
+                            return (
+                                <div
+                                    className="flex space-y-1 flex-col bg-white p-4 rounded-md border"
+                                    key={i}
+                                >
+                                    <h3 className="flex space-x-2 items-center">
+                                        <span>
+                                            <TbMapPin2 />
+                                        </span>
+                                        <span>{`${city} ${state}, ${country}`}</span>
+                                    </h3>
+                                    <span className="text-gray-300 text-sm font-normal">
+                                        {time}
+                                    </span>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </section>

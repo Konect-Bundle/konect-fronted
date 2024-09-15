@@ -40,7 +40,10 @@ export interface ProductsListBlockProps {
     isLoading: boolean;
 }
 
-export default function ProductsListBlock({ data, isLoading }: ProductsListBlockProps) {
+export default function ProductsListBlock({
+    data,
+    isLoading,
+}: ProductsListBlockProps) {
     const [filter, setFilter] = useState<string>("all");
     const gadgetFilters: Array<string> = ["all", "card", "ring", "watch"];
     const [gadgets, setGadgets] = useState<KoGadgetItem[]>([]);
@@ -61,7 +64,7 @@ export default function ProductsListBlock({ data, isLoading }: ProductsListBlock
             ga.push(g);
         });
         setGadgets(ga);
-    }, [])
+    }, []);
     return (
         <div className="">
             <div className="flex space-x-3 items-center pb-6">
@@ -82,25 +85,22 @@ export default function ProductsListBlock({ data, isLoading }: ProductsListBlock
                     theme={customDropdownTheme}
                     inline
                 >
-                    {gadgetFilters.map(
-                        (gadgetFilter, index) => (
-                            <Dropdown.Item
-                                onClick={() => {
-                                    setFilter(gadgetFilter);
-                                }}
-                                key={index}
-                            >
-                                {ucfirst(gadgetFilter)}
-                            </Dropdown.Item>
-                        ),
-                    )}
+                    {gadgetFilters.map((gadgetFilter, index) => (
+                        <Dropdown.Item
+                            onClick={() => {
+                                setFilter(gadgetFilter);
+                            }}
+                            key={index}
+                        >
+                            {ucfirst(gadgetFilter)}
+                        </Dropdown.Item>
+                    ))}
                 </Dropdown>
             </div>
             <div className="">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {!isLoading ? (
-                        gadgets != null &&
-                            gadgets.length == 0 ? (
+                        gadgets != null && gadgets.length == 0 ? (
                             <div className="sm:col-span-2 lg:col-span-3">
                                 <NoResultFound />
                             </div>
@@ -108,8 +108,7 @@ export default function ProductsListBlock({ data, isLoading }: ProductsListBlock
                             gadgets?.map((gadget, index) => {
                                 console.log(
                                     (
-                                        ROOT_FILES_URL +
-                                        gadget.imageURL[0]
+                                        ROOT_FILES_URL + gadget.imageURL[0]
                                     ).toString(),
                                 );
 
@@ -124,8 +123,7 @@ export default function ProductsListBlock({ data, isLoading }: ProductsListBlock
                                                 height={500}
                                                 src={
                                                     ROOT_FILES_URL +
-                                                    gadget
-                                                        .imageURL[0]
+                                                    gadget.imageURL[0]
                                                 }
                                                 alt="face cream image"
                                                 className=""
@@ -135,19 +133,14 @@ export default function ProductsListBlock({ data, isLoading }: ProductsListBlock
                                             <div className="flex items-center justify-between">
                                                 <h6 className="font-semibold text-md leading-8 text-black transition-all duration-500 group-hover:text-gray-800">
                                                     {ucfirst(
-                                                        gadget
-                                                            .color
-                                                            .name,
+                                                        gadget.color.name,
                                                     ) +
                                                         " " +
                                                         gadget.name}
                                                 </h6>
                                                 <div className="flex space-x-2 items-center">
                                                     <h6 className="font-semibold text-md leading-8 text-gray-700">
-                                                        $
-                                                        {
-                                                            gadget.price
-                                                        }
+                                                        ${gadget.price}
                                                     </h6>
                                                     <div className="flex justify-end">
                                                         <Link
@@ -158,9 +151,7 @@ export default function ProductsListBlock({ data, isLoading }: ProductsListBlock
                                                             }
                                                         >
                                                             <Button
-                                                                size={
-                                                                    "xs"
-                                                                }
+                                                                size={"xs"}
                                                                 color="dark"
                                                                 className="px-5 py-3"
                                                                 theme={
@@ -170,9 +161,7 @@ export default function ProductsListBlock({ data, isLoading }: ProductsListBlock
                                                                 <span className="flex items-center space-x-1">
                                                                     <TbShoppingBag className="text-lg" />
                                                                     <span>
-                                                                        {
-                                                                            "Get"
-                                                                        }
+                                                                        {"Get"}
                                                                     </span>
                                                                 </span>
                                                             </Button>

@@ -29,7 +29,7 @@ import { customBadgeTheme } from "@/app/_styles/flowbite/badge";
 import { KoGadgetItem } from "@/app/_core/models/KoGadgetItem";
 import ProductsListBlock from "@/app/_components/Inc/ProductsListBlock";
 
-export interface KwidgetListProps { }
+export interface KwidgetListProps {}
 
 export default async function KwidgetListPage(props: KwidgetListProps) {
     const gadgetFilters: Array<string> = ["all", "card", "ring", "watch"];
@@ -40,11 +40,9 @@ export default async function KwidgetListPage(props: KwidgetListProps) {
         res = await rq.json();
 
         isLoading = false;
-
     } catch (e) {
         console.log(e);
     } finally {
-
     }
     return (
         <div className="min-h-screen">
@@ -100,7 +98,10 @@ export default async function KwidgetListPage(props: KwidgetListProps) {
                             </Breadcrumb.Item>
                         </Breadcrumb>
 
-                        <ProductsListBlock isLoading={isLoading} data={res.data} />
+                        <ProductsListBlock
+                            isLoading={isLoading}
+                            data={res.data}
+                        />
                     </div>
                 </section>
             </main>
