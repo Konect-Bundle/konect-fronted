@@ -5,7 +5,7 @@ import { Order } from "./Order";
 
 export class User {
     name?: string;
-    konect_count?: number;
+    konects_count?: number;
     konects?: Array<Konect>;
     orders?: Array<Order>;
     gadgets?: Array<KoGadgetItem>;

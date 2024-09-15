@@ -45,7 +45,7 @@ export default function KuserBlock({
     const vinfo: UserVcard = user && new UserVcard(user.vinfo);
     const vconfig: VcardConfig = user && new VcardConfig(user.vconfig);
 
-    const [konectsCount, setKonectCount] = useState<number>(user.konect_count!);
+    const [konectsCount, setKonectCount] = useState<number>(user.konects_count!);
 
     const handleShareContact = (e: any) => {
         e.preventDefault();
@@ -67,8 +67,7 @@ export default function KuserBlock({
             KonectService.makeConnect(user.uuid!, 1)
                 .then((rs) => {
                     if (rs.state) {
-                        setKonectCount(user.konect_count! + 1);
-
+                        setKonectCount(user.konects_count! + 1);
                         const int = setInterval(() => {
                             setIsCompleted(true);
                             clearInterval(int);

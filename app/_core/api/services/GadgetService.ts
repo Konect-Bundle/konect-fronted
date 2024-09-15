@@ -4,11 +4,10 @@ import { fetchData } from "@/app/_core/api/functions";
 
 export class GadgetService {
     static async getAll(filter = "all") {
-        return await fetchData(
-            "/api/gadget/filter",
-            serialize({ filter: filter }),
-            {},
-            "POST",
+        return await fetch(SERVER_API_URL +
+            "/gadgets", {
+            cache: "force-cache",
+        }
         );
     }
 

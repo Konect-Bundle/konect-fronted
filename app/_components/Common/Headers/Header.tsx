@@ -24,6 +24,7 @@ import {
     dashboardRoute,
     homeRoute,
     howItRoute,
+    konectsListRoute,
     loginRoute,
     ordersHistoryRoute,
     productsRoute,
@@ -45,6 +46,7 @@ import {
     TbLayoutDashboardFilled,
     TbPower,
     TbShare3,
+    TbUsers,
 } from "react-icons/tb";
 import { useAppSelector, useAppDispatch } from "@/app/_store/hooks";
 import { logout } from "@/app/_store/slices/authSlice";
@@ -189,6 +191,19 @@ export default function Header(props: IAppProps) {
                                                     <TbId />
                                                     <span>
                                                         {__("my_contact_sheet")}
+                                                    </span>
+                                                </span>
+                                            </Link>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item>
+                                            <Link
+                                                href={konectsListRoute.path}
+                                                className="w-full block"
+                                            >
+                                                <span className="flex items-center space-x-1">
+                                                    <TbUsers />
+                                                    <span>
+                                                        {__("my_connections")}
                                                     </span>
                                                 </span>
                                             </Link>

@@ -27,6 +27,7 @@ export class UserService {
                         konect.ko_phone_clicked,
                         konect.user_id,
                         konect.konect_category_id,
+                        konect.created_at,
                     ),
                 );
             });
@@ -79,7 +80,7 @@ export class UserService {
         user.vinfo = data.data.vinfo;
         user.vconfig = data.data.vconfig;
         user.profile_photo_url = data.data.profile_photo_path;
-        user.konect_count = data.data.konect_count;
+        user.konects_count = data.data.konects_count;
         user.konects = konects;
         user.orders = orders;
         user.gadgets = gadgets;

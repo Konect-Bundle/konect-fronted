@@ -56,6 +56,11 @@ export const vcardRoute: RouteNameInterface = {
     path: "/account/vcard",
 };
 
+export const konectsListRoute: RouteNameInterface = {
+    name: "konects-list",
+    path: "/account/konects",
+};
+
 export const passwordResetRoute: RouteNameInterface = {
     name: "password-reset",
     path: "/account/password-reset",
