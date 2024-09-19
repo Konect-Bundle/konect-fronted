@@ -4,16 +4,17 @@ import { MutatingDots } from "react-loader-spinner";
 import { useTranslations } from "next-intl";
 import QRCode from "react-qr-code";
 import InputWithLabel from "@/app/_components/Common/Form/InputWithLabel";
-import { TextInput, Clipboard } from "flowbite-react";
+import { TextInput, Clipboard, Badge } from "flowbite-react";
 
 import { customTextInputTheme } from "@/app/_styles/flowbite/form";
 import { useEffect } from "react";
 import { customClipboardTheme } from "@/app/_styles/flowbite/clipboard";
 import { Konect } from "@/app/_core/models/Konect";
 import { formatDistanceToNow } from "date-fns";
-import { TbMap2, TbMapPin2 } from "react-icons/tb";
+import { TbCheck, TbDownload, TbMap2, TbMapPin2, TbX } from "react-icons/tb";
+import { generateVCard } from "@/app/_core/utils/functions";
 
-export interface KonectsListPage {}
+export interface KonectsListPage { }
 
 export default function KonectsListPage(props: KonectsListPage) {
     const user = useAppSelector((state) => state.auth.currentUser);
@@ -63,19 +64,47 @@ export default function KonectsListPage(props: KonectsListPage) {
                                 addSuffix: true,
                                 includeSeconds: true,
                             });
-
+                            // console.log(konect);
                             return (
                                 <div
                                     className="flex space-y-1 flex-col bg-white p-4 rounded-md border"
                                     key={i}
                                 >
-                                    <h3 className="flex space-x-2 items-center">
+                                    <div className="flex justify-between">
+                                        <h3 className="flex space-x-2 items-center">
+                                            <span>
+                                                <TbMapPin2 />
+                                            </span>
+                                            <span>{`${city} ${state}, ${country}`}</span>
+                                        </h3>
                                         <span>
-                                            <TbMapPin2 />
+                                            {(konect.ko_user_info == null || !konect.ko_user_info.phone) ? (
+                                                <Badge
+                                                    color="gray"
+                                                    className="text-xs text-gray-500 font-medium w-max"
+                                                    icon={TbX}
+                                                >
+                                                    {__("no_feed")}
+                                                </Badge>
+                                            ) : (
+                                                <span className="flex space-x-2 items-center">
+                                                    <Badge
+                                                        icon={TbCheck}
+                                                        className="text-xs"
+                                                        color="success"
+                                                    >
+                                                        {__("feedback")}
+                                                    </Badge>
+                                                    <span className="bg-gray-100 cursor-pointer p-1 rounded-full " onClick={() => {
+                                                        generateVCard(konect.ko_user_info.firstname, konect.ko_user_info.name, konect.ko_user_info.phone, konect.ko_user_info.email);
+                                                    }}>
+                                                        <TbDownload className="text-gray-500 hover:text-gray-800" />
+                                                    </span>
+                                                </span>
+                                            )}
                                         </span>
-                                        <span>{`${city} ${state}, ${country}`}</span>
-                                    </h3>
-                                    <span className="text-gray-300 text-sm font-normal">
+                                    </div>
+                                    <span className="text-gray-300 text-sm font-normal w-max">
                                         {time}
                                     </span>
                                 </div>

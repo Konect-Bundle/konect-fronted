@@ -389,6 +389,8 @@
         "copy": "Copy",
         "profile_link": "Profile link",
         "referal_code": "Referal code",
-        "referal_link": "Referal link"
+        "referal_link": "Referal link",
+        "no_feed": "No feedback",
+        "feedback": "Feedback"
     }
 }

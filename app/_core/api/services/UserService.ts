@@ -8,6 +8,8 @@ import { Order, PayloadOrderInterface } from "../../models/Order";
 import { KoGadgetItem, CardCustomDetails } from "../../models/KoGadgetItem";
 import { ScoreType } from "../../utils/enums";
 import { formatNumber } from "../../utils/functions";
+import { json } from "stream/consumers";
+import { KoUserInfoInterface } from "../../interfaces/appInterfaces";
 
 export class UserService {
     static buildObjectParser(data: any) {
@@ -28,6 +30,7 @@ export class UserService {
                         konect.user_id,
                         konect.konect_category_id,
                         konect.created_at,
+                        JSON.parse(konect.ko_user_info) as KoUserInfoInterface,
                     ),
                 );
             });

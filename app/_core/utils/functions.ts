@@ -103,3 +103,36 @@ export function formatNumber(num: number): string {
 
     return sign + absNum.toString();
 }
+
+export function generateVCard(
+    firstName: string,
+    lastName: string,
+    phoneNumber: string,
+    email: string,
+): void {
+    // Structure de la vCard
+    const vCard: string = `
+BEGIN:VCARD
+VERSION:3.0
+FN:${firstName} ${lastName}
+N:${lastName};${firstName};;;
+TEL;TYPE=CELL:${phoneNumber}
+EMAIL:${email}
+END:VCARD
+    `;
+
+    // Créer un blob contenant les données de la vCard
+    const blob: Blob = new Blob([vCard], { type: "text/vcard" });
+
+    // Créer un lien de téléchargement
+    const url: string = window.URL.createObjectURL(blob);
+    const a: HTMLAnchorElement = document.createElement("a");
+    a.href = url;
+    a.download = `${firstName}_${lastName}.vcf`;
+
+    // Simuler un clic sur le lien pour déclencher le téléchargement
+    a.click();
+
+    // Libérer l'URL objet
+    window.URL.revokeObjectURL(url);
+}
