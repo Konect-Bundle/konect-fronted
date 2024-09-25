@@ -8,7 +8,7 @@ import { ucfirst } from "@/app/_core/utils/functions";
 
 import ContainerLayout from "@/app/_components/Layouts/Container";
 // import { UserVcardInterface } from "@/app/_core/interfaces/vcardInterfaces";
-import VcardEditor from "../../_components/Common/Vcard/VcardEditor";
+import VcardEditor from "../../../_components/Common/Vcard/VcardEditor";
 
 import Header from "@/app/_components/Common/Headers/Header";
 import { useAppSelector } from "@/app/_store/hooks";

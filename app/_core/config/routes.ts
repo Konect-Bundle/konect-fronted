@@ -75,3 +75,13 @@ export const shareProfilRoute: RouteNameInterface = {
     name: "share-profil",
     path: "/account/share",
 };
+
+export const companiesRoute: RouteNameInterface = {
+    name: "companies",
+    path: "/account/companies",
+};
+
+export const companyRoute: RouteNameInterface = {
+    name: "company",
+    path: "/account/company",
+};

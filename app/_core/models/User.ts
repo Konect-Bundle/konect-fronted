@@ -1,4 +1,5 @@
 import { formatNumber } from "../utils/functions";
+import Company from "./Company";
 import { KoGadgetItem } from "./KoGadgetItem";
 import { Konect } from "./Konect";
 import { Order } from "./Order";
@@ -17,6 +18,7 @@ export class User {
     profile_photo_url?: string;
     points: string;
     referal_code?: string;
+    companies?: Array<Company>;
 
     constructor(
         name?: string,

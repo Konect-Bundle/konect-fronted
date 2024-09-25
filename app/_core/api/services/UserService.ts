@@ -10,6 +10,7 @@ import { ScoreType } from "../../utils/enums";
 import { formatNumber } from "../../utils/functions";
 import { json } from "stream/consumers";
 import { KoUserInfoInterface } from "../../interfaces/appInterfaces";
+import { date } from "yup";
 
 export class UserService {
     static buildObjectParser(data: any) {
@@ -75,7 +76,8 @@ export class UserService {
                 );
             });
         }
-
+        
+        //  console.log(data.data.companies)
         user.uuid = data.data.uuid;
         user.name = data.data.name;
         user.firstname = data.data.firstname;
@@ -89,7 +91,6 @@ export class UserService {
         user.gadgets = gadgets;
         user.points = formatNumber(data.data.kpoint);
         user.referal_code = data.data.referal_code;
-
         return user;
     }
 

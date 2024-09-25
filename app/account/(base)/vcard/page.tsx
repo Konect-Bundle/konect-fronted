@@ -1,7 +1,7 @@
 "use client";
 
 // import { UserVcardInterface } from "@/app/_core/interfaces/vcardInterfaces";
-import VcardEditor from "../../_components/Common/Vcard/VcardEditor";
+import VcardEditor from "../../../_components/Common/Vcard/VcardEditor";
 
 import { useAppSelector } from "@/app/_store/hooks";
 import { MutatingDots } from "react-loader-spinner";

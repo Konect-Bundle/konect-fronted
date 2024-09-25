@@ -21,6 +21,7 @@ import {
     ROOT_FILES_URL,
 } from "@/app/_core/config/constants";
 import {
+    companiesRoute,
     dashboardRoute,
     homeRoute,
     howItRoute,
@@ -37,6 +38,8 @@ import { getCookie, deleteCookie } from "cookies-next";
 import {
     TbAlignBoxBottomRight,
     TbArrowDown,
+    TbBuilding,
+    TbBuildingCommunity,
     TbChevronDown,
     TbDashboard,
     TbDiamondFilled,
@@ -204,6 +207,19 @@ export default function Header(props: IAppProps) {
                                                     <TbUsers />
                                                     <span>
                                                         {__("my_connections")}
+                                                    </span>
+                                                </span>
+                                            </Link>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item>
+                                            <Link
+                                                href={companiesRoute.path}
+                                                className="w-full block"
+                                            >
+                                                <span className="flex items-center space-x-1">
+                                                    <TbBuildingCommunity/>
+                                                    <span>
+                                                        {__("companies")}
                                                     </span>
                                                 </span>
                                             </Link>
