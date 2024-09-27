@@ -34,11 +34,17 @@
 
 .player-wrapper {
     position: relative;
-    padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+    padding-top: 56.25%;
+    /* Player ratio: 100 / (1280 / 720) */
 }
 
 .react-player {
     position: absolute;
     top: 0;
     left: 0;
+}
+
+
+.space-active-link {
+    @apply bg-white/10 text-sm text-white rounded-lg hover:bg-white/10 focus:outline-none focus:bg-white/10 dark:bg-neutral-700 dark:text-white;
 }

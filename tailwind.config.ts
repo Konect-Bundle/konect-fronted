@@ -15,6 +15,7 @@ const config: Config = {
             backgroundImage: {
                 "auth-bg": `url('${ROOT_ASSETS_URL}/images/background/auth_bg.jpg')`,
             },
+            
             colors: {
                 yellow: {
                     50: "#fefcbb",

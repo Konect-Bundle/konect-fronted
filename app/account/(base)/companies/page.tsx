@@ -80,7 +80,7 @@ export default function CompaniesPage({
                                             <span>
                                                 <TbBuildingCommunity />
                                             </span>
-                                            <Link href={`${companyRoute.path}/${company.name}`} className="font-medium hover:underline">{`${ucfirst(company.name)}`}</Link>
+                                            <Link href={`${companyRoute.path}/${company.name}/home`} className="font-medium hover:underline">{`${ucfirst(company.name)}`}</Link>
                                         </h3>
                                         <span>
                                             <span className="flex space-x-2 items-center">

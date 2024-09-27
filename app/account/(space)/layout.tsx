@@ -1,5 +1,12 @@
+"use client";
+
 import BusinessLogo from "@/app/_components/Common/Headers/BusinessLogo";
 import ContainerLayout from "@/app/_components/Layouts/Container";
+import { companyRoute } from "@/app/_core/config/routes";
+import { useAppSelector } from "@/app/_store/hooks";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { TbUsers } from "react-icons/tb";
 
 export interface SpaceRootLayoutProps { }
 
@@ -8,6 +15,9 @@ export default function SpaceRootLayout({
 }: {
     children: React.ReactNode;
 }) {
+    const currentCompany = useAppSelector((state) => state.app.currentCompany);
+    const pathname = usePathname();
+
     return (
         <>    <>
             {/* ========== MAIN CONTENT ========== */}
@@ -111,8 +121,8 @@ dark:bg-neutral-800 dark:border-neutral-700"
                             <ul className="flex flex-col space-y-1">
                                 <li>
                                     <a
-                                        className="flex items-center gap-x-3.5 py-2 px-2.5 bg-white/10 text-sm text-white rounded-lg hover:bg-white/10 focus:outline-none focus:bg-white/10 dark:bg-neutral-700 dark:text-white"
-                                        href="#"
+                                        className={`w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg ${pathname.includes("home") && "space-active-link"}`}
+                                        href={`${companyRoute.path}/${currentCompany?.name}/home`}
                                     >
                                         <svg
                                             className="shrink-0 size-4"
@@ -131,6 +141,15 @@ dark:bg-neutral-800 dark:border-neutral-700"
                                         </svg>
                                         Dashboard
                                     </a>
+                                </li>
+                                <li>
+                                    <Link
+                                        className={`w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg ${pathname.includes("members") && "space-active-link"}`}
+                                        href={`${companyRoute.path}/${currentCompany?.name}/members`}
+                                    >
+                                        <TbUsers />
+                                        Members
+                                    </Link>
                                 </li>
                                 <li className="hs-accordion" id="users-accordion">
                                     <button

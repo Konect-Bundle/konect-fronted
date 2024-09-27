@@ -23,6 +23,7 @@ export class CompanyService {
                 return new CompanyMember(
                     member.created_at,
                     member.email,
+                    member.uuid,
                     member.role,
                     member.phone_ext,
                     member.active,

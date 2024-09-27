@@ -11,8 +11,7 @@ export default function SpaceSubRootLayout({
     children: React.ReactNode;
     params: { slug: string };
 }) {    
-    console.log(params);
-    return (
+     return (
         <>
             <SpaceLayout slug={params.slug}>
                 {children}

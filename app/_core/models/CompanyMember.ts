@@ -28,5 +28,8 @@ export default class CompanyMember {
         this.active = active;
         this.requestStatus = requestStatus;
         this.user = user;
+        this.user!.vinfo= JSON.parse(user?.vinfo!);
+        this.user!.vconfig= JSON.parse(user?.vconfig!);
+
     }
 }

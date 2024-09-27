@@ -29,6 +29,7 @@ import {
     loginRoute,
     ordersHistoryRoute,
     productsRoute,
+    settingsProfilRoute,
     shareProfilRoute,
     vcardRoute,
 } from "@/app/_core/config/routes";
@@ -48,6 +49,7 @@ import {
     TbId,
     TbLayoutDashboardFilled,
     TbPower,
+    TbSettings,
     TbShare3,
     TbUsers,
 } from "react-icons/tb";
@@ -254,6 +256,20 @@ export default function Header(props: IAppProps) {
                                             </Link>
                                         </Dropdown.Item>
                                         <Dropdown.Divider />
+
+                                        <Dropdown.Item>
+                                            <Link
+                                                href={settingsProfilRoute.path}
+                                                className="w-full block"
+                                            >
+                                                <span className="flex items-center space-x-1">
+                                                    <TbSettings />
+                                                    <span>
+                                                        {__("account_settings")}
+                                                    </span>
+                                                </span>
+                                            </Link>
+                                        </Dropdown.Item>
 
                                         <Dropdown.Item
                                             onClick={() => {
