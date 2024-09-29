@@ -15,7 +15,7 @@ const TextSkeleton: React.FC<TextSkeletonProps> = ({
 }: TextSkeletonProps) => {
     return (
         <div
-            role="status"
+            role='status'
             className={(animated ? "animate-pulse " : " ") + className}
         >
             <div

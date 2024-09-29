@@ -21,8 +21,8 @@ const InputPrefixedIcon: React.FC<InputPrefixedIconProps> = ({
     ...props
 }) => {
     return (
-        <div className="flex">
-            <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-50 border rounded-e-0 border-gray-300/40 border-e-0 pl-4 rounded-s-md w-12">
+        <div className='flex'>
+            <span className='inline-flex items-center px-3 text-sm text-gray-900 bg-gray-50 border rounded-e-0 border-gray-300/40 border-e-0 pl-4 rounded-s-md w-12'>
                 {icon}
             </span>
             <Field id={labelFor} disabled={disabled} name={name}>
@@ -34,16 +34,16 @@ const InputPrefixedIcon: React.FC<InputPrefixedIconProps> = ({
                     } = fieldProps;
 
                     return (
-                        <div className="w-full">
+                        <div className='w-full'>
                             <TextInput
                                 theme={customTextInputTheme}
                                 color={"icon"}
-                                type="text"
+                                type='text'
                                 {...field}
                             />
 
                             {meta.touched && meta.error && (
-                                <div className="error">{meta.error}</div>
+                                <div className='error'>{meta.error}</div>
                             )}
                         </div>
                     );

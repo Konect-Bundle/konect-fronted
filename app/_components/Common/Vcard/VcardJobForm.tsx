@@ -6,10 +6,10 @@ interface VcardJobFormProps extends React.PropsWithChildren {}
 
 const VcardJobForm: React.FC<VcardJobFormProps> = ({}: VcardJobFormProps) => {
     return (
-        <div className="grid grid-cols-6 col-span-2 gap-4">
-            <div className="sm:col-span-4 col-span-6">
+        <div className='grid grid-cols-6 col-span-2 gap-4'>
+            <div className='sm:col-span-4 col-span-6'>
                 <InputWithLabel labelFor={"text"} labelTitle={"Qualification"}>
-                    <InputField labelFor="text" name="work.text" id="text" />
+                    <InputField labelFor='text' name='work.text' id='text' />
                 </InputWithLabel>
             </div>
         </div>

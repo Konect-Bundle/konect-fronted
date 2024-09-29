@@ -294,6 +294,7 @@
         "update_your_profile_image_here": "Mettez à jour votre photo de profil ici",
         "image_has_been_uploaded": "Image Téléchargée",
         "general_informations_successfully_updated": "Informations générales mises à jour avec succès",
+        "informations_successfully_updated": "Informations mises à jour avec succès",
         "contact_sheet_successfully_updated": "Fiche de contact mise à jour avec succès",
         "konect_successfully_done": "Konect effectué",
         "konect_already_exists": "Konect déjà existant",
@@ -333,7 +334,7 @@
         "video_link": "Lien de la vidéo",
         "click_to_add_a_new_line": "Cliquez pour ajouter une nouvelle ligne",
         "universe": "Univers",
-        "no_result": "Aucun résultat",
+        "no_result": "Aucun résultat trouvé",
         "on_hold": "En attente",
         "search_user": "Rechercher un utilisateur",
         "more": "de plus",
@@ -392,6 +393,16 @@
         "referal_link": "Lien de référencement",
         "no_feed": "Aucun retour",
         "feedback": "Retour",
-        "companies": "Entreprises"
+        "companies": "Entreprises",
+        "member": "Membre",
+        "invitation_success": "Membres ajoutés avec succès",
+        "request_accepted": "Accepté",
+        "request_declined": "Rejeté",
+        "request_pending": "En attente",
+        "add_member_description": "Veuillez fournir l'email de l'utilisateur que vous souhaitez ajouter à votre entreprise.",
+        "edit_member_description": "Mettez à jour les informations du membre liées à l'entreprise",
+        "company_email": "Email dans l'entreprise",
+        "phone_ext": "Extension téléphone",
+        "role": "Rôle"
     }
 }

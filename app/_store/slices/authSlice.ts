@@ -41,10 +41,10 @@ export const getUserCompanies = createAsyncThunk(
                 var companiesObj: Array<Company> = [];
                 var companies = await CompanyService.getCompanies(token);
                 companies.data.forEach((company: any) => {
-                    companiesObj.push(CompanyService.buildObjectParser(
-                        company
-                    ));
-                })
+                    companiesObj.push(
+                        CompanyService.buildObjectParser(company),
+                    );
+                });
                 return companiesObj;
             } catch (error: any) {
                 return thunkAPI.rejectWithValue(error.response.data.message);
@@ -85,7 +85,7 @@ const authSlice = createSlice({
                 }
                 state.isLoading = false;
             })
-            
+
             // ### ### Get user Companies #### ###
             .addCase(getUserCompanies.pending, (state, _) => {
                 state.isLoading = true;

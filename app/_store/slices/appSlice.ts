@@ -1,12 +1,9 @@
 import Company from "@/app/_core/models/Company";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-
-
-
 type appType = {
-    darkMode: boolean,
-    currentCompany: Company | undefined
+    darkMode: boolean;
+    currentCompany: Company | undefined;
 };
 const initialState: appType = {
     darkMode: false,
@@ -21,7 +18,7 @@ const appSlice = createSlice({
             state.darkMode = !state.darkMode;
         },
         setCurrentCompany: (state, action: PayloadAction<Company>) => {
-           state.currentCompany = action.payload
+            state.currentCompany = action.payload;
         },
     },
 });

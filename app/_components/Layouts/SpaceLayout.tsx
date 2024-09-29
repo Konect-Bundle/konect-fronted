@@ -20,27 +20,24 @@ export interface SpaceLayoutProps {
     children: React.ReactNode;
 }
 
-export default function SpaceLayout({
-    children,
-    slug
-}: SpaceLayoutProps) {
-
+export default function SpaceLayout({ children, slug }: SpaceLayoutProps) {
     const dispatch = useAppDispatch();
     const user = useAppSelector((state) => state.auth.currentUser);
-    const storeCurrentCompany = useAppSelector((state) => state.app.currentCompany);
+    const storeCurrentCompany = useAppSelector(
+        (state) => state.app.currentCompany,
+    );
 
-    const [currentCompany, setCurrentCompany] = useState<Company | undefined>(undefined);
+    const [currentCompany, setCurrentCompany] = useState<Company | undefined>(
+        undefined,
+    );
 
     useEffect(() => {
-
         if (user?.companies !== undefined) {
-            console.log(slug);
             setCurrentCompany(
-                user?.companies.find(company => company.name === slug)
+                user?.companies.find((company) => company.name === slug),
             );
         }
         if (currentCompany != undefined) {
-            console.log("OKKK")
             if (!storeCurrentCompany) {
                 dispatch(setCurrent(currentCompany));
             }
@@ -56,7 +53,7 @@ export default function SpaceLayout({
 
     return (
         <>
-           {children}
+            {children}
 
             <PrelineScript />
         </>

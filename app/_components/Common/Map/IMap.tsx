@@ -326,7 +326,7 @@ const IMap: React.FC<IMapProps> = ({ children, konects, googleKey }) => {
                         }}
                     >
                         {/* Vous pouvez insérer n'importe quel composant JSX ici */}
-                        <TbCircleLetterKFilled className="text-yellow-900" />
+                        <TbCircleLetterKFilled className='text-yellow-900' />
                     </CustomMarker>
 
                     // <Marker

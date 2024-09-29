@@ -1,21 +1,17 @@
-
 import SpaceLayout from "@/app/_components/Layouts/SpaceLayout";
 
-
-export interface SpaceSubRootLayoutProps { }
+export interface SpaceSubRootLayoutProps {}
 
 export default function SpaceSubRootLayout({
     children,
-    params
+    params,
 }: {
     children: React.ReactNode;
     params: { slug: string };
-}) {    
-     return (
+}) {
+    return (
         <>
-            <SpaceLayout slug={params.slug}>
-                {children}
-            </SpaceLayout>
+            <SpaceLayout slug={params.slug}>{children}</SpaceLayout>
         </>
     );
 }

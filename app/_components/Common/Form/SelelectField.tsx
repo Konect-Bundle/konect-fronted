@@ -24,7 +24,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
     ...props
 }) => {
     return (
-        <Field id={labelFor} as="select" disabled={disabled} name={name}>
+        <Field id={labelFor} as='select' disabled={disabled} name={name}>
             {(fieldProps: any) => {
                 const {
                     field, // { name, value, onChange, onBlur }
@@ -47,7 +47,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
                             ))}
                         </Select>
                         {meta.touched && meta.error && (
-                            <div className="error mt-2 text-xs text-red-500">
+                            <div className='error mt-2 text-xs text-red-500'>
                                 {meta.error}
                             </div>
                         )}

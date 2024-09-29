@@ -32,7 +32,7 @@ export default class Company {
         description: string | null = null,
         videos: string | null = null,
         socialProfiles: string | null = null,
-        members?: Array<CompanyMember>
+        members?: Array<CompanyMember>,
     ) {
         this.createdAt = createdAt;
         this.uuid = uuid;

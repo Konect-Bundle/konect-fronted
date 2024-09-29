@@ -66,15 +66,15 @@ export default function ProductsListBlock({
         setGadgets(ga);
     }, []);
     return (
-        <div className="">
-            <div className="flex space-x-3 items-center pb-6">
-                <div className="w-max space-x-1">
+        <div className=''>
+            <div className='flex space-x-3 items-center pb-6'>
+                <div className='w-max space-x-1'>
                     <Badge
-                        size="sm"
+                        size='sm'
                         icon={TbFilterFilled}
-                        href="#"
-                        className="px-3 py-2"
-                        color="dark"
+                        href='#'
+                        className='px-3 py-2'
+                        color='dark'
                         theme={customBadgeTheme}
                     >
                         <span>Filter</span>
@@ -97,11 +97,11 @@ export default function ProductsListBlock({
                     ))}
                 </Dropdown>
             </div>
-            <div className="">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className=''>
+                <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
                     {!isLoading ? (
                         gadgets != null && gadgets.length == 0 ? (
-                            <div className="sm:col-span-2 lg:col-span-3">
+                            <div className='sm:col-span-2 lg:col-span-3'>
                                 <NoResultFound />
                             </div>
                         ) : (
@@ -115,9 +115,9 @@ export default function ProductsListBlock({
                                 return (
                                     <span
                                         key={index}
-                                        className="mx-auto sm:mr-0 group cursor-pointer lg:mx-auto transition-all duration-500 rounded-xl p-3"
+                                        className='mx-auto sm:mr-0 group cursor-pointer lg:mx-auto transition-all duration-500 rounded-xl p-3'
                                     >
-                                        <div className="bg-white border rounded-3xl overflow-hidden border-noir-medium/25">
+                                        <div className='bg-white border rounded-3xl overflow-hidden border-noir-medium/25'>
                                             <Image
                                                 width={500}
                                                 height={500}
@@ -125,24 +125,24 @@ export default function ProductsListBlock({
                                                     ROOT_FILES_URL +
                                                     gadget.imageURL[0]
                                                 }
-                                                alt="face cream image"
-                                                className=""
+                                                alt='face cream image'
+                                                className=''
                                             />
                                         </div>
-                                        <div className="mt-5">
-                                            <div className="flex items-center justify-between">
-                                                <h6 className="font-semibold text-md leading-8 text-black transition-all duration-500 group-hover:text-gray-800">
+                                        <div className='mt-5'>
+                                            <div className='flex items-center justify-between'>
+                                                <h6 className='font-semibold text-md leading-8 text-black transition-all duration-500 group-hover:text-gray-800'>
                                                     {ucfirst(
                                                         gadget.color.name,
                                                     ) +
                                                         " " +
                                                         gadget.name}
                                                 </h6>
-                                                <div className="flex space-x-2 items-center">
-                                                    <h6 className="font-semibold text-md leading-8 text-gray-700">
+                                                <div className='flex space-x-2 items-center'>
+                                                    <h6 className='font-semibold text-md leading-8 text-gray-700'>
                                                         ${gadget.price}
                                                     </h6>
-                                                    <div className="flex justify-end">
+                                                    <div className='flex justify-end'>
                                                         <Link
                                                             href={
                                                                 productItemRoute.path +
@@ -152,14 +152,14 @@ export default function ProductsListBlock({
                                                         >
                                                             <Button
                                                                 size={"xs"}
-                                                                color="dark"
-                                                                className="px-5 py-3"
+                                                                color='dark'
+                                                                className='px-5 py-3'
                                                                 theme={
                                                                     customButtonTheme
                                                                 }
                                                             >
-                                                                <span className="flex items-center space-x-1">
-                                                                    <TbShoppingBag className="text-lg" />
+                                                                <span className='flex items-center space-x-1'>
+                                                                    <TbShoppingBag className='text-lg' />
                                                                     <span>
                                                                         {"Get"}
                                                                     </span>
@@ -176,28 +176,28 @@ export default function ProductsListBlock({
                         )
                     ) : (
                         <>
-                            <div className="flex flex-col">
-                                <ImageSkeleton className="w-full h-52 rounded-xl mb-4" />
-                                <span className="flex space-x-2 items-center justify-between px-4">
+                            <div className='flex flex-col'>
+                                <ImageSkeleton className='w-full h-52 rounded-xl mb-4' />
+                                <span className='flex space-x-2 items-center justify-between px-4'>
                                     <TextSkeleton
-                                        className="w-1/3"
+                                        className='w-1/3'
                                         height={4}
                                     />
                                     <TextSkeleton
-                                        className="w-24"
+                                        className='w-24'
                                         height={12}
                                     />
                                 </span>
                             </div>
-                            <div className="flex flex-col">
-                                <ImageSkeleton className="w-full h-52 rounded-xl mb-4" />
-                                <span className="flex space-x-2 items-center justify-between px-4">
+                            <div className='flex flex-col'>
+                                <ImageSkeleton className='w-full h-52 rounded-xl mb-4' />
+                                <span className='flex space-x-2 items-center justify-between px-4'>
                                     <TextSkeleton
-                                        className="w-1/3"
+                                        className='w-1/3'
                                         height={4}
                                     />
                                     <TextSkeleton
-                                        className="w-24"
+                                        className='w-24'
                                         height={12}
                                     />
                                 </span>

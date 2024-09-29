@@ -76,7 +76,7 @@ export class UserService {
                 );
             });
         }
-        
+
         //  console.log(data.data.companies)
         user.uuid = data.data.uuid;
         user.name = data.data.name;
@@ -149,7 +149,9 @@ export class UserService {
     static async getLoggedUser(token: string) {
         return await fetchData("/api/auth/user", "", {}, "GET", token);
     }
-
+    static async searchUser(search: string) {
+        return await fetchData("/api/search-user?search=" + search);
+    }
     static async updatePassword(
         newPassword: string,
         oldPassword: string,

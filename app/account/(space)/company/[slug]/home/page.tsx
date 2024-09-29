@@ -1,10 +1,9 @@
-import CompanySpaceClient from "./client";
-
+import HomeSpaceClient from "./client";
 
 export default async function CompanySpacePage({
     params,
 }: {
     params: { slug: string };
 }) {
-    return <CompanySpaceClient slug={params.slug} />;
+    return <HomeSpaceClient slug={params.slug} />;
 }

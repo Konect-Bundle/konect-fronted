@@ -9,7 +9,7 @@ export const customSpinnerTheme: CustomFlowbiteTheme["spinner"] = {
         pink: "fill-pink-600",
         purple: "fill-purple-600",
         success: "fill-green-500",
-        yellow: "fill-yellow-600",
+        yellow: "fill-yellow-800",
         warning: "fill-yellow-400",
     },
     light: {

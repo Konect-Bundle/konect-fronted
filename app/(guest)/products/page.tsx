@@ -45,11 +45,11 @@ export default async function KwidgetListPage(props: KwidgetListProps) {
     } finally {
     }
     return (
-        <div className="min-h-screen">
+        <div className='min-h-screen'>
             <Header />
             <main>
-                <section className="py-6 h-max">
-                    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <section className='py-6 h-max'>
+                    <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
                         {/* <span className="group h-72 relative flex flex-col w-full min-h-60 bg-center bg-cover rounded-xl hover:shadow-lg transition bg-[url('https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3000&q=80')]">
                             <div className="flex-auto p-4 md:p-6">
                                 <h3 className="text-xl text-white/90 group-hover:text-white">
@@ -80,13 +80,13 @@ export default async function KwidgetListPage(props: KwidgetListProps) {
                         </span> */}
 
                         <Breadcrumb
-                            aria-label="Default breadcrumb example"
+                            aria-label='Default breadcrumb example'
                             theme={customBreadCrumbTheme?.root}
-                            className="py-6"
+                            className='py-6'
                         >
                             <Breadcrumb.Item
                                 theme={customBreadCrumbTheme?.item}
-                                href="#"
+                                href='#'
                                 icon={TbHomeFilled}
                             >
                                 Home

@@ -18,22 +18,22 @@ export default function HowitPage(props: IHowitPageProps) {
     }, []);
 
     return (
-        <main className="min-h-screen">
+        <main className='min-h-screen'>
             <Header />
             <ContainerLayout>
-                <h2 className="text-2xl py-4 font-bold">
+                <h2 className='text-2xl py-4 font-bold'>
                     {__h("how_does_section")}
                 </h2>
                 {isClient && (
-                    <div className="py-4 w-full">
+                    <div className='py-4 w-full'>
                         {/* width={"100%"} height={"90vh"}  */}
-                        <div className="player-wrapper">
+                        <div className='player-wrapper'>
                             <ReactPlayer
-                                className="react-player"
-                                url="https://www.youtube.com/watch?v=G6a4zVOLK9M"
+                                className='react-player'
+                                url='https://www.youtube.com/watch?v=G6a4zVOLK9M'
                                 controls={true}
-                                width="100%"
-                                height="100%"
+                                width='100%'
+                                height='100%'
                             />
                         </div>
                     </div>

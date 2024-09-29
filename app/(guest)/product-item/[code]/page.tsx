@@ -170,7 +170,7 @@ export default function KwidgetItemPage({
                     validationSchema={OrderSchema}
                 >
                     {(formProps) => (
-                        <div className="min-h-screen">
+                        <div className='min-h-screen'>
                             <Header />
                             <ProductItemBlock
                                 errors={errors}

@@ -22,11 +22,15 @@ export async function fetchData(
             },
         };
 
-        // console.log(config, "SIOUU");
+        // console.log(config, "SIOUU", method);
 
         var response;
         if (method === "POST") {
             response = await axiosClient.post(route, body, config);
+        } else if (method === "PATCH") {
+            response = await axiosClient.patch(route, body, config);
+        } else if (method === "PUT") {
+            response = await axiosClient.put(route, body, config);
         } else {
             response = await axiosClient.get(route, config);
         }

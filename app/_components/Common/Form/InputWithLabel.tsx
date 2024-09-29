@@ -29,7 +29,7 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
             <div className={isInline ? "" : "mb-2"}>
                 <div className={isInline ? "" : "flex mb-2"}>
                     <Label htmlFor={labelFor} value={labelTitle} />
-                    {isRequired && <span className="text-red-600">*</span>}
+                    {isRequired && <span className='text-red-600'>*</span>}
                 </div>
             </div>
             {children}

@@ -86,7 +86,7 @@ export default function KuserBlock({
     };
 
     return vconfig.isCardActivated ? (
-        <div className="h-screen py-4">
+        <div className='h-screen py-4'>
             {isCompleted && (
                 <KuserFeedback
                     callback={() => {
@@ -98,17 +98,17 @@ export default function KuserBlock({
 
             <KuserHeader />
 
-            <div className="grid grid-cols-12 gap-2 h-full w-screen bg-gray-100">
-                <div className="flex flex-col lg:col-span-4 sm:col-span-6 col-span-12 px-4">
-                    <div className="relative py-4 flex flex-col items-center justify-start mt-32 mb-2 h-full bg-white rounded-lg space-y-3 md:space-y-6 px-6 border">
-                        <span className="absolute -top-24">
+            <div className='grid grid-cols-12 gap-2 h-full w-screen bg-gray-100'>
+                <div className='flex flex-col lg:col-span-4 sm:col-span-6 col-span-12 px-4'>
+                    <div className='relative py-4 flex flex-col items-center justify-start mt-32 mb-2 h-full bg-white rounded-lg space-y-3 md:space-y-6 px-6 border'>
+                        <span className='absolute -top-24'>
                             {isLoading ? (
                                 <ImageSkeleton
-                                    className="w-52 h-52 rounded-xl"
+                                    className='w-52 h-52 rounded-xl'
                                     animated={false}
                                 />
                             ) : user.profile_photo_url ? (
-                                <span className="rounded-xl max-w-52 min-h-52 overflow-hidden flex justify-center items-center">
+                                <span className='rounded-xl max-w-52 min-h-52 overflow-hidden flex justify-center items-center'>
                                     <Avatar
                                         img={
                                             ROOT_FILES_URL +
@@ -116,7 +116,7 @@ export default function KuserBlock({
                                             user.profile_photo_url!
                                         }
                                         size={"sxl"}
-                                        alt="Kuser Image"
+                                        alt='Kuser Image'
                                         theme={customAvatarTheme}
                                     />
                                 </span>
@@ -128,16 +128,16 @@ export default function KuserBlock({
                             )}
                         </span>
 
-                        <div className="pt-24 flex flex-col justify-start space-y-4">
-                            <h2 className="font-bold text-2xl">
+                        <div className='pt-24 flex flex-col justify-start space-y-4'>
+                            <h2 className='font-bold text-2xl'>
                                 {isLoading ? (
-                                    <span className="flex space-x-2">
+                                    <span className='flex space-x-2'>
                                         <TextSkeleton
-                                            className="md:28 w-16 text-gray-200"
+                                            className='md:28 w-16 text-gray-200'
                                             height={4}
                                         />{" "}
                                         <TextSkeleton
-                                            className="ms-2 md:32 w-16 text-gray-100"
+                                            className='ms-2 md:32 w-16 text-gray-100'
                                             height={4}
                                         />
                                     </span>
@@ -150,17 +150,17 @@ export default function KuserBlock({
                         </div>
                         {vconfig.showKonects && (
                             <div>
-                                <span className="my-1 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded flex items-center bg-gray-50 border">
-                                    <span className="px-1 text-white">
-                                        <MdOutlineConnectWithoutContact className="w-4 h-4 text-gray-700" />
+                                <span className='my-1 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded flex items-center bg-gray-50 border'>
+                                    <span className='px-1 text-white'>
+                                        <MdOutlineConnectWithoutContact className='w-4 h-4 text-gray-700' />
                                     </span>
                                     {isLoading ? (
                                         <TextSkeleton
-                                            className="w-16"
-                                            bgClass="bg-gray-300/25"
+                                            className='w-16'
+                                            bgClass='bg-gray-300/25'
                                         />
                                     ) : (
-                                        <span className="text-sm text-gray-700 space-x-1 flex">
+                                        <span className='text-sm text-gray-700 space-x-1 flex'>
                                             <motion.div
                                                 initial={{
                                                     opacity: 0,
@@ -181,7 +181,7 @@ export default function KuserBlock({
                                                     },
                                                 }}
                                             >
-                                                <span id="konect-stat">
+                                                <span id='konect-stat'>
                                                     {konectsCount}
                                                 </span>
                                             </motion.div>
@@ -194,7 +194,7 @@ export default function KuserBlock({
                             </div>
                         )}
 
-                        <div className="flex mt-4 space-x-3 pb-2 relative w-full shadow-none justify-center items-center bottom-0 left-0">
+                        <div className='flex mt-4 space-x-3 pb-2 relative w-full shadow-none justify-center items-center bottom-0 left-0'>
                             <Link
                                 href={
                                     kuser
@@ -205,32 +205,32 @@ export default function KuserBlock({
                                         : ""
                                 }
                                 ref={aRef}
-                                className="hidden opacity-0 invisible"
+                                className='hidden opacity-0 invisible'
                             />
                             <Button
                                 theme={customButtonTheme}
-                                color="dark"
+                                color='dark'
                                 onClick={handleSaveContact}
                             >
                                 <HiSave className={"text-lg"} />
-                                <span className="ml-1">{"Save"}</span>
+                                <span className='ml-1'>{"Save"}</span>
                             </Button>
                             <Button
                                 theme={customButtonTheme}
                                 onClick={handleShareContact}
-                                color="gray"
+                                color='gray'
                             >
                                 <TbShare3 className={"text-lg"} />
-                                <span className="ml-1">{"Share"}</span>
+                                <span className='ml-1'>{"Share"}</span>
                             </Button>
                         </div>
 
-                        <div className="flex flex-wrap items-center mt-1">
+                        <div className='flex flex-wrap items-center mt-1'>
                             {isLoading ? (
-                                <span className="flex space-x-2">
-                                    <ImageSkeleton className="w-12 h-12" />
-                                    <ImageSkeleton className="w-12 h-12" />
-                                    <ImageSkeleton className="w-12 h-12" />
+                                <span className='flex space-x-2'>
+                                    <ImageSkeleton className='w-12 h-12' />
+                                    <ImageSkeleton className='w-12 h-12' />
+                                    <ImageSkeleton className='w-12 h-12' />
                                 </span>
                             ) : (
                                 <SocialMediaBloc
@@ -239,23 +239,23 @@ export default function KuserBlock({
                             )}
                         </div>
 
-                        <div className="bg-gray-50 border rounded-md w-full md:pb-0 pb-3">
-                            <ul className="py-2 divide-y divide-gray-200 px-3">
+                        <div className='bg-gray-50 border rounded-md w-full md:pb-0 pb-3'>
+                            <ul className='py-2 divide-y divide-gray-200 px-3'>
                                 {vinfo.email.text && (
-                                    <li className="flex space-x-3 items-center overflow-hidden py-3">
-                                        <span className="bg-white min-w-10 h-10 rounded flex justify-center items-center border">
-                                            <TbMail className="w-5 text-gray-500 hover:text-gray-800 cursor-pointer" />
+                                    <li className='flex space-x-3 items-center overflow-hidden py-3'>
+                                        <span className='bg-white min-w-10 h-10 rounded flex justify-center items-center border'>
+                                            <TbMail className='w-5 text-gray-500 hover:text-gray-800 cursor-pointer' />
                                         </span>
 
-                                        <div className="inline-flex flex-col justify-center w-[inherit]">
-                                            <span className="font-bold text-sm text-gray-400">
+                                        <div className='inline-flex flex-col justify-center w-[inherit]'>
+                                            <span className='font-bold text-sm text-gray-400'>
                                                 {"Email"}
                                             </span>
                                             {isLoading ? (
                                                 <span>
                                                     <TextSkeleton
-                                                        className="w-56 mt-1"
-                                                        bgClass="bg-gray-300/20"
+                                                        className='w-56 mt-1'
+                                                        bgClass='bg-gray-300/20'
                                                     />
                                                 </span>
                                             ) : (
@@ -264,7 +264,7 @@ export default function KuserBlock({
                                                         "mailto:" +
                                                         vinfo.email.text
                                                     }
-                                                    className="hover:underline text-gray-700 break-words"
+                                                    className='hover:underline text-gray-700 break-words'
                                                 >
                                                     {vinfo.email.text}
                                                 </a>
@@ -273,19 +273,19 @@ export default function KuserBlock({
                                     </li>
                                 )}
                                 {vinfo.phone.text && (
-                                    <li className="flex space-x-3 py-3 items-center overflow-hidden">
-                                        <span className="bg-white min-w-10 h-10 rounded flex justify-center items-center border">
-                                            <TbPhone className="w-5 text-gray-500 hover:text-gray-800 cursor-pointer" />
+                                    <li className='flex space-x-3 py-3 items-center overflow-hidden'>
+                                        <span className='bg-white min-w-10 h-10 rounded flex justify-center items-center border'>
+                                            <TbPhone className='w-5 text-gray-500 hover:text-gray-800 cursor-pointer' />
                                         </span>
-                                        <div className="flex flex-col justify-center">
-                                            <span className="font-bold text-sm text-gray-400">
+                                        <div className='flex flex-col justify-center'>
+                                            <span className='font-bold text-sm text-gray-400'>
                                                 {"Phone"}
                                             </span>
                                             {isLoading ? (
                                                 <span>
                                                     <TextSkeleton
-                                                        className="w-40 mt-1"
-                                                        bgClass="bg-gray-300/20"
+                                                        className='w-40 mt-1'
+                                                        bgClass='bg-gray-300/20'
                                                     />
                                                 </span>
                                             ) : (
@@ -294,7 +294,7 @@ export default function KuserBlock({
                                                         "tel:" +
                                                         vinfo.phone.text
                                                     }
-                                                    className="hover:underline text-gray-700"
+                                                    className='hover:underline text-gray-700'
                                                 >
                                                     {vinfo.phone.text}
                                                 </a>
@@ -303,20 +303,20 @@ export default function KuserBlock({
                                     </li>
                                 )}
                                 {vconfig.showLocalization && (
-                                    <li className="flex space-x-3 items-center overflow-hidden py-3">
-                                        <span className="bg-white min-w-10 h-10 rounded flex justify-center items-center border">
-                                            <MdLocationPin className="w-5 text-gray-500 hover:text-gray-800 cursor-pointer" />
+                                    <li className='flex space-x-3 items-center overflow-hidden py-3'>
+                                        <span className='bg-white min-w-10 h-10 rounded flex justify-center items-center border'>
+                                            <MdLocationPin className='w-5 text-gray-500 hover:text-gray-800 cursor-pointer' />
                                         </span>
 
-                                        <div className="inline-flex flex-col justify-center w-[inherit]">
-                                            <span className="font-bold text-sm text-gray-400">
+                                        <div className='inline-flex flex-col justify-center w-[inherit]'>
+                                            <span className='font-bold text-sm text-gray-400'>
                                                 {"Location"}
                                             </span>
                                             {isLoading ? (
                                                 <span>
                                                     <TextSkeleton
-                                                        className="w-52 mt-1"
-                                                        bgClass="bg-gray-300/20"
+                                                        className='w-52 mt-1'
+                                                        bgClass='bg-gray-300/20'
                                                     />
                                                 </span>
                                             ) : (
@@ -325,8 +325,8 @@ export default function KuserBlock({
                                                         "https://www.google.com/maps/search/?api=1&query=" +
                                                         vinfo.location.state
                                                     }
-                                                    target="_blank"
-                                                    className="hover:underline text-gray-700 break-words"
+                                                    target='_blank'
+                                                    className='hover:underline text-gray-700 break-words'
                                                 >
                                                     {vinfo.location.state +
                                                         ", " +
@@ -341,33 +341,33 @@ export default function KuserBlock({
                     </div>
                 </div>
 
-                <div className="border my-2 bg-white lg:col-span-8 sm:col-span-6 col-span-12 flex flex-col space-y-8  px-8 rounded-lg">
+                <div className='border my-2 bg-white lg:col-span-8 sm:col-span-6 col-span-12 flex flex-col space-y-8  px-8 rounded-lg'>
                     {isLoading ? (
                         <span>
-                            <h3 className="text-gray-700 font-bold text-lg mb-4 mt-4">
+                            <h3 className='text-gray-700 font-bold text-lg mb-4 mt-4'>
                                 {"About me"}
                             </h3>
-                            <span className="flex flex-col space-y-3 mt-4 mb-4">
-                                <span className="flex space-x-2">
-                                    <TextSkeleton className="ms-2 w-20 text-gray-200" />
-                                    <TextSkeleton className="ms-2 w-48 text-gray-300/25" />
-                                    <TextSkeleton className="ms-2 w-full text-gray-200" />
+                            <span className='flex flex-col space-y-3 mt-4 mb-4'>
+                                <span className='flex space-x-2'>
+                                    <TextSkeleton className='ms-2 w-20 text-gray-200' />
+                                    <TextSkeleton className='ms-2 w-48 text-gray-300/25' />
+                                    <TextSkeleton className='ms-2 w-full text-gray-200' />
                                 </span>
-                                <span className="flex space-x-2">
-                                    <TextSkeleton className="ms-2 w-20 text-gray-200" />
-                                    <TextSkeleton className="ms-2 w-full text-gray-300/25" />
+                                <span className='flex space-x-2'>
+                                    <TextSkeleton className='ms-2 w-20 text-gray-200' />
+                                    <TextSkeleton className='ms-2 w-full text-gray-300/25' />
 
-                                    <TextSkeleton className="ms-2 w-36 text-gray-200" />
+                                    <TextSkeleton className='ms-2 w-36 text-gray-200' />
                                 </span>
                             </span>
                         </span>
                     ) : (
                         vinfo.note && (
                             <div>
-                                <h3 className="text-gray-700 font-bold text-lg mb-4 mt-4">
+                                <h3 className='text-gray-700 font-bold text-lg mb-4 mt-4'>
                                     {"About me"}
                                 </h3>
-                                <p className="mt-4 text-gray-500">
+                                <p className='mt-4 text-gray-500'>
                                     {vinfo.note.text}
                                 </p>
                             </div>
@@ -376,7 +376,7 @@ export default function KuserBlock({
 
                     {isLoading ? (
                         <span>
-                            <h3 className="text-gray-700 font-bold text-lg mb-6">
+                            <h3 className='text-gray-700 font-bold text-lg mb-6'>
                                 {"Externals Links"}
                             </h3>
                             <ExternalLinkSkeleton />
@@ -384,10 +384,10 @@ export default function KuserBlock({
                     ) : (
                         vinfo.urls.length > 0 && (
                             <div>
-                                <h3 className="text-gray-700 font-bold text-lg mb-6">
+                                <h3 className='text-gray-700 font-bold text-lg mb-6'>
                                     {"Externals Links"}
                                 </h3>
-                                <div className="grid gap-3 md:grid-cols-2 grid-cols-1">
+                                <div className='grid gap-3 md:grid-cols-2 grid-cols-1'>
                                     {vinfo.urls.map((url, i) => (
                                         <LinkPreviewBlock key={i} url={url} />
                                     ))}
@@ -398,35 +398,35 @@ export default function KuserBlock({
 
                     {isLoading ? (
                         <span>
-                            <h3 className="text-gray-700 font-bold text-lg mb-4 mt-4">
+                            <h3 className='text-gray-700 font-bold text-lg mb-4 mt-4'>
                                 {"Videos"}
                             </h3>
                             <VideoSkeleton
-                                className="w-full h-60 rounded-xl"
+                                className='w-full h-60 rounded-xl'
                                 animated={true}
                             />
                         </span>
                     ) : (
                         vinfo.urls.length > 0 && (
-                            <div className="pb-28">
-                                <h3 className="text-gray-700 font-bold text-lg mb-6">
+                            <div className='pb-28'>
+                                <h3 className='text-gray-700 font-bold text-lg mb-6'>
                                     {"Videos"}
                                 </h3>
-                                <div className="grid md:grid-cols-2 grid-cols-1 gap-3">
+                                <div className='grid md:grid-cols-2 grid-cols-1 gap-3'>
                                     {vinfo.videoLinks.map((video, i) => (
                                         <div
-                                            className="flex flex-col items-center space-y-3"
+                                            className='flex flex-col items-center space-y-3'
                                             key={i}
                                         >
                                             <iframe
                                                 src={convertYouTubeLinkToEmbed(
                                                     video.uri,
                                                 )}
-                                                title="W3Schools Free Online Web Tutorials"
-                                                className="w-full h-52"
-                                                loading="lazy"
+                                                title='W3Schools Free Online Web Tutorials'
+                                                className='w-full h-52'
+                                                loading='lazy'
                                             ></iframe>
-                                            <span className="text-gray-400 text-sm">
+                                            <span className='text-gray-400 text-sm'>
                                                 {video.type}
                                             </span>
                                         </div>
@@ -451,19 +451,19 @@ function SocialMediaBloc({
     return (
         <>
             {Object.keys(socialProfils).map((so: any, i) => (
-                <span className="mr-3 mt-3" key={i}>
+                <span className='mr-3 mt-3' key={i}>
                     {socialProfils[so].uri &&
                         socialProfils[so].type == "instagram" && (
                             <Link
                                 href={socialProfils[so].uri}
-                                target="_blank"
-                                className="border h-12 w-12 rounded-md flex items-center justify-center"
+                                target='_blank'
+                                className='border h-12 w-12 rounded-md flex items-center justify-center'
                             >
                                 <Image
-                                    className="w-14 rounded"
-                                    src="https://www.logo.wine/a/logo/Instagram/Instagram-Glyph-Color-Logo.wine.svg"
-                                    alt="instagram"
-                                    loading="lazy"
+                                    className='w-14 rounded'
+                                    src='https://www.logo.wine/a/logo/Instagram/Instagram-Glyph-Color-Logo.wine.svg'
+                                    alt='instagram'
+                                    loading='lazy'
                                     width={500}
                                     height={500}
                                 />
@@ -474,14 +474,14 @@ function SocialMediaBloc({
                         socialProfils[so].type == "facebook" && (
                             <Link
                                 href={socialProfils[so].uri}
-                                target="_blank"
-                                className="border h-12 w-12 rounded-md flex items-center justify-center"
+                                target='_blank'
+                                className='border h-12 w-12 rounded-md flex items-center justify-center'
                             >
                                 <Image
-                                    className="w-14 rounded"
-                                    src="https://www.logo.wine/a/logo/Facebook/Facebook-f_Logo-Blue-Logo.wine.svg"
-                                    alt="facebook"
-                                    loading="lazy"
+                                    className='w-14 rounded'
+                                    src='https://www.logo.wine/a/logo/Facebook/Facebook-f_Logo-Blue-Logo.wine.svg'
+                                    alt='facebook'
+                                    loading='lazy'
                                     width={500}
                                     height={500}
                                 />
@@ -492,14 +492,14 @@ function SocialMediaBloc({
                         socialProfils[so].type == "linkedin" && (
                             <Link
                                 href={socialProfils[so].uri}
-                                target="_blank"
-                                className="border h-12 w-12 rounded-md flex items-center justify-center"
+                                target='_blank'
+                                className='border h-12 w-12 rounded-md flex items-center justify-center'
                             >
                                 <Image
-                                    className="w-7 rounded"
-                                    src="https://cdn.worldvectorlogo.com/logos/linkedin-icon-2.svg"
-                                    alt="linkedin"
-                                    loading="lazy"
+                                    className='w-7 rounded'
+                                    src='https://cdn.worldvectorlogo.com/logos/linkedin-icon-2.svg'
+                                    alt='linkedin'
+                                    loading='lazy'
                                     width={500}
                                     height={500}
                                 />
@@ -510,14 +510,14 @@ function SocialMediaBloc({
                         socialProfils[so].type == "youtube" && (
                             <Link
                                 href={socialProfils[so].uri}
-                                target="_blank"
-                                className="border h-12 w-12 rounded-md flex items-center justify-center"
+                                target='_blank'
+                                className='border h-12 w-12 rounded-md flex items-center justify-center'
                             >
                                 <Image
-                                    className="w-7 rounded"
-                                    src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg"
-                                    alt="youtube"
-                                    loading="lazy"
+                                    className='w-7 rounded'
+                                    src='https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg'
+                                    alt='youtube'
+                                    loading='lazy'
                                     width={500}
                                     height={500}
                                 />
@@ -528,14 +528,14 @@ function SocialMediaBloc({
                         socialProfils[so].type == "tiktok" && (
                             <Link
                                 href={socialProfils[so].uri}
-                                target="_blank"
-                                className="border h-12 w-12 rounded-md flex items-center justify-center"
+                                target='_blank'
+                                className='border h-12 w-12 rounded-md flex items-center justify-center'
                             >
                                 <Image
-                                    className="w-12 rounded"
-                                    src="https://www.logo.wine/a/logo/TikTok/TikTok-Icon-Logo.wine.svg"
-                                    alt="tiktok"
-                                    loading="lazy"
+                                    className='w-12 rounded'
+                                    src='https://www.logo.wine/a/logo/TikTok/TikTok-Icon-Logo.wine.svg'
+                                    alt='tiktok'
+                                    loading='lazy'
                                     width={500}
                                     height={500}
                                 />
@@ -546,14 +546,14 @@ function SocialMediaBloc({
                         socialProfils[so].type == "twitter" && (
                             <Link
                                 href={socialProfils[so].uri}
-                                target="_blank"
-                                className="border h-12 w-12 rounded-md flex items-center justify-center"
+                                target='_blank'
+                                className='border h-12 w-12 rounded-md flex items-center justify-center'
                             >
                                 <Image
-                                    className="w-6 rounded"
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/512px-Logo_of_Twitter.svg.png?20220821125553"
-                                    alt="twitter"
-                                    loading="lazy"
+                                    className='w-6 rounded'
+                                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/512px-Logo_of_Twitter.svg.png?20220821125553'
+                                    alt='twitter'
+                                    loading='lazy'
                                     width={500}
                                     height={500}
                                 />

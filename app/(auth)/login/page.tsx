@@ -135,8 +135,8 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
 
     return (
         <LoadingLayout isLoading={isLoading}>
-            <div className="w-full h-full flex  flex-col justify-center items-center">
-                <h2 className="text-2xl text-black-semibold text-center font-bold md:py-6 p-4">
+            <div className='w-full h-full flex  flex-col justify-center items-center'>
+                <h2 className='text-2xl text-black-semibold text-center font-bold md:py-6 p-4'>
                     {T("login")}
                 </h2>
 
@@ -150,54 +150,54 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
                         rememberMe: true,
                     }}
                 >
-                    <Form className="flex lg:w-96 sm:w-80 w-72 flex-col gap-4">
+                    <Form className='flex lg:w-96 sm:w-80 w-72 flex-col gap-4'>
                         <InputWithLabel
-                            labelFor="email"
+                            labelFor='email'
                             labelTitle={T("your_email")}
                         >
                             <InputField
-                                labelFor="email"
-                                name="email"
+                                labelFor='email'
+                                name='email'
                                 required
                             />
                         </InputWithLabel>
 
                         <InputWithLabel
-                            labelFor="password"
+                            labelFor='password'
                             labelTitle={T("your_password")}
                         >
                             <InputField
                                 rightIcon={showPassword ? TbEyeOff : TbEye}
                                 manualType={showPassword ? "text" : "password"}
-                                labelFor="password"
-                                name="password"
+                                labelFor='password'
+                                name='password'
                                 required
                             />
                         </InputWithLabel>
 
-                        <div className="flex items-center gap-2 mb-2">
+                        <div className='flex items-center gap-2 mb-2'>
                             <CheckBoxField
-                                labelFor="remember"
-                                name="rememberMe"
+                                labelFor='remember'
+                                name='rememberMe'
                             />
                             {/* <Field type="checkbox" name="remberMe" /> */}
-                            <Label htmlFor="remember">{T("remember_me")}</Label>
+                            <Label htmlFor='remember'>{T("remember_me")}</Label>
                         </div>
                         <Button
-                            color="dark"
+                            color='dark'
                             theme={customButtonTheme}
-                            type="submit"
+                            type='submit'
                         >
                             {T("login")}
                         </Button>
 
                         <ErrorsViewer errors={errors} />
 
-                        <p className="text-sm py-2 text-end font-light text-gray-500 dark:text-gray-400">
+                        <p className='text-sm py-2 text-end font-light text-gray-500 dark:text-gray-400'>
                             {T("dont_yet")}?{" "}
                             <a
                                 href={registerRoute.path}
-                                className="font-medium text-gray-900 hover:underline dark:text-primary-500"
+                                className='font-medium text-gray-900 hover:underline dark:text-primary-500'
                             >
                                 {T("register")}
                             </a>
