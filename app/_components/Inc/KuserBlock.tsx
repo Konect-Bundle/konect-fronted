@@ -7,7 +7,16 @@ import {
 } from "@/app/_core/utils/functions";
 import Image from "next/image";
 import Link from "next/link";
-import { TbExternalLink, TbMail, TbPhone, TbShare3 } from "react-icons/tb";
+import {
+    TbDownload,
+    TbExternalLink,
+    TbLocation,
+    TbLocationPin,
+    TbMail,
+    TbPhone,
+    TbShare2,
+    TbShare3,
+} from "react-icons/tb";
 import { MdLocationPin } from "react-icons/md";
 import { MdOutlineConnectWithoutContact } from "react-icons/md";
 import { useEffect, useRef, useState } from "react";
@@ -15,10 +24,15 @@ import ImageSkeleton from "@/app/_components/Common/Skeleton/ImageSkeleton";
 import TextSkeleton from "@/app/_components/Common/Skeleton/TextSkeleton";
 import VideoSkeleton from "@/app/_components/Common/Skeleton/VideoSkeleton";
 import ExternalLinkSkeleton from "@/app/_components/Common/Skeleton/ExternalLinkSkeleton";
-import { Avatar, Button } from "flowbite-react";
+import { Avatar, Button, Card } from "flowbite-react";
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
 import { ROOT_FILES_URL } from "@/app/_core/config/constants";
-import { HiSave } from "react-icons/hi";
+import {
+    HiAdjustments,
+    HiCloudDownload,
+    HiSave,
+    HiUserCircle,
+} from "react-icons/hi";
 import KuserFeedback from "@/app/_components/Inc/KuserFeedback";
 import { KonectService } from "@/app/_core/api/services/KonectService";
 import { motion } from "framer-motion";
@@ -87,7 +101,7 @@ export default function KuserBlock({
     };
 
     return vconfig.isCardActivated ? (
-        <div className="h-screen py-4">
+        <div className="h-screen">
             {isCompleted && (
                 <KuserFeedback
                     callback={() => {
@@ -97,9 +111,218 @@ export default function KuserBlock({
                 />
             )}
 
-            <KuserHeader />
+            <div className="">
+                <div className="h-80 bg-red-600 flex justify-center">
+                    <Card
+                        theme={{
+                            root: {
+                                base: "flex rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800",
+                                children:
+                                    "flex h-full flex-col justify-center gap-4 p-6",
+                                horizontal: {
+                                    off: "flex-col",
+                                    on: "flex-col md:max-w-xl md:flex-row",
+                                },
+                                href: "hover:bg-gray-100 dark:hover:bg-gray-700",
+                            },
+                            img: {
+                                base: "",
+                                horizontal: {
+                                    off: "rounded-t-lg",
+                                    on: "h-96 w-full rounded-t-lg object-cover md:h-auto md:w-48 md:rounded-none md:rounded-l-lg",
+                                },
+                            },
+                        }}
+                        className="w-full"
+                        imgSrc="https://studiolecarre.com/wp-content/uploads/2022/09/190422_190538-Photo-cv-portrait-corporate-en-studio-www.studiolecarre.jpg"
+                        horizontal
+                    >
+                        <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            Noteworthy technology acquisitions 2021
+                        </h5>
+                        <p className="font-normal text-gray-700 dark:text-gray-400">
+                            Here are the biggest enterprise technology
+                            acquisitions of 2021 so far, in reverse
+                            chronological order.
+                        </p>
+                    </Card>
+                </div>
+                <div className="relative -top-10 bg-white rounded-tr-[60px]">
+                    <div className="flex justify-center">
+                        <div className="rounded-full w-16 h-2 mt-2 bg-gray-300/55"></div>
+                    </div>
+                    <div className="p-6 flex-col space-y-2">
+                        <h3
+                            className={`flex text-4xl font-bold text leading-tight ${user.name?.length! > 7 || user.firstname?.length! > 7 ? "flex-col" : "space-x-3"}`}
+                        >
+                            <span className="">{ucfirst(user.firstname!)}</span>
+                            <span className="">{ucfirst(user.name!)}</span>
+                        </h3>
+                        <span className="flex flex-col space-y-2">
+                            <p className="line-clamp-2">
+                                {ucfirst(vinfo.note.text)}
+                            </p>
+                            <span className="text-sm text-gray-400">
+                                {vinfo.location.state?.toLocaleUpperCase() +
+                                    ", " +
+                                    vinfo.location.iso_code?.toLocaleUpperCase()}
+                            </span>
 
-            <div className="grid grid-cols-12 gap-2 h-full w-screen bg-gray-100">
+                            <span></span>
+                            <Button.Group className="w-full grid grid-cols-2">
+                                <Button
+                                    color="dark"
+                                    theme={customButtonTheme}
+                                    size={"md"}
+                                >
+                                    <TbDownload className="mr-3 h-4 w-4" />
+                                    Save contact
+                                </Button>
+
+                                <Button
+                                    color="gray"
+                                    theme={customButtonTheme}
+                                    size={"md"}
+                                >
+                                    <TbShare2 className="mr-3 h-4 w-4" />
+                                    Exchange Contact
+                                </Button>
+                            </Button.Group>
+                        </span>
+                    </div>
+                    <div className="px-4 flex flex-col space-y-2">
+                        <h2 className="font-semibold text-lg">Contact</h2>
+                        <div className=" w-full md:pb-0 pb-3">
+                            <ul className="flex flex-col space-y-3 py-2 px-3">
+                                {.email.text && (
+                                    <li className="flex space-x-3 items-center overflow-hidden py-3">
+                                        <span className="bg-gray-200/75 min-w-14 h-14 rounded-xl flex justify-center items-center border">
+                                            <TbMail className="text-xl text-gray-800 hover:text-gray-800 cursor-pointer" />
+                                        </span>
+
+                                        <div className="inline-flex flex-col justify-center w-[inherit]">
+                                            <span className="font-bold text-sm text-gray-400 uppercase">
+                                                {__("email")}
+                                            </span>
+                                            {isLoading ? (
+                                                <span>
+                                                    <TextSkeleton
+                                                        className="w-56 mt-1"
+                                                        bgClass="bg-gray-300/20"
+                                                    />
+                                                </span>
+                                            ) : (
+                                                <a
+                                                    href={
+                                                        "mailto:" +
+                                                        vinfo.email.text
+                                                    }
+                                                    className="hover:underline text-gray-700 break-words"
+                                                >
+                                                    {vinfo.email.text}
+                                                </a>
+                                            )}
+                                        </div>
+                                    </li>
+                                )}
+                                <li>
+                                    <span className="flex space-x-5 items-start overflow-hidden">
+                                        <span className="bg-gray-200/75 min-w-14 h-14 rounded-xl flex justify-center items-center border">
+                                            <TbPhone className="text-xl text-gray-800 hover:text-gray-800 cursor-pointer" />
+                                        </span>
+                                        <span className="flex flex-col">
+                                            <span className="font-semibold text-sm text-gray-500 uppercase">
+                                                <span>
+                                                    {__("phone_number")}
+                                                </span>
+                                            </span>
+                                            <ul className="flex flex-col space-y-0 px-0">
+                                                {vinfo.phones.map(
+                                                    (phone, i) => {
+                                                        return (
+                                                            phone.text && (
+                                                                <li
+                                                                    key={i}
+                                                                    className="flex space-x-3 py-2 justify-start items-center overflow-hidden"
+                                                                >
+                                                                    <div className="flex flex-col justify-center">
+                                                                        <span className="font-normal text-md text-gray-400">
+                                                                            {ucfirst(
+                                                                                phone.type,
+                                                                            )}
+                                                                        </span>
+                                                                        {isLoading ? (
+                                                                            <span>
+                                                                                <TextSkeleton
+                                                                                    className="w-40 mt-1"
+                                                                                    bgClass="bg-gray-300/20"
+                                                                                />
+                                                                            </span>
+                                                                        ) : (
+                                                                            <a
+                                                                                href={
+                                                                                    "tel:" +
+                                                                                    phone.text
+                                                                                }
+                                                                                className="hover:underline text-md text-gray-700"
+                                                                            >
+                                                                                {
+                                                                                    phone.text
+                                                                                }
+                                                                            </a>
+                                                                        )}
+                                                                    </div>
+                                                                </li>
+                                                            )
+                                                        );
+                                                    },
+                                                )}
+                                            </ul>
+                                        </span>
+                                    </span>
+                                </li>
+                                {vconfig.showLocalization && (
+                                    <li className="flex space-x-3 items-center overflow-hidden py-3">
+                                        <span className="bg-gray-200/75 min-w-14 h-14 rounded-xl flex justify-center items-center border">
+                                            <TbLocationPin className="text-xl text-gray-800 hover:text-gray-800 cursor-pointer" />
+                                        </span>
+
+                                        <div className="inline-flex flex-col justify-center w-[inherit]">
+                                            <span className="font-bold text-sm text-gray-400">
+                                                {"Location"}
+                                            </span>
+                                            {isLoading ? (
+                                                <span>
+                                                    <TextSkeleton
+                                                        className="w-52 mt-1"
+                                                        bgClass="bg-gray-300/20"
+                                                    />
+                                                </span>
+                                            ) : (
+                                                <a
+                                                    href={
+                                                        "https://www.google.com/maps/search/?api=1&query=" +
+                                                        vinfo.location.state
+                                                    }
+                                                    target="_blank"
+                                                    className="hover:underline text-gray-700 break-words"
+                                                >
+                                                    {vinfo.location.state +
+                                                        ", " +
+                                                        vinfo.location.iso_code}
+                                                </a>
+                                            )}
+                                        </div>
+                                    </li>
+                                )}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* <KuserHeader /> */}
+
+            {/* <div className="grid grid-cols-12 gap-2 h-full w-screen bg-gray-100">
                 <div className="flex flex-col lg:col-span-4 sm:col-span-6 col-span-12 px-4">
                     <div className="relative py-4 flex flex-col items-center justify-start mt-32 mb-2 h-full bg-white rounded-lg space-y-3 md:space-y-6 px-6 border">
                         <span className="absolute -top-24">
@@ -226,21 +449,7 @@ export default function KuserBlock({
                             </Button>
                         </div>
 
-                        {vinfo.socialProfils && (
-                            <div className="flex flex-wrap items-center mt-1">
-                                {isLoading ? (
-                                    <span className="flex space-x-2">
-                                        <ImageSkeleton className="w-12 h-12" />
-                                        <ImageSkeleton className="w-12 h-12" />
-                                        <ImageSkeleton className="w-12 h-12" />
-                                    </span>
-                                ) : (
-                                    <SocialMediaBloc
-                                        socialProfils={vinfo.socialProfils}
-                                    />
-                                )}
-                            </div>
-                        )}
+                        
 
                         <div className="bg-gray-50 border rounded-md w-full md:pb-0 pb-3">
                             <ul className="py-2 divide-y divide-gray-200 px-3">
@@ -285,10 +494,13 @@ export default function KuserBlock({
                                         </span>
                                     </span>
                                     <ul className="grid 2xl:grid-cols-3 grid-cols-2">
-                                        {vinfo.phones.map((phone) => {
+                                        {vinfo.phones.map((phone, i) => {
                                             return (
                                                 phone.text && (
-                                                    <li className="flex space-x-3 py-3 justify-center items-center overflow-hidden">
+                                                    <li
+                                                        key={i}
+                                                        className="flex space-x-3 py-3 justify-center items-center overflow-hidden"
+                                                    >
                                                         <div className="flex flex-col justify-center">
                                                             <span className="font-medium text-sm text-gray-400">
                                                                 {ucfirst(
@@ -454,7 +666,7 @@ export default function KuserBlock({
                         )
                     )}
                 </div>
-            </div>
+            </div> */}
         </div>
     ) : (
         "Carte desactivée"
