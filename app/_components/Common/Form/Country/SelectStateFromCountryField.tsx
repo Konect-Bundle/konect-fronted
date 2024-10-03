@@ -28,7 +28,9 @@ const SelectStateFromCountryField: React.FC<
 }) => {
     const states = State.getStatesOfCountry(selectedCountryCode);
     return (
-        <Field id={labelFor} as="select" disabled={disabled} name={name}>
+        // <Field id={labelFor} as="select" disabled={disabled} name={name}>
+
+        <Field id={labelFor} disabled={disabled} name={name}>
             {(fieldProps: any) => {
                 const {
                     field, // { name, value, onChange, onBlur }

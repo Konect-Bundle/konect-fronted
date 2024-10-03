@@ -29,6 +29,7 @@ import UserVcard from "@/app/_core/models/vcard/UserVcard";
 import VcardConfig from "@/app/_core/models/vcard/VcardConfig";
 import { customAvatarTheme } from "@/app/_styles/flowbite/avatar";
 import LinkPreviewBlock from "../Common/LinkPreview";
+import { useTranslations } from "next-intl";
 
 interface KuserBlockProps {
     kuser: any;
@@ -44,7 +45,7 @@ export default function KuserBlock({
     const user: User = UserService.buildObjectParser(kuser);
     const vinfo: UserVcard = user && new UserVcard(user.vinfo);
     const vconfig: VcardConfig = user && new VcardConfig(user.vconfig);
-
+    const __ = useTranslations("Text");
     const [konectsCount, setKonectCount] = useState<number>(
         user.konects_count!,
     );
@@ -225,19 +226,21 @@ export default function KuserBlock({
                             </Button>
                         </div>
 
-                        <div className="flex flex-wrap items-center mt-1">
-                            {isLoading ? (
-                                <span className="flex space-x-2">
-                                    <ImageSkeleton className="w-12 h-12" />
-                                    <ImageSkeleton className="w-12 h-12" />
-                                    <ImageSkeleton className="w-12 h-12" />
-                                </span>
-                            ) : (
-                                <SocialMediaBloc
-                                    socialProfils={vinfo.socialProfils}
-                                />
-                            )}
-                        </div>
+                        {vinfo.socialProfils && (
+                            <div className="flex flex-wrap items-center mt-1">
+                                {isLoading ? (
+                                    <span className="flex space-x-2">
+                                        <ImageSkeleton className="w-12 h-12" />
+                                        <ImageSkeleton className="w-12 h-12" />
+                                        <ImageSkeleton className="w-12 h-12" />
+                                    </span>
+                                ) : (
+                                    <SocialMediaBloc
+                                        socialProfils={vinfo.socialProfils}
+                                    />
+                                )}
+                            </div>
+                        )}
 
                         <div className="bg-gray-50 border rounded-md w-full md:pb-0 pb-3">
                             <ul className="py-2 divide-y divide-gray-200 px-3">
@@ -272,36 +275,51 @@ export default function KuserBlock({
                                         </div>
                                     </li>
                                 )}
-                                {vinfo.phone.text && (
-                                    <li className="flex space-x-3 py-3 items-center overflow-hidden">
+                                <li>
+                                    <span className="flex space-x-3 items-center overflow-hidden">
                                         <span className="bg-white min-w-10 h-10 rounded flex justify-center items-center border">
                                             <TbPhone className="w-5 text-gray-500 hover:text-gray-800 cursor-pointer" />
                                         </span>
-                                        <div className="flex flex-col justify-center">
-                                            <span className="font-bold text-sm text-gray-400">
-                                                {"Phone"}
-                                            </span>
-                                            {isLoading ? (
-                                                <span>
-                                                    <TextSkeleton
-                                                        className="w-40 mt-1"
-                                                        bgClass="bg-gray-300/20"
-                                                    />
-                                                </span>
-                                            ) : (
-                                                <a
-                                                    href={
-                                                        "tel:" +
-                                                        vinfo.phone.text
-                                                    }
-                                                    className="hover:underline text-gray-700"
-                                                >
-                                                    {vinfo.phone.text}
-                                                </a>
-                                            )}
-                                        </div>
-                                    </li>
-                                )}
+                                        <span className="font-semibold text-sm text-gray-500">
+                                            {__("phone_number")}
+                                        </span>
+                                    </span>
+                                    <ul className="grid 2xl:grid-cols-3 grid-cols-2">
+                                        {vinfo.phones.map((phone) => {
+                                            return (
+                                                phone.text && (
+                                                    <li className="flex space-x-3 py-3 justify-center items-center overflow-hidden">
+                                                        <div className="flex flex-col justify-center">
+                                                            <span className="font-medium text-sm text-gray-400">
+                                                                {ucfirst(
+                                                                    phone.type,
+                                                                )}
+                                                            </span>
+                                                            {isLoading ? (
+                                                                <span>
+                                                                    <TextSkeleton
+                                                                        className="w-40 mt-1"
+                                                                        bgClass="bg-gray-300/20"
+                                                                    />
+                                                                </span>
+                                                            ) : (
+                                                                <a
+                                                                    href={
+                                                                        "tel:" +
+                                                                        phone.text
+                                                                    }
+                                                                    className="hover:underline text-gray-700"
+                                                                >
+                                                                    {phone.text}
+                                                                </a>
+                                                            )}
+                                                        </div>
+                                                    </li>
+                                                )
+                                            );
+                                        })}
+                                    </ul>
+                                </li>
                                 {vconfig.showLocalization && (
                                     <li className="flex space-x-3 items-center overflow-hidden py-3">
                                         <span className="bg-white min-w-10 h-10 rounded flex justify-center items-center border">

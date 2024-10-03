@@ -92,5 +92,5 @@ export interface UserVcardInterface {
     config: VcardConfigInterface;
     // work: WorkVcardInterface;
     location: LocationVcardInterface;
-    phone: PhoneVcardInterface;
+    phones: PhoneVcardInterface[];
 }

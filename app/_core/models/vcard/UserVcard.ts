@@ -2,32 +2,31 @@ import VcardModel from "./VcardModel";
 import { PhoneVcard } from "./VcardParts";
 
 export default class UserVcard extends VcardModel {
-    public phone: PhoneVcard;
+    public phones: PhoneVcard[] = [];
     //   public work: WorkVcard;
 
     constructor(vinfo: string | null = null) {
         super(vinfo);
 
         if (vinfo === null) {
-            this.phone = new PhoneVcard("", "");
+            this.phones = [new PhoneVcard("personal", "")];
             //   this.work = new WorkVcard("", "");
         } else {
             const vinfoObj = JSON.parse(
                 typeof vinfo == "string" ? vinfo : JSON.stringify(vinfo),
             );
-            this.phone = new PhoneVcard(
-                vinfoObj.phone.type,
-                vinfoObj.phone.text,
-            );
-            //   this.work = new WorkVcard(vinfoObj.works.type, vinfoObj.works.text);
+            if (Array.isArray(vinfoObj.phone)) {
+                for (let i = 0; i < vinfoObj.phone.length; i++) {
+                    const phone = vinfoObj.phone[i];
+                    this.phones.push(new PhoneVcard(phone.type, phone.text));
+                }
+            } else if (typeof vinfoObj.phone === "object") {
+                this.phones.push(vinfoObj.phone);
+            }
         }
     }
 
     addPhone(phone: PhoneVcard): void {
-        this.phone = phone;
+        this.phones.push(phone);
     }
-
-    //   addWork(work: WorkVcard): void {
-    //     this.work = work;
-    //   }
 }

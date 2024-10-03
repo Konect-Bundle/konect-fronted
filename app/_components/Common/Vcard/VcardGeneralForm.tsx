@@ -13,6 +13,7 @@ import { useTranslations } from "next-intl";
 import SelectCountryField from "../Form/Country/SelectCountryField";
 import SelectStateFromCountryField from "../Form/Country/SelectStateFromCountryField";
 import { UserVcardInterface } from "@/app/_core/interfaces/vcardInterfaces";
+import VcardPhonesForm from "./VcardPhonesForm";
 
 interface VcardGeneralFormProps extends React.PropsWithChildren {
     formikValues: UserVcardInterface;
@@ -100,18 +101,15 @@ const VcardGeneralForm: React.FC<VcardGeneralFormProps> = ({
                     />
                 </InputWithLabel>
             </div>
-            <div className="sm:col-span-1 col-span-2">
+            <div className="sm:col-span-2 col-span-2">
                 <InputWithLabel
                     labelFor={"phone"}
                     labelTitle={__("phone_number")}
-                    isRequired={true}
+                    isRequired={false}
+                    labelClassName="text-md"
                 >
-                    <InputPrefixedIcon
-                        icon={<TbPhone />}
-                        labelFor="phone"
-                        name="phone.text"
-                        required
-                    />
+                    {" "}
+                    <VcardPhonesForm />
                 </InputWithLabel>
             </div>
             <div className="sm:col-span-1 col-span-2">

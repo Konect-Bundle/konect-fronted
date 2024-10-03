@@ -32,7 +32,9 @@ const SelectCountryField: React.FC<SelectCountryFieldProps> = ({
         useState<string>(defaultSelected);
     // console.log(defaultSelected);
     return (
-        <Field id={labelFor} as="select" disabled={disabled} name={name}>
+        // <Field id={labelFor} as="select" disabled={disabled} name={name}>
+
+        <Field id={labelFor} disabled={disabled} name={name}>
             {(fieldProps: any) => {
                 const {
                     field, // { name, value, onChange, onBlur }

@@ -16,12 +16,7 @@ export default function DashboardPage(props: IDashboardPageProps) {
 
     useEffect(() => {
         // console.log(user);
-        // initFlowbite();
-        // if (document.getElementById("area-chart") && typeof ApexCharts !== 'undefined') {
-        //     const chart = new ApexCharts(document.getElementById("area-chart"), options);
-        //     chart.render();
-        //   }
-    }, []);
+    }, [user]);
 
     if (!user)
         return (
@@ -45,7 +40,7 @@ export default function DashboardPage(props: IDashboardPageProps) {
                 <div className="py-6 space-y-2">
                     <h2 className="font-bold text-2xl">
                         {__("Dashboard.dashboard_hello", {
-                            name: ucfirst(user.firstname!),
+                            name: ucfirst(user.firstname ?? ""),
                         })}
                     </h2>
                     <p className="text-gray-600">

@@ -5,6 +5,7 @@ import { Avatar, Button, FileInput, Label, Tabs } from "flowbite-react";
 
 import { Formik, Form } from "formik";
 import {
+    PhoneVcardInterface,
     UserVcardInterface,
     VideoLinkVcardInterface,
 } from "@/app/_core/interfaces/vcardInterfaces";
@@ -55,6 +56,8 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
     ) as VcardConfigInterface;
     const urls: unknown = vcard.urls;
     const videos: unknown = vcard.videoLinks;
+    const phones: unknown = vcard.phones;
+
     const [selectedImage, setSelectedImage] = useState<
         string | ArrayBuffer | null
     >(null);
@@ -94,10 +97,7 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
         note: {
             text: vcard.note.text,
         },
-        phone: {
-            type: vcard.phone.type,
-            text: vcard.phone.text,
-        },
+        phones: phones as PhoneVcardInterface[],
         config: vconfig,
     };
     const handleSubmitForm = (values: UserVcardInterface) => {
@@ -105,6 +105,7 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
         const formData = new FormData();
         formData.append("data", JSON.stringify(values));
 
+        console.log(values);
         if (file) {
             formData.append("img", file);
         }

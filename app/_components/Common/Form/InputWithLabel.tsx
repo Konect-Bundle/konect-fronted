@@ -8,6 +8,7 @@ interface InputWithLabelProps extends React.PropsWithChildren {
     labelFor: string;
     labelTitle: string;
     className?: string;
+    labelClassName?: string;
     isRequired?: boolean;
     name?: string;
     isInline?: boolean;
@@ -18,6 +19,7 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
     labelFor,
     labelTitle,
     className = "",
+    labelClassName = "",
     isInline = false,
     name,
     isRequired = false,
@@ -25,10 +27,10 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
     ...props
 }: InputWithLabelProps) => {
     return (
-        <div className={isInline ? "flex space-x-3" : ""}>
+        <div className={isInline ? "flex space-x-3" : "" + ` ${className}`}>
             <div className={isInline ? "" : "mb-2"}>
                 <div className={isInline ? "" : "flex mb-2"}>
-                    <Label htmlFor={labelFor} value={labelTitle} />
+                    <Label htmlFor={labelFor} value={labelTitle} className={` ${labelClassName}`}/>
                     {isRequired && <span className="text-red-600">*</span>}
                 </div>
             </div>

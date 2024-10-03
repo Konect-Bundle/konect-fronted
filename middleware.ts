@@ -1,9 +1,7 @@
-import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
-import { AUTH_TOKEN_NAME } from "./app/_core/config/constants";
-import { homeRoute, loginRoute } from "./app/_core/config/routes";
+import { NextRequest, NextResponse } from "next/server";
 import { UserService } from "./app/_core/api/services/UserService";
-import { getCurrentUser } from "./app/_store/slices/authSlice";
+import { AUTH_TOKEN_NAME } from "./app/_core/config/constants";
+import { loginRoute } from "./app/_core/config/routes";
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
