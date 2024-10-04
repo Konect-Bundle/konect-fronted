@@ -392,6 +392,16 @@
         "referal_link": "Lien de référencement",
         "no_feed": "Aucun retour",
         "feedback": "Retour",
-        "main": "Principal"
+        "main": "Principal",
+        "contact_informations": "Informations de contact"
+
+    },
+    "konectCardStatus": {
+        "title": "Attention!",
+        "message": "Votre carte Konect est actuellement désactivée.",
+        "additionalInfo": "Veuillez contacter le support ou vérifier les paramètres de votre compte pour plus d'informations."
+    },
+    "backToHome": {
+        "label": "Retour à l'accueil"
     }
 }

@@ -10,11 +10,13 @@ import { useTranslations } from "next-intl";
 export interface IAppProps {}
 
 const KuserHeader: React.FC<IAppProps> = (props) => {
-    const [showAlert, setShowAlert] = useState<boolean>(false);
+    const [showAlert, setShowAlert] = useState<boolean>(true);
     useEffect(() => {
-        setTimeout(() => {
-            setShowAlert(true);
-        }, 6500);
+        if (showAlert == false) {
+            setTimeout(() => {
+                setShowAlert(true);
+            }, 6500);
+        }
     }, []);
     const dissmissAlert = () => {
         setShowAlert(false);
