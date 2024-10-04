@@ -30,7 +30,11 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
         <div className={isInline ? "flex space-x-3" : "" + ` ${className}`}>
             <div className={isInline ? "" : "mb-2"}>
                 <div className={isInline ? "" : "flex mb-2"}>
-                    <Label htmlFor={labelFor} value={labelTitle} className={` ${labelClassName}`}/>
+                    <Label
+                        htmlFor={labelFor}
+                        value={labelTitle}
+                        className={` ${labelClassName}`}
+                    />
                     {isRequired && <span className="text-red-600">*</span>}
                 </div>
             </div>

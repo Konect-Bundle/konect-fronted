@@ -393,9 +393,6 @@
         "no_feed": "No feedback",
         "feedback": "Feedback",
         "main": "Main",
-<<<<<<< HEAD
-        "read_more": "Read more ..."
-=======
         "contact_informations": "Contact informations"
     },
     "konectCardStatus": {
@@ -405,6 +402,5 @@
     },
     "backToHome": {
         "label": "Back to Home"
->>>>>>> feature/new-ui
     }
 }

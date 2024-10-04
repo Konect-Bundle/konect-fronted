@@ -15,7 +15,11 @@ const CardBlock: React.FC<CardBlockProps> = ({ children, title }) => {
 
     return (
         <div className="flex flex-col space-y-3 mb-4">
-            {title && <h4 className="font-semibold text-lg text-black-medium">{title}</h4>}
+            {title && (
+                <h4 className="font-semibold text-lg text-black-medium">
+                    {title}
+                </h4>
+            )}
             <div>{children}</div>
         </div>
     );

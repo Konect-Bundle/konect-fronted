@@ -87,15 +87,10 @@ export const customButtonTheme: CustomFlowbiteTheme["button"] = {
     size: {
         xs: "px-2 py-1.5 text-xs font-medium",
         sm: "px-3 py-1.5 text-sm",
-<<<<<<< HEAD
-        md: "md:px-4 md:py-4 py-4 px-1.5 text-xs",
-        lg: "px-5 py-2.5 text-base",
-=======
         md: "md:px-4 md:py-4 py-3.5 px-1.5 text-xs",
         mds: "md:px-4 md:py-4 py-3.5 px-1.5 text-sm",
         mdm: "md:px-4 md:py-4 py-3.5 px-1.5 text-md",
         lg: "px-5 py-5 text-base",
->>>>>>> feature/new-ui
         xl: "px-6 py-3 text-base",
     },
 };

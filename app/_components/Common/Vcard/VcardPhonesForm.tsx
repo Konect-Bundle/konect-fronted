@@ -1,7 +1,5 @@
 // "use client";
-import {
-    PhoneVcardInterface
-} from "@/app/_core/interfaces/vcardInterfaces";
+import { PhoneVcardInterface } from "@/app/_core/interfaces/vcardInterfaces";
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
 import { Button } from "flowbite-react";
 import { FieldArray } from "formik";
@@ -74,7 +72,6 @@ const VcardPhonesForm: React.FC<
                                                 <div className="flex items-center">
                                                     <div className="w-full">
                                                         <PhoneInput
-                                                        
                                                             country={"us"}
                                                             value={phone.text}
                                                             onChange={(val) => {
@@ -83,10 +80,14 @@ const VcardPhonesForm: React.FC<
                                                                     val,
                                                                 );
                                                             }}
-                                                            inputClass={"!py-3.5 !border-gray-300/40 !text-gray-900 !focus:border-gray-200 focus:ring-gray-200 !focus:shadow-none "+inter.className}
+                                                            inputClass={
+                                                                "!py-3.5 !border-gray-300/40 !text-gray-900 !focus:border-gray-200 focus:ring-gray-200 !focus:shadow-none " +
+                                                                inter.className
+                                                            }
                                                             inputStyle={{
                                                                 width: "100%",
-                                                                boxShadow: 'none'
+                                                                boxShadow:
+                                                                    "none",
                                                             }}
                                                         />
                                                         {/* <InputPrefixedIcon

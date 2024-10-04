@@ -393,11 +393,7 @@
         "no_feed": "Aucun retour",
         "feedback": "Retour",
         "main": "Principal",
-<<<<<<< HEAD
-        "read_more": "Lire plus ..."
-=======
         "contact_informations": "Informations de contact"
-
     },
     "konectCardStatus": {
         "title": "Attention!",
@@ -406,6 +402,5 @@
     },
     "backToHome": {
         "label": "Retour à l'accueil"
->>>>>>> feature/new-ui
     }
 }

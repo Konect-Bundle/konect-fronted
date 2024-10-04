@@ -14,7 +14,7 @@ import { formatDistanceToNow } from "date-fns";
 import { TbCheck, TbDownload, TbMap2, TbMapPin2, TbX } from "react-icons/tb";
 import { generateVCard } from "@/app/_core/utils/functions";
 
-export interface KonectsListPage { }
+export interface KonectsListPage {}
 
 export default function KonectsListPage(props: KonectsListPage) {
     const user = useAppSelector((state) => state.auth.currentUser);
@@ -78,7 +78,8 @@ export default function KonectsListPage(props: KonectsListPage) {
                                             <span>{`${city} ${state}, ${country}`}</span>
                                         </h3>
                                         <span>
-                                            {(konect.ko_user_info == null || !konect.ko_user_info.phone) ? (
+                                            {konect.ko_user_info == null ||
+                                            !konect.ko_user_info.phone ? (
                                                 <Badge
                                                     color="gray"
                                                     className="text-xs text-gray-500 font-medium w-max"
@@ -95,9 +96,25 @@ export default function KonectsListPage(props: KonectsListPage) {
                                                     >
                                                         {__("feedback")}
                                                     </Badge>
-                                                    <span className="bg-gray-100 cursor-pointer p-1 rounded-full " onClick={() => {
-                                                        generateVCard(konect.ko_user_info.firstname, konect.ko_user_info.name, konect.ko_user_info.phone, konect.ko_user_info.email);
-                                                    }}>
+                                                    <span
+                                                        className="bg-gray-100 cursor-pointer p-1 rounded-full "
+                                                        onClick={() => {
+                                                            generateVCard(
+                                                                konect
+                                                                    .ko_user_info
+                                                                    .firstname,
+                                                                konect
+                                                                    .ko_user_info
+                                                                    .name,
+                                                                konect
+                                                                    .ko_user_info
+                                                                    .phone,
+                                                                konect
+                                                                    .ko_user_info
+                                                                    .email,
+                                                            );
+                                                        }}
+                                                    >
                                                         <TbDownload className="text-gray-500 hover:text-gray-800" />
                                                     </span>
                                                 </span>
