@@ -393,6 +393,19 @@
         "no_feed": "Aucun retour",
         "feedback": "Retour",
         "main": "Principal",
+<<<<<<< HEAD
         "read_more": "Lire plus ..."
+=======
+        "contact_informations": "Informations de contact"
+
+    },
+    "konectCardStatus": {
+        "title": "Attention!",
+        "message": "Votre carte Konect est actuellement désactivée.",
+        "additionalInfo": "Veuillez contacter le support ou vérifier les paramètres de votre compte pour plus d'informations."
+    },
+    "backToHome": {
+        "label": "Retour à l'accueil"
+>>>>>>> feature/new-ui
     }
 }

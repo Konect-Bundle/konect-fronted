@@ -1,3 +1,5 @@
+import { KPreviewThemeMode, KPreviewZoom } from "../../utils/enums";
+
 export default class VcardConfig {
     public isCardActivated: boolean;
     public showLocalization: boolean;
@@ -38,13 +40,22 @@ export default class VcardConfig {
 }
 
 class VcardConfigTheme {
-    constructor(public primaryColor: string) {}
-
-    array_gen(): Record<string, any> {
-        return { primaryColor: this.primaryColor };
+    constructor(
+      public primaryColor: string = "#ffffff",
+      public kpZoom: KPreviewZoom = KPreviewZoom.NORMAL,
+      public themeMode: KPreviewThemeMode = KPreviewThemeMode.LIGHT
+    ) {}
+  
+    array_gen(): { [key: string]: any } {
+      return {
+        primaryColor: this.primaryColor,
+        kpZoom: this.kpZoom,
+        themeMode: this.themeMode
+      };
     }
-
+  
     json_gen(): string {
-        return JSON.stringify(this.array_gen());
+      return JSON.stringify(this);
     }
-}
+  }
+
