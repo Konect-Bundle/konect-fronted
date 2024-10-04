@@ -1,51 +1,35 @@
 "use client";
-import KuserHeader from "@/app/_components/Common/Headers/KuserHeader";
+import TextSkeleton from "@/app/_components/Common/Skeleton/TextSkeleton";
+import KuserFeedback from "@/app/_components/Inc/KuserFeedback";
+import { KonectService } from "@/app/_core/api/services/KonectService";
+import { UserService } from "@/app/_core/api/services/UserService";
+import { ROOT_FILES_URL } from "@/app/_core/config/constants";
+import { User } from "@/app/_core/models/User";
+import UserVcard from "@/app/_core/models/vcard/UserVcard";
+import VcardConfig from "@/app/_core/models/vcard/VcardConfig";
 import {
     convertYouTubeLinkToEmbed,
     esser,
     ucfirst,
 } from "@/app/_core/utils/functions";
+import { customButtonTheme } from "@/app/_styles/flowbite/button";
+import { Button, Card } from "flowbite-react";
+import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { MdOutlineConnectWithoutContact } from "react-icons/md";
 import {
     TbDownload,
-    TbExternalLink,
-    TbLocationPin,
     TbMail,
     TbMapPin,
     TbPhone,
-    TbShare2,
-    TbShare3,
+    TbShare2
 } from "react-icons/tb";
-import { MdLocationPin } from "react-icons/md";
-import { MdOutlineConnectWithoutContact } from "react-icons/md";
-import { useEffect, useRef, useState } from "react";
-import ImageSkeleton from "@/app/_components/Common/Skeleton/ImageSkeleton";
-import TextSkeleton from "@/app/_components/Common/Skeleton/TextSkeleton";
-import VideoSkeleton from "@/app/_components/Common/Skeleton/VideoSkeleton";
-import ExternalLinkSkeleton from "@/app/_components/Common/Skeleton/ExternalLinkSkeleton";
-import { Avatar, Button, Card } from "flowbite-react";
-import { customButtonTheme } from "@/app/_styles/flowbite/button";
-import { ROOT_FILES_URL } from "@/app/_core/config/constants";
-import {
-    HiAdjustments,
-    HiCloudDownload,
-    HiSave,
-    HiUserCircle,
-} from "react-icons/hi";
-import KuserFeedback from "@/app/_components/Inc/KuserFeedback";
-import { KonectService } from "@/app/_core/api/services/KonectService";
-import { motion } from "framer-motion";
-import { ErrorBoundary } from "next/dist/client/components/error-boundary";
-import { User } from "@/app/_core/models/User";
-import { UserService } from "@/app/_core/api/services/UserService";
-import UserVcard from "@/app/_core/models/vcard/UserVcard";
-import VcardConfig from "@/app/_core/models/vcard/VcardConfig";
-import { customAvatarTheme } from "@/app/_styles/flowbite/avatar";
-import LinkPreviewBlock from "../Common/LinkPreview";
-import { useTranslations } from "next-intl";
-import DesactivatedCard from "../Common/DesactivatedCard";
 import CardBlock from "../Common/CardBlock";
+import DesactivatedCard from "../Common/DesactivatedCard";
+import LinkPreviewBlock from "../Common/LinkPreview";
 
 interface KuserBlockProps {
     kuser: any;
@@ -150,7 +134,7 @@ export default function KuserBlock({
                 }}
             >
                 <h3
-                    className={`flex text-2xl font-semibold text leading-tight ${vinfo.names.familyName.length > 7 || vinfo.names.givenName.length > 7 ? "flex-col" : "space-x-3"}`}
+                    className={`flex text-2xl font-semibold text leading-tight space-x-3`}
                 >
                     <span className="truncate">
                         {ucfirst(vinfo.names.givenName)}
@@ -161,9 +145,9 @@ export default function KuserBlock({
                 </h3>
                 <span className="flex justify-between items-center">
                     <span className="flex flex-col space-y-2">
-                        <p className="line-clamp-2">
+                        {/* <p className="line-clamp-2">
                             {ucfirst(vinfo.note.text)}
-                        </p>
+                        </p> */}
                         <span className="text-sm text-gray-400">
                             {vinfo.location.state?.toLocaleUpperCase() +
                                 ", " +
