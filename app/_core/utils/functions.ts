@@ -137,10 +137,13 @@ END:VCARD
     window.URL.revokeObjectURL(url);
 }
 
-export function stringToEnum<T extends object>(enumObj: T, value: string): T[keyof T] | null {
+export function stringToEnum<T extends object>(
+    enumObj: T,
+    value: string,
+): T[keyof T] | null {
     // Vérifier si la chaîne correspond à une valeur de l'enum
     if (Object.values(enumObj).includes(value as T[keyof T])) {
-      return value as T[keyof T];
+        return value as T[keyof T];
     }
     return null;
-  }
+}

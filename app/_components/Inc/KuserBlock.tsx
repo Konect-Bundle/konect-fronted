@@ -51,9 +51,12 @@ export default function KuserBlock({
     const [konectsCount, setKonectCount] = useState<number>(
         user.konects_count!,
     );
-    const kpZoom = stringToEnum(KPreviewZoom, vconfig.configTheme.kpZoom) ?? KPreviewZoom.NORMAL;
-    const kpTheme = stringToEnum(KPreviewThemeMode, vconfig.configTheme.themeMode) ?? KPreviewThemeMode.LIGHT;
-
+    const kpZoom =
+        stringToEnum(KPreviewZoom, vconfig.configTheme.kpZoom) ??
+        KPreviewZoom.NORMAL;
+    const kpTheme =
+        stringToEnum(KPreviewThemeMode, vconfig.configTheme.themeMode) ??
+        KPreviewThemeMode.LIGHT;
 
     const [offsetY, setOffsetY] = useState(0);
     const [scrollPercent, setScrollPercent] = useState(0);
@@ -139,8 +142,9 @@ export default function KuserBlock({
                 }}
             >
                 <h3
-                    className={`flex ${kpZoom==KPreviewZoom.NORMAL ? "text-xl" : "text-2xl"} font-semibold text leading-tight space-x-3`}
-                >{kpZoom}
+                    className={`flex ${kpZoom == KPreviewZoom.NORMAL ? "text-xl" : "text-2xl"} font-semibold text leading-tight space-x-3`}
+                >
+                    {kpZoom}
                     <span className="truncate">
                         {ucfirst(vinfo.names.givenName)}
                     </span>
