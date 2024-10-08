@@ -1,6 +1,7 @@
 import { productItemRoute } from "../config/routes";
 import { IntentInterface } from "../interfaces/appInterfaces";
 import { PaymentService } from "../api/services/PaymentService";
+import tinycolor from "tinycolor2";
 
 export function esser(text: string, length: number): string {
     return length > 1 ? text + "s" : text;
@@ -146,4 +147,23 @@ export function stringToEnum<T extends object>(
         return value as T[keyof T];
     }
     return null;
+}
+
+interface ColorVariants {
+    base: string;
+    lighter: string;
+    darker: string;
+    text: string;
+}
+
+export function generateColorVariants(color: string): ColorVariants {
+    const baseColor = tinycolor(color);
+    return {
+        base: baseColor.toString(),
+        lighter: baseColor.lighten(20).toString(),
+        darker: baseColor.darken(20).toString(),
+        text: tinycolor
+            .mostReadable(baseColor, ["#ffffff", "#000000"])
+            .toString(),
+    };
 }

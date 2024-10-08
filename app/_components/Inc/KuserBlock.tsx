@@ -10,6 +10,7 @@ import VcardConfig from "@/app/_core/models/vcard/VcardConfig";
 import {
     convertYouTubeLinkToEmbed,
     esser,
+    generateColorVariants,
     stringToEnum,
     ucfirst,
 } from "@/app/_core/utils/functions";
@@ -32,6 +33,7 @@ import CardBlock from "../Common/CardBlock";
 import DesactivatedCard from "../Common/DesactivatedCard";
 import LinkPreviewBlock from "../Common/LinkPreview";
 import { KPreviewThemeMode, KPreviewZoom } from "@/app/_core/utils/enums";
+import KuserHeader from "../Common/Headers/KuserHeader";
 
 interface KuserBlockProps {
     kuser: any;
@@ -60,6 +62,10 @@ export default function KuserBlock({
 
     const [offsetY, setOffsetY] = useState(0);
     const [scrollPercent, setScrollPercent] = useState(0);
+
+    const { base, text } = generateColorVariants(
+        vconfig.configTheme.primaryColor,
+    );
 
     const handleScroll = () => {
         const totalHeight =
@@ -122,6 +128,7 @@ export default function KuserBlock({
             {isCompleted && _buildKuserFeedback()}
 
             <div>
+                <KuserHeader />
                 {scrollPercent > 5 && _buildStickyHeader()}
                 {_buildImageCard()}
                 {_builBottomContent()}
@@ -134,52 +141,192 @@ export default function KuserBlock({
     function _buildStickyHeader() {
         return (
             <header
-                className="transition-opacity uration-1000 sticky top-0 w-full flex flex-col -space-y-2 justify-center bg-white shadow-md py-3 px-6 z-50"
+                className="transition-opacity uration-1000 sticky top-0 w-full flex -space-y-1 justify-between items-center  bg-white shadow-md py-3 px-6 z-50"
                 style={{
-                    minHeight: `${scrollPercent > 25 ? 110 : 0}px`,
+                    minHeight: `${scrollPercent > 25 ? 100 : 0}px`,
                     opacity: scrollPercent > 25 ? 1 : 0,
                     borderBottom: `5px solid ${vconfig.configTheme.primaryColor}`,
                 }}
             >
-                <h3
-                    className={`flex ${kpZoom == KPreviewZoom.NORMAL ? "text-xl" : "text-2xl"} font-semibold text leading-tight space-x-3`}
-                >
-                    {kpZoom}
-                    <span className="truncate">
-                        {ucfirst(vinfo.names.givenName)}
-                    </span>
-                    <span className="truncate">
-                        {ucfirst(vinfo.names.familyName)}
-                    </span>
-                </h3>
-                <span className="flex justify-between items-center">
-                    <span className="flex flex-col space-y-2">
-                        {/* <p className="line-clamp-2">
+                <span className="flex flex-col -space-y-1 justify-center">
+                    <h3
+                        className={`flex ${kpZoom == KPreviewZoom.NORMAL ? "text-xl" : "text-2xl"} font-semibold text leading-tight space-x-2 mb-2`}
+                    >
+                        <span className="truncate">
+                            {ucfirst(vinfo.names.givenName)}
+                        </span>
+                        <span className="truncate">
+                            {ucfirst(vinfo.names.familyName)}
+                        </span>
+                    </h3>
+                    <span className="flex justify-between items-center">
+                        <span className="flex flex-col space-y-2">
+                            {/* <p className="line-clamp-2">
                             {ucfirst(vinfo.note.text)}
                         </p> */}
-                        <span className="text-sm text-gray-400">
-                            {vinfo.location.state?.toLocaleUpperCase() +
-                                ", " +
-                                vinfo.location.iso_code?.toLocaleUpperCase()}
+                            <span className="text-sm text-gray-400">
+                                {vinfo.location.state?.toLocaleUpperCase() +
+                                    ", " +
+                                    vinfo.location.iso_code?.toLocaleUpperCase()}
+                            </span>
                         </span>
                     </span>
-                    <Button
-                        color="dark"
-                        theme={customButtonTheme}
-                        size={"mds"}
-                        onClick={handleSaveContact}
-                    >
-                        <TbDownload className="mr-3 h-4 w-4" />
-                        Save
-                    </Button>
                 </span>
+
+                <Button
+                    color="dark"
+                    theme={customButtonTheme}
+                    size={"mds"}
+                    onClick={handleSaveContact}
+                    style={{
+                        background: base,
+                        color: text,
+                    }}
+                    className="h-min"
+                >
+                    <TbDownload className="mr-3 h-4 w-4" />
+                    Save
+                </Button>
             </header>
         );
     }
 
     function _builBottomContent() {
         return (
-            <div className="p-8 bg-white flex flex-col space-y-3">
+            <div className="px-4 bg-white flex flex-col space-y-5" style={{
+                borderTop: `5px solid ${vconfig.configTheme.primaryColor}`,
+            }}>
+                <span className="relative py-12">
+                    <Card
+                        theme={{
+                            root: {
+                                children:
+                                    "flex flex-col  space-y-6 justify-center p-6",
+                            },
+                        }}
+                        className="max-w-sm flex py-2 absolute -top-24"
+                    >
+                        <span className="flex h-full items-center space-x-4 truncate">
+                            <span
+                                className="min-w-28 h-28 bg-cover rounded-lg bg-center"
+                                style={{
+                                    backgroundImage: `url('${
+                                        ROOT_FILES_URL +
+                                        "/" +
+                                        user.profile_photo_url!
+                                    }')`,
+                                }}
+                            ></span>
+                            <span className="p-2 text-black-bold flex-col space-y-0">
+                                <h3
+                                    className={`flex text-2xl font-bold leading-tight ${vinfo.names.familyName.length > 7 || vinfo.names.givenName.length > 7 ? "flex-col" : "space-x-3"}`}
+                                >
+                                    <span className="truncate">
+                                        {ucfirst(vinfo.names.givenName)}
+                                    </span>
+                                    <span className="truncate">
+                                        {ucfirst(vinfo.names.familyName)}
+                                    </span>
+                                </h3>
+                                {vconfig.showKonects && (
+                                    <div>
+                                        <span className="my-1 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded flex items-center bg-gray-50 border w-max">
+                                            <span className="px-1 text-white">
+                                                <MdOutlineConnectWithoutContact className="w-4 h-4 text-gray-700" />
+                                            </span>
+                                            {isLoading ? (
+                                                <TextSkeleton
+                                                    className="w-16"
+                                                    bgClass="bg-gray-300/25"
+                                                />
+                                            ) : (
+                                                <span className="text-sm text-gray-700 space-x-1 flex">
+                                                    <motion.div
+                                                        initial={{
+                                                            opacity: 0,
+                                                            scale: 0.5,
+                                                        }}
+                                                        animate={{
+                                                            opacity: 1,
+                                                            scale: 1,
+                                                        }}
+                                                        transition={{
+                                                            duration: 0.2,
+                                                            ease: [
+                                                                0, 0.71, 0.2,
+                                                                1.01,
+                                                            ],
+                                                            scale: {
+                                                                type: "spring",
+                                                                damping: 7,
+                                                                stiffness: 100,
+                                                                restDelta: 0.001,
+                                                            },
+                                                        }}
+                                                    >
+                                                        <span id="konect-stat">
+                                                            {konectsCount}
+                                                        </span>
+                                                    </motion.div>
+                                                    <span>
+                                                        {esser(
+                                                            "konect",
+                                                            konectsCount,
+                                                        )}
+                                                    </span>
+                                                </span>
+                                            )}
+                                        </span>
+                                    </div>
+                                )}
+                                <span className="flex flex-col space-y-2">
+                                    <p className="line-clamp-2">
+                                        {ucfirst(vinfo.note.text)}
+                                    </p>
+                                    <span className="text-sm text-gray-400">
+                                        {vinfo.location.state?.toLocaleUpperCase() +
+                                            ", " +
+                                            vinfo.location.iso_code?.toLocaleUpperCase()}
+                                    </span>
+                                </span>
+                            </span>
+                        </span>
+                    </Card>
+                </span>
+                <Button.Group className="w-full grid grid-cols-2">
+                    <Button
+                        color="dark"
+                        theme={customButtonTheme}
+                        size={"mdm"}
+                        onClick={handleSaveContact}
+                    >
+                        <TbDownload className="mr-3 h-4 w-4" />
+                        Save
+                    </Button>
+                    <Link
+                        href={
+                            kuser
+                                ? ROOT_FILES_URL +
+                                  "/vcards/" +
+                                  user.uuid! +
+                                  ".vcf"
+                                : ""
+                        }
+                        ref={aRef}
+                        className="hidden opacity-0 invisible"
+                    />
+                    <Button
+                        color="gray"
+                        theme={customButtonTheme}
+                        size={"mdm"}
+                        onClick={handleShareContact}
+                    >
+                        <TbShare2 className="mr-3 h-4 w-4" />
+                        Exchange
+                    </Button>
+                </Button.Group>
+
+                <p className="line-clamp-4">{vinfo.note.text}</p>
                 {SocialMediaBloc({
                     title: __("social_networks"),
                     socialProfils: vinfo.socialProfils,
@@ -364,8 +511,8 @@ export default function KuserBlock({
 
     function _buildImageCard() {
         return (
-            <div className="bg-cover bg-center">
-                <div className="relative h-full overflow-hidden flex  justify-center items-center py-16">
+            <div className="bg-cover bg-center ">
+                <div className="relative py-28 overflow-hidden flex justify-center items-end">
                     {/* Image de fond */}
                     <div
                         className="absolute inset-0 bg-cover bg-center"
@@ -382,143 +529,14 @@ export default function KuserBlock({
                     {/* Couche assombrie */}
                     <div className="absolute inset-0 bg-black-bold opacity-60"></div>
                     <div
-                        className="absolute inset-0 bg-black-bold opacity-50"
+                        className="absolute inset-0 bg-black-bold opacity-5"
                         style={{
                             backgroundColor: vconfig.configTheme.primaryColor,
                         }}
                     ></div>
 
                     {/* Contenu */}
-                    <div className="relative z-10 flex items-center justify-center text-white">
-                        <Card
-                            theme={{
-                                root: {
-                                    children:
-                                        "flex flex-col  space-y-6 justify-center p-6",
-                                },
-                            }}
-                            className="max-w-sm flex py-2"
-                        >
-                            <span className="flex h-full items-center space-x-4 truncate">
-                                <span
-                                    className="min-w-28 h-28 bg-cover rounded-lg bg-center"
-                                    style={{
-                                        backgroundImage: `url('${
-                                            ROOT_FILES_URL +
-                                            "/" +
-                                            user.profile_photo_url!
-                                        }')`,
-                                    }}
-                                ></span>
-                                <span className="p-2 text-black-bold flex-col space-y-0">
-                                    <h3
-                                        className={`flex text-3xl font-bold text leading-tight ${vinfo.names.familyName.length > 7 || vinfo.names.givenName.length > 7 ? "flex-col" : "space-x-3"}`}
-                                    >
-                                        <span className="truncate">
-                                            {ucfirst(vinfo.names.givenName)}
-                                        </span>
-                                        <span className="truncate">
-                                            {ucfirst(vinfo.names.familyName)}
-                                        </span>
-                                    </h3>
-                                    {vconfig.showKonects && (
-                                        <div>
-                                            <span className="my-1 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded flex items-center bg-gray-50 border w-max">
-                                                <span className="px-1 text-white">
-                                                    <MdOutlineConnectWithoutContact className="w-4 h-4 text-gray-700" />
-                                                </span>
-                                                {isLoading ? (
-                                                    <TextSkeleton
-                                                        className="w-16"
-                                                        bgClass="bg-gray-300/25"
-                                                    />
-                                                ) : (
-                                                    <span className="text-sm text-gray-700 space-x-1 flex">
-                                                        <motion.div
-                                                            initial={{
-                                                                opacity: 0,
-                                                                scale: 0.5,
-                                                            }}
-                                                            animate={{
-                                                                opacity: 1,
-                                                                scale: 1,
-                                                            }}
-                                                            transition={{
-                                                                duration: 0.2,
-                                                                ease: [
-                                                                    0, 0.71,
-                                                                    0.2, 1.01,
-                                                                ],
-                                                                scale: {
-                                                                    type: "spring",
-                                                                    damping: 7,
-                                                                    stiffness: 100,
-                                                                    restDelta: 0.001,
-                                                                },
-                                                            }}
-                                                        >
-                                                            <span id="konect-stat">
-                                                                {konectsCount}
-                                                            </span>
-                                                        </motion.div>
-                                                        <span>
-                                                            {esser(
-                                                                "konect",
-                                                                konectsCount,
-                                                            )}
-                                                        </span>
-                                                    </span>
-                                                )}
-                                            </span>
-                                        </div>
-                                    )}
-                                    <span className="flex flex-col space-y-2">
-                                        <p className="line-clamp-2">
-                                            {ucfirst(vinfo.note.text)}
-                                        </p>
-                                        <span className="text-sm text-gray-400">
-                                            {vinfo.location.state?.toLocaleUpperCase() +
-                                                ", " +
-                                                vinfo.location.iso_code?.toLocaleUpperCase()}
-                                        </span>
-                                    </span>
-                                </span>
-                            </span>
-
-                            <Button.Group className="w-full grid grid-cols-2">
-                                <Button
-                                    color="dark"
-                                    theme={customButtonTheme}
-                                    size={"mdm"}
-                                    onClick={handleSaveContact}
-                                >
-                                    <TbDownload className="mr-3 h-4 w-4" />
-                                    Save
-                                </Button>
-                                <Link
-                                    href={
-                                        kuser
-                                            ? ROOT_FILES_URL +
-                                              "/vcards/" +
-                                              user.uuid! +
-                                              ".vcf"
-                                            : ""
-                                    }
-                                    ref={aRef}
-                                    className="hidden opacity-0 invisible"
-                                />
-                                <Button
-                                    color="gray"
-                                    theme={customButtonTheme}
-                                    size={"mdm"}
-                                    onClick={handleShareContact}
-                                >
-                                    <TbShare2 className="mr-3 h-4 w-4" />
-                                    Exchange
-                                </Button>
-                            </Button.Group>
-                        </Card>
-                    </div>
+                    <div className="relative z-10 flex items-center justify-center text-white mx-4"></div>
                 </div>
             </div>
         );
