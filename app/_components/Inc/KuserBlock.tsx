@@ -10,6 +10,7 @@ import VcardConfig from "@/app/_core/models/vcard/VcardConfig";
 import {
     convertYouTubeLinkToEmbed,
     esser,
+    stringToEnum,
     ucfirst,
 } from "@/app/_core/utils/functions";
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
@@ -25,11 +26,12 @@ import {
     TbMail,
     TbMapPin,
     TbPhone,
-    TbShare2
+    TbShare2,
 } from "react-icons/tb";
 import CardBlock from "../Common/CardBlock";
 import DesactivatedCard from "../Common/DesactivatedCard";
 import LinkPreviewBlock from "../Common/LinkPreview";
+import { KPreviewThemeMode, KPreviewZoom } from "@/app/_core/utils/enums";
 
 interface KuserBlockProps {
     kuser: any;
@@ -49,6 +51,9 @@ export default function KuserBlock({
     const [konectsCount, setKonectCount] = useState<number>(
         user.konects_count!,
     );
+    const kpZoom = stringToEnum(KPreviewZoom, vconfig.configTheme.kpZoom) ?? KPreviewZoom.NORMAL;
+    const kpTheme = stringToEnum(KPreviewThemeMode, vconfig.configTheme.themeMode) ?? KPreviewThemeMode.LIGHT;
+
 
     const [offsetY, setOffsetY] = useState(0);
     const [scrollPercent, setScrollPercent] = useState(0);
@@ -134,8 +139,8 @@ export default function KuserBlock({
                 }}
             >
                 <h3
-                    className={`flex text-2xl font-semibold text leading-tight space-x-3`}
-                >
+                    className={`flex ${kpZoom==KPreviewZoom.NORMAL ? "text-xl" : "text-2xl"} font-semibold text leading-tight space-x-3`}
+                >{kpZoom}
                     <span className="truncate">
                         {ucfirst(vinfo.names.givenName)}
                     </span>

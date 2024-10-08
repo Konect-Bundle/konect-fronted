@@ -3,12 +3,13 @@ export enum ScoreType {
 }
 
 export enum KPreviewZoom {
-    NORMAL,
-    SMALL,
-    LARGE,
+    NORMAL = "normal",
+    SMALL = "small",
+    LARGE = "large",
 }
 
 export enum KPreviewThemeMode {
-    LIGHT,
-    DARK,
+    LIGHT = "light",
+    DARK = "dark",
+    BLURED = "blured",
 }
