@@ -17,7 +17,7 @@ const KuserHeader: React.FC<IAppProps> = (props) => {
                 setShowAlert(true);
             }, 6500);
         }
-    }, []);
+    });
     const dissmissAlert = () => {
         setShowAlert(false);
         console.log(showAlert);

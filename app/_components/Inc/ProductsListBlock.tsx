@@ -64,7 +64,7 @@ export default function ProductsListBlock({
             ga.push(g);
         });
         setGadgets(ga);
-    }, []);
+    }, [data]);
     return (
         <div className="">
             <div className="flex space-x-3 items-center pb-6">

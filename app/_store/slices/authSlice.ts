@@ -19,7 +19,6 @@ export const getCurrentUser = createAsyncThunk(
     "auth/current",
     async (_, thunkAPI) => {
         var token = getCookie(AUTH_TOKEN_NAME);
-
         if (token) {
             try {
                 return await UserService.getLoggedUser(token);
@@ -30,9 +29,17 @@ export const getCurrentUser = createAsyncThunk(
     },
 );
 
-export const logout = createAsyncThunk("auth/logout", async () => {
-    deleteCookie(AUTH_TOKEN_NAME);
-    window.location.replace(homeRoute.name);
+export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+    var token = getCookie(AUTH_TOKEN_NAME);
+
+    if (token) {
+        try {
+            deleteCookie(AUTH_TOKEN_NAME);
+            return await UserService.logout(token);
+        } catch (error: any) {
+            return thunkAPI.rejectWithValue(error.response.data.message);
+        }
+    }
 });
 
 const authSlice = createSlice({
@@ -61,6 +68,9 @@ const authSlice = createSlice({
                     );
                 }
                 state.isLoading = false;
+            })
+            .addCase(logout.pending, (state, _) => {
+                state.isLoading = true;
             })
             .addCase(logout.fulfilled, (state, _) => {
                 state.currentUser = undefined;

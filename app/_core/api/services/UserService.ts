@@ -149,6 +149,10 @@ export class UserService {
         return await fetchData("/api/auth/user", "", {}, "GET", token);
     }
 
+    static async logout(token: string) {
+        return await fetchData("/api/auth/logout", "", {}, "GET", token);
+    }
+
     static async updatePassword(
         newPassword: string,
         oldPassword: string,

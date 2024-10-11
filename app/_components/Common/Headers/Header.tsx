@@ -1,25 +1,5 @@
 "use client";
-import * as React from "react";
-import {
-    Button,
-    Badge,
-    Navbar,
-    NavbarBrand,
-    NavbarCollapse,
-    NavbarLink,
-    NavbarToggle,
-    Dropdown,
-    Avatar,
-} from "flowbite-react";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { customNavbarTheme } from "@/app/_styles/flowbite/navbar";
-import { customButtonTheme } from "@/app/_styles/flowbite/button";
-import {
-    AUTH_TOKEN_NAME,
-    ROOT_ASSETS_URL,
-    ROOT_FILES_URL,
-} from "@/app/_core/config/constants";
+import { ROOT_ASSETS_URL, ROOT_FILES_URL } from "@/app/_core/config/constants";
 import {
     dashboardRoute,
     homeRoute,
@@ -31,16 +11,31 @@ import {
     shareProfilRoute,
     vcardRoute,
 } from "@/app/_core/config/routes";
-import Link from "next/link";
-import { useTranslations } from "next-intl";
-import { getCookie, deleteCookie } from "cookies-next";
+import { ucwords } from "@/app/_core/utils/functions";
+import { useAppDispatch, useAppSelector } from "@/app/_store/hooks";
+import { logout } from "@/app/_store/slices/authSlice";
+import { customAvatarTheme } from "@/app/_styles/flowbite/avatar";
+import { customBadgeTheme } from "@/app/_styles/flowbite/badge";
+import { customButtonTheme } from "@/app/_styles/flowbite/button";
+import { customNavbarTheme } from "@/app/_styles/flowbite/navbar";
 import {
-    TbAlignBoxBottomRight,
-    TbArrowDown,
+    Avatar,
+    Badge,
+    Button,
+    Dropdown,
+    Navbar,
+    NavbarBrand,
+    NavbarCollapse,
+    NavbarLink,
+    NavbarToggle,
+} from "flowbite-react";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import {
     TbChevronDown,
-    TbDashboard,
     TbDiamondFilled,
-    TbDotsVertical,
     TbHistory,
     TbId,
     TbLayoutDashboardFilled,
@@ -48,15 +43,12 @@ import {
     TbShare3,
     TbUsers,
 } from "react-icons/tb";
-import { useAppSelector, useAppDispatch } from "@/app/_store/hooks";
-import { logout } from "@/app/_store/slices/authSlice";
-import { customAvatarTheme } from "@/app/_styles/flowbite/avatar";
-import { esser, ucfirst, ucwords } from "@/app/_core/utils/functions";
-import { customBadgeTheme } from "@/app/_styles/flowbite/badge";
 
 export interface IAppProps {}
 
 export default function Header(props: IAppProps) {
+    const router = useRouter();
+
     const pathname = usePathname();
     const tAction = useTranslations("Actions");
     const tLinks = useTranslations("Links");
@@ -241,10 +233,8 @@ export default function Header(props: IAppProps) {
 
                                         <Dropdown.Item
                                             onClick={() => {
-                                                // dispatch(logout)
-                                                deleteCookie(AUTH_TOKEN_NAME);
-                                                window.location.href =
-                                                    homeRoute.path;
+                                                dispatch(logout());
+                                                router.replace(homeRoute.path);
                                             }}
                                         >
                                             <span className="flex items-center space-x-1">

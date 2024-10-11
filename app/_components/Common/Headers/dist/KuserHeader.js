@@ -16,7 +16,7 @@ var KuserHeader = function (props) {
                 setShowAlert(true);
             }, 6500);
         }
-    }, []);
+    });
     var dissmissAlert = function () {
         setShowAlert(false);
         console.log(showAlert);

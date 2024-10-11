@@ -193,9 +193,12 @@ export default function KuserBlock({
 
     function _builBottomContent() {
         return (
-            <div className="px-4 bg-white flex flex-col space-y-5" style={{
-                borderTop: `5px solid ${vconfig.configTheme.primaryColor}`,
-            }}>
+            <div
+                className="px-4 bg-white flex flex-col space-y-5"
+                style={{
+                    borderTop: `5px solid ${vconfig.configTheme.primaryColor}`,
+                }}
+            >
                 <span className="relative py-12">
                     <Card
                         theme={{
