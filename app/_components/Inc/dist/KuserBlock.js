@@ -23,6 +23,7 @@ var DesactivatedCard_1 = require("../Common/DesactivatedCard");
 var LinkPreview_1 = require("../Common/LinkPreview");
 var enums_1 = require("@/app/_core/utils/enums");
 var KuserHeader_1 = require("../Common/Headers/KuserHeader");
+var libphonenumber_js_1 = require("libphonenumber-js");
 function KuserBlock(_a) {
     var _b, _c;
     var kuser = _a.kuser,
@@ -242,7 +243,7 @@ function KuserBlock(_a) {
                                     "flex flex-col  space-y-6 justify-center p-6",
                             },
                         },
-                        className: "max-w-sm flex py-2 absolute -top-24",
+                        className: "w-full flex py-2 absolute -top-24",
                     },
                     React.createElement(
                         "span",
@@ -266,15 +267,15 @@ function KuserBlock(_a) {
                             "span",
                             {
                                 className:
-                                    "p-2 text-black-bold flex-col space-y-0",
+                                    "p-2 text-black-bold flex-col space-y-3",
                             },
                             React.createElement(
                                 "h3",
                                 {
                                     className:
                                         "flex text-2xl font-bold leading-tight " +
-                                        (vinfo.names.familyName.length > 7 ||
-                                        vinfo.names.givenName.length > 7
+                                        (vinfo.names.familyName.length > 8 ||
+                                        vinfo.names.givenName.length > 8
                                             ? "flex-col"
                                             : "space-x-3"),
                                 },
@@ -369,12 +370,7 @@ function KuserBlock(_a) {
                                 ),
                             React.createElement(
                                 "span",
-                                { className: "flex flex-col space-y-2" },
-                                React.createElement(
-                                    "p",
-                                    { className: "line-clamp-2" },
-                                    functions_1.ucfirst(vinfo.note.text),
-                                ),
+                                { className: "flex flex-col" },
                                 React.createElement(
                                     "span",
                                     { className: "text-sm text-gray-400" },
@@ -435,8 +431,8 @@ function KuserBlock(_a) {
             ),
             React.createElement(
                 "p",
-                { className: "line-clamp-4" },
-                vinfo.note.text,
+                { className: "line-clamp-4 text-center" },
+                functions_1.ucfirst(vinfo.note.text),
             ),
             SocialMediaBloc({
                 title: __("social_networks"),
@@ -550,6 +546,7 @@ function KuserBlock(_a) {
                                                 "flex flex-col space-y-0 px-0",
                                         },
                                         vinfo.phones.map(function (phone, i) {
+                                            var _a, _b;
                                             return (
                                                 phone.text &&
                                                 React.createElement(
@@ -598,11 +595,33 @@ function KuserBlock(_a) {
                                                                   {
                                                                       href:
                                                                           "tel:" +
-                                                                          phone.text,
+                                                                          ((_a =
+                                                                              libphonenumber_js_1
+                                                                                  .parsePhoneNumberFromString(
+                                                                                      "+" +
+                                                                                          phone.text,
+                                                                                  )
+                                                                                  .formatInternational()) !==
+                                                                              null &&
+                                                                          _a !==
+                                                                              void 0
+                                                                              ? _a
+                                                                              : phone.text),
                                                                       className:
                                                                           "text-lg hover:underline text-md text-gray-700",
                                                                   },
-                                                                  phone.text,
+                                                                  (_b =
+                                                                      libphonenumber_js_1
+                                                                          .parsePhoneNumberFromString(
+                                                                              "+" +
+                                                                                  phone.text,
+                                                                          )
+                                                                          .formatInternational()) !==
+                                                                      null &&
+                                                                      _b !==
+                                                                          void 0
+                                                                      ? _b
+                                                                      : phone.text,
                                                               ),
                                                     ),
                                                 )
@@ -678,28 +697,6 @@ function KuserBlock(_a) {
             React.createElement(
                 "div",
                 { className: "flex flex-col space-y-8 rounded-lg" },
-                vinfo.note.text &&
-                    React.createElement(
-                        CardBlock_1["default"],
-                        { title: __("About me") },
-                        React.createElement(
-                            "div",
-                            null,
-                            React.createElement(
-                                "h3",
-                                {
-                                    className:
-                                        "text-gray-700 font-bold text-lg mb-4 mt-4",
-                                },
-                                "About me",
-                            ),
-                            React.createElement(
-                                "p",
-                                { className: "mt-4 text-gray-500" },
-                                vinfo.note.text,
-                            ),
-                        ),
-                    ),
                 vinfo.urls.length > 0 &&
                     React.createElement(
                         CardBlock_1["default"],
@@ -755,7 +752,7 @@ function KuserBlock(_a) {
                                             "span",
                                             {
                                                 className:
-                                                    "text-gray-400 text-sm",
+                                                    "text-gray-400 text-lg",
                                             },
                                             video.type,
                                         ),
@@ -839,126 +836,122 @@ function SocialMediaBloc(_a) {
             { title: title },
             React.createElement(
                 "div",
-                { className: "flex flex-wrap gap-3" },
+                { className: "flex float-start flex-wrap gap-3" },
                 Object.keys(socialProfils).map(function (so, i) {
-                    return React.createElement(
-                        "span",
-                        { className: "", key: i },
-                        socialProfils[so].uri &&
+                    if (socialProfils[so].uri) {
+                        return React.createElement(
+                            "span",
+                            { className: "", key: i },
                             socialProfils[so].type == "instagram" &&
-                            React.createElement(
-                                link_1["default"],
-                                {
-                                    href: socialProfils[so].uri,
-                                    target: "_blank",
-                                    className:
-                                        "border h-20 w-20 rounded-md flex items-center justify-center",
-                                },
-                                React.createElement(image_1["default"], {
-                                    className: "w-16 rounded",
-                                    src: "https://www.logo.wine/a/logo/Instagram/Instagram-Glyph-Color-Logo.wine.svg",
-                                    alt: "instagram",
-                                    loading: "lazy",
-                                    width: 500,
-                                    height: 500,
-                                }),
-                            ),
-                        socialProfils[so].uri &&
+                                React.createElement(
+                                    link_1["default"],
+                                    {
+                                        href: socialProfils[so].uri,
+                                        target: "_blank",
+                                        className:
+                                            "border h-20 w-20 rounded-md flex items-center justify-center",
+                                    },
+                                    React.createElement(image_1["default"], {
+                                        className: "w-16 rounded",
+                                        src: "https://www.logo.wine/a/logo/Instagram/Instagram-Glyph-Color-Logo.wine.svg",
+                                        alt: "instagram",
+                                        loading: "lazy",
+                                        width: 500,
+                                        height: 500,
+                                    }),
+                                ),
                             socialProfils[so].type == "facebook" &&
-                            React.createElement(
-                                link_1["default"],
-                                {
-                                    href: socialProfils[so].uri,
-                                    target: "_blank",
-                                    className:
-                                        "border h-20 w-20 rounded-md flex items-center justify-center",
-                                },
-                                React.createElement(image_1["default"], {
-                                    className: "w-16 rounded",
-                                    src: "https://www.logo.wine/a/logo/Facebook/Facebook-f_Logo-Blue-Logo.wine.svg",
-                                    alt: "facebook",
-                                    loading: "lazy",
-                                    width: 500,
-                                    height: 500,
-                                }),
-                            ),
-                        socialProfils[so].uri &&
+                                React.createElement(
+                                    link_1["default"],
+                                    {
+                                        href: socialProfils[so].uri,
+                                        target: "_blank",
+                                        className:
+                                            "border h-20 w-20 rounded-md flex items-center justify-center",
+                                    },
+                                    React.createElement(image_1["default"], {
+                                        className: "w-16 rounded",
+                                        src: "https://www.logo.wine/a/logo/Facebook/Facebook-f_Logo-Blue-Logo.wine.svg",
+                                        alt: "facebook",
+                                        loading: "lazy",
+                                        width: 500,
+                                        height: 500,
+                                    }),
+                                ),
                             socialProfils[so].type == "linkedin" &&
-                            React.createElement(
-                                link_1["default"],
-                                {
-                                    href: socialProfils[so].uri,
-                                    target: "_blank",
-                                    className:
-                                        "border h-20 w-20 rounded-md flex items-center justify-center",
-                                },
-                                React.createElement(image_1["default"], {
-                                    className: "w-9 rounded",
-                                    src: "https://cdn.worldvectorlogo.com/logos/linkedin-icon-2.svg",
-                                    alt: "linkedin",
-                                    loading: "lazy",
-                                    width: 500,
-                                    height: 500,
-                                }),
-                            ),
-                        socialProfils[so].uri &&
+                                React.createElement(
+                                    link_1["default"],
+                                    {
+                                        href: socialProfils[so].uri,
+                                        target: "_blank",
+                                        className:
+                                            "border h-20 w-20 rounded-md flex items-center justify-center",
+                                    },
+                                    React.createElement(image_1["default"], {
+                                        className: "w-9 rounded",
+                                        src: "https://cdn.worldvectorlogo.com/logos/linkedin-icon-2.svg",
+                                        alt: "linkedin",
+                                        loading: "lazy",
+                                        width: 500,
+                                        height: 500,
+                                    }),
+                                ),
                             socialProfils[so].type == "youtube" &&
-                            React.createElement(
-                                link_1["default"],
-                                {
-                                    href: socialProfils[so].uri,
-                                    target: "_blank",
-                                    className:
-                                        "border h-20 w-20 rounded-md flex items-center justify-center",
-                                },
-                                React.createElement(image_1["default"], {
-                                    className: "w-8 rounded",
-                                    src: "https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg",
-                                    alt: "youtube",
-                                    loading: "lazy",
-                                    width: 500,
-                                    height: 500,
-                                }),
-                            ),
-                        socialProfils[so].uri &&
+                                React.createElement(
+                                    link_1["default"],
+                                    {
+                                        href: socialProfils[so].uri,
+                                        target: "_blank",
+                                        className:
+                                            "border h-20 w-20 rounded-md flex items-center justify-center",
+                                    },
+                                    React.createElement(image_1["default"], {
+                                        className: "w-8 rounded",
+                                        src: "https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg",
+                                        alt: "youtube",
+                                        loading: "lazy",
+                                        width: 500,
+                                        height: 500,
+                                    }),
+                                ),
                             socialProfils[so].type == "tiktok" &&
-                            React.createElement(
-                                link_1["default"],
-                                {
-                                    href: socialProfils[so].uri,
-                                    target: "_blank",
-                                    className:
-                                        "border h-20 w-20 rounded-md flex items-center justify-center",
-                                },
-                                React.createElement(image_1["default"], {
-                                    className: "w-16 rounded",
-                                    src: "https://www.logo.wine/a/logo/TikTok/TikTok-Icon-Logo.wine.svg",
-                                    alt: "tiktok",
-                                    loading: "lazy",
-                                    width: 500,
-                                    height: 500,
-                                }),
-                            ),
-                        socialProfils[so].uri &&
+                                React.createElement(
+                                    link_1["default"],
+                                    {
+                                        href: socialProfils[so].uri,
+                                        target: "_blank",
+                                        className:
+                                            "border h-20 w-20 rounded-md flex items-center justify-center",
+                                    },
+                                    React.createElement(image_1["default"], {
+                                        className: "w-16 rounded",
+                                        src: "https://www.logo.wine/a/logo/TikTok/TikTok-Icon-Logo.wine.svg",
+                                        alt: "tiktok",
+                                        loading: "lazy",
+                                        width: 500,
+                                        height: 500,
+                                    }),
+                                ),
                             socialProfils[so].type == "twitter" &&
-                            React.createElement(
-                                link_1["default"],
-                                {
-                                    href: socialProfils[so].uri,
-                                    target: "_blank",
-                                    className:
-                                        "border h-20 w-20 rounded-md flex items-center justify-center",
-                                },
-                                React.createElement(image_1["default"], {
-                                    className: "w-8 rounded",
-                                    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/512px-Logo_of_Twitter.svg.png?20220821125553",
-                                    alt: "twitter",
-                                    loading: "lazy",
-                                    width: 500,
-                                    height: 500,
-                                }),
-                            ),
-                    );
+                                React.createElement(
+                                    link_1["default"],
+                                    {
+                                        href: socialProfils[so].uri,
+                                        target: "_blank",
+                                        className:
+                                            "border h-20 w-20 rounded-md flex items-center justify-center",
+                                    },
+                                    React.createElement(image_1["default"], {
+                                        className: "w-8 rounded",
+                                        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/512px-Logo_of_Twitter.svg.png?20220821125553",
+                                        alt: "twitter",
+                                        loading: "lazy",
+                                        width: 500,
+                                        height: 500,
+                                    }),
+                                ),
+                        );
+                    }
                 }),
             ),
         );

@@ -51,13 +51,15 @@ export default function LinkPreviewBlock({ url }: ILinkPreviewProps) {
         icon = <FaSoundcloud className={iconClass} />;
     }
     return (
-        <div className="flex justify-start bg-slate-50 rounded-md border  items-center p-2 overflow-hidden">
-            <span className="bg-white p-2 border rounded-md">{icon}</span>
+        <div className="flex justify-start bg-slate-50 rounded-md border  items-center p-4 overflow-hidden">
+            <span className="bg-white text-xl p-4 border rounded-md">
+                {icon}
+            </span>
             <div className="flex flex-col px-4">
-                <span className="text-sm font-bold">{url.type}</span>
+                <span className="font-bold text-md">{url.type}</span>
                 <span>
                     <a
-                        className="text-gray-500 underline truncate"
+                        className="text-gray-500 text-md underline truncate"
                         target="__blank"
                         href={url.uri}
                     >

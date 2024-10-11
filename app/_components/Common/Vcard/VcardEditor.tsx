@@ -105,7 +105,6 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
         const formData = new FormData();
         formData.append("data", JSON.stringify(values));
 
-        console.log(values);
         if (file) {
             formData.append("img", file);
         }

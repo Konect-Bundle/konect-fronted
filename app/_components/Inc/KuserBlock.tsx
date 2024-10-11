@@ -34,6 +34,7 @@ import DesactivatedCard from "../Common/DesactivatedCard";
 import LinkPreviewBlock from "../Common/LinkPreview";
 import { KPreviewThemeMode, KPreviewZoom } from "@/app/_core/utils/enums";
 import KuserHeader from "../Common/Headers/KuserHeader";
+import { parsePhoneNumberFromString } from "libphonenumber-js";
 
 interface KuserBlockProps {
     kuser: any;
@@ -207,7 +208,7 @@ export default function KuserBlock({
                                     "flex flex-col  space-y-6 justify-center p-6",
                             },
                         }}
-                        className="max-w-sm flex py-2 absolute -top-24"
+                        className="w-full flex py-2 absolute -top-24"
                     >
                         <span className="flex h-full items-center space-x-4 truncate">
                             <span
@@ -220,9 +221,9 @@ export default function KuserBlock({
                                     }')`,
                                 }}
                             ></span>
-                            <span className="p-2 text-black-bold flex-col space-y-0">
+                            <span className="p-2 text-black-bold flex-col space-y-3">
                                 <h3
-                                    className={`flex text-2xl font-bold leading-tight ${vinfo.names.familyName.length > 7 || vinfo.names.givenName.length > 7 ? "flex-col" : "space-x-3"}`}
+                                    className={`flex text-2xl font-bold leading-tight ${vinfo.names.familyName.length > 8 || vinfo.names.givenName.length > 8 ? "flex-col" : "space-x-3"}`}
                                 >
                                     <span className="truncate">
                                         {ucfirst(vinfo.names.givenName)}
@@ -282,10 +283,7 @@ export default function KuserBlock({
                                         </span>
                                     </div>
                                 )}
-                                <span className="flex flex-col space-y-2">
-                                    <p className="line-clamp-2">
-                                        {ucfirst(vinfo.note.text)}
-                                    </p>
+                                <span className="flex flex-col">
                                     <span className="text-sm text-gray-400">
                                         {vinfo.location.state?.toLocaleUpperCase() +
                                             ", " +
@@ -329,7 +327,9 @@ export default function KuserBlock({
                     </Button>
                 </Button.Group>
 
-                <p className="line-clamp-4">{vinfo.note.text}</p>
+                <p className="line-clamp-4 text-center">
+                    {ucfirst(vinfo.note.text)}
+                </p>
                 {SocialMediaBloc({
                     title: __("social_networks"),
                     socialProfils: vinfo.socialProfils,
@@ -401,13 +401,19 @@ export default function KuserBlock({
                                                                     <Link
                                                                         href={
                                                                             "tel:" +
-                                                                            phone.text
+                                                                            (parsePhoneNumberFromString(
+                                                                                "+" +
+                                                                                    phone.text,
+                                                                            )!.formatInternational() ??
+                                                                                phone.text)
                                                                         }
                                                                         className="text-lg hover:underline text-md text-gray-700"
                                                                     >
-                                                                        {
-                                                                            phone.text
-                                                                        }
+                                                                        {parsePhoneNumberFromString(
+                                                                            "+" +
+                                                                                phone.text,
+                                                                        )!.formatInternational() ??
+                                                                            phone.text}
                                                                     </Link>
                                                                 )}
                                                             </div>
@@ -457,7 +463,7 @@ export default function KuserBlock({
                     </div>
                 </CardBlock>
                 <div className="flex flex-col space-y-8 rounded-lg">
-                    {vinfo.note.text && (
+                    {/* {vinfo.note.text && (
                         <CardBlock title={__("About me")}>
                             <div>
                                 <h3 className="text-gray-700 font-bold text-lg mb-4 mt-4">
@@ -468,7 +474,7 @@ export default function KuserBlock({
                                 </p>
                             </div>
                         </CardBlock>
-                    )}
+                    )} */}
                     {vinfo.urls.length > 0 && (
                         <CardBlock title={__("external_links")}>
                             <div>
@@ -498,7 +504,7 @@ export default function KuserBlock({
                                                 className="w-full h-52"
                                                 loading="lazy"
                                             ></iframe>
-                                            <span className="text-gray-400 text-sm">
+                                            <span className="text-gray-400 text-lg">
                                                 {video.type}
                                             </span>
                                         </div>
@@ -580,12 +586,12 @@ function SocialMediaBloc({
     if (hasValidUrl(socialProfils)) {
         return (
             <CardBlock title={title}>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex float-start flex-wrap gap-3">
                     {Object.keys(socialProfils).map((so: any, i) => {
-                        return (
-                            <span className="" key={i}>
-                                {socialProfils[so].uri &&
-                                    socialProfils[so].type == "instagram" && (
+                        if (socialProfils[so].uri) {
+                            return (
+                                <span className="" key={i}>
+                                    {socialProfils[so].type == "instagram" && (
                                         <Link
                                             href={socialProfils[so].uri}
                                             target="_blank"
@@ -602,8 +608,7 @@ function SocialMediaBloc({
                                         </Link>
                                     )}
 
-                                {socialProfils[so].uri &&
-                                    socialProfils[so].type == "facebook" && (
+                                    {socialProfils[so].type == "facebook" && (
                                         <Link
                                             href={socialProfils[so].uri}
                                             target="_blank"
@@ -620,8 +625,7 @@ function SocialMediaBloc({
                                         </Link>
                                     )}
 
-                                {socialProfils[so].uri &&
-                                    socialProfils[so].type == "linkedin" && (
+                                    {socialProfils[so].type == "linkedin" && (
                                         <Link
                                             href={socialProfils[so].uri}
                                             target="_blank"
@@ -638,8 +642,7 @@ function SocialMediaBloc({
                                         </Link>
                                     )}
 
-                                {socialProfils[so].uri &&
-                                    socialProfils[so].type == "youtube" && (
+                                    {socialProfils[so].type == "youtube" && (
                                         <Link
                                             href={socialProfils[so].uri}
                                             target="_blank"
@@ -656,8 +659,7 @@ function SocialMediaBloc({
                                         </Link>
                                     )}
 
-                                {socialProfils[so].uri &&
-                                    socialProfils[so].type == "tiktok" && (
+                                    {socialProfils[so].type == "tiktok" && (
                                         <Link
                                             href={socialProfils[so].uri}
                                             target="_blank"
@@ -674,8 +676,7 @@ function SocialMediaBloc({
                                         </Link>
                                     )}
 
-                                {socialProfils[so].uri &&
-                                    socialProfils[so].type == "twitter" && (
+                                    {socialProfils[so].type == "twitter" && (
                                         <Link
                                             href={socialProfils[so].uri}
                                             target="_blank"
@@ -691,8 +692,9 @@ function SocialMediaBloc({
                                             />
                                         </Link>
                                     )}
-                            </span>
-                        );
+                                </span>
+                            );
+                        }
                     })}
                 </div>
             </CardBlock>
