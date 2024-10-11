@@ -27,7 +27,7 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
     ...props
 }: InputWithLabelProps) => {
     return (
-        <div className={isInline ? "flex space-x-3" : "" + ` ${className}`}>
+        <div className={(isInline ? "flex space-x-3" : "") + ` ${className}`}>
             <div className={isInline ? "" : "mb-2"}>
                 <div className={isInline ? "" : "flex mb-2"}>
                     <Label

@@ -393,7 +393,8 @@
         "no_feed": "Aucun retour",
         "feedback": "Retour",
         "main": "Principal",
-        "contact_informations": "Informations de contact"
+        "contact_informations": "Informations de contact",
+        "profile_color": "Thème du profil"
     },
     "konectCardStatus": {
         "title": "Attention!",
