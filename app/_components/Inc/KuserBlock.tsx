@@ -142,7 +142,7 @@ export default function KuserBlock({
     function _buildStickyHeader() {
         return (
             <header
-                className="transition-opacity uration-1000 sticky top-0 w-full flex -space-y-1 justify-between items-center  bg-white shadow-md py-3 px-6 z-50"
+                className="transition-opacity duration-1000 sticky top-0 w-full flex -space-y-1 justify-between items-center  bg-white shadow-md py-3 px-6 z-40"
                 style={{
                     minHeight: `${scrollPercent > 25 ? 100 : 0}px`,
                     opacity: scrollPercent > 25 ? 1 : 0,
