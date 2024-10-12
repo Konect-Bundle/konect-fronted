@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
-import { Onest, Figtree } from "next/font/google";
-import "./globals.scss";
 import StoreProvider from "@/app/_components/Store/StoreProvider";
 import { ROOT_ASSETS_URL } from "@/app/_core/config/constants";
-import { AppSPAService } from "@/app/_core/api/services/AppSPAService";
-import { getLocale, getMessages } from "next-intl/server";
+import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
+import { Outfit } from "next/font/google";
 import ReduxInitLayout from "./_components/Layouts/ReduxInit";
+import "./globals.scss";
 
-const inter = Onest({
+const inter = Outfit({
     subsets: ["latin"],
 });
 

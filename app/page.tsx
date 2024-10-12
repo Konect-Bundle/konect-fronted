@@ -1,25 +1,20 @@
 "use client";
-import Image from "next/image";
+import ContainerLayout from "@/app/_components/Layouts/Container";
+import { productsRoute } from "@/app/_core/config/routes";
+import { customButtonTheme } from "@/app/_styles/flowbite/button";
 import AOS from "aos";
 import "aos/dist/aos.css"; // You can also use <link> for styles
-import Header from "./_components/Common/Headers/Header";
-import Footer from "./_components/Common/Footers/Footer";
-import ContainerLayout from "@/app/_components/Layouts/Container";
 import { Button } from "flowbite-react";
-import {
-    TbAdjustmentsHorizontal,
-    TbArrowForwardUpDouble,
-    TbPhoneCall,
-    TbTruckDelivery,
-    TbUsersGroup,
-} from "react-icons/tb";
-import { DiHtml5Connectivity } from "react-icons/di";
-import { MdOutlineConnectWithoutContact } from "react-icons/md";
-import { useEffect } from "react";
-import { customButtonTheme } from "@/app/_styles/flowbite/button";
-import { productsRoute } from "@/app/_core/config/routes";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect } from "react";
+import { MdOutlineConnectWithoutContact } from "react-icons/md";
+import {
+    TbArrowForwardUpDouble
+} from "react-icons/tb";
+import Footer from "./_components/Common/Footers/Footer";
+import Header from "./_components/Common/Headers/Header";
 
 export default function Home() {
     const t = useTranslations("Home");
