@@ -7,8 +7,8 @@ export default function AuthLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div className="min-h-[100vh] bg-gray-50 w-screen grid md:grid-cols-2 grid-cols-1">
-            <div className="flex justify-center items-center p-8">
+        <div className='min-h-[100vh] bg-gray-50 w-screen grid md:grid-cols-2 grid-cols-1'>
+            <div className='flex justify-center items-center p-8'>
                 {/* <div className="flex justify-center items-center">
                     <div className="absolute top-6">
                         <Image
@@ -22,11 +22,11 @@ export default function AuthLayout({
                     </div>
                 </div> */}
 
-                <div className="bg-white rounded-lg w-max h-max md:py-4 px-8 py-8 border border-gray-300/20">
+                <div className='bg-white rounded-lg w-max h-max md:py-4 px-8 py-8 border border-gray-300/20'>
                     {children}
                 </div>
             </div>
-            <div className="h-full w-full md:block hidden bg-auth-bg bg-cover bg-center"></div>
+            <div className='h-full w-full md:block hidden bg-auth-bg bg-cover bg-center'></div>
         </div>
     );
 }

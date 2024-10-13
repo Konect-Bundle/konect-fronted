@@ -1,6 +1,7 @@
 "use client";
 import { ROOT_ASSETS_URL, ROOT_FILES_URL } from "@/app/_core/config/constants";
 import {
+    companiesRoute,
     dashboardRoute,
     homeRoute,
     howItRoute,
@@ -8,6 +9,7 @@ import {
     loginRoute,
     ordersHistoryRoute,
     productsRoute,
+    settingsProfilRoute,
     shareProfilRoute,
     vcardRoute,
 } from "@/app/_core/config/routes";
@@ -34,14 +36,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
+    TbBuildingCommunity,
     TbChevronDown,
     TbDiamondFilled,
     TbHistory,
     TbId,
     TbLayoutDashboardFilled,
     TbPower,
+    TbSettings,
     TbShare3,
-    TbUsers,
+    TbUsers
 } from "react-icons/tb";
 
 export interface IAppProps {}
@@ -60,31 +64,31 @@ export default function Header(props: IAppProps) {
     return (
         isLoading === false && (
             <Navbar fluid rounded theme={customNavbarTheme}>
-                <div className="flex md:flex-nowrap space-x-3 flex-nowrap justify-between mx-auto md:py-2 py-1 w-full md:items-center items-start">
+                <div className='flex md:flex-nowrap space-x-3 flex-nowrap justify-between mx-auto md:py-2 py-1 w-full md:items-center items-start'>
                     <NavbarBrand href={homeRoute.path}>
-                        <div className="md:h-[100%] h-[72px] bg-gray-900 rounded-xl py-3 px-6 flex items-center justify-center">
+                        <div className='md:h-[100%] h-[72px] bg-gray-900 rounded-xl py-3 px-6 flex items-center justify-center'>
                             <Image
                                 width={500}
                                 height={500}
                                 src={
                                     ROOT_ASSETS_URL + "/images/logo-yellow.png"
                                 }
-                                className="md:w-8 w-12"
-                                alt="Flowbite React Logo"
+                                className='md:w-8 w-12'
+                                alt='Flowbite React Logo'
                                 priority={true}
                             />
                         </div>
                     </NavbarBrand>
 
-                    <div className="bg-gray-900 w-[inherit] py-3 rounded-xl flex md:items-center items-end justify-end md:order-2 md:flex-row flex-col space-x-4 rtl:space-x-reverse md:pe-6 pe-2">
-                        <div className="ml-4 flex items-center md:order-2 md:space-x-4 space-x-3">
+                    <div className='bg-gray-900 w-[inherit] py-3 rounded-xl flex md:items-center items-end justify-end md:order-2 md:flex-row flex-col space-x-4 rtl:space-x-reverse md:pe-6 pe-2'>
+                        <div className='ml-4 flex items-center md:order-2 md:space-x-4 space-x-3'>
                             {user && (
                                 <Badge
                                     icon={TbDiamondFilled}
                                     theme={customBadgeTheme}
-                                    className="w-max"
+                                    className='w-max'
                                     size={"md"}
-                                    color="bordered"
+                                    color='bordered'
                                 >
                                     <span>{`${user.points} `}</span>{" "}
                                     {/* <span className="font-light text-gray-200 text-xs">
@@ -95,8 +99,8 @@ export default function Header(props: IAppProps) {
                             <Link href={productsRoute.path}>
                                 <Button
                                     theme={customButtonTheme}
-                                    color="primary"
-                                    size="md"
+                                    color='primary'
+                                    size='md'
                                 >
                                     {tAction("get_card")}
                                 </Button>
@@ -107,8 +111,8 @@ export default function Header(props: IAppProps) {
                                     <Link href={loginRoute.path}>
                                         <Button
                                             theme={customButtonTheme}
-                                            color="primary-light"
-                                            size="md"
+                                            color='primary-light'
+                                            size='md'
                                         >
                                             {tAction("login")}
                                         </Button>
@@ -116,13 +120,13 @@ export default function Header(props: IAppProps) {
                                     <NavbarToggle />
                                 </>
                             ) : (
-                                <div className="flex space-x-4 pe-3">
+                                <div className='flex space-x-4 pe-3'>
                                     <Dropdown
                                         arrowIcon={false}
                                         inline
                                         label={
                                             user.profile_photo_url ? (
-                                                <span className="flex items-center space-x-1 rounded-full p-1 border-2 border-gray-500">
+                                                <span className='flex items-center space-x-1 rounded-full p-1 border-2 border-gray-500'>
                                                     <Avatar
                                                         theme={
                                                             customAvatarTheme
@@ -133,40 +137,40 @@ export default function Header(props: IAppProps) {
                                                             "/" +
                                                             user.profile_photo_url
                                                         }
-                                                        className="w-full"
-                                                        size="md"
+                                                        className='w-full'
+                                                        size='md'
                                                     />
                                                     <TbChevronDown
                                                         size={28}
-                                                        className="text-gray-300"
+                                                        className='text-gray-300'
                                                     />
                                                 </span>
                                             ) : (
                                                 <Avatar
                                                     theme={customAvatarTheme}
                                                     rounded
-                                                    className="w-full"
-                                                    size="md"
+                                                    className='w-full'
+                                                    size='md'
                                                 />
                                             )
                                         }
                                     >
                                         <Dropdown.Header>
-                                            <span className="block text-sm">
+                                            <span className='block text-sm'>
                                                 {ucwords(
                                                     `${user.firstname} ${user.name}`,
                                                 )}
                                             </span>
-                                            <span className="block truncate text-sm font-medium">
+                                            <span className='block truncate text-sm font-medium'>
                                                 {user.email}
                                             </span>
                                         </Dropdown.Header>
                                         <Dropdown.Item>
                                             <Link
                                                 href={dashboardRoute.path}
-                                                className="w-full block"
+                                                className='w-full block'
                                             >
-                                                <span className="flex items-center space-x-1">
+                                                <span className='flex items-center space-x-1'>
                                                     <TbLayoutDashboardFilled />
                                                     <span>
                                                         {tLinks("dashboard")}
@@ -177,9 +181,9 @@ export default function Header(props: IAppProps) {
                                         <Dropdown.Item>
                                             <Link
                                                 href={vcardRoute.path}
-                                                className="w-full block"
+                                                className='w-full block'
                                             >
-                                                <span className="flex items-center space-x-1">
+                                                <span className='flex items-center space-x-1'>
                                                     <TbId />
                                                     <span>
                                                         {__("my_contact_sheet")}
@@ -190,12 +194,25 @@ export default function Header(props: IAppProps) {
                                         <Dropdown.Item>
                                             <Link
                                                 href={konectsListRoute.path}
-                                                className="w-full block"
+                                                className='w-full block'
                                             >
-                                                <span className="flex items-center space-x-1">
+                                                <span className='flex items-center space-x-1'>
                                                     <TbUsers />
                                                     <span>
                                                         {__("my_connections")}
+                                                    </span>
+                                                </span>
+                                            </Link>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item>
+                                            <Link
+                                                href={companiesRoute.path}
+                                                className='w-full block'
+                                            >
+                                                <span className='flex items-center space-x-1'>
+                                                    <TbBuildingCommunity />
+                                                    <span>
+                                                        {__("companies")}
                                                     </span>
                                                 </span>
                                             </Link>
@@ -206,9 +223,9 @@ export default function Header(props: IAppProps) {
                                         <Dropdown.Item>
                                             <Link
                                                 href={ordersHistoryRoute.path}
-                                                className="w-full block"
+                                                className='w-full block'
                                             >
-                                                <span className="flex items-center space-x-1">
+                                                <span className='flex items-center space-x-1'>
                                                     <TbHistory />
                                                     <span>
                                                         {__("order_history")}
@@ -219,9 +236,9 @@ export default function Header(props: IAppProps) {
                                         <Dropdown.Item>
                                             <Link
                                                 href={shareProfilRoute.path}
-                                                className="w-full block"
+                                                className='w-full block'
                                             >
-                                                <span className="flex items-center space-x-1">
+                                                <span className='flex items-center space-x-1'>
                                                     <TbShare3 />
                                                     <span>
                                                         {__("share_profil")}
@@ -231,13 +248,27 @@ export default function Header(props: IAppProps) {
                                         </Dropdown.Item>
                                         <Dropdown.Divider />
 
+                                        <Dropdown.Item>
+                                            <Link
+                                                href={settingsProfilRoute.path}
+                                                className='w-full block'
+                                            >
+                                                <span className='flex items-center space-x-1'>
+                                                    <TbSettings />
+                                                    <span>
+                                                        {__("account_settings")}
+                                                    </span>
+                                                </span>
+                                            </Link>
+                                        </Dropdown.Item>
+
                                         <Dropdown.Item
                                             onClick={() => {
                                                 dispatch(logout());
                                                 router.replace(homeRoute.path);
                                             }}
                                         >
-                                            <span className="flex items-center space-x-1">
+                                            <span className='flex items-center space-x-1'>
                                                 <TbPower />
                                                 <span>{tLinks("logout")}</span>
                                             </span>
@@ -249,17 +280,17 @@ export default function Header(props: IAppProps) {
                         </div>
 
                         {!user && (
-                            <NavbarCollapse className="">
+                            <NavbarCollapse className=''>
                                 <NavbarLink
-                                    className="uppercase"
+                                    className='uppercase'
                                     href={howItRoute.path}
                                     active={pathname == "/howit" ? true : false}
                                 >
                                     {tLinks("how_it_works")}
                                 </NavbarLink>
                                 <NavbarLink
-                                    className="uppercase"
-                                    href="/contact"
+                                    className='uppercase'
+                                    href='/contact'
                                     active={
                                         pathname == "/contact" ? true : false
                                     }

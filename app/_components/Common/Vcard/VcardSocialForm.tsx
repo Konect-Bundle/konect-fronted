@@ -11,117 +11,117 @@ const VcardSocialForm: React.FC<
     VcardSocialFormProps
 > = ({}: VcardSocialFormProps) => {
     return (
-        <div className="grid md:grid-cols-2 gap-4">
-            <div className="max-w-md">
-                <InputWithLabel labelFor="facebook" labelTitle={"Facebook"}>
+        <div className='grid md:grid-cols-2 gap-4'>
+            <div className='max-w-md'>
+                <InputWithLabel labelFor='facebook' labelTitle={"Facebook"}>
                     <InputPrefixedIcon
-                        name="socialProfils.facebook"
-                        labelFor="facebook"
+                        name='socialProfils.facebook'
+                        labelFor='facebook'
                         icon={
                             <Image
                                 width={500}
                                 height={500}
-                                className="scale-[1.8] rounded"
+                                className='scale-[1.8] rounded'
                                 src={
                                     "https://www.logo.wine/a/logo/Facebook/Facebook-f_Logo-Blue-Logo.wine.svg"
                                 }
-                                alt="facebook"
+                                alt='facebook'
                             />
                         }
                     />
                 </InputWithLabel>
             </div>
-            <div className="max-w-md">
-                <InputWithLabel labelFor="instagram" labelTitle={"Instagram"}>
+            <div className='max-w-md'>
+                <InputWithLabel labelFor='instagram' labelTitle={"Instagram"}>
                     <InputPrefixedIcon
-                        name="socialProfils.instagram"
-                        labelFor="instagram"
+                        name='socialProfils.instagram'
+                        labelFor='instagram'
                         icon={
                             <Image
                                 width={500}
                                 height={500}
-                                className="scale-[1.8] rounded"
+                                className='scale-[1.8] rounded'
                                 src={
                                     "https://www.logo.wine/a/logo/Instagram/Instagram-Glyph-Color-Logo.wine.svg"
                                 }
-                                alt="instagram"
+                                alt='instagram'
                             />
                         }
                     />
                 </InputWithLabel>
             </div>
-            <div className="max-w-md">
-                <InputWithLabel labelFor="twitter" labelTitle={"Twitter"}>
+            <div className='max-w-md'>
+                <InputWithLabel labelFor='twitter' labelTitle={"Twitter"}>
                     <InputPrefixedIcon
-                        name="socialProfils.twitter"
-                        labelFor="twitter"
+                        name='socialProfils.twitter'
+                        labelFor='twitter'
                         icon={
                             <Image
                                 width={500}
                                 height={500}
-                                className="scale-[0.9] rounded"
+                                className='scale-[0.9] rounded'
                                 src={
                                     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/512px-Logo_of_Twitter.svg.png?20220821125553"
                                 }
-                                alt="twitter"
+                                alt='twitter'
                             />
                         }
                     />
                 </InputWithLabel>
             </div>
-            <div className="max-w-md">
-                <InputWithLabel labelFor="linkedin" labelTitle={"LinkedIn"}>
+            <div className='max-w-md'>
+                <InputWithLabel labelFor='linkedin' labelTitle={"LinkedIn"}>
                     <InputPrefixedIcon
-                        name="socialProfils.linkedin"
-                        labelFor="linkedin"
+                        name='socialProfils.linkedin'
+                        labelFor='linkedin'
                         icon={
                             <Image
                                 width={500}
                                 height={500}
-                                className="scale-[0.9] rounded"
+                                className='scale-[0.9] rounded'
                                 src={
                                     "https://cdn.worldvectorlogo.com/logos/linkedin-icon-2.svg"
                                 }
-                                alt="linkedin"
+                                alt='linkedin'
                             />
                         }
                     />
                 </InputWithLabel>
             </div>
-            <div className="max-w-md">
-                <InputWithLabel labelFor="youtube" labelTitle={"Youtube"}>
+            <div className='max-w-md'>
+                <InputWithLabel labelFor='youtube' labelTitle={"Youtube"}>
                     <InputPrefixedIcon
-                        name="socialProfils.youtube"
-                        labelFor="youtube"
+                        name='socialProfils.youtube'
+                        labelFor='youtube'
                         icon={
                             <Image
                                 width={500}
                                 height={500}
-                                className="scale-[0.9] rounded"
+                                className='scale-[0.9] rounded'
                                 src={
                                     "https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg"
                                 }
-                                alt="youtube"
+                                alt='youtube'
                             />
                         }
                     />
                 </InputWithLabel>
             </div>
 
-            <div className="max-w-md">
-                <InputWithLabel labelFor="tiktok" labelTitle={"Tiktok"}>
+            <div className='max-w-md'>
+                <InputWithLabel labelFor='tiktok' labelTitle={"Tiktok"}>
                     <InputPrefixedIcon
-                        name="socialProfils.tiktok"
-                        labelFor="tiktok"
+                        name='socialProfils.tiktok'
+                        labelFor='tiktok'
                         icon={
                             <Image
                                 width={500}
                                 height={500}
-                                className="scale-[1.7] rounded"
+                                className='scale-[1.7] rounded'
                                 src={
                                     "https://www.logo.wine/a/logo/TikTok/TikTok-Icon-Logo.wine.svg"
                                 }
-                                alt="tiktok"
+                                alt='tiktok'
                             />
                         }
                     />

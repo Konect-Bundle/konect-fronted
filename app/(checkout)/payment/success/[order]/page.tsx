@@ -27,14 +27,14 @@ export default async function PaymentSuccessPage({
     }
 
     return (
-        <ConfettiLayout className="h-screen">
+        <ConfettiLayout className='h-screen'>
             <Header />
-            <ContainerLayout className="flex space-y-2 flex-col items-center pt-8 mb-2">
-                <TbCircleCheckFilled className="text-green-600 text-7xl" />
-                <h2 className="md:text-4xl text-3xl font-bold">
+            <ContainerLayout className='flex space-y-2 flex-col items-center pt-8 mb-2'>
+                <TbCircleCheckFilled className='text-green-600 text-7xl' />
+                <h2 className='md:text-4xl text-3xl font-bold'>
                     Paiement effectué
                 </h2>
-                <p className="text-gray-300 text-center">
+                <p className='text-gray-300 text-center'>
                     Vos achat a bien été effetué
                 </p>
             </ContainerLayout>

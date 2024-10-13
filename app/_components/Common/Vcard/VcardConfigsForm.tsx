@@ -87,14 +87,14 @@ const VcardConfigsForm: React.FC<
                 <div className="">
                     <InputWithLabel
                         isInline={true}
-                        labelFor="activatedCard"
+                        labelFor='activatedCard'
                         labelTitle={__("enable_card")}
                     >
-                        <label className="inline-flex items-center mb-5 cursor-pointer">
+                        <label className='inline-flex items-center mb-5 cursor-pointer'>
                             <Field
-                                name="config.isCardActivated"
-                                type="checkbox"
-                                className="sr-only peer"
+                                name='config.isCardActivated'
+                                type='checkbox'
+                                className='sr-only peer'
                             />
                             <div className={toggleClass}></div>
                         </label>
@@ -102,17 +102,17 @@ const VcardConfigsForm: React.FC<
                     </InputWithLabel>
                 </div>
 
-                <div className="">
+                <div className=''>
                     <InputWithLabel
                         isInline={true}
-                        labelFor="showLocation"
+                        labelFor='showLocation'
                         labelTitle={__("enable_localization")}
                     >
-                        <label className="inline-flex items-center mb-5 cursor-pointer">
+                        <label className='inline-flex items-center mb-5 cursor-pointer'>
                             <Field
-                                name="config.showLocalization"
-                                type="checkbox"
-                                className="sr-only peer"
+                                name='config.showLocalization'
+                                type='checkbox'
+                                className='sr-only peer'
                             />
                             <div className={toggleClass}></div>
                         </label>
@@ -120,17 +120,17 @@ const VcardConfigsForm: React.FC<
                     </InputWithLabel>
                 </div>
 
-                <div className="">
+                <div className=''>
                     <InputWithLabel
                         isInline={true}
-                        labelFor="showKonects"
+                        labelFor='showKonects'
                         labelTitle={__("enable_show_konects")}
                     >
-                        <label className="inline-flex items-center mb-5 cursor-pointer">
+                        <label className='inline-flex items-center mb-5 cursor-pointer'>
                             <Field
-                                name="config.showKonects"
-                                type="checkbox"
-                                className="sr-only peer"
+                                name='config.showKonects'
+                                type='checkbox'
+                                className='sr-only peer'
                             />
                             <div className={toggleClass}></div>
                         </label>

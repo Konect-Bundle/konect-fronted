@@ -169,8 +169,8 @@ export default function RegisterFormPage({
     };
     return (
         <LoadingLayout isLoading={isLoading}>
-            <div className="w-full h-full flex  flex-col justify-center items-center">
-                <h2 className="text-2xl text-black-semibold text-center font-bold md:py-6 p-4">
+            <div className='w-full h-full flex  flex-col justify-center items-center'>
+                <h2 className='text-2xl text-black-semibold text-center font-bold md:py-6 p-4'>
                     {T("register")}
                 </h2>
 
@@ -185,51 +185,51 @@ export default function RegisterFormPage({
                         passwordRe: "",
                     }}
                 >
-                    <Form className="flex lg:w-96 sm:w-80 w-72 flex-col gap-4">
+                    <Form className='flex lg:w-96 sm:w-80 w-72 flex-col gap-4'>
                         <InputWithLabel
-                            labelFor="name"
+                            labelFor='name'
                             labelTitle={T("your_name")}
                         >
-                            <InputField labelFor="name" name="name" required />
+                            <InputField labelFor='name' name='name' required />
                         </InputWithLabel>
 
                         <InputWithLabel
-                            labelFor="firstname"
+                            labelFor='firstname'
                             labelTitle={__("your_firstname")}
                         >
                             <InputField
-                                labelFor="firstname"
-                                name="firstname"
+                                labelFor='firstname'
+                                name='firstname'
                                 required
                             />
                         </InputWithLabel>
 
                         <InputWithLabel
-                            labelFor="email"
+                            labelFor='email'
                             labelTitle={T("your_email")}
                         >
                             <InputField
-                                labelFor="email"
-                                name="email"
+                                labelFor='email'
+                                name='email'
                                 required
                             />
                         </InputWithLabel>
 
                         <InputWithLabel
-                            labelFor="password"
+                            labelFor='password'
                             labelTitle={T("your_password")}
                         >
                             <InputField
                                 rightIcon={showPassword ? TbEyeOff : TbEye}
                                 manualType={showPassword ? "text" : "password"}
-                                labelFor="password"
-                                name="password"
+                                labelFor='password'
+                                name='password'
                                 required
                             />
                         </InputWithLabel>
 
                         <InputWithLabel
-                            labelFor="passwordRe"
+                            labelFor='passwordRe'
                             labelTitle={T("confirm_password")}
                         >
                             <InputField
@@ -237,27 +237,27 @@ export default function RegisterFormPage({
                                 manualType={
                                     showPasswordRe ? "text" : "password"
                                 }
-                                labelFor="passwordRe"
-                                name="passwordRe"
+                                labelFor='passwordRe'
+                                name='passwordRe'
                                 required
                             />
                         </InputWithLabel>
 
                         <Button
-                            color="dark"
+                            color='dark'
                             theme={customButtonTheme}
-                            type="submit"
+                            type='submit'
                         >
                             {T("register")}
                         </Button>
 
                         <ErrorsViewer errors={errors} />
 
-                        <p className="text-sm py-2 text-end font-light text-gray-500 dark:text-gray-400">
+                        <p className='text-sm py-2 text-end font-light text-gray-500 dark:text-gray-400'>
                             {T("dont_yet")}?{" "}
                             <a
                                 href={loginRoute.path}
-                                className="font-medium text-gray-900 hover:underline dark:text-primary-500"
+                                className='font-medium text-gray-900 hover:underline dark:text-primary-500'
                             >
                                 {T("login")}
                             </a>

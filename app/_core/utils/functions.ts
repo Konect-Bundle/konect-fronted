@@ -167,3 +167,22 @@ export function generateColorVariants(color: string): ColorVariants {
             .toString(),
     };
 }
+export function actionValidityHasExpired(
+    dateFrom: string,
+    expirationMinutes: number = 60,
+): boolean {
+    // Convertit la date de création en timestamp
+    const createAsTimestamp = new Date(dateFrom).getTime();
+
+    // Calcule le timestamp actuel
+    const currentTimestamp = Date.now();
+
+    // Calcule le temps d'expiration en millisecondes
+    const expirationMilliseconds = expirationMinutes * 60 * 1000;
+
+    // Calcule la différence de temps entre la date de création et maintenant
+    const timeDifference = currentTimestamp - createAsTimestamp;
+
+    // Vérifie si le temps écoulé dépasse le temps d'expiration
+    return timeDifference > expirationMilliseconds;
+}

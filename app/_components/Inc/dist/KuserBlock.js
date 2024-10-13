@@ -228,8 +228,8 @@ function KuserBlock(_a) {
                 vinfo.urls.length > 0 && (React.createElement(CardBlock_1["default"], { title: __("videos_links") },
                     React.createElement("div", { className: "pb-28" },
                         React.createElement("div", { className: "grid md:grid-cols-2 grid-cols-1 gap-3" },
-                            vinfo.videoLinks.map(function (video, i) { return (React.createElement("div", { className: "flex flex-col items-center space-y-3", key: i },
-                                React.createElement("iframe", { src: functions_1.convertYouTubeLinkToEmbed(video.uri), title: "W3Schools Free Online Web Tutorials", className: "w-full h-52", loading: "lazy" }),
+                            vinfo.videoLinks.map(function (video, i) { return (React.createElement("div", { className: 'flex flex-col items-center space-y-3', key: i },
+                                React.createElement("iframe", { src: functions_1.convertYouTubeLinkToEmbed(video.uri), title: 'W3Schools Free Online Web Tutorials', className: 'w-full h-52', loading: 'lazy' }),
                                 React.createElement("span", { className: "text-gray-400 text-lg" }, video.type))); }),
                             " ")))))));
     }

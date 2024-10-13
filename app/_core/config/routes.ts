@@ -70,8 +70,25 @@ export const ordersHistoryRoute: RouteNameInterface = {
     name: "order-history",
     path: "/account/orders",
 };
+export const settingsProfilRoute: RouteNameInterface = {
+    name: "settings-profil",
+    path: "/account/settings",
+};
 
 export const shareProfilRoute: RouteNameInterface = {
     name: "share-profil",
     path: "/account/share",
+};
+
+export const companiesRoute: RouteNameInterface = {
+    name: "companies",
+    path: "/account/companies",
+};
+
+/* =======================
+ Profil Routes - Space Company
+========================= */
+export const companyRoute: RouteNameInterface = {
+    name: "company",
+    path: "/account/company",
 };

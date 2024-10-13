@@ -466,10 +466,10 @@ export default function KuserBlock({
                     {/* {vinfo.note.text && (
                         <CardBlock title={__("About me")}>
                             <div>
-                                <h3 className="text-gray-700 font-bold text-lg mb-4 mt-4">
+                                <h3 className='text-gray-700 font-bold text-lg mb-4 mt-4'>
                                     {"About me"}
                                 </h3>
-                                <p className="mt-4 text-gray-500">
+                                <p className='mt-4 text-gray-500'>
                                     {vinfo.note.text}
                                 </p>
                             </div>
@@ -493,16 +493,16 @@ export default function KuserBlock({
                                 <div className="grid md:grid-cols-2 grid-cols-1 gap-3">
                                     {vinfo.videoLinks.map((video, i) => (
                                         <div
-                                            className="flex flex-col items-center space-y-3"
+                                            className='flex flex-col items-center space-y-3'
                                             key={i}
                                         >
                                             <iframe
                                                 src={convertYouTubeLinkToEmbed(
                                                     video.uri,
                                                 )}
-                                                title="W3Schools Free Online Web Tutorials"
-                                                className="w-full h-52"
-                                                loading="lazy"
+                                                title='W3Schools Free Online Web Tutorials'
+                                                className='w-full h-52'
+                                                loading='lazy'
                                             ></iframe>
                                             <span className="text-gray-400 text-lg">
                                                 {video.type}

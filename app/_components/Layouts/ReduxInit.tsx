@@ -43,17 +43,17 @@ const ReduxInitLayout: React.FC<ReduxInitLayoutProps> = ({
     }, [user, dispatch]);
 
     return isLoading ? (
-        <div className="w-screen h-screen flex justify-center items-center">
+        <div className='w-screen h-screen flex justify-center items-center'>
             <MutatingDots
                 visible={true}
-                height="80"
-                width="80"
-                color="#e4dc1a"
-                secondaryColor="#e4dc1a"
-                radius="12.5"
-                ariaLabel="mutating-dots-loading"
+                height='80'
+                width='80'
+                color='#e4dc1a'
+                secondaryColor='#e4dc1a'
+                radius='12.5'
+                ariaLabel='mutating-dots-loading'
                 wrapperStyle={{}}
-                wrapperClass=""
+                wrapperClass=''
             />
         </div>
     ) : (

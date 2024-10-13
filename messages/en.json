@@ -212,7 +212,8 @@
         "yes": "Yes",
         "login": "Login",
         "register": "Register",
-        "vcard_updated": "Contact sheet successfully updated"
+        "vcard_updated": "Contact sheet successfully updated",
+        "add_company": "New Company"
     },
     "Text": {
         "password_update": "Update password",
@@ -294,6 +295,7 @@
         "update_your_profile_image_here": "Update your profile image here",
         "image_has_been_uploaded": "Image Uploaded",
         "general_informations_successfully_updated": "General Information Successfully Updated",
+        "informations_successfully_updated": "Informations Successfully Updated",
         "contact_sheet_successfully_updated": "Contact Sheet Successfully Updated",
         "konect_successfully_done": "Konect Successfully Done",
         "konect_already_exists": "Konect Already Exists",
@@ -333,7 +335,7 @@
         "video_link": "Video link",
         "click_to_add_a_new_line": "Click to Add a New Line",
         "universe": "Universe",
-        "no_result": "No Result",
+        "no_result": "No result found",
         "on_hold": "On Hold",
         "search_user": "Search User",
         "more": "more",
@@ -394,7 +396,19 @@
         "feedback": "Feedback",
         "main": "Main",
         "contact_informations": "Contact informations",
-        "profile_color": "Profile theme"
+        "profile_color": "Profile theme",
+        "companies": "Companies",
+        "member": "Member",
+        "invitation_success": "Members successfully added",
+        "request_accepted": "Accepted",
+        "request_declined": "Rejected",
+        "request_pending": "Pending",
+        "add_member_description": "Please provide the email of the user you wish to add to your company.",
+        "edit_member_description": "Update your company member informations",
+        "company_email": "User company email",
+        "phone_ext": "Phone Extension",
+        "role": "Role",
+        "manage_companies": "Manage Companies"
     },
     "konectCardStatus": {
         "title": "Attention!",

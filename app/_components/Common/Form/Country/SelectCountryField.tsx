@@ -63,7 +63,7 @@ const SelectCountryField: React.FC<SelectCountryFieldProps> = ({
                             ))}
                         </Select>
                         {meta.touched && meta.error && (
-                            <div className="error mt-2 text-xs text-red-500">
+                            <div className='error mt-2 text-xs text-red-500'>
                                 {meta.error}
                             </div>
                         )}

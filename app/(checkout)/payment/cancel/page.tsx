@@ -6,14 +6,14 @@ export interface IPaymentCancelPageProps {}
 
 export default function PaymentCancelPage(props: IPaymentCancelPageProps) {
     return (
-        <div className="h-screen">
+        <div className='h-screen'>
             <Header />
-            <ContainerLayout className="flex space-y-2 flex-col items-center pt-8 mb-2">
-                <TbCircleCheckFilled className="text-green-600 text-7xl" />
-                <h2 className="md:text-4xl text-3xl font-bold">
+            <ContainerLayout className='flex space-y-2 flex-col items-center pt-8 mb-2'>
+                <TbCircleCheckFilled className='text-green-600 text-7xl' />
+                <h2 className='md:text-4xl text-3xl font-bold'>
                     Transaction annulée
                 </h2>
-                <p className="text-gray-300 text-center">
+                <p className='text-gray-300 text-center'>
                     Vous avez annulé votre transaction avec succès
                 </p>
             </ContainerLayout>

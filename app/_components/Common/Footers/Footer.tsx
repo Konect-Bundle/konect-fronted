@@ -24,22 +24,22 @@ export default function Footer(props: IFooterProps) {
     const tLinks = useTranslations("Links");
     return (
         <FooterFb container theme={customFooterTheme}>
-            <div className="w-full">
-                <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
+            <div className='w-full'>
+                <div className='grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1'>
                     <div>
                         <FooterFb.Brand
                             href={homeRoute.path}
                             src={ROOT_ASSETS_URL + "/images/logo.png"}
-                            alt="Konect Logo"
-                            name="nect"
-                            loading="lazy"
+                            alt='Konect Logo'
+                            name='nect'
+                            loading='lazy'
                         />
                     </div>
-                    <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
+                    <div className='grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6'>
                         <div>
                             <FooterFb.Title title={tLinks("about")} />
                             <FooterFb.LinkGroup col>
-                                <FooterFb.Link href="#">
+                                <FooterFb.Link href='#'>
                                     {tLinks("our_team")}
                                 </FooterFb.Link>
                             </FooterFb.LinkGroup>
@@ -47,7 +47,7 @@ export default function Footer(props: IFooterProps) {
                         <div>
                             <FooterFb.Title title={tLinks("follow_us")} />
                             <FooterFb.LinkGroup col>
-                                <FooterFb.Link href="#">Github</FooterFb.Link>
+                                <FooterFb.Link href='#'>Github</FooterFb.Link>
                             </FooterFb.LinkGroup>
                         </div>
                         <div>
@@ -61,7 +61,7 @@ export default function Footer(props: IFooterProps) {
                                 >
                                     {tLinks("privacy_policy")}
                                 </FooterFb.Link>
-                                <FooterFb.Link href="#">
+                                <FooterFb.Link href='#'>
                                     {tLinks("terms_and_condition")}
                                 </FooterFb.Link>
                             </FooterFb.LinkGroup>
@@ -69,25 +69,25 @@ export default function Footer(props: IFooterProps) {
                     </div>
                 </div>
                 <FooterFb.Divider />
-                <div className="w-full sm:flex sm:items-center sm:justify-between">
+                <div className='w-full sm:flex sm:items-center sm:justify-between'>
                     <FooterFb.Copyright
                         href={homeRoute.path}
-                        by="Konect™"
+                        by='Konect™'
                         year={2024}
                     />
-                    <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-                        <FooterFb.Icon href="#" icon={BsFacebook} />
+                    <div className='mt-4 flex space-x-6 sm:mt-0 sm:justify-center'>
+                        <FooterFb.Icon href='#' icon={BsFacebook} />
                         <FooterFb.Icon
-                            href="https://www.instagram.com/konect.networking"
+                            href='https://www.instagram.com/konect.networking'
                             icon={BsInstagram}
                         />
-                        <FooterFb.Icon href="#" icon={BsTwitter} />
+                        <FooterFb.Icon href='#' icon={BsTwitter} />
                         <FooterFb.Icon
-                            href="https://www.youtube.com/@Konect-t6g"
+                            href='https://www.youtube.com/@Konect-t6g'
                             icon={BsYoutube}
                         />
                         <FooterFb.Icon
-                            href="https://www.tiktok.com/@konect.network"
+                            href='https://www.tiktok.com/@konect.network'
                             icon={BsTiktok}
                         />
                     </div>

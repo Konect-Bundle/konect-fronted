@@ -152,10 +152,10 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
         <LoadingLayout isLoading={isLoading}>
             <Formik initialValues={initialValues} onSubmit={handleSubmitForm}>
                 {(formProps) => (
-                    <Form className="flex flex-col items-end">
-                        <div className="bg-white rounded-lg mb-6 w-full">
+                    <Form className='flex flex-col items-end'>
+                        <div className='bg-white rounded-lg mb-6 w-full'>
                             <Tabs
-                                aria-label="Tabs with icons"
+                                aria-label='Tabs with icons'
                                 theme={customTabsTheme}
                                 variant={"underline"}
                             >
@@ -164,8 +164,8 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                     title={Ttext("general_infos")}
                                     icon={TbUserQuestion}
                                 >
-                                    <div className="flex md:flex-row md:justify-start justify-center flex-col items-center md:space-x-8 space-x-0 px-8 pb-8 pt-5">
-                                        <div className="w-40 h-40 flex justify-center rounded-xl overflow-hidden">
+                                    <div className='flex md:flex-row md:justify-start justify-center flex-col items-center md:space-x-8 space-x-0 px-8 pb-8 pt-5'>
+                                        <div className='w-40 h-40 flex justify-center rounded-xl overflow-hidden'>
                                             {user.profile_photo_url ||
                                             selectedImage ? (
                                                 <Avatar
@@ -177,7 +177,7 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                                               user.profile_photo_url!
                                                     }
                                                     size={"pxl"}
-                                                    alt="Kuser Image"
+                                                    alt='Kuser Image'
                                                     theme={customAvatarTheme}
                                                 />
                                             ) : (
@@ -188,25 +188,25 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                             )}
                                         </div>
 
-                                        <div className="md:mt-0 mt-4">
-                                            <div className="flex flex-col md:items-start items-center">
-                                                <div className="cursor-pointer rounded-md flex items-center space-x-1 bg-gray-50 text-gray-500 w-max px-4 py-1 border border-gray-300/40 hover:text-gray-600 transition-colors">
+                                        <div className='md:mt-0 mt-4'>
+                                            <div className='flex flex-col md:items-start items-center'>
+                                                <div className='cursor-pointer rounded-md flex items-center space-x-1 bg-gray-50 text-gray-500 w-max px-4 py-1 border border-gray-300/40 hover:text-gray-600 transition-colors'>
                                                     <TbEdit />
                                                     <Label
-                                                        className="text-gray-500 font-normal cursor-pointer hover:text-gray-600 transition-colors"
-                                                        htmlFor="file-upload-helper-text"
+                                                        className='text-gray-500 font-normal cursor-pointer hover:text-gray-600 transition-colors'
+                                                        htmlFor='file-upload-helper-text'
                                                         value={TAction(
                                                             "choose_image",
                                                         )}
                                                     />
                                                 </div>
                                                 <FileInput
-                                                    className="hidden"
-                                                    accept=".jpg,.jpeg,.png"
+                                                    className='hidden'
+                                                    accept='.jpg,.jpeg,.png'
                                                     theme={customFileInputTheme}
                                                     color={"gray"}
-                                                    id="file-upload-helper-text"
-                                                    helperText="PNG, JPG or GIF (MAX. 800x400px)."
+                                                    id='file-upload-helper-text'
+                                                    helperText='PNG, JPG or GIF (MAX. 800x400px).'
                                                     onChange={(
                                                         e: React.ChangeEvent<HTMLInputElement>,
                                                     ) => {
@@ -224,8 +224,8 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="px-8 pb-8 md:pt-5 pt-2">
-                                        <h2 className="pb-6 font-semibold text-xl ">
+                                    <div className='px-8 pb-8 md:pt-5 pt-2'>
+                                        <h2 className='pb-6 font-semibold text-xl '>
                                             {Ttext("general_infos")}
                                         </h2>
                                         <VcardGeneralForm
@@ -237,8 +237,8 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                     title={Ttext("social_networks")}
                                     icon={TbBrandInstagram}
                                 >
-                                    <div className="px-8 pb-8 pt-5">
-                                        <h2 className="pb-6 font-semibold text-xl ">
+                                    <div className='px-8 pb-8 pt-5'>
+                                        <h2 className='pb-6 font-semibold text-xl '>
                                             {Ttext("social_networks")}
                                         </h2>
                                         <VcardSocialForm />
@@ -248,8 +248,8 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                     title={Ttext("others_links")}
                                     icon={TbLinkPlus}
                                 >
-                                    <div className="px-8 pb-8 pt-5">
-                                        <h2 className="pb-6 font-semibold text-xl ">
+                                    <div className='px-8 pb-8 pt-5'>
+                                        <h2 className='pb-6 font-semibold text-xl '>
                                             {Ttext("external_links")}
                                         </h2>
                                         <VcardLinksForm />
@@ -259,8 +259,8 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                     title={Ttext("video") + "s"}
                                     icon={TbVideo}
                                 >
-                                    <div className="px-8 pb-8 pt-5">
-                                        <h2 className="pb-6 font-semibold text-xl ">
+                                    <div className='px-8 pb-8 pt-5'>
+                                        <h2 className='pb-6 font-semibold text-xl '>
                                             {Ttext("video") + "s"}
                                         </h2>
                                         <VcardVideosForm />
@@ -270,12 +270,12 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                     title={Ttext("other_settings")}
                                     icon={TbToggleLeft}
                                 >
-                                    <div className="px-8 pb-8 pt-5">
-                                        <h2 className="font-semibold text-xl ">
+                                    <div className='px-8 pb-8 pt-5'>
+                                        <h2 className='font-semibold text-xl '>
                                             {Ttext("other_settings")}
                                         </h2>
 
-                                        <p className="pb-6 text-gray-300/85 text-sm mt-2 font-light">
+                                        <p className='pb-6 text-gray-300/85 text-sm mt-2 font-light'>
                                             {Ttext("should_see")}
                                         </p>
                                         <VcardConfigsForm />
@@ -290,13 +290,13 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                         <ErrorsViewer errors={errors} />
 
                         <Button
-                            type="submit"
+                            type='submit'
                             theme={customButtonTheme}
-                            color="dark"
-                            className=""
+                            color='dark'
+                            className=''
                         >
                             <TbEdit className={"text-lg"} />
-                            <span className="ml-1">{"Save"}</span>
+                            <span className='ml-1'>{"Save"}</span>
                         </Button>
                     </Form>
                 )}

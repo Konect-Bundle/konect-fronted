@@ -5,7 +5,8 @@ import { User } from "@/app/_core/models/User";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { deleteCookie, getCookie } from "cookies-next";
 import { homeRoute } from "@/app/_core/config/routes";
-
+import { CompanyService } from "@/app/_core/api/services/CompanyService";
+import Company from "@/app/_core/models/Company";
 type userType = {
     currentUser: User | undefined;
     isLoading: boolean;
@@ -42,6 +43,28 @@ export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
     }
 });
 
+export const getUserCompanies = createAsyncThunk(
+    "user/companies",
+    async (_, thunkAPI) => {
+        var token = getCookie(AUTH_TOKEN_NAME);
+
+        if (token) {
+            try {
+                var companiesObj: Array<Company> = [];
+                var companies = await CompanyService.getCompanies(token);
+                companies.data.forEach((company: any) => {
+                    companiesObj.push(
+                        CompanyService.buildObjectParser(company),
+                    );
+                });
+                return companiesObj;
+            } catch (error: any) {
+                return thunkAPI.rejectWithValue(error.response.data.message);
+            }
+        }
+    },
+);
+
 const authSlice = createSlice({
     name: "auth",
     initialState,
@@ -72,6 +95,20 @@ const authSlice = createSlice({
             .addCase(logout.pending, (state, _) => {
                 state.isLoading = true;
             })
+
+            // ### ### Get user Companies #### ###
+            .addCase(getUserCompanies.pending, (state, _) => {
+                state.isLoading = true;
+            })
+
+            .addCase(getUserCompanies.fulfilled, (state, action) => {
+                if (action.payload) {
+                    var companies = action.payload;
+                    state.currentUser!.companies = companies;
+                }
+                state.isLoading = false;
+            })
+
             .addCase(logout.fulfilled, (state, _) => {
                 state.currentUser = undefined;
                 state.isLoading = false;

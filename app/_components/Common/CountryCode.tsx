@@ -40,17 +40,17 @@ export default function CountryCode({ callback }: KuserBlockProps) {
         {
             name: "us",
             countryCode: "+1",
-            icon: <US className="w-5 rounded-lg" />,
+            icon: <US className='w-5 rounded-lg' />,
         },
         {
             name: "ca",
             countryCode: "+1",
-            icon: <CA className="w-5 rounded-lg" />,
+            icon: <CA className='w-5 rounded-lg' />,
         },
         {
             name: "us",
             countryCode: "+243",
-            icon: <CD className="w-5 rounded-lg" />,
+            icon: <CD className='w-5 rounded-lg' />,
         },
     ];
 
@@ -58,9 +58,9 @@ export default function CountryCode({ callback }: KuserBlockProps) {
 
     const nodeMaker = (current: number): ReactNode => {
         return (
-            <span className="flex justify-around items-center space-x-1 text-gray-500 text-xs font-semibold md:text-sm w-14">
+            <span className='flex justify-around items-center space-x-1 text-gray-500 text-xs font-semibold md:text-sm w-14'>
                 {availablesCountries[current].icon}
-                <span className="">
+                <span className=''>
                     {availablesCountries[current].countryCode}
                 </span>
             </span>
@@ -84,10 +84,10 @@ export default function CountryCode({ callback }: KuserBlockProps) {
                 )}
             </Dropdown>
             <TextInput
-                type="text"
+                type='text'
                 disabled
-                className="hidden invisible opacity-0"
-                id="countryCode"
+                className='hidden invisible opacity-0'
+                id='countryCode'
                 value={availablesCountries[current].countryCode}
             />
         </span>

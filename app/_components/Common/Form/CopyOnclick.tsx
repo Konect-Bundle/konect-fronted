@@ -40,10 +40,10 @@ const CopyToClipboard: React.FC = () => {
     return (
         <div>
             <input
-                type="text"
+                type='text'
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Tapez quelque chose ici"
+                placeholder='Tapez quelque chose ici'
             />
             <button onClick={handleCopy}>{__a("copy")}</button>
         </div>

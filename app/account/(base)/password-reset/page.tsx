@@ -8,7 +8,7 @@ import { ucfirst } from "@/app/_core/utils/functions";
 
 import ContainerLayout from "@/app/_components/Layouts/Container";
 // import { UserVcardInterface } from "@/app/_core/interfaces/vcardInterfaces";
-import VcardEditor from "../../_components/Common/Vcard/VcardEditor";
+import VcardEditor from "../../../_components/Common/Vcard/VcardEditor";
 
 import Header from "@/app/_components/Common/Headers/Header";
 import { useAppSelector } from "@/app/_store/hooks";
@@ -68,39 +68,39 @@ export default function PasswordResetPage(props: IPasswordResetPageProps) {
 
     if (!user)
         return (
-            <div className="w-screen h-screen flex justify-center items-center">
+            <div className='w-screen h-screen flex justify-center items-center'>
                 <MutatingDots
                     visible={true}
-                    height="80"
-                    width="80"
-                    color="#e4dc1a"
-                    secondaryColor="#e4dc1a"
-                    radius="12.5"
-                    ariaLabel="mutating-dots-loading"
+                    height='80'
+                    width='80'
+                    color='#e4dc1a'
+                    secondaryColor='#e4dc1a'
+                    radius='12.5'
+                    ariaLabel='mutating-dots-loading'
                     wrapperStyle={{}}
-                    wrapperClass=""
+                    wrapperClass=''
                 />
             </div>
         );
 
     return (
         user && (
-            <section className="grid grid-cols-8 gap-4 lg:pt-12 md:pt-4 pt-4">
-                <div className="lg:col-span-2 col-span-8 px-0 lg:py-0 md:py-3 py-0">
+            <section className='grid grid-cols-8 gap-4 lg:pt-12 md:pt-4 pt-4'>
+                <div className='lg:col-span-2 col-span-8 px-0 lg:py-0 md:py-3 py-0'>
                     <h2
                         style={{ whiteSpace: "pre-wrap" }}
-                        className="text-2xl font-semibold"
+                        className='text-2xl font-semibold'
                     >
                         {__("password_update")}
                     </h2>
 
-                    <div className="w-14 h-1 mt-2 bg-gray-400"></div>
+                    <div className='w-14 h-1 mt-2 bg-gray-400'></div>
 
-                    <p className="text-gray-300/85 text-sm mt-4 font-light">
+                    <p className='text-gray-300/85 text-sm mt-4 font-light'>
                         {__("password_update_text")}
                     </p>
                 </div>
-                <div className="lg:col-span-6 col-span-8">
+                <div className='lg:col-span-6 col-span-8'>
                     <LoadingLayout isLoading={isLoading}>
                         <Formik
                             initialValues={{
@@ -111,34 +111,34 @@ export default function PasswordResetPage(props: IPasswordResetPageProps) {
                             onSubmit={handleSubmitForm}
                         >
                             {(formProps) => (
-                                <Form className="flex flex-col items-end">
-                                    <div className="bg-white rounded-lg mb-6 w-full p-8">
-                                        <h2 className="pb-6 font-semibold text-xl ">
+                                <Form className='flex flex-col items-end'>
+                                    <div className='bg-white rounded-lg mb-6 w-full p-8'>
+                                        <h2 className='pb-6 font-semibold text-xl '>
                                             {__("password_update")}
                                         </h2>
-                                        <div className="mt-3">
+                                        <div className='mt-3'>
                                             <InputWithLabel
                                                 labelFor={"oldPassword"}
                                                 labelTitle={__("old_password")}
                                             >
                                                 <InputField
-                                                    labelFor="oldPassword"
-                                                    name="oldPassword"
+                                                    labelFor='oldPassword'
+                                                    name='oldPassword'
                                                 />
                                             </InputWithLabel>
                                         </div>
-                                        <div className="mt-3">
+                                        <div className='mt-3'>
                                             <InputWithLabel
                                                 labelFor={"newPassword"}
                                                 labelTitle={__("new_password")}
                                             >
                                                 <InputField
-                                                    labelFor="newPassword"
-                                                    name="newPassword"
+                                                    labelFor='newPassword'
+                                                    name='newPassword'
                                                 />
                                             </InputWithLabel>
                                         </div>
-                                        <div className="mt-3">
+                                        <div className='mt-3'>
                                             <InputWithLabel
                                                 labelFor={"passwordRe"}
                                                 labelTitle={__(
@@ -146,19 +146,19 @@ export default function PasswordResetPage(props: IPasswordResetPageProps) {
                                                 )}
                                             >
                                                 <InputField
-                                                    labelFor="passwordRe"
-                                                    name="passwordRe"
+                                                    labelFor='passwordRe'
+                                                    name='passwordRe'
                                                 />
                                             </InputWithLabel>
                                         </div>
                                     </div>
                                     <Button
-                                        type="submit"
+                                        type='submit'
                                         theme={customButtonTheme}
-                                        color="dark"
-                                        className=""
+                                        color='dark'
+                                        className=''
                                     >
-                                        <span className="ml-1">{"Save"}</span>
+                                        <span className='ml-1'>{"Save"}</span>
                                     </Button>
                                 </Form>
                             )}
