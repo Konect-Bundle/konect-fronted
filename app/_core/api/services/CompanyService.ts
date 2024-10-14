@@ -101,17 +101,17 @@ export class CompanyService {
     static async invitationFeed(
         request_status: boolean,
         memberUid: string,
-        token: string,
+        // token: string,
     ) {
         const formData = new FormData();
         formData.append("request_status", JSON.stringify(request_status));
 
         return await fetchData(
-            "/api/company-member/" + memberUid,
+            "/api/company-member/invitation/" + memberUid,
             formData,
             {},
             "PATCH",
-            token,
+            // token,
         );
     }
 }

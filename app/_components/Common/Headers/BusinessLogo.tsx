@@ -6,7 +6,7 @@ export interface BusinessLogoProps {}
 
 export default function BusinessLogo({}: BusinessLogoProps) {
     return (
-        <div className='flex flex-col w-full space-y-3 items-center'>
+        <div className='flex w-full space-x-1.5 items-center'>
             <Image
                 width={500}
                 height={500}
@@ -15,7 +15,7 @@ export default function BusinessLogo({}: BusinessLogoProps) {
                 alt='Flowbite React Logo'
                 priority={true}
             />
-            <span className='font-normal text-gray-400'>Company</span>
+            <span className='font-semibold text-white text-md -translate-y-1'>Business</span>
         </div>
     );
 }

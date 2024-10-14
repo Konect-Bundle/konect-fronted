@@ -408,7 +408,11 @@
         "company_email": "User company email",
         "phone_ext": "Phone Extension",
         "role": "Role",
-        "manage_companies": "Manage Companies"
+        "manage_companies": "Manage Companies",
+        "invitation_accepted_title": "Invitation accepted",
+        "invitation_accepted_desc": "Invitation has been accepted",
+        "invitation_declined_title": "Invitation rejected",
+        "invitation_declined_desc": "Invitation has been rejected"
     },
     "konectCardStatus": {
         "title": "Attention!",

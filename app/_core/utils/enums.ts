@@ -13,3 +13,10 @@ export enum KPreviewThemeMode {
     DARK = "dark",
     BLURED = "blured",
 }
+
+export enum MemberRequestStatus {
+    PENDING = "PENDING",
+    COMPLETED = "COMPLETED",
+    DECLINED = "DECLINED",
+    ACCEPTED = "ACCEPTED",
+}

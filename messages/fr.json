@@ -214,7 +214,6 @@
         "register": "S'inscrire",
         "vcard_updated": "Fiche de contact mis à jour",
         "add_company": "Nouvelle Entreprise"
-
     },
     "Text": {
         "password_update": "Mise à jour du mot de passe",
@@ -409,7 +408,11 @@
         "company_email": "Email dans l'entreprise",
         "phone_ext": "Extension téléphone",
         "role": "Rôle",
-        "manage_companies": "Gérer mes entreprises"
+        "manage_companies": "Gérer mes entreprises",
+        "invitation_accepted_title": "Invitation acceptée",
+        "invitation_accepted_desc": "L'invitation a été acceptée",
+        "invitation_declined_title": "Invitation rejetée",
+        "invitation_declined_desc": "L'invitation a été rejectée"
     },
     "konectCardStatus": {
         "title": "Attention!",
