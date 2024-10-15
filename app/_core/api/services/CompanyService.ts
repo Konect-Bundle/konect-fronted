@@ -105,9 +105,9 @@ export class CompanyService {
     ) {
         return await fetchData(
             "/api/company-member/invitation/" + memberUid,
-            serialize({
+            {
                 request_status: request_status,
-            }),
+            },
             {},
             "PATCH",
             // token,
