@@ -103,12 +103,11 @@ export class CompanyService {
         memberUid: string,
         // token: string,
     ) {
-        const formData = new FormData();
-        formData.append("request_status", JSON.stringify(request_status));
-
         return await fetchData(
             "/api/company-member/invitation/" + memberUid,
-            formData,
+            serialize({
+                request_status: request_status,
+            }),
             {},
             "PATCH",
             // token,
