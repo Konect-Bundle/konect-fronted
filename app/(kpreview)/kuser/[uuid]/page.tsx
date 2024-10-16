@@ -27,7 +27,7 @@ export async function generateMetadata(
                 ucfirst(kuser.name),
             card: "summary_large_image",
             images: ROOT_FILES_URL + "/compressed-photo/" + kuser.uuid + ".jpg",
-            description: ucfirst(JSON.parse(kuser.vinfo).note.text),
+            description: ucfirst((kuser.vinfo).note.text),
         },
         openGraph: {
             url: "https://www.ikonect.me/kuser/" + kuser.uuid,
@@ -37,7 +37,7 @@ export async function generateMetadata(
                 " " +
                 ucfirst(kuser.name),
             siteName: "Konect",
-            description: ucfirst(JSON.parse(kuser.vinfo).note.text),
+            description: ucfirst((kuser.vinfo).note.text),
             images: [
                 ROOT_FILES_URL + "/compressed-photo/" + kuser.uuid + ".jpg",
                 ...previousImages,
