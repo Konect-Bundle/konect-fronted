@@ -11,7 +11,7 @@ export default function BusinessLogo({}: BusinessLogoProps) {
                 width={500}
                 height={500}
                 src={ROOT_ASSETS_URL + "/images/logo-white.png"}
-                className='md:w-8 w-12'
+                className='md:w-8 w-10'
                 alt='Flowbite React Logo'
                 priority={true}
             />

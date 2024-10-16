@@ -13,7 +13,6 @@ export async function generateMetadata(
 
     // fetch data
     var kuser = (await UserService.getUser(uuid)).data;
-    // console.log(kuser);
 
     // optionally access and extend (rather than replace) parent metadata
     const previousImages = (await parent).openGraph?.images || [];
@@ -28,7 +27,7 @@ export async function generateMetadata(
                 ucfirst(kuser.name),
             card: "summary_large_image",
             images: ROOT_FILES_URL + "/compressed-photo/" + kuser.uuid + ".jpg",
-            description: ucfirst(kuser.vinfo.note.text),
+            description: ucfirst(JSON.parse(kuser.vinfo).note.text),
         },
         openGraph: {
             url: "https://www.ikonect.me/kuser/" + kuser.uuid,
@@ -38,7 +37,7 @@ export async function generateMetadata(
                 " " +
                 ucfirst(kuser.name),
             siteName: "Konect",
-            description: ucfirst(kuser.vinfo.note.text),
+            description: ucfirst(JSON.parse(kuser.vinfo).note.text),
             images: [
                 ROOT_FILES_URL + "/compressed-photo/" + kuser.uuid + ".jpg",
                 ...previousImages,
@@ -53,6 +52,6 @@ export default async function KuserPage({
     params: { uuid: string };
 }) {
     var kuser = await UserService.getUser(params.uuid);
-
+    console.log(kuser)
     return <KuserBlock kuser={kuser} isLoading={!kuser} />;
 }

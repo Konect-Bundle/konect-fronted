@@ -2,11 +2,12 @@
 
 import BusinessLogo from "@/app/_components/Common/Headers/BusinessLogo";
 import ContainerLayout from "@/app/_components/Layouts/Container";
-import { companyRoute } from "@/app/_core/config/routes";
+import { companyRoute, dashboardRoute } from "@/app/_core/config/routes";
 import { useAppSelector } from "@/app/_store/hooks";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { TbUsers } from "react-icons/tb";
+import { TbLogout, TbSettings, TbUsers } from "react-icons/tb";
 
 export interface SpaceRootLayoutProps {}
 
@@ -17,7 +18,7 @@ export default function SpaceRootLayout({
 }) {
     const currentCompany = useAppSelector((state) => state.app.currentCompany);
     const pathname = usePathname();
-
+    const __ = useTranslations("Text");
     return (
         <>
             {" "}
@@ -62,8 +63,8 @@ dark:bg-neutral-800 dark:border-neutral-700'
                             >
                                 <ul className='flex flex-col space-y-1'>
                                     <li>
-                                        <a
-                                            className={`w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg ${pathname.includes("home") && "space-active-link"}`}
+                                        <Link
+                                            className={`w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-white/10 focus:outline-none focus:bg-white/10 ${pathname.includes("home") && "space-active-link"}`}
                                             href={`${companyRoute.path}/${currentCompany?.name}/home`}
                                         >
                                             <svg
@@ -82,9 +83,9 @@ dark:bg-neutral-800 dark:border-neutral-700'
                                                 <polyline points='9 22 9 12 15 12 15 22' />
                                             </svg>
                                             Dashboard
-                                        </a>
+                                        </Link>
                                     </li>
-                                    <li>
+                                    {/* <li>
                                         <Link
                                             className={`w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg ${pathname.includes("members") && "space-active-link"}`}
                                             href={`${companyRoute.path}/${currentCompany?.name}/members`}
@@ -92,35 +93,19 @@ dark:bg-neutral-800 dark:border-neutral-700'
                                             <TbUsers />
                                             Members
                                         </Link>
-                                    </li>
-                                    {/* <li
+                                    </li> */}
+                                    <li
                                         className='hs-accordion'
                                         id='users-accordion'
                                     >
                                         <button
                                             type='button'
-                                            className='hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-white/10 focus:outline-none focus:bg-white/10'
+                                            className={`hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-white/10 focus:outline-none focus:bg-white/10 ${(pathname.includes("members") || pathname.includes("vcard")) && "space-active-link"}`}
                                             aria-expanded='true'
                                             aria-controls='users-accordion-child'
                                         >
-                                            <svg
-                                                className='shrink-0 size-4'
-                                                xmlns='http://www.w3.org/2000/svg'
-                                                width={24}
-                                                height={24}
-                                                viewBox='0 0 24 24'
-                                                fill='none'
-                                                stroke='currentColor'
-                                                strokeWidth={2}
-                                                strokeLinecap='round'
-                                                strokeLinejoin='round'
-                                            >
-                                                <path d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2' />
-                                                <circle cx={9} cy={7} r={4} />
-                                                <path d='M22 21v-2a4 4 0 0 0-3-3.87' />
-                                                <path d='M16 3.13a4 4 0 0 1 0 7.75' />
-                                            </svg>
-                                            Users
+                                            <TbSettings className='shrink-0 size-4' />
+                                            {__("manage_my_company")}
                                             <svg
                                                 className='hs-accordion-active:block ms-auto hidden size-4'
                                                 xmlns='http://www.w3.org/2000/svg'
@@ -160,157 +145,35 @@ dark:bg-neutral-800 dark:border-neutral-700'
                                                 className='hs-accordion-group ps-8 pt-1 space-y-1'
                                                 data-hs-accordion-always-open=''
                                             >
-                                                <li
-                                                    className='hs-accordion'
-                                                    id='users-accordion-sub-1'
-                                                >
-                                                    <button
-                                                        type='button'
-                                                        className='hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-white/10 focus:outline-none focus:bg-white/10'
-                                                        aria-expanded='true'
-                                                        aria-controls='users-accordion-sub-1-child'
+                                                <li className='hs-accordion'>
+                                                    <Link
+                                                        className={`w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-white/10`}
+                                                        href={`${companyRoute.path}/${currentCompany?.name}/vcard`}
                                                     >
-                                                        Sub Menu 1
-                                                        <svg
-                                                            className='hs-accordion-active:block ms-auto hidden size-4'
-                                                            xmlns='http://www.w3.org/2000/svg'
-                                                            width={24}
-                                                            height={24}
-                                                            viewBox='0 0 24 24'
-                                                            fill='none'
-                                                            stroke='currentColor'
-                                                            strokeWidth={2}
-                                                            strokeLinecap='round'
-                                                            strokeLinejoin='round'
+                                                        <span
+                                                            className={`flex items-center gap-x-3.5 p-2 text-sm text-white rounded-lg ${pathname.includes("vcard") && "space-active-link"}`}
                                                         >
-                                                            <path d='m18 15-6-6-6 6' />
-                                                        </svg>
-                                                        <svg
-                                                            className='hs-accordion-active:hidden ms-auto block size-4'
-                                                            xmlns='http://www.w3.org/2000/svg'
-                                                            width={24}
-                                                            height={24}
-                                                            viewBox='0 0 24 24'
-                                                            fill='none'
-                                                            stroke='currentColor'
-                                                            strokeWidth={2}
-                                                            strokeLinecap='round'
-                                                            strokeLinejoin='round'
-                                                        >
-                                                            <path d='m6 9 6 6 6-6' />
-                                                        </svg>
-                                                    </button>
-                                                    <div
-                                                        id='users-accordion-sub-1-child'
-                                                        className='hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden'
-                                                        role='region'
-                                                        aria-labelledby='users-accordion-sub-1'
-                                                    >
-                                                        <ul className='pt-1 space-y-1'>
-                                                            <li>
-                                                                <a
-                                                                    className='flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-white/10 focus:outline-none focus:bg-white/10 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300 dark:focus:text-neutral-300'
-                                                                    href='#'
-                                                                >
-                                                                    Link 1
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a
-                                                                    className='flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-white/10 focus:outline-none focus:bg-white/10 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300 dark:focus:text-neutral-300'
-                                                                    href='#'
-                                                                >
-                                                                    Link 2
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a
-                                                                    className='flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-white/10 focus:outline-none focus:bg-white/10 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300 dark:focus:text-neutral-300'
-                                                                    href='#'
-                                                                >
-                                                                    Link 3
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                                                            <TbUsers />
+                                                        </span>{" "}
+                                                        {__("contact_sheet")}
+                                                    </Link>
                                                 </li>
-                                                <li
-                                                    className='hs-accordion'
-                                                    id='users-accordion-sub-2'
-                                                >
-                                                    <button
-                                                        type='button'
-                                                        className='hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-white/10 focus:outline-none focus:bg-white/10'
-                                                        aria-expanded='true'
-                                                        aria-controls='users-accordion-sub-2-child'
+                                                <li className='hs-accordion'>
+                                                    <Link
+                                                        className={`w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-white/10`}
+                                                        href={`${companyRoute.path}/${currentCompany?.name}/members`}
                                                     >
-                                                        Sub Menu 2
-                                                        <svg
-                                                            className='hs-accordion-active:block ms-auto hidden size-4'
-                                                            xmlns='http://www.w3.org/2000/svg'
-                                                            width={24}
-                                                            height={24}
-                                                            viewBox='0 0 24 24'
-                                                            fill='none'
-                                                            stroke='currentColor'
-                                                            strokeWidth={2}
-                                                            strokeLinecap='round'
-                                                            strokeLinejoin='round'
+                                                        <span
+                                                            className={`flex items-center gap-x-3.5 p-2 text-sm text-white rounded-lg ${pathname.includes("members") && "space-active-link"}`}
                                                         >
-                                                            <path d='m18 15-6-6-6 6' />
-                                                        </svg>
-                                                        <svg
-                                                            className='hs-accordion-active:hidden ms-auto block size-4'
-                                                            xmlns='http://www.w3.org/2000/svg'
-                                                            width={24}
-                                                            height={24}
-                                                            viewBox='0 0 24 24'
-                                                            fill='none'
-                                                            stroke='currentColor'
-                                                            strokeWidth={2}
-                                                            strokeLinecap='round'
-                                                            strokeLinejoin='round'
-                                                        >
-                                                            <path d='m6 9 6 6 6-6' />
-                                                        </svg>
-                                                    </button>
-                                                    <div
-                                                        id='users-accordion-sub-2-child'
-                                                        className='hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden'
-                                                        role='region'
-                                                        aria-labelledby='users-accordion-sub-2'
-                                                    >
-                                                        <ul className='pt-1 space-y-1'>
-                                                            <li>
-                                                                <a
-                                                                    className='flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-white/10 focus:outline-none focus:bg-white/10 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300 dark:focus:text-neutral-300'
-                                                                    href='#'
-                                                                >
-                                                                    Link 1
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a
-                                                                    className='flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-white/10 focus:outline-none focus:bg-white/10 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300 dark:focus:text-neutral-300'
-                                                                    href='#'
-                                                                >
-                                                                    Link 2
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a
-                                                                    className='flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-white/10 focus:outline-none focus:bg-white/10 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300 dark:focus:text-neutral-300'
-                                                                    href='#'
-                                                                >
-                                                                    Link 3
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                                                            <TbUsers />
+                                                        </span>{" "}
+                                                        {__("employee")}s
+                                                    </Link>
                                                 </li>
                                             </ul>
                                         </div>
-                                    </li> */}
+                                    </li>
                                     {/* <li
                                         className='hs-accordion'
                                         id='account-accordion'
@@ -585,6 +448,17 @@ dark:bg-neutral-800 dark:border-neutral-700'
                             </nav>
                         </div>
                         {/* End Content */}
+
+                        <div className='absolute bottom-4 left-0 w-full p-3'>
+                            <ul className='flex flex-col space-y-1'>
+                                <li>
+                                    <Link href={dashboardRoute.path} className={`w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-white/10`}>
+                                        <TbLogout className='shrink-0 size-4' />
+                                        {__("leave")}
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 {/* End Sidebar */}

@@ -32,6 +32,7 @@ function KuserBlock(_a) {
     var user = UserService_1.UserService.buildObjectParser(kuser);
     var vinfo = user && new UserVcard_1["default"](user.vinfo);
     var vconfig = user && new VcardConfig_1["default"](user.vconfig);
+    console.log(vconfig);
     var __ = next_intl_1.useTranslations("Text");
     var _f = react_1.useState(user.konects_count), konectsCount = _f[0], setKonectCount = _f[1];
     var kpZoom = (_b = functions_1.stringToEnum(enums_1.KPreviewZoom, vconfig.configTheme.kpZoom)) !== null && _b !== void 0 ? _b : enums_1.KPreviewZoom.NORMAL;
@@ -116,7 +117,7 @@ function KuserBlock(_a) {
                 "Save")));
     }
     function _builBottomContent() {
-        var _a, _b;
+        var _a, _b, _c;
         return (React.createElement("div", { className: "px-4 bg-white flex flex-col space-y-5", style: {
                 borderTop: "5px solid " + vconfig.configTheme.primaryColor
             } },
@@ -178,7 +179,7 @@ function KuserBlock(_a) {
                 React.createElement(flowbite_react_1.Button, { color: "gray", theme: button_1.customButtonTheme, size: "mdm", onClick: handleShareContact },
                     React.createElement(tb_1.TbShare2, { className: "mr-3 h-4 w-4" }),
                     "Exchange")),
-            React.createElement("p", { className: "line-clamp-4 text-center" }, functions_1.ucfirst(vinfo.note.text)),
+            React.createElement("p", { className: "line-clamp-4 text-center" }, functions_1.ucfirst((_c = vinfo.note.text) !== null && _c !== void 0 ? _c : "")),
             SocialMediaBloc({
                 title: __("social_networks"),
                 socialProfils: vinfo.socialProfils

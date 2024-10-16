@@ -412,7 +412,10 @@
         "invitation_accepted_title": "Invitation accepted",
         "invitation_accepted_desc": "Invitation has been accepted",
         "invitation_declined_title": "Invitation rejected",
-        "invitation_declined_desc": "Invitation has been rejected"
+        "invitation_declined_desc": "Invitation has been rejected",
+        "manage_my_company": "Manage company",
+        "employee": "Employee",
+        "leave": "Leave"
     },
     "konectCardStatus": {
         "title": "Attention!",

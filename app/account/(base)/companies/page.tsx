@@ -24,6 +24,7 @@ import Company from "@/app/_core/models/Company";
 import Link from "next/link";
 import { companyRoute } from "@/app/_core/config/routes";
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
+import CompanyAvatar from "@/app/_components/Common/CompanyAvatar";
 
 interface CompaniesPage {}
 
@@ -95,10 +96,21 @@ export default function CompaniesPage({}: CompaniesPage) {
                                     className='flex space-y-1 flex-col bg-white p-4 rounded-md border'
                                     key={i}
                                 >
-                                    <div className='flex justify-between'>
+                                    <div className='flex justify-between items-center'>
                                         <h3 className='flex space-x-2 items-center'>
                                             <span>
-                                                <TbBuildingCommunity />
+                                                <CompanyAvatar
+                                                size="sm"
+                                                    icon={
+                                                        company.brandLogoImg ? null : (
+                                                            <TbBuildingCommunity className="text-md"/>
+                                                        )
+                                                    }
+                                                    imgSrc={
+                                                        company.brandLogoImg ??
+                                                        undefined
+                                                    }
+                                                />
                                             </span>
                                             <Link
                                                 href={`${companyRoute.path}/${company.name}/home`}
