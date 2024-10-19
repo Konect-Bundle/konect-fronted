@@ -161,8 +161,10 @@ function KuserBlock(_a) {
                                                     restDelta: 0.001
                                                 }
                                             } },
-                                            React.createElement("span", { id: 'konect-stat' }, konectsCount)),
-                                        React.createElement("span", null, functions_1.esser("konect", konectsCount))))))),
+                                            React.createElement("span", { id: 'konect-stat' }, kuser.konects
+                                                .length)),
+                                        React.createElement("span", null, functions_1.esser("konect", kuser.konects
+                                            .length))))))),
                             React.createElement("span", { className: 'flex flex-col' },
                                 React.createElement("span", { className: 'text-sm text-gray-400' }, ((_a = vinfo.location.state) === null || _a === void 0 ? void 0 : _a.toLocaleUpperCase()) +
                                     ", " + ((_b = vinfo.location.iso_code) === null || _b === void 0 ? void 0 : _b.toLocaleUpperCase()))))))),

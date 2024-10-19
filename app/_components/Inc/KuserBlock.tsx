@@ -270,13 +270,17 @@ export default function KuserBlock({
                                                         }}
                                                     >
                                                         <span id='konect-stat'>
-                                                            {konectsCount}
+                                                            {
+                                                                kuser.konects
+                                                                    .length
+                                                            }
                                                         </span>
                                                     </motion.div>
                                                     <span>
                                                         {esser(
                                                             "konect",
-                                                            konectsCount,
+                                                            kuser.konects
+                                                                .length,
                                                         )}
                                                     </span>
                                                 </span>
