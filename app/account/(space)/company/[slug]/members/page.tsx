@@ -5,14 +5,8 @@ import EditCompanyUserModal from "@/app/_components/Inc/Modals/EditCompanyMember
 import { actionValidityHasExpired, ucfirst } from "@/app/_core/utils/functions";
 import { useAppSelector } from "@/app/_store/hooks";
 import { useTranslations } from "next-intl";
-import {
-    TbCheck,
-    TbClock,
-    TbSend,
-    TbX
-} from "react-icons/tb";
+import { TbCheck, TbClock, TbSend, TbX } from "react-icons/tb";
 import { MutatingDots } from "react-loader-spinner";
-
 
 export default function MembersListCompanyPage({}) {
     // const dispatch = useAppDispatch();
@@ -54,7 +48,7 @@ export default function MembersListCompanyPage({}) {
                                                 {__("member")}s{" "}
                                             </h2>
                                             <p className='text-sm text-gray-600 dark:text-neutral-400'>
-                                                Add users, edit and more.
+                                                {__("add_more")}
                                             </p>
                                         </div>
                                         <div>

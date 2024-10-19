@@ -11,8 +11,8 @@ const BackToHome: React.FC = () => {
     const __ = useTranslations("backToHome");
 
     return (
-        <Link href={homeRoute.path} className="flex space-x-1">
-            <HiHome className="w-5 h-5 mr-2" />
+        <Link href={homeRoute.path} className='flex space-x-1'>
+            <HiHome className='w-5 h-5 mr-2' />
             <span>{__("label")}</span>
         </Link>
     );

@@ -63,7 +63,7 @@ export default function KuserFeedback({ kuser, callback }: KuserBlockProps) {
                 delay: 0.3,
                 ease: [0, 0.71, 0.2, 1.01],
             }}
-            className="fixed top-0 left-0 z-[100] h-screen w-screen flex justify-center items-center"
+            className='fixed top-0 left-0 z-[100] h-screen w-screen flex justify-center items-center'
         >
             <div className='bg-gray-700 opacity-30 h-full w-full'></div>
             <div className='md:py-6 md:px-0 absolute w-full h-full md:w-3/4 flex justify-center items-center'>

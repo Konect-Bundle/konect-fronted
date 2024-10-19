@@ -10,18 +10,18 @@ const DesactivatedCard: React.FC = () => {
     const __ = useTranslations("konectCardStatus");
 
     return (
-        <div className="h-screen w-screen flex flex-col justify-center items-center space-y-1">
-            <div className="p-8">
+        <div className='h-screen w-screen flex flex-col justify-center items-center space-y-1'>
+            <div className='p-8'>
                 <Alert
-                    color="failure"
+                    color='failure'
                     icon={HiExclamationCircle}
                     additionalContent={
-                        <div className="mt-2 mb-4 text-md text-gray-700">
+                        <div className='mt-2 mb-4 text-md text-gray-700'>
                             {__("additionalInfo")}
                         </div>
                     }
                 >
-                    <span className="font-medium">{__("title")}</span>{" "}
+                    <span className='font-medium'>{__("title")}</span>{" "}
                     {__("message")}
                 </Alert>
             </div>

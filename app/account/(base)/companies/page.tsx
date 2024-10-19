@@ -100,10 +100,10 @@ export default function CompaniesPage({}: CompaniesPage) {
                                         <h3 className='flex space-x-2 items-center'>
                                             <span>
                                                 <CompanyAvatar
-                                                size="sm"
+                                                    size='sm'
                                                     icon={
                                                         company.brandLogoImg ? null : (
-                                                            <TbBuildingCommunity className="text-md"/>
+                                                            <TbBuildingCommunity className='text-md' />
                                                         )
                                                     }
                                                     imgSrc={

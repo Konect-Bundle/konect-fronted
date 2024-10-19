@@ -14,9 +14,9 @@ const CardBlock: React.FC<CardBlockProps> = ({ children, title }) => {
     const __ = useTranslations("Text");
 
     return (
-        <div className="flex flex-col space-y-3 mb-4">
+        <div className='flex flex-col space-y-3 mb-4'>
             {title && (
-                <h4 className="font-semibold text-lg text-black-medium">
+                <h4 className='font-semibold text-lg text-black-medium'>
                     {title}
                 </h4>
             )}

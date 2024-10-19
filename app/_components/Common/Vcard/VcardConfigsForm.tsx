@@ -24,24 +24,24 @@ const VcardConfigsForm: React.FC<
 
     return (
         <div>
-            <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
-                <div className="h-14">
+            <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4'>
+                <div className='h-14'>
                     <InputWithLabel
                         isInline={true}
-                        labelFor="showKonects"
+                        labelFor='showKonects'
                         labelTitle={__("profile_color")}
-                        className="h-full items-center"
+                        className='h-full items-center'
                     >
                         <Field
-                            name="config.configTheme.primaryColor"
-                            type="hidden"
-                            className="sr-only peer h-12"
+                            name='config.configTheme.primaryColor'
+                            type='hidden'
+                            className='sr-only peer h-12'
                         >
                             {({ field }: { field: any }) => (
                                 <Popover
-                                    aria-labelledby="default-popover"
+                                    aria-labelledby='default-popover'
                                     content={
-                                        <div className="flex-col space-y-2 items-center bg-white p-2 rounded-lg">
+                                        <div className='flex-col space-y-2 items-center bg-white p-2 rounded-lg'>
                                             <HexColorPicker
                                                 color={field.value}
                                                 onChange={(color) =>
@@ -64,7 +64,7 @@ const VcardConfigsForm: React.FC<
                                         </div>
                                     }
                                 >
-                                    <div className="py-1 px-1 border rounded-md border-gray-300/45 h-max">
+                                    <div className='py-1 px-1 border rounded-md border-gray-300/45 h-max'>
                                         <div
                                             style={{
                                                 backgroundColor: field.value,
@@ -72,7 +72,7 @@ const VcardConfigsForm: React.FC<
                                                     field.value,
                                                 ).text,
                                             }}
-                                            className="w-full h-10 rounded-sm px-2 flex justify-center items-center"
+                                            className='w-full h-10 rounded-sm px-2 flex justify-center items-center'
                                         >
                                             {field.value}
                                         </div>
@@ -84,7 +84,7 @@ const VcardConfigsForm: React.FC<
                         {/* <ToggleSwitch checked={switch1} name="config.showLocalization" label="Toggle me" onChange={setSwitch1} id="showLocation" theme={customToggleSwitchTheme} color="yellow" /> */}
                     </InputWithLabel>
                 </div>
-                <div className="">
+                <div className=''>
                     <InputWithLabel
                         isInline={true}
                         labelFor='activatedCard'

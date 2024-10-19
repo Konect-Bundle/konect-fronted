@@ -45,7 +45,7 @@ import {
     TbPower,
     TbSettings,
     TbShare3,
-    TbUsers
+    TbUsers,
 } from "react-icons/tb";
 
 export interface IAppProps {}

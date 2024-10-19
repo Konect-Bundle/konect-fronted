@@ -66,7 +66,6 @@ export default function AddUserToCompanyModal({
         }
     }, [query]);
 
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const searchUsers = async (search: string) => {
         try {
@@ -92,7 +91,6 @@ export default function AddUserToCompanyModal({
             searchUsers(debouncedQuery);
         }
     }, [debouncedQuery, searchUsers]);
-
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setIsLoading(true);

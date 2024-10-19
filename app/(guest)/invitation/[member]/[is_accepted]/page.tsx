@@ -8,6 +8,9 @@ export default function Invitation({
     params: { member: string; is_accepted: string };
 }) {
     return (
-        <InvitationClient isAccepted={!!parseInt(params.is_accepted)} uid={params.member} />
+        <InvitationClient
+            isAccepted={!!parseInt(params.is_accepted)}
+            uid={params.member}
+        />
     );
 }

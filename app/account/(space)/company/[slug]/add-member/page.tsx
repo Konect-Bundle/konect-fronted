@@ -5,8 +5,6 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { MutatingDots } from "react-loader-spinner";
 
-
-
 export default function AddMemberCompanyPage({}) {
     // const dispatch = useAppDispatch();
     const user = useAppSelector((state) => state.auth.currentUser);

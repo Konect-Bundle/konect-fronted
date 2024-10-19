@@ -10,9 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import { MdOutlineConnectWithoutContact } from "react-icons/md";
-import {
-    TbArrowForwardUpDouble
-} from "react-icons/tb";
+import { TbArrowForwardUpDouble } from "react-icons/tb";
 import Footer from "./_components/Common/Footers/Footer";
 import Header from "./_components/Common/Headers/Header";
 

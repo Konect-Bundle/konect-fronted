@@ -35,7 +35,7 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
                         value={labelTitle}
                         className={` ${labelClassName}`}
                     />
-                    {isRequired && <span className="text-red-600">*</span>}
+                    {isRequired && <span className='text-red-600'>*</span>}
                 </div>
             </div>
             {children}

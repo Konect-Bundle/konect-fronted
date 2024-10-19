@@ -452,7 +452,10 @@ dark:bg-neutral-800 dark:border-neutral-700'
                         <div className='absolute bottom-4 left-0 w-full p-3'>
                             <ul className='flex flex-col space-y-1'>
                                 <li>
-                                    <Link href={dashboardRoute.path} className={`w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-white/10`}>
+                                    <Link
+                                        href={dashboardRoute.path}
+                                        className={`w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg hover:bg-white/10`}
+                                    >
                                         <TbLogout className='shrink-0 size-4' />
                                         {__("leave")}
                                     </Link>

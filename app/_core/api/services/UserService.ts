@@ -19,9 +19,11 @@ export class UserService {
         var orders: Order[] = [];
         var gadgets: KoGadgetItem[] = [];
 
+        var base = data.data ? data.data : data;
+
         // console.log(data.data);
-        if (data.data.konects) {
-            data.data.konects.forEach((konect: any) => {
+        if (base.konects) {
+            base.konects.forEach((konect: any) => {
                 konects.push(
                     new Konect(
                         konect.ko_ip_konect,
@@ -38,8 +40,8 @@ export class UserService {
         }
 
         // console.log(data.data);
-        if (data.data.gadgets) {
-            data.data.gadgets.forEach((gadget: any) => {
+        if (base.gadgets) {
+            base.gadgets.forEach((gadget: any) => {
                 const order = gadget.order;
                 const ga = gadget.gadget;
                 const customs: CardCustomDetails = {
@@ -77,20 +79,20 @@ export class UserService {
             });
         }
 
-        //  console.log(data.data.companies)
-        user.uuid = data.data.uuid;
-        user.name = data.data.name;
-        user.firstname = data.data.firstname;
-        user.email = data.data.email;
-        user.vinfo = data.data.vinfo;
-        user.vconfig = data.data.vconfig;
-        user.profile_photo_url = data.data.profile_photo_path;
-        user.konects_count = data.data.konects_count;
+        //  console.log(base.companies)
+        user.uuid = base.uuid;
+        user.name = base.name;
+        user.firstname = base.firstname;
+        user.email = base.email;
+        user.vinfo = base.vinfo;
+        user.vconfig = base.vconfig;
+        user.profile_photo_url = base.profile_photo_path;
+        user.konects_count = base.konects_count;
         user.konects = konects;
         user.orders = orders;
         user.gadgets = gadgets;
-        user.points = formatNumber(data.data.kpoint);
-        user.referal_code = data.data.referal_code;
+        user.points = formatNumber(base.kpoint);
+        user.referal_code = base.referal_code;
         return user;
     }
 
@@ -98,6 +100,9 @@ export class UserService {
         return await fetchData("/api/user/uuid/" + uuid);
     }
 
+    static async getGadget(uuid: string) {
+        return await fetchData("/api/kogadget/" + uuid);
+    }
     static async login(email: string, password: string) {
         return await fetchData(
             "/api/auth/login",

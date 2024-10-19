@@ -415,7 +415,8 @@
         "invitation_declined_desc": "L'invitation a été rejectée",
         "manage_my_company": "Gérer mon entreprise",
         "employee": "Employé",
-        "leave": "Quitter"
+        "leave": "Quitter",
+        "add_more": "Ajoutez des utilisateurs, modifiez-les et bien plus encore."
     },
     "konectCardStatus": {
         "title": "Attention!",

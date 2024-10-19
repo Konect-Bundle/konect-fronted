@@ -52,15 +52,16 @@ var UserService = /** @class */ (function () {
         var konects = [];
         var orders = [];
         var gadgets = [];
+        var base = data.data ? data.data : data;
         // console.log(data.data);
-        if (data.data.konects) {
-            data.data.konects.forEach(function (konect) {
+        if (base.konects) {
+            base.konects.forEach(function (konect) {
                 konects.push(new Konect_1.Konect(konect.ko_ip_konect, JSON.parse(konect.ko_ip_locations), konect.ko_social_clicked, konect.ko_phone_clicked, konect.user_id, konect.konect_category_id, konect.created_at, JSON.parse(konect.ko_user_info)));
             });
         }
         // console.log(data.data);
-        if (data.data.gadgets) {
-            data.data.gadgets.forEach(function (gadget) {
+        if (base.gadgets) {
+            base.gadgets.forEach(function (gadget) {
                 var order = gadget.order;
                 var ga = gadget.gadget;
                 var customs = {
@@ -74,20 +75,20 @@ var UserService = /** @class */ (function () {
                 gadgets.push(new KoGadgetItem_1.KoGadgetItem(JSON.parse(ga.kg_details).name, ga.kg_code, JSON.parse(ga.kg_details).description, JSON.parse(ga.kg_details).price, JSON.parse(ga.kg_details).weightDimensions, JSON.parse(ga.kg_details).color, JSON.parse(ga.kg_details).material, JSON.parse(ga.kg_details).type, JSON.parse(ga.kg_details).imageURL, customs));
             });
         }
-        //  console.log(data.data.companies)
-        user.uuid = data.data.uuid;
-        user.name = data.data.name;
-        user.firstname = data.data.firstname;
-        user.email = data.data.email;
-        user.vinfo = data.data.vinfo;
-        user.vconfig = data.data.vconfig;
-        user.profile_photo_url = data.data.profile_photo_path;
-        user.konects_count = data.data.konects_count;
+        //  console.log(base.companies)
+        user.uuid = base.uuid;
+        user.name = base.name;
+        user.firstname = base.firstname;
+        user.email = base.email;
+        user.vinfo = base.vinfo;
+        user.vconfig = base.vconfig;
+        user.profile_photo_url = base.profile_photo_path;
+        user.konects_count = base.konects_count;
         user.konects = konects;
         user.orders = orders;
         user.gadgets = gadgets;
-        user.points = functions_2.formatNumber(data.data.kpoint);
-        user.referal_code = data.data.referal_code;
+        user.points = functions_2.formatNumber(base.kpoint);
+        user.referal_code = base.referal_code;
         return user;
     };
     UserService.getUser = function (uuid) {
@@ -95,6 +96,16 @@ var UserService = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, functions_1.fetchData("/api/user/uuid/" + uuid)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    UserService.getGadget = function (uuid) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, functions_1.fetchData("/api/kogadget/" + uuid)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });

@@ -97,7 +97,7 @@ export default function KonectsListPage(props: KonectsListPage) {
                                                         {__("feedback")}
                                                     </Badge>
                                                     <span
-                                                        className="bg-gray-100 cursor-pointer p-1 rounded-full "
+                                                        className='bg-gray-100 cursor-pointer p-1 rounded-full '
                                                         onClick={() => {
                                                             generateVCard(
                                                                 konect
@@ -115,7 +115,7 @@ export default function KonectsListPage(props: KonectsListPage) {
                                                             );
                                                         }}
                                                     >
-                                                        <TbDownload className="text-gray-500 hover:text-gray-800" />
+                                                        <TbDownload className='text-gray-500 hover:text-gray-800' />
                                                     </span>
                                                 </span>
                                             )}

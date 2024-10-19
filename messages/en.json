@@ -415,7 +415,8 @@
         "invitation_declined_desc": "Invitation has been rejected",
         "manage_my_company": "Manage company",
         "employee": "Employee",
-        "leave": "Leave"
+        "leave": "Leave",
+        "add_more": "Add users, edit and more."
     },
     "konectCardStatus": {
         "title": "Attention!",

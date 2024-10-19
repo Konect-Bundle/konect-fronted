@@ -3,6 +3,7 @@ import { UserService } from "@/app/_core/api/services/UserService";
 import type { Metadata, ResolvingMetadata } from "next";
 import { ROOT_FILES_URL } from "@/app/_core/config/constants";
 import { ucfirst } from "@/app/_core/utils/functions";
+import KuserCompanyBlock from "@/app/_components/Inc/KuserCompanyBlock";
 
 export async function generateMetadata(
     { params }: { params: { uuid: string } },
@@ -27,7 +28,7 @@ export async function generateMetadata(
                 ucfirst(kuser.name),
             card: "summary_large_image",
             images: ROOT_FILES_URL + "/compressed-photo/" + kuser.uuid + ".jpg",
-            description: ucfirst((kuser.vinfo).note.text),
+            description: ucfirst(kuser.vinfo.note.text),
         },
         openGraph: {
             url: "https://www.ikonect.me/kuser/" + kuser.uuid,
@@ -37,7 +38,7 @@ export async function generateMetadata(
                 " " +
                 ucfirst(kuser.name),
             siteName: "Konect",
-            description: ucfirst((kuser.vinfo).note.text),
+            description: ucfirst(kuser.vinfo.note.text),
             images: [
                 ROOT_FILES_URL + "/compressed-photo/" + kuser.uuid + ".jpg",
                 ...previousImages,
@@ -51,7 +52,12 @@ export default async function KuserPage({
 }: {
     params: { uuid: string };
 }) {
-    var kuser = await UserService.getUser(params.uuid);
-    console.log(kuser)
-    return <KuserBlock kuser={kuser} isLoading={!kuser} />;
+    var gadget = (await UserService.getGadget(params.uuid)).data;
+    if (gadget.company == null) {
+        console.log("PERSONAL");
+        return <KuserBlock kuser={gadget.owner} isLoading={!gadget.owner} />;
+    } else {
+        // console.log(gadget);
+        return <KuserCompanyBlock gadget={gadget} isLoading={!gadget} />;
+    }
 }

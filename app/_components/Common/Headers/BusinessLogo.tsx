@@ -15,7 +15,9 @@ export default function BusinessLogo({}: BusinessLogoProps) {
                 alt='Flowbite React Logo'
                 priority={true}
             />
-            <span className='font-semibold text-white text-md -translate-y-1'>Business</span>
+            <span className='font-semibold text-white text-md -translate-y-1'>
+                Business
+            </span>
         </div>
     );
 }

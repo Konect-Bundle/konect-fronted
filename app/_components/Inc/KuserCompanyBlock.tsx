@@ -23,6 +23,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { MdOutlineConnectWithoutContact } from "react-icons/md";
 import {
+    TbBuildingCommunity,
     TbDownload,
     TbMail,
     TbMapPin,
@@ -37,17 +38,17 @@ import KuserHeader from "../Common/Headers/KuserHeader";
 import { parsePhoneNumberFromString } from "libphonenumber-js";
 
 interface KuserCompanyBlockProps {
-    kuser: any;
+    gadget: any;
     isLoading: boolean;
 }
 
 export default function KuserCompanyBlock({
-    kuser,
+    gadget,
     isLoading = false,
 }: KuserCompanyBlockProps) {
     const aRef = useRef<HTMLAnchorElement>(null);
     const [isCompleted, setIsCompleted] = useState<boolean>(false);
-    const user: User = UserService.buildObjectParser(kuser);
+    const user: User = UserService.buildObjectParser(gadget.owner);
     const vinfo: UserVcard = user && new UserVcard(user.vinfo);
     const vconfig: VcardConfig = user && new VcardConfig(user.vconfig);
     const __ = useTranslations("Text");
@@ -79,6 +80,7 @@ export default function KuserCompanyBlock({
     };
 
     useEffect(() => {
+        console.log();
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
@@ -99,7 +101,7 @@ export default function KuserCompanyBlock({
 
     const handleSaveContact = (e: any) => {
         e.preventDefault();
-        if (kuser) {
+        if (gadget.owner) {
             KonectService.makeConnect(user.uuid!, 1)
                 .then((rs) => {
                     if (rs.state) {
@@ -200,7 +202,7 @@ export default function KuserCompanyBlock({
                     borderTop: `5px solid ${vconfig.configTheme.primaryColor}`,
                 }}
             >
-                <span className='relative py-12'>
+                <span className='relative py-12 mb-24'>
                     <Card
                         theme={{
                             root: {
@@ -208,8 +210,28 @@ export default function KuserCompanyBlock({
                                     "flex flex-col  space-y-6 justify-center p-6",
                             },
                         }}
-                        className='w-full flex py-2 absolute -top-24'
+                        className='w-full flex py-0 absolute -top-24'
                     >
+                        <span className='w-full flex justify-start items-center space-x-2 border-b pb-3'>
+                            <span
+                                className='w-10 h-10 rounded-full  bg-cover bg-center relative'
+                                style={{
+                                    backgroundImage: `url('${
+                                        ROOT_FILES_URL +
+                                        "/" +
+                                        gadget.company.brand_logo_img!
+                                    }')`,
+                                }}
+                            ></span>
+                            <span className='flex items-center justify-between'>
+                                <span className='flex items-center font-medium space-x-1'>
+                                    {/* <TbBuildingCommunity /> */}
+                                    <span className='text-md'>
+                                        {ucfirst(gadget.company.name)}
+                                    </span>
+                                </span>
+                            </span>
+                        </span>
                         <span className='flex h-full items-center space-x-4 truncate'>
                             <span
                                 className='min-w-28 h-28 bg-cover rounded-lg bg-center'
@@ -232,57 +254,16 @@ export default function KuserCompanyBlock({
                                         {ucfirst(vinfo.names.familyName)}
                                     </span>
                                 </h3>
-                                {vconfig.showKonects && (
-                                    <div>
-                                        <span className='my-1 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded flex items-center bg-gray-50 border w-max'>
-                                            <span className='px-1 text-white'>
-                                                <MdOutlineConnectWithoutContact className='w-4 h-4 text-gray-700' />
-                                            </span>
-                                            {isLoading ? (
-                                                <TextSkeleton
-                                                    className='w-16'
-                                                    bgClass='bg-gray-300/25'
-                                                />
-                                            ) : (
-                                                <span className='text-sm text-gray-700 space-x-1 flex'>
-                                                    <motion.div
-                                                        initial={{
-                                                            opacity: 0,
-                                                            scale: 0.5,
-                                                        }}
-                                                        animate={{
-                                                            opacity: 1,
-                                                            scale: 1,
-                                                        }}
-                                                        transition={{
-                                                            duration: 0.2,
-                                                            ease: [
-                                                                0, 0.71, 0.2,
-                                                                1.01,
-                                                            ],
-                                                            scale: {
-                                                                type: "spring",
-                                                                damping: 7,
-                                                                stiffness: 100,
-                                                                restDelta: 0.001,
-                                                            },
-                                                        }}
-                                                    >
-                                                        <span id='konect-stat'>
-                                                            {konectsCount}
-                                                        </span>
-                                                    </motion.div>
-                                                    <span>
-                                                        {esser(
-                                                            "konect",
-                                                            konectsCount,
-                                                        )}
-                                                    </span>
-                                                </span>
-                                            )}
-                                        </span>
-                                    </div>
+                                {gadget.company_member.role && (
+                                    <span className='flex items-center font-normal text-md text-gray-500 italic'>
+                                        {ucfirst(gadget.company_member.role) +
+                                            " " +
+                                            __("at").toLocaleLowerCase() +
+                                            " " +
+                                            gadget.company.name}
+                                    </span>
                                 )}
+
                                 <span className='flex flex-col'>
                                     <span className='text-sm text-gray-400'>
                                         {vinfo.location.state?.toLocaleUpperCase() +
@@ -306,7 +287,7 @@ export default function KuserCompanyBlock({
                     </Button>
                     <Link
                         href={
-                            kuser
+                            gadget.owner
                                 ? ROOT_FILES_URL +
                                   "/vcards/" +
                                   user.uuid! +
@@ -337,7 +318,7 @@ export default function KuserCompanyBlock({
                 <CardBlock title={__("contact_informations")}>
                     <div className=' w-full md:pb-0 pb-3'>
                         <ul className='flex flex-col space-y-3 py-2 px-3'>
-                            {vinfo.email.text && (
+                            {gadget.company_member.company_email && (
                                 <li className='flex space-x-3 items-center overflow-hidden py-3'>
                                     <span className='bg-gray-200/75 min-w-14 h-14 rounded-xl flex justify-center items-center border'>
                                         <TbMail className='text-xl text-gray-800 hover:text-gray-800 cursor-pointer' />
@@ -357,11 +338,16 @@ export default function KuserCompanyBlock({
                                         ) : (
                                             <Link
                                                 href={
-                                                    "mailto:" + vinfo.email.text
+                                                    "mailto:" +
+                                                    gadget.company_member
+                                                        .company_email
                                                 }
                                                 className='text-lg hover:underline text-gray-700 break-words'
                                             >
-                                                {vinfo.email.text}
+                                                {
+                                                    gadget.company_member
+                                                        .company_email
+                                                }
                                             </Link>
                                         )}
                                     </div>
@@ -529,9 +515,11 @@ export default function KuserCompanyBlock({
                             transform: `translateY(${offsetY * 0.5}px)`,
                             scale: `1.5`,
                             backgroundImage: `url('${
-                                ROOT_FILES_URL + "/" + user.profile_photo_url!
+                                ROOT_FILES_URL +
+                                "/" +
+                                gadget.company.brand_logo_img!
                             }')`, // Remplacez par votre image
-                            filter: "blur(8px)",
+                            filter: "blur(1px)",
                         }}
                     ></div>
 

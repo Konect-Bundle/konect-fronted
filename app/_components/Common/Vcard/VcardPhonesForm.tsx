@@ -26,7 +26,7 @@ const VcardPhonesForm: React.FC<
 
     return (
         <FieldArray
-            name="phones"
+            name='phones'
             render={(fieldArrayProps) => {
                 // console.log(fieldArrayProps);
                 const { push, remove, form } = fieldArrayProps;
@@ -34,43 +34,43 @@ const VcardPhonesForm: React.FC<
                 const { phones } = values;
 
                 return (
-                    <div className="flex flex-col space-y-4">
+                    <div className='flex flex-col space-y-4'>
                         {phones.map(
                             (phone: PhoneVcardInterface, index: number) => {
                                 let icon: ReactNode = <TbLink />;
 
                                 return (
                                     <div
-                                        className="grid grid-cols-8 gap-6"
+                                        className='grid grid-cols-8 gap-6'
                                         key={index}
                                     >
-                                        <div className="flex flex-col justify-center md:col-span-2 col-span-8">
+                                        <div className='flex flex-col justify-center md:col-span-2 col-span-8'>
                                             <InputWithLabel
-                                                labelFor="title"
+                                                labelFor='title'
                                                 labelTitle={__("title")}
-                                                className="w-full"
-                                                labelClassName=" text-xs"
+                                                className='w-full'
+                                                labelClassName=' text-xs'
                                             >
-                                                <div className="flex items-center">
-                                                    <div className="w-full">
+                                                <div className='flex items-center'>
+                                                    <div className='w-full'>
                                                         <InputField
                                                             name={`phones[${index}].type`}
-                                                            labelFor="title"
+                                                            labelFor='title'
                                                         />
                                                     </div>
                                                 </div>
                                             </InputWithLabel>
                                         </div>
-                                        <div className="flex flex-col justify-center md:col-span-4 col-span-8">
+                                        <div className='flex flex-col justify-center md:col-span-4 col-span-8'>
                                             <InputWithLabel
-                                                labelFor="url"
+                                                labelFor='url'
                                                 key={index}
                                                 labelTitle={__("phone_number")}
-                                                className="w-full col-span-2"
-                                                labelClassName=" text-xs"
+                                                className='w-full col-span-2'
+                                                labelClassName=' text-xs'
                                             >
-                                                <div className="flex items-center">
-                                                    <div className="w-full">
+                                                <div className='flex items-center'>
+                                                    <div className='w-full'>
                                                         <PhoneInput
                                                             country={"us"}
                                                             value={phone.text}
@@ -99,16 +99,16 @@ const VcardPhonesForm: React.FC<
                                                 </div>
                                             </InputWithLabel>
                                         </div>
-                                        <div className="md:col-span-2 col-span-8 flex sm:items-start items-end flex-col justify-end mb-4">
+                                        <div className='md:col-span-2 col-span-8 flex sm:items-start items-end flex-col justify-end mb-4'>
                                             <span
-                                                className="cursor-pointer flex items-center justify-start text-red-500 hover:text-red-700"
+                                                className='cursor-pointer flex items-center justify-start text-red-500 hover:text-red-700'
                                                 onClick={() => remove(index)}
                                             >
                                                 <TbX
                                                     size={18}
-                                                    className="ml-1 cursor-pointer"
+                                                    className='ml-1 cursor-pointer'
                                                 />
-                                                <span className="text-xs">
+                                                <span className='text-xs'>
                                                     {__A("delete")}
                                                 </span>
                                             </span>
@@ -119,13 +119,13 @@ const VcardPhonesForm: React.FC<
                         )}
                         <Button
                             theme={customButtonTheme}
-                            color="light"
+                            color='light'
                             onClick={() => push({ type: __("main"), text: "" })}
-                            className="w-max"
+                            className='w-max'
                             size={"sm"}
                         >
                             <TbPlus className={"text-lg"} />
-                            <span className="ml-1 text-xs">{__("add")}</span>
+                            <span className='ml-1 text-xs'>{__("add")}</span>
                         </Button>
                     </div>
                 );
