@@ -136,7 +136,7 @@ export default function RegisterPasswordFormPagePage({}: IRegisterPasswordFormPa
 
             <div className='w-full h-full flex  flex-col justify-center items-center'>
                 <h2 className='text-2xl text-black-semibold text-center font-bold md:py-6 p-4'>
-                    {T("register")}
+                    {__("password_reset_title")}
                 </h2>
 
                 <Formik
