@@ -29,6 +29,16 @@ export const registerRoute: RouteNameInterface = {
     path: "/register",
 };
 
+export const passwordForgottenRoute: RouteNameInterface = {
+    name: "password-reset",
+    path: "/password-reset",
+};
+
+export const passwordEmailRoute: RouteNameInterface = {
+    name: "password-email",
+    path: "/password-email",
+};
+
 export const productsRoute: RouteNameInterface = {
     name: "products",
     path: "/products",

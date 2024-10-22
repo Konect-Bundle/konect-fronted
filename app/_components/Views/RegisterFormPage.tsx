@@ -30,6 +30,7 @@ import { getCookie, setCookie } from "cookies-next";
 import { intent_processor } from "@/app/_core/utils/functions";
 import ApiErrorsManagement from "@/app/_core/api/errors/apiErrorsManagement";
 import ErrorsViewer from "@/app/_components/Common/Errors/ErrorsViewer";
+import Link from "next/link";
 
 export interface IRegisterFormPageProps {
     referal_code: string | null;
@@ -227,21 +228,23 @@ export default function RegisterFormPage({
                                 required
                             />
                         </InputWithLabel>
-
-                        <InputWithLabel
-                            labelFor='passwordRe'
-                            labelTitle={T("confirm_password")}
-                        >
-                            <InputField
-                                rightIcon={showPasswordRe ? TbEyeOff : TbEye}
-                                manualType={
-                                    showPasswordRe ? "text" : "password"
-                                }
+                            <InputWithLabel
                                 labelFor='passwordRe'
-                                name='passwordRe'
-                                required
-                            />
-                        </InputWithLabel>
+                                labelTitle={T("confirm_password")}
+                            >
+                                <InputField
+                                    rightIcon={
+                                        showPasswordRe ? TbEyeOff : TbEye
+                                    }
+                                    manualType={
+                                        showPasswordRe ? "text" : "password"
+                                    }
+                                    labelFor='passwordRe'
+                                    name='passwordRe'
+                                    required
+                                />
+                            </InputWithLabel>
+                           
 
                         <Button
                             color='dark'

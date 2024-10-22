@@ -2,6 +2,7 @@
 import ErrorsViewer from "@/app/_components/Common/Errors/ErrorsViewer";
 import InputField from "@/app/_components/Common/Form/InputField";
 import InputWithLabel from "@/app/_components/Common/Form/InputWithLabel";
+import Header from "@/app/_components/Common/Headers/Header";
 import LoadingLayout from "@/app/_components/Layouts/LoadingLayout";
 import ApiErrorsManagement from "@/app/_core/api/errors/apiErrorsManagement";
 import { UserService } from "@/app/_core/api/services/UserService";
@@ -9,54 +10,49 @@ import {
     AUTH_TOKEN_NAME,
     INTENT_COOKIE_NAME,
 } from "@/app/_core/config/constants";
-import {
-    dashboardRoute,
-    passwordEmailRoute,
-    registerRoute
-} from "@/app/_core/config/routes";
+import { loginRoute, vcardRoute } from "@/app/_core/config/routes";
 import { IntentInterface } from "@/app/_core/interfaces/appInterfaces";
 import { intent_processor } from "@/app/_core/utils/functions";
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
 import { getCookie, setCookie } from "cookies-next";
-import { Button, Label } from "flowbite-react";
+import { Button } from "flowbite-react";
 import { Form, Formik } from "formik";
 import $ from "jquery";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { TbEye, TbEyeOff } from "react-icons/tb";
 import Swal from "sweetalert2";
 import * as Yup from "yup";
-import CheckBoxField from "../../_components/Common/Form/CheckBoxField";
 
-export interface ILoginFormPageProps {}
+export interface IRegisterPasswordFormPagePageProps {}
 
-export default function LoginFormPage(props: ILoginFormPageProps) {
+export default function RegisterPasswordFormPagePage({}: IRegisterPasswordFormPagePageProps) {
+    const router = useSearchParams();
+    const token = router.get("token");
+    const email = router.get("email");
+
     const [showPassword, setShowPassword] = useState(false);
-    const [intentData, setIntentData] = useState<IntentInterface | null>(null);
+    const [showPasswordRe, setShowPasswordRe] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState<string | Array<string>>("");
 
     const T = useTranslations("Auth");
+    const __ = useTranslations("Text");
 
-    const SigninSchema = Yup.object().shape({
+    const SignupSchema = Yup.object().shape({
         email: Yup.string()
             .email(T("validate_email"))
             .required(T("validate_required")),
         password: Yup.string()
             .min(8, T("Password.validate_min"))
             .required(T("validate_required")),
-        rememberMe: Yup.bool(),
+        passwordRe: Yup.string()
+            .min(8, T("Password.validate_min"))
+            .oneOf([Yup.ref("password")], __("confirm_password_doesnt_match"))
+            .required(T("validate_required")),
     });
 
-    useEffect(() => {
-        if (localStorage.getItem(INTENT_COOKIE_NAME) && !intentData) {
-            // window.location.href = dashboardRoute.path;
-            setIntentData(
-                JSON.parse(localStorage.getItem(INTENT_COOKIE_NAME)!),
-            );
-        }
-    }, [intentData]);
     useEffect(() => {
         var iconDiv = $("#password").parent().find("div");
         var data = iconDiv.data("testid");
@@ -66,55 +62,56 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
                 setShowPassword(!showPassword);
             });
         }
-    }, [showPassword]);
 
-    function doAuth(values: {
+        var iconDiv = $("#passwordRe").parent().find("div");
+        var data = iconDiv.data("testid");
+        if (data == "right-icon") {
+            iconDiv.addClass("cursor-pointer z-50 pointer-events-auto");
+            iconDiv.on("click", () => {
+                setShowPasswordRe(!showPasswordRe);
+            });
+        }
+    }, [showPassword, showPasswordRe]);
+
+    function doReset(values: {
         email: string;
         password: string;
-        rememberMe: boolean;
+        passwordRe: string;
     }) {
         setIsLoading(true);
         // if (!values.email || !values.password) return;
 
-        UserService.login(values.email, values.password)
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "bottom-right",
+            showConfirmButton: false,
+            timer: 3500,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            },
+        });
+
+        UserService.resetPassword(
+            values.email,
+            values.password,
+            values.passwordRe,
+            token, // Token
+        )
             .then(async (res) => {
                 setErrors("");
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "bottom-right",
-                    showConfirmButton: false,
-                    timer: 3500,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    },
-                });
+
                 if (res.state) {
-                    // SET COOKIE
-                    setCookie(AUTH_TOKEN_NAME, res.data.authToken, {
-                        // httpOnly: true,
-                        // path: "/"
-                    });
                     Toast.fire({
                         icon: "success",
-                        title: T("login_success"),
+                        title: __("password_reset_success"),
                     }).then(() => {
-                        if (intentData) {
-                            intent_processor(
-                                intentData,
-                                getCookie(AUTH_TOKEN_NAME)!,
-                            ).then((urlIntent) => {
-                                localStorage.removeItem(INTENT_COOKIE_NAME);
-                                window.location.href = urlIntent;
-                            });
-                        } else {
-                            window.location.href = dashboardRoute.path;
-                        }
+                        window.location.href = loginRoute.path;
                     });
                 } else {
                     Toast.fire({
                         icon: "error",
-                        title: T("login_fail"),
+                        title: res.msg,
                     });
                 }
             })
@@ -133,22 +130,22 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
     const closeLoading = () => {
         setIsLoading(false);
     };
-
     return (
         <LoadingLayout isLoading={isLoading}>
+            <Header />
+
             <div className='w-full h-full flex  flex-col justify-center items-center'>
                 <h2 className='text-2xl text-black-semibold text-center font-bold md:py-6 p-4'>
-                    {T("login")}
+                    {T("register")}
                 </h2>
 
                 <Formik
-                    onSubmit={doAuth}
-                    validationSchema={SigninSchema}
+                    onSubmit={doReset}
+                    validationSchema={SignupSchema}
                     initialValues={{
-                        email: "",
+                        email: email ?? "",
                         password: "",
                         passwordRe: "",
-                        rememberMe: true,
                     }}
                 >
                     <Form className='flex lg:w-96 sm:w-80 w-72 flex-col gap-4'>
@@ -176,43 +173,30 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
                             />
                         </InputWithLabel>
 
-                        <div className='flex items-center justify-between gap-2 mb-2'>
-                            <div className="flex items-center gap-2 mb-2">
-                                <CheckBoxField
-                                    labelFor='remember'
-                                    name='rememberMe'
-                                />
-                                {/* <Field type="checkbox" name="remberMe" /> */}
-                                <Label htmlFor='remember'>
-                                    {T("remember_me")}
-                                </Label>
-                            </div>
-                            <Link
-                                href={passwordEmailRoute.path}
-                                className='text-sm font-medium text-gray-500 hover:underline hover:text-gray-800 dark:text-primary-500'
-                            >
-                                {T("forgot_password")}
-                            </Link>
-                        </div>
+                        <InputWithLabel
+                            labelFor='passwordRe'
+                            labelTitle={T("confirm_password")}
+                        >
+                            <InputField
+                                rightIcon={showPasswordRe ? TbEyeOff : TbEye}
+                                manualType={
+                                    showPasswordRe ? "text" : "password"
+                                }
+                                labelFor='passwordRe'
+                                name='passwordRe'
+                                required
+                            />
+                        </InputWithLabel>
+
                         <Button
                             color='dark'
                             theme={customButtonTheme}
                             type='submit'
                         >
-                            {T("login")}
+                            {T("register")}
                         </Button>
 
                         <ErrorsViewer errors={errors} />
-
-                        <p className='text-sm py-2 text-end font-light text-gray-500 dark:text-gray-400'>
-                            {T("dont_yet")}?{" "}
-                            <a
-                                href={registerRoute.path}
-                                className='font-medium text-gray-900 hover:underline dark:text-primary-500'
-                            >
-                                {T("register")}
-                            </a>
-                        </p>
                     </Form>
                 </Formik>
             </div>

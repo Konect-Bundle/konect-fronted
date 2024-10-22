@@ -137,6 +137,33 @@ var UserService = /** @class */ (function () {
             });
         });
     };
+    UserService.resetPassword = function (email, password, co_password, token) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, functions_1.fetchData("/api/auth/password-reset", object_to_formdata_1.serialize({
+                            email: email,
+                            password: password,
+                            password_confirmation: co_password,
+                            token: token
+                        }), {}, "POST")];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    UserService.sendResetEmailLink = function (email) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, functions_1.fetchData("/api/auth/password-email", object_to_formdata_1.serialize({
+                            email: email
+                        }), {}, "POST")];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     UserService.sendEmail = function (name, firstname, email, content) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {

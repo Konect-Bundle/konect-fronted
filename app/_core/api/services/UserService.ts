@@ -133,6 +133,35 @@ export class UserService {
         );
     }
 
+    static async resetPassword(
+        email: string,
+        password: string,
+        co_password: string,
+        token: string | null,
+    ) {
+        return await fetchData(
+            "/api/auth/password-reset",
+            serialize({
+                email: email,
+                password: password,
+                password_confirmation: co_password,
+                token: token,
+            }),
+            {},
+            "POST",
+        );
+    }
+    static async sendResetEmailLink(email: string) {
+        return await fetchData(
+            "/api/auth/password-email",
+            serialize({
+                email: email,
+            }),
+            {},
+            "POST",
+        );
+    }
+
     static async sendEmail(
         name: string,
         firstname: string,
@@ -151,6 +180,7 @@ export class UserService {
             "POST",
         );
     }
+
     static async getLoggedUser(token: string) {
         return await fetchData("/api/auth/user", "", {}, "GET", token);
     }
