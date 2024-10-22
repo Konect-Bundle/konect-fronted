@@ -38,6 +38,7 @@ const InputField: React.FC<InputFieldProps> = ({
                             rightIcon={rightIcon && rightIcon}
                             type={manualType}
                             {...field}
+                            placeholder={props.placeholder}
                             // {...props}
                         />
 
