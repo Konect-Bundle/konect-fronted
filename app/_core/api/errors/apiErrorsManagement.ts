@@ -9,14 +9,13 @@ interface ErrorInterface {
     state: boolean;
     status: number;
     data: object;
-    msg:string
+    msg: string;
 }
 export default class ApiErrorsManagement {
     public state: boolean;
     public status: number;
     public data: any;
     public msg: string;
-
 
     constructor(errors: any) {
         console.log(errors);
@@ -25,7 +24,6 @@ export default class ApiErrorsManagement {
         this.status = rs.status;
         this.data = rs.data;
         this.msg = rs.msg;
-
     }
 
     public proccess(): string | Array<string> {

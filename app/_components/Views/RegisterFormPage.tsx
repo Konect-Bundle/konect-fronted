@@ -228,23 +228,20 @@ export default function RegisterFormPage({
                                 required
                             />
                         </InputWithLabel>
-                            <InputWithLabel
+                        <InputWithLabel
+                            labelFor='passwordRe'
+                            labelTitle={T("confirm_password")}
+                        >
+                            <InputField
+                                rightIcon={showPasswordRe ? TbEyeOff : TbEye}
+                                manualType={
+                                    showPasswordRe ? "text" : "password"
+                                }
                                 labelFor='passwordRe'
-                                labelTitle={T("confirm_password")}
-                            >
-                                <InputField
-                                    rightIcon={
-                                        showPasswordRe ? TbEyeOff : TbEye
-                                    }
-                                    manualType={
-                                        showPasswordRe ? "text" : "password"
-                                    }
-                                    labelFor='passwordRe'
-                                    name='passwordRe'
-                                    required
-                                />
-                            </InputWithLabel>
-                           
+                                name='passwordRe'
+                                required
+                            />
+                        </InputWithLabel>
 
                         <Button
                             color='dark'

@@ -12,7 +12,7 @@ import {
 import {
     dashboardRoute,
     passwordEmailRoute,
-    registerRoute
+    registerRoute,
 } from "@/app/_core/config/routes";
 import { IntentInterface } from "@/app/_core/interfaces/appInterfaces";
 import { intent_processor } from "@/app/_core/utils/functions";
@@ -177,7 +177,7 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
                         </InputWithLabel>
 
                         <div className='flex items-center justify-between gap-2 mb-2'>
-                            <div className="flex items-center gap-2 mb-2">
+                            <div className='flex items-center gap-2 mb-2'>
                                 <CheckBoxField
                                     labelFor='remember'
                                     name='rememberMe'

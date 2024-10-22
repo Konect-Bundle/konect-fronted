@@ -115,7 +115,9 @@ export default function PasswordEmailFormPage(
                         </Formik>
                     ) : (
                         <Alert color='success' icon={TbCheck}>
-                            <span className='font-medium'>{__("password_email_success")}</span>
+                            <span className='font-medium'>
+                                {__("password_email_success")}
+                            </span>
                         </Alert>
                     )}
                 </div>
