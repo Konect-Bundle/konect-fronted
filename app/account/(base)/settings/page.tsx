@@ -39,7 +39,7 @@ export default function SettingsPage(props: SettingsPageProps) {
     const initialValues: initialType = {
         firstname: user?.firstname ?? "",
         name: user?.name ?? "",
-        email: user?.email,
+        email: user?.email ?? "",
         password: "",
         passwordRe: "",
     };
@@ -57,7 +57,7 @@ export default function SettingsPage(props: SettingsPageProps) {
     }, [file]);
 
     const doUpdateAccount = () => {
-        
+
     };
     if (!user)
         return (
