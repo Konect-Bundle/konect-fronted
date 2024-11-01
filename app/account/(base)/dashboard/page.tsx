@@ -119,7 +119,8 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                 <div className='grow'>
                                     <div className='flex items-center gap-x-2'>
                                         <p className='text-xs uppercase tracking-wide text-gray-500 dark:text-neutral-500'>
-                                            {__t("total_connection")}
+                                            {__t("total_connection")} compared
+                                            to last week
                                         </p>
                                         <div className='hs-tooltip'>
                                             <div className='hs-tooltip-toggle'>
@@ -199,6 +200,217 @@ export default function DashboardPage(props: IDashboardPageProps) {
                             </div>
                         </div>
                         {/* End Card */}
+
+                        <div className='flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-800'>
+                            <div className='p-4 md:p-5 flex gap-x-4'>
+                                <div className='shrink-0 flex justify-center items-center size-[46px] bg-gray-100 rounded-lg dark:bg-neutral-800'>
+                                    <svg
+                                        className='shrink-0 size-5 text-gray-600 dark:text-neutral-400'
+                                        xmlns='http://www.w3.org/2000/svg'
+                                        width={24}
+                                        height={24}
+                                        viewBox='0 0 24 24'
+                                        fill='none'
+                                        stroke='currentColor'
+                                        strokeWidth={2}
+                                        strokeLinecap='round'
+                                        strokeLinejoin='round'
+                                    >
+                                        <path d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2' />
+                                        <circle cx={9} cy={7} r={4} />
+                                        <path d='M22 21v-2a4 4 0 0 0-3-3.87' />
+                                        <path d='M16 3.13a4 4 0 0 1 0 7.75' />
+                                    </svg>
+                                </div>
+                                <div className='grow'>
+                                    <div className='flex items-center gap-x-2'>
+                                        <p className='text-xs uppercase tracking-wide text-gray-500 dark:text-neutral-500'>
+                                            {__t("total_connection")} compared
+                                            to last month
+                                        </p>
+                                        <div className='hs-tooltip'>
+                                            <div className='hs-tooltip-toggle'>
+                                                <svg
+                                                    className='shrink-0 size-4 text-gray-500 dark:text-neutral-500'
+                                                    xmlns='http://www.w3.org/2000/svg'
+                                                    width={24}
+                                                    height={24}
+                                                    viewBox='0 0 24 24'
+                                                    fill='none'
+                                                    stroke='currentColor'
+                                                    strokeWidth={2}
+                                                    strokeLinecap='round'
+                                                    strokeLinejoin='round'
+                                                >
+                                                    <circle
+                                                        cx={12}
+                                                        cy={12}
+                                                        r={10}
+                                                    />
+                                                    <path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3' />
+                                                    <path d='M12 17h.01' />
+                                                </svg>
+                                                <span
+                                                    className='hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-neutral-700'
+                                                    role='tooltip'
+                                                >
+                                                    The number of daily users
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='mt-1 flex items-center gap-x-2'>
+                                        <h3 className='text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200'>
+                                            {user.konects?.length}
+                                        </h3>
+
+                                        {(() => {
+                                            const monthlyDrop = new Analytics(
+                                                user.konects!,
+                                            ).monthlyDrop;
+                                            const isPositive = monthlyDrop >= 0;
+                                            const bgColor = isPositive
+                                                ? "bg-green-100 text-green-900 dark:bg-green-800 dark:text-green-100"
+                                                : "bg-red-100 text-red-900 dark:bg-red-800 dark:text-red-100";
+                                            const iconColor = isPositive
+                                                ? "text-green-900 dark:text-green-100"
+                                                : "text-red-900 dark:text-red-100";
+
+                                            return (
+                                                <span
+                                                    className={`inline-flex items-center gap-x-1 py-0.5 px-2 rounded-full ${bgColor}`}
+                                                >
+                                                    <svg
+                                                        className={`inline-block size-4 self-center ${iconColor}`}
+                                                        xmlns='http://www.w3.org/2000/svg'
+                                                        width={24}
+                                                        height={24}
+                                                        viewBox='0 0 24 24'
+                                                        fill='none'
+                                                        stroke='currentColor'
+                                                        strokeWidth={2}
+                                                        strokeLinecap='round'
+                                                        strokeLinejoin='round'
+                                                    >
+                                                        <polyline points='22 7 13.5 15.5 8.5 10.5 2 17' />
+                                                        <polyline points='16 7 22 7 22 13' />
+                                                    </svg>
+                                                    <span className='inline-block text-xs font-medium'>
+                                                        {monthlyDrop}%
+                                                    </span>
+                                                </span>
+                                            );
+                                        })()}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className='flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-800'>
+                            <div className='p-4 md:p-5 flex gap-x-4'>
+                                <div className='shrink-0 flex justify-center items-center size-[46px] bg-gray-100 rounded-lg dark:bg-neutral-800'>
+                                    <svg
+                                        className='shrink-0 size-5 text-gray-600 dark:text-neutral-400'
+                                        xmlns='http://www.w3.org/2000/svg'
+                                        width={24}
+                                        height={24}
+                                        viewBox='0 0 24 24'
+                                        fill='none'
+                                        stroke='currentColor'
+                                        strokeWidth={2}
+                                        strokeLinecap='round'
+                                        strokeLinejoin='round'
+                                    >
+                                        <path d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2' />
+                                        <circle cx={9} cy={7} r={4} />
+                                        <path d='M22 21v-2a4 4 0 0 0-3-3.87' />
+                                        <path d='M16 3.13a4 4 0 0 1 0 7.75' />
+                                    </svg>
+                                </div>
+                                <div className='grow'>
+                                    <div className='flex items-center gap-x-2'>
+                                        <p className='text-xs uppercase tracking-wide text-gray-500 dark:text-neutral-500'>
+                                            {__t("total_connection")} compared
+                                            to last 3 months
+                                        </p>
+                                        <div className='hs-tooltip'>
+                                            <div className='hs-tooltip-toggle'>
+                                                <svg
+                                                    className='shrink-0 size-4 text-gray-500 dark:text-neutral-500'
+                                                    xmlns='http://www.w3.org/2000/svg'
+                                                    width={24}
+                                                    height={24}
+                                                    viewBox='0 0 24 24'
+                                                    fill='none'
+                                                    stroke='currentColor'
+                                                    strokeWidth={2}
+                                                    strokeLinecap='round'
+                                                    strokeLinejoin='round'
+                                                >
+                                                    <circle
+                                                        cx={12}
+                                                        cy={12}
+                                                        r={10}
+                                                    />
+                                                    <path d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3' />
+                                                    <path d='M12 17h.01' />
+                                                </svg>
+                                                <span
+                                                    className='hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-neutral-700'
+                                                    role='tooltip'
+                                                >
+                                                    The number of daily users
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='mt-1 flex items-center gap-x-2'>
+                                        <h3 className='text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200'>
+                                            {user.konects?.length}
+                                        </h3>
+
+                                        {(() => {
+                                            const threeMonthDrop =
+                                                new Analytics(user.konects!)
+                                                    .threeMonthDrop;
+                                            const isPositive =
+                                                threeMonthDrop >= 0;
+                                            const bgColor = isPositive
+                                                ? "bg-green-100 text-green-900 dark:bg-green-800 dark:text-green-100"
+                                                : "bg-red-100 text-red-900 dark:bg-red-800 dark:text-red-100";
+                                            const iconColor = isPositive
+                                                ? "text-green-900 dark:text-green-100"
+                                                : "text-red-900 dark:text-red-100";
+
+                                            return (
+                                                <span
+                                                    className={`inline-flex items-center gap-x-1 py-0.5 px-2 rounded-full ${bgColor}`}
+                                                >
+                                                    <svg
+                                                        className={`inline-block size-4 self-center ${iconColor}`}
+                                                        xmlns='http://www.w3.org/2000/svg'
+                                                        width={24}
+                                                        height={24}
+                                                        viewBox='0 0 24 24'
+                                                        fill='none'
+                                                        stroke='currentColor'
+                                                        strokeWidth={2}
+                                                        strokeLinecap='round'
+                                                        strokeLinejoin='round'
+                                                    >
+                                                        <polyline points='22 7 13.5 15.5 8.5 10.5 2 17' />
+                                                        <polyline points='16 7 22 7 22 13' />
+                                                    </svg>
+                                                    <span className='inline-block text-xs font-medium'>
+                                                        {threeMonthDrop}%
+                                                    </span>
+                                                </span>
+                                            );
+                                        })()}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         {/* Card */}
                         {/* <div className='flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-800'>
                             <div className='p-4 md:p-5 flex gap-x-4'>
