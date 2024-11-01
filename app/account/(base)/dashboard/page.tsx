@@ -162,7 +162,9 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                             const weeklyDrop = new Analytics(
                                                 user.konects!,
                                             ).weeklyDrop;
-                                            const isPositive = weeklyDrop >= 0;
+                                            const isPositive =
+                                                weeklyDrop.percentageChange >=
+                                                0;
                                             const bgColor = isPositive
                                                 ? "bg-green-100 text-green-900 dark:bg-green-800 dark:text-green-100"
                                                 : "bg-red-100 text-red-900 dark:bg-red-800 dark:text-red-100";
@@ -190,7 +192,10 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                                         <polyline points='16 7 22 7 22 13' />
                                                     </svg>
                                                     <span className='inline-block text-xs font-medium'>
-                                                        {weeklyDrop}%
+                                                        {
+                                                            weeklyDrop.thisWeekClicks
+                                                        }
+                                                        %
                                                     </span>
                                                 </span>
                                             );
@@ -268,7 +273,9 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                             const monthlyDrop = new Analytics(
                                                 user.konects!,
                                             ).monthlyDrop;
-                                            const isPositive = monthlyDrop >= 0;
+                                            const isPositive =
+                                                monthlyDrop.percentageChange >=
+                                                0;
                                             const bgColor = isPositive
                                                 ? "bg-green-100 text-green-900 dark:bg-green-800 dark:text-green-100"
                                                 : "bg-red-100 text-red-900 dark:bg-red-800 dark:text-red-100";
@@ -296,7 +303,10 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                                         <polyline points='16 7 22 7 22 13' />
                                                     </svg>
                                                     <span className='inline-block text-xs font-medium'>
-                                                        {monthlyDrop}%
+                                                        {
+                                                            monthlyDrop.thisMonthClicks
+                                                        }
+                                                        %
                                                     </span>
                                                 </span>
                                             );
@@ -374,7 +384,8 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                                 new Analytics(user.konects!)
                                                     .threeMonthDrop;
                                             const isPositive =
-                                                threeMonthDrop >= 0;
+                                                threeMonthDrop.percentageChange >=
+                                                0;
                                             const bgColor = isPositive
                                                 ? "bg-green-100 text-green-900 dark:bg-green-800 dark:text-green-100"
                                                 : "bg-red-100 text-red-900 dark:bg-red-800 dark:text-red-100";
@@ -402,7 +413,10 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                                         <polyline points='16 7 22 7 22 13' />
                                                     </svg>
                                                     <span className='inline-block text-xs font-medium'>
-                                                        {threeMonthDrop}%
+                                                        {
+                                                            threeMonthDrop.thisMonthClicks
+                                                        }
+                                                        %
                                                     </span>
                                                 </span>
                                             );

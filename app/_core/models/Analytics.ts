@@ -1,5 +1,4 @@
 import { Konect } from "./Konect";
-
 export default class Analytics {
     konects: Konect[];
 
@@ -15,7 +14,6 @@ export default class Analytics {
         return ((current - previous) / previous) * 100;
     }
 
-    // Filtrage par période
     private filterKonectsByDate(startDate: Date, endDate?: Date): Konect[] {
         return this.konects.filter(
             (k) =>
@@ -24,12 +22,15 @@ export default class Analytics {
         );
     }
 
-    get weeklyDrop(): number {
+    get weeklyDrop(): {
+        thisWeekClicks: number;
+        lastWeekClicks: number;
+        percentageChange: number;
+    } {
         const now = new Date();
         const lastWeek = new Date(now);
         lastWeek.setDate(now.getDate() - 7);
 
-        // Compter le nombre de konects pour chaque période
         const thisWeekClicks = this.filterKonectsByDate(lastWeek).length;
         const previousWeek = new Date(lastWeek);
         previousWeek.setDate(previousWeek.getDate() - 7);
@@ -38,15 +39,25 @@ export default class Analytics {
             lastWeek,
         ).length;
 
-        return this.calculatePercentageChange(thisWeekClicks, lastWeekClicks);
+        return {
+            thisWeekClicks,
+            lastWeekClicks,
+            percentageChange: this.calculatePercentageChange(
+                thisWeekClicks,
+                lastWeekClicks,
+            ),
+        };
     }
 
-    get monthlyDrop(): number {
+    get monthlyDrop(): {
+        thisMonthClicks: number;
+        lastMonthClicks: number;
+        percentageChange: number;
+    } {
         const now = new Date();
         const lastMonth = new Date(now);
         lastMonth.setMonth(now.getMonth() - 1);
 
-        // Compter le nombre de konects pour chaque période
         const thisMonthClicks = this.filterKonectsByDate(
             new Date(now.getFullYear(), now.getMonth(), 1),
         ).length;
@@ -55,15 +66,25 @@ export default class Analytics {
             new Date(now.getFullYear(), now.getMonth(), 1),
         ).length;
 
-        return this.calculatePercentageChange(thisMonthClicks, lastMonthClicks);
+        return {
+            thisMonthClicks,
+            lastMonthClicks,
+            percentageChange: this.calculatePercentageChange(
+                thisMonthClicks,
+                lastMonthClicks,
+            ),
+        };
     }
 
-    get threeMonthDrop(): number {
+    get threeMonthDrop(): {
+        thisMonthClicks: number;
+        threeMonthClicks: number;
+        percentageChange: number;
+    } {
         const now = new Date();
         const threeMonthsAgo = new Date(now);
         threeMonthsAgo.setMonth(now.getMonth() - 3);
 
-        // Compter le nombre de konects pour chaque période
         const thisMonthClicks = this.filterKonectsByDate(
             new Date(now.getFullYear(), now.getMonth(), 1),
         ).length;
@@ -72,9 +93,13 @@ export default class Analytics {
             new Date(now.getFullYear(), now.getMonth(), 1),
         ).length;
 
-        return this.calculatePercentageChange(
+        return {
             thisMonthClicks,
             threeMonthClicks,
-        );
+            percentageChange: this.calculatePercentageChange(
+                thisMonthClicks,
+                threeMonthClicks,
+            ),
+        };
     }
 }
