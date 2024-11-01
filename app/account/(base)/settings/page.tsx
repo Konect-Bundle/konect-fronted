@@ -1,21 +1,24 @@
 "use client";
 
 // import { UserVcardInterface } from "@/app/_core/interfaces/vcardInterfaces";
-import VcardEditor from "../../../_components/Common/Vcard/VcardEditor";
 
-import { useAppSelector } from "@/app/_store/hooks";
-import { MutatingDots } from "react-loader-spinner";
-import { useTranslations } from "next-intl";
-import Image from "next/image";
-import { Formik } from "formik";
-import { useEffect, useState } from "react";
-import { Avatar, Button, FileInput, Label } from "flowbite-react";
-import { ROOT_FILES_URL } from "@/app/_core/config/constants";
-import { customAvatarTheme } from "@/app/_styles/flowbite/avatar";
-import { customFileInputTheme } from "@/app/_styles/flowbite/form";
-import { TbEdit } from "react-icons/tb";
 import InputField from "@/app/_components/Common/Form/InputField";
+import { AUTH_TOKEN_NAME, ROOT_FILES_URL } from "@/app/_core/config/constants";
+import { useAppSelector } from "@/app/_store/hooks";
+import { customAvatarTheme } from "@/app/_styles/flowbite/avatar";
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
+import { customFileInputTheme } from "@/app/_styles/flowbite/form";
+import { Avatar, Button, FileInput, Label } from "flowbite-react";
+import { Formik } from "formik";
+import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
+import { TbEdit } from "react-icons/tb";
+import { MutatingDots } from "react-loader-spinner";
+import { getCookie } from "cookies-next";
+import { UserService } from "@/app/_core/api/services/UserService";
+import Swal from "sweetalert2";
+import ApiErrorsManagement from "@/app/_core/api/errors/apiErrorsManagement";
+
 export interface SettingsPageProps {}
 
 export interface initialType {
@@ -56,8 +59,43 @@ export default function SettingsPage(props: SettingsPageProps) {
         }
     }, [file]);
 
-    const doUpdateAccount = () => {
+    const doUpdateAccount = (values: initialType) => {
+        setIsLoading(true);
 
+        var token = getCookie(AUTH_TOKEN_NAME);
+
+        if (token) {
+            UserService.updateAccount(
+                values.name,
+                values.firstname,
+                values.email,
+                values.password,
+                values.passwordRe,
+                file,
+                token,
+            )
+                .then((rs) => {
+                    setErrors("");
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: __("profil_updated"),
+                        showConfirmButton: false,
+                        timer: 2500,
+                    });
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        var res: ApiErrorsManagement = new ApiErrorsManagement(
+                            error,
+                        );
+                        setErrors(res.proccess());
+                    }
+                })
+                .finally(() => {
+                    setIsLoading(false);
+                });
+        }
     };
     if (!user)
         return (

@@ -224,6 +224,27 @@ var UserService = /** @class */ (function () {
             });
         });
     };
+    UserService.updateAccount = function (name, firstname, email, newPassword, oldPassword, img, token) {
+        return __awaiter(this, void 0, void 0, function () {
+            var dt;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        dt = new FormData();
+                        dt.append("name", name);
+                        dt.append("firstname", firstname);
+                        dt.append("email", email);
+                        dt.append("password", newPassword);
+                        dt.append("oldPassword", oldPassword);
+                        if (img) {
+                            dt.append("img", img);
+                        }
+                        return [4 /*yield*/, functions_1.fetchData("/api/user", dt, {}, "PUT", token)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     UserService.updateVcard = function (data, token) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {

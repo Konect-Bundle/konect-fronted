@@ -10,7 +10,7 @@ export class Konect {
     ko_phone_clicked: string;
     user_id: number;
     konect_category_id: number;
-    created_at: string;
+    created_at: Date;
 
     constructor(
         ko_ip_konect: string,
@@ -28,7 +28,7 @@ export class Konect {
         this.ko_phone_clicked = ko_phone_clicked;
         this.user_id = user_id;
         this.konect_category_id = konect_category_id;
-        this.created_at = created_at;
+        this.created_at = new Date(created_at);
         this.ko_user_info = ko_user_info;
     }
 }

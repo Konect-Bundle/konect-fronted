@@ -210,6 +210,27 @@ export class UserService {
             token,
         );
     }
+    static async updateAccount(
+        name: string,
+        firstname: string,
+        email: string,
+        newPassword: string,
+        oldPassword: string,
+        img: Blob | null,
+        token: string,
+    ) {
+        const dt = new FormData();
+        dt.append("name", name);
+        dt.append("firstname", firstname);
+        dt.append("email", email);
+        dt.append("password", newPassword);
+        dt.append("oldPassword", oldPassword);
+        if (img) {
+            dt.append("img", img);
+        }
+
+        return await fetchData("/api/user", dt, {}, "PUT", token);
+    }
     static async updateVcard(data: FormData, token: string) {
         return await fetchData(
             "/api/user/update-vcard",

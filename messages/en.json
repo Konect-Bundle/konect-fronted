@@ -422,7 +422,9 @@
         "manage_my_company": "Manage company",
         "employee": "Employee",
         "leave": "Leave",
-        "add_more": "Add users, edit and more."
+        "add_more": "Add users, edit and more.",
+        "profil_updated": "Account informations updated",
+        "total_connection": "Accumulated connection"
     },
     "konectCardStatus": {
         "title": "Attention!",

@@ -5,6 +5,7 @@ import { MutatingDots } from "react-loader-spinner";
 import { esser, ucfirst } from "@/app/_core/utils/functions";
 import IMap from "@/app/_components/Common/Map/IMap";
 import { useEffect } from "react";
+import Analytics from "@/app/_core/models/Analytics";
 
 export interface IDashboardPageProps {}
 
@@ -15,13 +16,13 @@ export default function DashboardPage(props: IDashboardPageProps) {
     const __t = useTranslations("Text");
 
     useEffect(() => {
-        // console.log(user);
+        console.log(user);
         // initFlowbite();
         // if (document.getElementById("area-chart") && typeof ApexCharts !== 'undefined') {
         //     const chart = new ApexCharts(document.getElementById("area-chart"), options);
         //     chart.render();
         //   }
-    }, []);
+    });
 
     if (!user)
         return (
@@ -118,7 +119,7 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                 <div className='grow'>
                                     <div className='flex items-center gap-x-2'>
                                         <p className='text-xs uppercase tracking-wide text-gray-500 dark:text-neutral-500'>
-                                            Total users
+                                            {__t("total_connection")}
                                         </p>
                                         <div className='hs-tooltip'>
                                             <div className='hs-tooltip-toggle'>
@@ -153,35 +154,53 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                     </div>
                                     <div className='mt-1 flex items-center gap-x-2'>
                                         <h3 className='text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200'>
-                                            72,540
+                                            {user.konects?.length}
                                         </h3>
-                                        <span className='inline-flex items-center gap-x-1 py-0.5 px-2 rounded-full bg-green-100 text-green-900 dark:bg-green-800 dark:text-green-100'>
-                                            <svg
-                                                className='inline-block size-4 self-center'
-                                                xmlns='http://www.w3.org/2000/svg'
-                                                width={24}
-                                                height={24}
-                                                viewBox='0 0 24 24'
-                                                fill='none'
-                                                stroke='currentColor'
-                                                strokeWidth={2}
-                                                strokeLinecap='round'
-                                                strokeLinejoin='round'
-                                            >
-                                                <polyline points='22 7 13.5 15.5 8.5 10.5 2 17' />
-                                                <polyline points='16 7 22 7 22 13' />
-                                            </svg>
-                                            <span className='inline-block text-xs font-medium'>
-                                                12.5%
-                                            </span>
-                                        </span>
+
+                                        {(() => {
+                                            const weeklyDrop = new Analytics(
+                                                user.konects!,
+                                            ).weeklyDrop;
+                                            const isPositive = weeklyDrop >= 0;
+                                            const bgColor = isPositive
+                                                ? "bg-green-100 text-green-900 dark:bg-green-800 dark:text-green-100"
+                                                : "bg-red-100 text-red-900 dark:bg-red-800 dark:text-red-100";
+                                            const iconColor = isPositive
+                                                ? "text-green-900 dark:text-green-100"
+                                                : "text-red-900 dark:text-red-100";
+
+                                            return (
+                                                <span
+                                                    className={`inline-flex items-center gap-x-1 py-0.5 px-2 rounded-full ${bgColor}`}
+                                                >
+                                                    <svg
+                                                        className={`inline-block size-4 self-center ${iconColor}`}
+                                                        xmlns='http://www.w3.org/2000/svg'
+                                                        width={24}
+                                                        height={24}
+                                                        viewBox='0 0 24 24'
+                                                        fill='none'
+                                                        stroke='currentColor'
+                                                        strokeWidth={2}
+                                                        strokeLinecap='round'
+                                                        strokeLinejoin='round'
+                                                    >
+                                                        <polyline points='22 7 13.5 15.5 8.5 10.5 2 17' />
+                                                        <polyline points='16 7 22 7 22 13' />
+                                                    </svg>
+                                                    <span className='inline-block text-xs font-medium'>
+                                                        {weeklyDrop}%
+                                                    </span>
+                                                </span>
+                                            );
+                                        })()}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         {/* End Card */}
                         {/* Card */}
-                        <div className='flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-800'>
+                        {/* <div className='flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-800'>
                             <div className='p-4 md:p-5 flex gap-x-4'>
                                 <div className='shrink-0 flex justify-center items-center size-[46px] bg-gray-100 rounded-lg dark:bg-neutral-800'>
                                     <svg
@@ -215,10 +234,10 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         {/* End Card */}
                         {/* Card */}
-                        <div className='flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-800'>
+                        {/* <div className='flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-800'>
                             <div className='p-4 md:p-5 flex gap-x-4'>
                                 <div className='shrink-0 flex justify-center items-center size-[46px] bg-gray-100 rounded-lg dark:bg-neutral-800'>
                                     <svg
@@ -270,10 +289,10 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         {/* End Card */}
                         {/* Card */}
-                        <div className='flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-800'>
+                        {/* <div className='flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-800'>
                             <div className='p-4 md:p-5 flex gap-x-4'>
                                 <div className='shrink-0 flex justify-center items-center size-[46px] bg-gray-100 rounded-lg dark:bg-neutral-800'>
                                     <svg
@@ -337,7 +356,7 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         {/* End Card */}
                     </div>
                     {/* End Grid */}

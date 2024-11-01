@@ -422,7 +422,9 @@
         "manage_my_company": "Gérer mon entreprise",
         "employee": "Employé",
         "leave": "Quitter",
-        "add_more": "Ajoutez des utilisateurs, modifiez-les et bien plus encore."
+        "add_more": "Ajoutez des utilisateurs, modifiez-les et bien plus encore.",
+        "profil_updated": "Informations du compte mis à jour",
+        "total_connection": "Connexion accumulée"
     },
     "konectCardStatus": {
         "title": "Attention!",

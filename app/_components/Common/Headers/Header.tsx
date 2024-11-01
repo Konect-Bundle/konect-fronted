@@ -204,7 +204,7 @@ export default function Header(props: IAppProps) {
                                                 </span>
                                             </Link>
                                         </Dropdown.Item>
-                                        <Dropdown.Item>
+                                        {/* <Dropdown.Item>
                                             <Link
                                                 href={companiesRoute.path}
                                                 className='w-full block'
@@ -216,7 +216,7 @@ export default function Header(props: IAppProps) {
                                                     </span>
                                                 </span>
                                             </Link>
-                                        </Dropdown.Item>
+                                        </Dropdown.Item> */}
                                         {/* <Dropdown.Item>Settings</Dropdown.Item>
                                     <Dropdown.Item>Earnings</Dropdown.Item> */}
                                         <Dropdown.Divider />
