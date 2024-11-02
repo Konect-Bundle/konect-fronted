@@ -424,10 +424,10 @@
         "leave": "Leave",
         "add_more": "Add users, edit and more.",
         "profil_updated": "Account informations updated",
-        "total_connection": "Total accumulated connection",
-        "total_connection_week": "Accumulated connection compared to last week",
-        "total_connection_month": "Accumulated connection compared to last month",
-        "total_connection_months": "Accumulated connection compared to last 3 months"
+        "total_connection": "Total accumulated connections",
+        "total_connection_week": "Accumulated connections compared to last week",
+        "total_connection_month": "Accumulated connections compared to last month",
+        "total_connection_months": "Accumulated connections compared to last 3 months"
     },
     "konectCardStatus": {
         "title": "Attention!",
