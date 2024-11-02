@@ -119,8 +119,8 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                 <div className='grow'>
                                     <div className='flex items-center gap-x-2'>
                                         <p className='text-xs uppercase tracking-wide text-gray-500 dark:text-neutral-500'>
-                                            {__t("total_connection")} compared
-                                            to last week
+                                            {__t("total_connection_week")}{" "}
+                                            compared to last week
                                         </p>
                                         <div className='hs-tooltip'>
                                             <div className='hs-tooltip-toggle'>
@@ -153,26 +153,24 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='mt-1 flex items-center gap-x-2'>
-                                        <h3 className='text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200'>
-                                            {user.konects?.length}
-                                        </h3>
+                                    {(() => {
+                                        const weeklyDrop = new Analytics(
+                                            user.konects!,
+                                        ).weeklyDrop;
+                                        const isPositive =
+                                            weeklyDrop.percentageChange >= 0;
+                                        const bgColor = isPositive
+                                            ? "bg-green-100 text-green-900 dark:bg-green-800 dark:text-green-100"
+                                            : "bg-red-100 text-red-900 dark:bg-red-800 dark:text-red-100";
+                                        const iconColor = isPositive
+                                            ? "text-green-900 dark:text-green-100"
+                                            : "text-red-900 dark:text-red-100";
 
-                                        {(() => {
-                                            const weeklyDrop = new Analytics(
-                                                user.konects!,
-                                            ).weeklyDrop;
-                                            const isPositive =
-                                                weeklyDrop.percentageChange >=
-                                                0;
-                                            const bgColor = isPositive
-                                                ? "bg-green-100 text-green-900 dark:bg-green-800 dark:text-green-100"
-                                                : "bg-red-100 text-red-900 dark:bg-red-800 dark:text-red-100";
-                                            const iconColor = isPositive
-                                                ? "text-green-900 dark:text-green-100"
-                                                : "text-red-900 dark:text-red-100";
-
-                                            return (
+                                        return (
+                                            <div className='mt-1 flex items-center gap-x-2'>
+                                                <h3 className='text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200'>
+                                                    {weeklyDrop.thisWeekClicks}
+                                                </h3>
                                                 <span
                                                     className={`inline-flex items-center gap-x-1 py-0.5 px-2 rounded-full ${bgColor}`}
                                                 >
@@ -193,19 +191,20 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                                     </svg>
                                                     <span className='inline-block text-xs font-medium'>
                                                         {
-                                                            weeklyDrop.thisWeekClicks
+                                                            weeklyDrop.percentageChange
                                                         }
                                                         %
                                                     </span>
                                                 </span>
-                                            );
-                                        })()}
-                                    </div>
+                                            </div>
+                                        );
+                                    })()}
                                 </div>
                             </div>
                         </div>
                         {/* End Card */}
 
+                        {/* Card */}
                         <div className='flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-800'>
                             <div className='p-4 md:p-5 flex gap-x-4'>
                                 <div className='shrink-0 flex justify-center items-center size-[46px] bg-gray-100 rounded-lg dark:bg-neutral-800'>
@@ -230,8 +229,8 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                 <div className='grow'>
                                     <div className='flex items-center gap-x-2'>
                                         <p className='text-xs uppercase tracking-wide text-gray-500 dark:text-neutral-500'>
-                                            {__t("total_connection")} compared
-                                            to last month
+                                            {__t("total_connection_month")}{" "}
+                                            compared to last month
                                         </p>
                                         <div className='hs-tooltip'>
                                             <div className='hs-tooltip-toggle'>
@@ -264,26 +263,26 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='mt-1 flex items-center gap-x-2'>
-                                        <h3 className='text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200'>
-                                            {user.konects?.length}
-                                        </h3>
+                                    {(() => {
+                                        const monthlyDrop = new Analytics(
+                                            user.konects!,
+                                        ).monthlyDrop;
+                                        const isPositive =
+                                            monthlyDrop.percentageChange >= 0;
+                                        const bgColor = isPositive
+                                            ? "bg-green-100 text-green-900 dark:bg-green-800 dark:text-green-100"
+                                            : "bg-red-100 text-red-900 dark:bg-red-800 dark:text-red-100";
+                                        const iconColor = isPositive
+                                            ? "text-green-900 dark:text-green-100"
+                                            : "text-red-900 dark:text-red-100";
 
-                                        {(() => {
-                                            const monthlyDrop = new Analytics(
-                                                user.konects!,
-                                            ).monthlyDrop;
-                                            const isPositive =
-                                                monthlyDrop.percentageChange >=
-                                                0;
-                                            const bgColor = isPositive
-                                                ? "bg-green-100 text-green-900 dark:bg-green-800 dark:text-green-100"
-                                                : "bg-red-100 text-red-900 dark:bg-red-800 dark:text-red-100";
-                                            const iconColor = isPositive
-                                                ? "text-green-900 dark:text-green-100"
-                                                : "text-red-900 dark:text-red-100";
-
-                                            return (
+                                        return (
+                                            <div className='mt-1 flex items-center gap-x-2'>
+                                                <h3 className='text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200'>
+                                                    {
+                                                        monthlyDrop.thisMonthClicks
+                                                    }
+                                                </h3>
                                                 <span
                                                     className={`inline-flex items-center gap-x-1 py-0.5 px-2 rounded-full ${bgColor}`}
                                                 >
@@ -304,18 +303,20 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                                     </svg>
                                                     <span className='inline-block text-xs font-medium'>
                                                         {
-                                                            monthlyDrop.thisMonthClicks
+                                                            monthlyDrop.percentageChange
                                                         }
                                                         %
                                                     </span>
                                                 </span>
-                                            );
-                                        })()}
-                                    </div>
+                                            </div>
+                                        );
+                                    })()}
                                 </div>
                             </div>
                         </div>
+                        {/* End Card */}
 
+                        {/* Card */}
                         <div className='flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-800'>
                             <div className='p-4 md:p-5 flex gap-x-4'>
                                 <div className='shrink-0 flex justify-center items-center size-[46px] bg-gray-100 rounded-lg dark:bg-neutral-800'>
@@ -340,8 +341,8 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                 <div className='grow'>
                                     <div className='flex items-center gap-x-2'>
                                         <p className='text-xs uppercase tracking-wide text-gray-500 dark:text-neutral-500'>
-                                            {__t("total_connection")} compared
-                                            to last 3 months
+                                            {__t("total_connection_months")}{" "}
+                                            compared to last 3 months
                                         </p>
                                         <div className='hs-tooltip'>
                                             <div className='hs-tooltip-toggle'>
@@ -374,26 +375,27 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='mt-1 flex items-center gap-x-2'>
-                                        <h3 className='text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200'>
-                                            {user.konects?.length}
-                                        </h3>
+                                    {(() => {
+                                        const threeMonthDrop = new Analytics(
+                                            user.konects!,
+                                        ).threeMonthDrop;
+                                        const isPositive =
+                                            threeMonthDrop.percentageChange >=
+                                            0;
+                                        const bgColor = isPositive
+                                            ? "bg-green-100 text-green-900 dark:bg-green-800 dark:text-green-100"
+                                            : "bg-red-100 text-red-900 dark:bg-red-800 dark:text-red-100";
+                                        const iconColor = isPositive
+                                            ? "text-green-900 dark:text-green-100"
+                                            : "text-red-900 dark:text-red-100";
 
-                                        {(() => {
-                                            const threeMonthDrop =
-                                                new Analytics(user.konects!)
-                                                    .threeMonthDrop;
-                                            const isPositive =
-                                                threeMonthDrop.percentageChange >=
-                                                0;
-                                            const bgColor = isPositive
-                                                ? "bg-green-100 text-green-900 dark:bg-green-800 dark:text-green-100"
-                                                : "bg-red-100 text-red-900 dark:bg-red-800 dark:text-red-100";
-                                            const iconColor = isPositive
-                                                ? "text-green-900 dark:text-green-100"
-                                                : "text-red-900 dark:text-red-100";
-
-                                            return (
+                                        return (
+                                            <div className='mt-1 flex items-center gap-x-2'>
+                                                <h3 className='text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200'>
+                                                    {
+                                                        threeMonthDrop.thisMonthClicks
+                                                    }
+                                                </h3>
                                                 <span
                                                     className={`inline-flex items-center gap-x-1 py-0.5 px-2 rounded-full ${bgColor}`}
                                                 >
@@ -414,17 +416,19 @@ export default function DashboardPage(props: IDashboardPageProps) {
                                                     </svg>
                                                     <span className='inline-block text-xs font-medium'>
                                                         {
-                                                            threeMonthDrop.thisMonthClicks
+                                                            threeMonthDrop.percentageChange
                                                         }
                                                         %
                                                     </span>
                                                 </span>
-                                            );
-                                        })()}
-                                    </div>
+                                            </div>
+                                        );
+                                    })()}
                                 </div>
                             </div>
                         </div>
+                        {/* End Card */}
+
                         {/* Card */}
                         {/* <div className='flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-800'>
                             <div className='p-4 md:p-5 flex gap-x-4'>

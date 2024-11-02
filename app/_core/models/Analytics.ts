@@ -32,8 +32,10 @@ export default class Analytics {
         lastWeek.setDate(now.getDate() - 7);
 
         const thisWeekClicks = this.filterKonectsByDate(lastWeek).length;
+
         const previousWeek = new Date(lastWeek);
         previousWeek.setDate(previousWeek.getDate() - 7);
+
         const lastWeekClicks = this.filterKonectsByDate(
             previousWeek,
             lastWeek,
