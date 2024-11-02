@@ -424,7 +424,7 @@
         "leave": "Quitter",
         "add_more": "Ajoutez des utilisateurs, modifiez-les et bien plus encore.",
         "profil_updated": "Informations du compte mis à jour",
-        "total_connection": "Connexion accumulée",
+        "total_connection": "Connexion totale accumulée",
         "total_connection_week": "Connexion accumulée comparé à la semaine dernière",
         "total_connection_month": "Connexion accumulée comparé au dernier mois",
         "total_connection_months": "Connexion accumulée comparé aux 3 derniers mois"
