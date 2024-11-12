@@ -15,12 +15,12 @@ const inter = Outfit({
 
 export const metadata: Metadata = {
     title:
-        "IKonect - " +
+        "Konect - " +
         "Modern networking solution | Solution de networking moderne",
     description:
-        "IKonect : The innovative solution for sharing contacts easily with NFC and QR cards. Simplified networking for professionals and individuals.",
+        "Konect : The innovative solution for sharing contacts easily with NFC and QR cards. Simplified networking for professionals and individuals.",
     authors: { name: "uziel mvuama", url: "https://www.mrlezi.com" },
-    applicationName: "IKonect",
+    applicationName: "Konect",
     keywords: [
         "ikonect",
         "ikonect.me",
@@ -41,14 +41,14 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         creator: "@_uziel_mvuama",
         images: ROOT_ASSETS_URL + "/images/logo-yellow-bg.png",
-        site: "https://www.ikonect.me",
+        site: "https://www.Konect.me",
         title: "Konect - " + "A link for your value",
         description: "Networking tools and  platform",
     },
     openGraph: {
-        url: "https://www.ikonect.me",
+        url: "https://www.Konect.me",
         title: "Konect - " + "A link for your value",
-        siteName: "https://www.ikonect.me/sitemap.xml",
+        siteName: "https://www.Konect.me/sitemap.xml",
         description: "Networking tools and platform",
         images: [ROOT_ASSETS_URL + "/images/logo-yellow-bg.png"],
     },
