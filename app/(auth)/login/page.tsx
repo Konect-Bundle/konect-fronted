@@ -28,17 +28,19 @@ import { TbEye, TbEyeOff } from "react-icons/tb";
 import Swal from "sweetalert2";
 import * as Yup from "yup";
 import CheckBoxField from "../../_components/Common/Form/CheckBoxField";
+import { useParams, useSearchParams } from "next/navigation";
 
 export interface ILoginFormPageProps {}
 
-export default function LoginFormPage(props: ILoginFormPageProps) {
+export default function LoginFormPage({}: ILoginFormPageProps) {
     const [showPassword, setShowPassword] = useState(false);
     const [intentData, setIntentData] = useState<IntentInterface | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState<string | Array<string>>("");
 
     const T = useTranslations("Auth");
-
+    const params = useSearchParams();
+    const redirectTo = params.get("redirectTo");
     const SigninSchema = Yup.object().shape({
         email: Yup.string()
             .email(T("validate_email"))
@@ -57,6 +59,7 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
             );
         }
     }, [intentData]);
+
     useEffect(() => {
         var iconDiv = $("#password").parent().find("div");
         var data = iconDiv.data("testid");
@@ -108,7 +111,11 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
                                 window.location.href = urlIntent;
                             });
                         } else {
-                            window.location.href = dashboardRoute.path;
+                            if (redirectTo != null) {
+                                window.location.href = redirectTo;
+                            } else {
+                                window.location.href = dashboardRoute.path;
+                            }
                         }
                     });
                 } else {

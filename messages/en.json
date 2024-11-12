@@ -176,6 +176,7 @@
         "record": "Record",
         "restore": "Restore",
         "save": "Save",
+        "exchange": "Exchange",
         "save_and_close": "Save & Close",
         "save_and_return": "Save & Return",
         "search": "Search",

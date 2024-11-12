@@ -1,4 +1,4 @@
-import { productItemRoute } from "../config/routes";
+import { konectsListRoute, productItemRoute } from "../config/routes";
 import { IntentInterface } from "../interfaces/appInterfaces";
 import { PaymentService } from "../api/services/PaymentService";
 import tinycolor from "tinycolor2";
@@ -43,7 +43,7 @@ export async function intent_processor(
             )
         ).data.url;
     }
-    return "";
+    return intentData.path ?? "";
 }
 
 export function convertYouTubeLinkToEmbed(url: string): string {

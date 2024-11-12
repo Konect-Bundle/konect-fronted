@@ -45,15 +45,15 @@ export default function KuserBlock({
     kuser,
     isLoading = false,
 }: KuserBlockProps) {
-    console.log(kuser);
     const aRef = useRef<HTMLAnchorElement>(null);
     const [isCompleted, setIsCompleted] = useState<boolean>(false);
     const user: User = UserService.buildObjectParser(kuser);
     const vinfo: UserVcard = user && new UserVcard(user.vinfo);
     const vconfig: VcardConfig = user && new VcardConfig(user.vconfig);
     const __ = useTranslations("Text");
+    const __a = useTranslations("Actions");
     const [konectsCount, setKonectCount] = useState<number>(
-        user.konects_count!,
+        user.konects_count ?? user.konects!.length,
     );
     const kpZoom =
         stringToEnum(KPreviewZoom, vconfig.configTheme.kpZoom) ??
@@ -270,17 +270,13 @@ export default function KuserBlock({
                                                         }}
                                                     >
                                                         <span id='konect-stat'>
-                                                            {
-                                                                kuser.konects
-                                                                    .length
-                                                            }
+                                                            {konectsCount}
                                                         </span>
                                                     </motion.div>
                                                     <span>
                                                         {esser(
                                                             "konect",
-                                                            kuser.konects
-                                                                .length,
+                                                            konectsCount,
                                                         )}
                                                     </span>
                                                 </span>
@@ -307,7 +303,7 @@ export default function KuserBlock({
                         onClick={handleSaveContact}
                     >
                         <TbDownload className='mr-3 h-4 w-4' />
-                        Save
+                        {__a("save")}
                     </Button>
                     <Link
                         href={
@@ -328,7 +324,7 @@ export default function KuserBlock({
                         onClick={handleShareContact}
                     >
                         <TbShare2 className='mr-3 h-4 w-4' />
-                        Exchange
+                        {__a("exchange")}
                     </Button>
                 </Button.Group>
 
