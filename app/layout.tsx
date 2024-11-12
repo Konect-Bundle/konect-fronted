@@ -15,13 +15,15 @@ const inter = Outfit({
 
 export const metadata: Metadata = {
     title:
-        "Konect - " +
+        "IKonect - " +
         "Modern networking solution | Solution de networking moderne",
     description:
-        "Konect : The innovative solution for sharing contacts easily with NFC and QR cards. Simplified networking for professionals and individuals.",
+        "IKonect : The innovative solution for sharing contacts easily with NFC and QR cards. Simplified networking for professionals and individuals.",
     authors: { name: "uziel mvuama", url: "https://www.mrlezi.com" },
-    applicationName: "Konect",
+    applicationName: "IKonect",
     keywords: [
+        "ikonect",
+        "ikonect.me",
         "konect",
         "networking",
         "réseautage",
