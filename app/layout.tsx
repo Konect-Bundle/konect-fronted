@@ -7,6 +7,7 @@ import { Outfit } from "next/font/google";
 import ReduxInitLayout from "./_components/Layouts/ReduxInit";
 import "./globals.scss";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const inter = Outfit({
     subsets: ["latin"],
@@ -69,6 +70,7 @@ export default async function RootLayout({
                             <main className='bg-gray-50 min-h-[100vh] w-full'>
                                 {children}
                                 <Analytics />
+                                <SpeedInsights />
                             </main>
                         </ReduxInitLayout>
                     </StoreProvider>
