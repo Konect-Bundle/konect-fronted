@@ -37,9 +37,9 @@ export default function Home() {
                                             </span>
                                             <span>{t("label_01")}</span>
                                         </span>
-                                        <h2 className='max-w-2xl mb-4 text-5xl font-extrabold tracking-tight leading-none md:text-6xl xl:text-7xl text-gray-900'>
+                                        <h1 className='max-w-2xl mb-4 text-5xl font-extrabold tracking-tight leading-none md:text-6xl xl:text-7xl text-gray-900'>
                                             {t("bannerText01")}
-                                        </h2>
+                                        </h1>
                                         <p className='max-w-2xl mb-6 font-light text-gray-500  lg:mb-8 md:text-lg lg:text-xl '>
                                             {t("bannerText02")}.
                                         </p>

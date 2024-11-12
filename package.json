@@ -8,7 +8,8 @@
         "start": "next start",
         "lint": "next lint",
         "format": "npx prettier . --check",
-        "format:fix": "yarn prettier . --write"
+        "format:fix": "yarn prettier . --write",
+        "clean:dist:app": "find ./app -name 'dist' -type d -exec rm -rf {} +"
     },
     "dependencies": {
         "@react-google-maps/api": "^2.19.3",

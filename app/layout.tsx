@@ -7,15 +7,18 @@ import { Outfit } from "next/font/google";
 import ReduxInitLayout from "./_components/Layouts/ReduxInit";
 import "./globals.scss";
 import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Outfit({
     subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-    title: "Konect - " + "A link for your value",
-    description: "Networking tools and platform",
+    title:
+        "Konect - " +
+        "Modern networking solution | Solution de networking moderne",
+    description:
+        "Konect : The innovative solution for sharing contacts easily with NFC and QR cards. Simplified networking for professionals and individuals.",
     authors: { name: "uziel mvuama", url: "https://www.mrlezi.com" },
     applicationName: "Konect",
     keywords: [

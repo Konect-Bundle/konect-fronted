@@ -125,7 +125,7 @@ export default function ProductsListBlock({
                                                     ROOT_FILES_URL +
                                                     gadget.imageURL[0]
                                                 }
-                                                alt='face cream image'
+                                                alt='Carte NFC QR pour échanges de contacts | Digital NFC business card by Konect for modern networking'
                                                 className=''
                                             />
                                         </div>

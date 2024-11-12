@@ -131,7 +131,7 @@ export default function ProductItemBlock({
                                                     "/" +
                                                     gadgetItem?.imageURL[1]
                                                 }
-                                                alt='Yellow Tropical Printed Shirt image'
+                                                alt='Carte NFC QR pour échanges de contacts | Digital NFC business card by Konect for modern networking'
                                                 className='max-lg:mx-auto lg:ml-auto h-full border rounded-2xl'
                                                 width={500}
                                                 height={500}
