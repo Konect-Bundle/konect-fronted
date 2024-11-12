@@ -1,9 +1,9 @@
 {
     "Home": {
-        "bannerText01": "A IKonect, un lien pour votre valeur",
+        "bannerText01": "A Konect, un lien pour votre valeur",
         "bannerText02": "Un outil important pour des connexions mémorables, créant des opportunités avec chaque échange de votre valeur",
         "section01_01": "Nos cartes de visite en PVC sont plus qu'un simple support, elles sont l'outil innovant qui transforme chaque rencontre en une opportunité de connexion instantanée. En un simple échange, découvrez un monde où les entrepreneurs et les esprits créatifs se rencontrent facilement, partageant des idées, des projets et des ambitions.",
-        "section01_02": "Rejoignez IKonect et plongez-vous dans un monde où les connexions se forgent naturellement.",
+        "section01_02": "Rejoignez Konect et plongez-vous dans un monde où les connexions se forgent naturellement.",
         "section01_title": "Nos gadgets de carte NFC",
         "index_vision_text": "Devenir la plateforme de référence pour le réseautage professionnel, où chaque connexion se transforme en opportunité grâce à une technologie intuitive et des outils de gestion de réseau avancés.",
         "index_vision_title01": "Écologique et économique",
@@ -13,12 +13,12 @@
         "index_vision_title03": "Réseautage simplifié",
         "index_vision_section03": "Faciliter les connexions lors d'événements, de conférences et de réunions professionnelles avec des échanges de contacts instantanés.",
         "label_01": "Réseautage porté à un niveau supérieur",
-        "how_does_section": "Comment fonctionne IKonect ?",
-        "learn_about_text": "En savoir plus sur IKonect",
+        "how_does_section": "Comment fonctionne Konect ?",
+        "learn_about_text": "En savoir plus sur Konect",
         "watch_tutorial_text": "Suivre le tutoriel"
     },
     "Kuser": {
-        "you_too": "Vous aussi, obtenez facilement votre carte IKonect"
+        "you_too": "Vous aussi, obtenez facilement votre carte Konect"
     },
     "Links": {
         "how_it_works": "Comment ca marche?",
@@ -51,8 +51,8 @@
             "dashboard_hello": "Bonjour, {name}"
         },
         "Organization": {
-            "add_card_index_title": "Créez votre organisation et commandez un gadget IKonect pour les membres de votre équipe",
-            "add_card_desc": "Créez votre organisation aujourd'hui et commandez des gadgets IKonect pour chacun de vos membres, facilement et efficacement. Avec notre plateforme intuitive, vous pouvez créer un espace dédié à votre organisation, où vous pouvez gérer les demandes de gadgets pour toutes vos équipes."
+            "add_card_index_title": "Créez votre organisation et commandez un gadget Konect pour les membres de votre équipe",
+            "add_card_desc": "Créez votre organisation aujourd'hui et commandez des gadgets Konect pour chacun de vos membres, facilement et efficacement. Avec notre plateforme intuitive, vous pouvez créer un espace dédié à votre organisation, où vous pouvez gérer les demandes de gadgets pour toutes vos équipes."
         }
     },
     "Kgadgets": {
@@ -235,8 +235,8 @@
         "external_links": "Liens externes",
         "other_settings": "Autres réglages",
         "contact_form": "Formulaire\nde contact",
-        "konect_business": "IKonect Entreprise",
-        "konect_personal": "IKonect Personnel",
+        "konect_business": "Konect Entreprise",
+        "konect_personal": "Konect Personnel",
         "how_it_works": "Comment ca marche?",
         "contact_sheet": "Fiche de contact",
         "family_name": "Nom de famille",
@@ -361,7 +361,7 @@
         "no_result_found": "Aucun résultat trouvé",
         "send_now": "Envoyer maintenant",
         "about_me": "À propos de moi",
-        "you_too_easily_get_your_konect_card": "Vous aussi, obtenez facilement votre carte IKonect",
+        "you_too_easily_get_your_konect_card": "Vous aussi, obtenez facilement votre carte Konect",
         "memorable_connections_for_your_impact": "Des connexions mémorables pour votre impact",
         "analytics_and_insights": "Analyses et informations",
         "integration_with_social_networks": "Intégration avec les Réseaux Sociaux",
@@ -431,7 +431,7 @@
     },
     "konectCardStatus": {
         "title": "Attention!",
-        "message": "Votre carte IKonect est actuellement désactivée.",
+        "message": "Votre carte Konect est actuellement désactivée.",
         "additionalInfo": "Veuillez contacter le support ou vérifier les paramètres de votre compte pour plus d'informations."
     },
     "backToHome": {

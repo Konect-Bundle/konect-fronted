@@ -1,9 +1,9 @@
 {
     "Home": {
-        "bannerText01": "A Ikonect, a link for your value",
+        "bannerText01": "A Konect, a link for your value",
         "bannerText02": "An important tool for memorable connections, creating opportunities with each exchange of your value",
         "section01_01": "Our PVC business cards are more than just a medium they are the innovative tool that turns every meeting into an opportunity for instant connection. In a simple exchange, discover a world where entrepreneurs and creative minds meet effortlessly, sharing ideas, projects and ambitions.",
-        "section01_02": "Join IKonect and immerse yourself in a world where connections are forged naturally.",
+        "section01_02": "Join Konect and immerse yourself in a world where connections are forged naturally.",
         "section01_title": "Our NFC Card Gadgets",
         "index_vision_text": "Become the reference platform for professional networking, where every connection turns into an opportunity thanks to intuitive technology and advanced network management tools.",
         "index_vision_title01": "Eco-friendly and economical",
@@ -13,8 +13,8 @@
         "index_vision_title03": "Networking Made Easy",
         "index_vision_section03": "Facilitate connections at events, conferences and professional meetings with instant contact exchanges.",
         "label_01": "Networking taken to the next level",
-        "how_does_section": "How does IKonect work?",
-        "learn_about_text": "Learn about IKonect",
+        "how_does_section": "How does Konect work?",
+        "learn_about_text": "Learn about Konect",
         "watch_tutorial_text": "Watch tutorial"
     },
     "Links": {
@@ -30,7 +30,7 @@
         "logout": "Log out"
     },
     "Kuser": {
-        "you_too": "You too, easily get your IKonect card"
+        "you_too": "You too, easily get your Konect card"
     },
     "Plan": {
         "plan_title01": "Our excellent packages for you",
@@ -51,8 +51,8 @@
             "dashboard_hello": "Hello, {name}!"
         },
         "Organization": {
-            "add_card_index_title": "Create your organization and order a IKonect gadget for your team members",
-            "add_card_desc": "Create your organization today and order IKonect gadgets for each of your members, with ease and efficiency. With our intuitive platform, you can create a space dedicated to your organization, where you can manage Kgadgets requests for all your teams."
+            "add_card_index_title": "Create your organization and order a Konect gadget for your team members",
+            "add_card_desc": "Create your organization today and order Konect gadgets for each of your members, with ease and efficiency. With our intuitive platform, you can create a space dedicated to your organization, where you can manage Kgadgets requests for all your teams."
         }
     },
     "Kgadgets": {
@@ -235,8 +235,8 @@
         "external_links": "External links",
         "other_settings": "Other settings",
         "contact_form": "Contact form",
-        "konect_business": "IKonect Business",
-        "konect_personal": "IKonect Personal",
+        "konect_business": "Konect Business",
+        "konect_personal": "Konect Personal",
         "how_it_works": "How it works?",
         "contact_sheet": "Contact sheet",
         "family_name": "Last Name",
@@ -361,7 +361,7 @@
         "no_result_found": "No Result Found",
         "send_now": "Send Now",
         "about_me": "About Me",
-        "you_too_easily_get_your_konect_card": "You too, easily get your IKonect card",
+        "you_too_easily_get_your_konect_card": "You too, easily get your Konect card",
         "memorable_connections_for_your_impact": "Memorable Connections for Your Impact",
         "analytics_and_insights": "Analytics and Insights",
         "integration_with_social_networks": "Integration with Social Networks",
@@ -431,7 +431,7 @@
     },
     "konectCardStatus": {
         "title": "Attention!",
-        "message": "Your IKonect card is currently deactivated.",
+        "message": "Your Konect card is currently deactivated.",
         "additionalInfo": "Please contact support or check your account settings for more information."
     },
     "backToHome": {
