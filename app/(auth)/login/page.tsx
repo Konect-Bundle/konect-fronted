@@ -137,9 +137,9 @@ export default function LoginFormPage(props: ILoginFormPageProps) {
     return (
         <LoadingLayout isLoading={isLoading}>
             <div className='w-full h-full flex  flex-col justify-center items-center'>
-                <h2 className='text-2xl text-black-semibold text-center font-bold md:py-6 p-4'>
+                <h1 className='text-2xl text-black-semibold text-center font-bold md:py-6 p-4'>
                     {T("login")}
-                </h2>
+                </h1>
 
                 <Formik
                     onSubmit={doAuth}
