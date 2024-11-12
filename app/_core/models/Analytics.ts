@@ -11,7 +11,7 @@ export default class Analytics {
         previous: number,
     ): number {
         if (previous === 0) return current === 0 ? 0 : 100;
-        return ((current - previous) / previous) * 100;
+        return parseFloat((((current - previous) / previous) * 100).toFixed(2));
     }
 
     private filterKonectsByDate(startDate: Date, endDate?: Date): Konect[] {
