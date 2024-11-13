@@ -14,6 +14,10 @@ const nextConfig = {
                 protocol: "https",
                 hostname: "ikonect.info",
             },
+            {
+                protocol: "http",
+                hostname: "ikonect.info",
+            },
         ],
     },
 };

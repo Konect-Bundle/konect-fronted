@@ -59,6 +59,7 @@ export default function KwidgetItemPage({
         GadgetService.getKwidget(params.code).then((rs) => {
             // console.log(rs);
             var gadget = new KoGadgetItem(
+                 "",
                 JSON.parse(rs.data.kg_details).name,
                 rs.data.kg_code,
                 JSON.parse(rs.data.kg_details).description,

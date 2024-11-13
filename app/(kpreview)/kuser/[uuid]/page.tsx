@@ -12,9 +12,11 @@ export async function generateMetadata(
     // read route params
     const uuid = params.uuid;
 
-    // fetch data
-    var kuser = (await UserService.getUser(uuid)).data;
+    var gadget = (await UserService.getGadget(params.uuid)).data;
 
+    // fetch data
+    var kuser = gadget.owner;
+    var vinfo = JSON.parse(kuser.vinfo);
     // optionally access and extend (rather than replace) parent metadata
     const previousImages = (await parent).openGraph?.images || [];
 
@@ -28,7 +30,7 @@ export async function generateMetadata(
                 ucfirst(kuser.name),
             card: "summary_large_image",
             images: ROOT_FILES_URL + "/compressed-photo/" + kuser.uuid + ".jpg",
-            description: ucfirst(kuser.vinfo.note.text),
+            description: ucfirst(vinfo.note.text),
         },
         openGraph: {
             url: "https://www.ikonect.me/kuser/" + kuser.uuid,
@@ -38,7 +40,7 @@ export async function generateMetadata(
                 " " +
                 ucfirst(kuser.name),
             siteName: "Konect",
-            description: ucfirst(kuser.vinfo.note.text),
+            description: ucfirst(vinfo.note.text),
             images: [
                 ROOT_FILES_URL + "/compressed-photo/" + kuser.uuid + ".jpg",
                 ...previousImages,
@@ -52,12 +54,18 @@ export default async function KuserPage({
 }: {
     params: { uuid: string };
 }) {
-    var gadget = (await UserService.getGadget(params.uuid)).data;
-    if (gadget.company == null) {
-        console.log("PERSONAL");
-        return <KuserBlock kuser={gadget.owner} isLoading={!gadget.owner} />;
-    } else {
-        // console.log(gadget);
-        return <KuserCompanyBlock gadget={gadget} isLoading={!gadget} />;
+    try {
+        var gadget = (await UserService.getGadget(params.uuid)).data;
+        if (gadget.company == null) {
+            // console.log("PERSONAL");
+            return (
+                <KuserBlock kuser={gadget.owner} isLoading={!gadget.owner} />
+            );
+        } else {
+            // console.log(gadget);
+            return <KuserCompanyBlock gadget={gadget} isLoading={!gadget} />;
+        }
+    } catch (error) {
+        console.log(error);
     }
 }

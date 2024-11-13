@@ -51,6 +51,7 @@ export default function ProductsListBlock({
         let ga: KoGadgetItem[] = [];
         data.map((gadget: any) => {
             var g = new KoGadgetItem(
+                "",
                 JSON.parse(gadget.kg_details).name,
                 gadget.kg_code,
                 JSON.parse(gadget.kg_details).description,

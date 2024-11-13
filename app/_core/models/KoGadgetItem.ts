@@ -5,6 +5,7 @@ interface Color {
 
 interface Gadget {
     name: string;
+    uuid: string;
     code: string;
     description: string;
     price: number;
@@ -25,6 +26,7 @@ export interface CardCustomDetails {
 
 export class KoGadgetItem implements Gadget {
     name: string;
+    uuid: string;
     code: string;
     description: string;
     price: number;
@@ -36,6 +38,7 @@ export class KoGadgetItem implements Gadget {
     cardCustomDetails?: CardCustomDetails | null;
 
     constructor(
+        uuid: string,
         name: string,
         code: string,
         description: string,
@@ -47,6 +50,7 @@ export class KoGadgetItem implements Gadget {
         imageURL: string[],
         cardCustomDetails?: CardCustomDetails | null,
     ) {
+        this.uuid = uuid;
         this.name = name;
         this.code = code;
         this.description = description;
@@ -61,6 +65,7 @@ export class KoGadgetItem implements Gadget {
 
     static empty() {
         var ko: KoGadgetItem = new KoGadgetItem(
+            "",
             "",
             "",
             "",

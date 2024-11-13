@@ -64,6 +64,7 @@ export class UserService {
 
                 gadgets.push(
                     new KoGadgetItem(
+                        gadget.uuid,
                         JSON.parse(ga.kg_details).name,
                         ga.kg_code,
                         JSON.parse(ga.kg_details).description,

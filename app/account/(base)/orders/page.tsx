@@ -8,7 +8,11 @@ import { useAppSelector } from "@/app/_store/hooks";
 import { MutatingDots } from "react-loader-spinner";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { ROOT_ASSETS_URL, ROOT_FILES_URL } from "@/app/_core/config/constants";
+import {
+    ROOT_ASSETS_URL,
+    ROOT_FILES_PROD,
+    ROOT_FILES_URL,
+} from "@/app/_core/config/constants";
 import { Button } from "flowbite-react";
 import Link from "next/link";
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
@@ -56,58 +60,101 @@ export default function OrderHistoryPage(props: OrderHistoryProps) {
                 </p> */}
                 </div>
                 <div className='lg:col-span-6 col-span-8 md:space-y-6 space-y-4'>
-                    {user.orders?.map(
-                        (order, i) =>
+                    {user.orders?.map((order, i) => {
+                        const gadget = user.gadgets![i];
+                        return (
                             (order.payload.session_id &&
                                 order.isClosed === true) ?? (
                                 <div
-                                    className='grid grid-cols-12 md:gap-8 gap-3 border bg-white p-6 rounded-lg'
+                                    className='grid grid-cols-12 md:gap-4 gap-3 border bg-white px-0 py-12 rounded-lg'
                                     key={i}
                                 >
                                     <div className='col-span-12'>
-                                        <h2 className='py-1 font-normal italic'>
+                                        <h2 className='py-1 font-normal italic text-center'>
                                             {order.isClosed
                                                 ? `Ordered ${formatDistanceToNow(order.createdAt)} before`
                                                 : "En cours"}
                                         </h2>
                                     </div>
-                                    <div className='lg:col-span-3 col-span-4'>
-                                        <div className='bg-white border md:rounded-3xl rounded-lg overflow-hidden border-noir-medium/25'>
-                                            <Image
-                                                width={500}
-                                                height={500}
-                                                src={
-                                                    ROOT_FILES_URL +
-                                                    user.gadgets![i].imageURL[0]
-                                                }
-                                                alt='face cream image'
-                                            />
+                                    <div className='lg:col-span-4 col-span-12'>
+                                        <div className='flex justify-center'>
+                                            <div className='md:w-[350px] w-80 bg-white flex justify-center relative'>
+                                                <div
+                                                    className={`flex flex-col justify-center ps-8 sm:space-y-1 space-y-1 absolute w-full h-full left-0 ${gadget.color.name == "white" ? " text-gray-800" : gadget.color.name == "black text yellow" ? " text-yellow-600" : " text-gray-100"}`}
+                                                >
+                                                    <div className='flex space-x-2 sm:text-2xl text-xl font-bold'>
+                                                        <span
+                                                            id='givenNameText'
+                                                            className={`capitalize ${gadget.cardCustomDetails?.firstname ? " " : "h-3 bg-gray-200 animate-pulse rounded-sm sm:w-20 w-10"} `}
+                                                        >
+                                                            {
+                                                                gadget
+                                                                    .cardCustomDetails
+                                                                    ?.firstname
+                                                            }
+                                                        </span>
+                                                        <span
+                                                            id='familyNameText'
+                                                            className={`capitalize ${gadget.cardCustomDetails?.name ? " " : "h-3 bg-gray-200 animate-pulse  rounded-sm sm:w-28 w-14"}`}
+                                                        >
+                                                            {
+                                                                gadget
+                                                                    .cardCustomDetails
+                                                                    ?.name
+                                                            }
+                                                        </span>
+                                                    </div>
+                                                    <span
+                                                        className={`capitalize sm:text-lg text-lg font-normal italic ${gadget.cardCustomDetails?.title ? " " : "h-3 bg-gray-200 animate-pulse rounded-sm sm:w-28 w-14"} ${gadget.color.name == "white" ? " text-gray-600" : " text-gray-300"}`}
+                                                        id='companyNameText'
+                                                    >
+                                                        {
+                                                            gadget
+                                                                .cardCustomDetails
+                                                                ?.title
+                                                        }
+                                                    </span>
+                                                </div>
+                                                <div className='border rounded-lg overflow-hidden border-noir-medium/25 '>
+                                                    <Image
+                                                        width={500}
+                                                        height={500}
+                                                        src={
+                                                            ROOT_FILES_PROD +
+                                                            user.gadgets![i]
+                                                                .imageURL[1]
+                                                        }
+                                                        alt='face cream image'
+                                                    />
+                                                </div>
+                                            </div>
                                         </div>
                                         {/* <Image src={ROOT_ASSETS_URL+user.} width={500} height={500} alt=""/> */}
                                     </div>
-                                    <div className='lg:col-span-9 col-span-8'>
-                                        <div className='flex flex-col justify-center'>
-                                            <span className='truncate md:text-lg font-medium text-sm'>
+                                    <div className='lg:col-span-8 col-span-12'>
+                                        <div className='flex flex-col justify-center items-center'>
+                                            <span className='truncate md:text-lg font-medium text-lg'>
                                                 {user.gadgets![i].name}
                                             </span>
-                                            <span className='truncate md:text-md font-normal text-sm text-gray-500 py-2'>
+                                            <span className='truncate md:text-md font-normal text-md text-gray-500 py-3'>
                                                 {
                                                     "Aucun retour admissible pour l'instant"
                                                 }{" "}
                                             </span>
-                                            <div className='flex flex-wrap sm:space-x-3 space-x-0 sm:space-y-0 space-y-2 justify-start'>
+                                            <div className='flex flex-wrap justify-start'>
                                                 <Link
                                                     href={
                                                         productItemRoute.path +
                                                         `/${user.gadgets![i].code}`
                                                     }
+                                                    className='mr-3'
                                                 >
                                                     <Button
                                                         theme={
                                                             customButtonTheme
                                                         }
                                                         color='dark'
-                                                        size='xs'
+                                                        size='md'
                                                         className='flex md:py-2.5 items-center'
                                                     >
                                                         <TbReload />
@@ -122,7 +169,7 @@ export default function OrderHistoryPage(props: OrderHistoryProps) {
                                                             customButtonTheme
                                                         }
                                                         color='light'
-                                                        size='xs'
+                                                        size='md'
                                                         className='flex md:py-2.5 items-center'
                                                     >
                                                         {__("get_card")}
@@ -141,8 +188,9 @@ export default function OrderHistoryPage(props: OrderHistoryProps) {
                                         </div>
                                     </div>
                                 </div>
-                            ),
-                    )}
+                            )
+                        );
+                    })}
                 </div>
             </section>
         )
