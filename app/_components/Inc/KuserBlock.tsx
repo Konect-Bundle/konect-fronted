@@ -104,7 +104,7 @@ export default function KuserBlock({
             KonectService.makeConnect(user.uuid!, 1)
                 .then((rs) => {
                     if (rs.state) {
-                        setKonectCount(user.konects_count! + 1);
+                        setKonectCount(konectsCount + 1);
                         const int = setInterval(() => {
                             setIsCompleted(true);
                             clearInterval(int);
