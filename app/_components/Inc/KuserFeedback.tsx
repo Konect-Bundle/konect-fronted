@@ -91,7 +91,7 @@ export default function KuserFeedback({ kuser, callback }: KuserBlockProps) {
                                 callback();
                             }}
                         >
-                            <TbX className="'w-7 h-7 text-gray-800'" />
+                            <TbX className="'w-9 h-9 text-gray-800'" />
                         </span>
                     </span>
                     <div className='flex flex-col justify-center'>
