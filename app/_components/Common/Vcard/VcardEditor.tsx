@@ -1,16 +1,14 @@
 "use_client";
 import UserVcard from "@/app/_core/models/vcard/UserVcard";
+import { Button, Tabs } from "flowbite-react";
 import React, { useState } from "react";
-import { Avatar, Button, FileInput, Label, Tabs } from "flowbite-react";
 
-import { Formik, Form } from "formik";
 import {
     PhoneVcardInterface,
     UserVcardInterface,
     VideoLinkVcardInterface,
 } from "@/app/_core/interfaces/vcardInterfaces";
-import VcardGeneralForm from "./VcardGeneralForm";
-import VcardSocialForm from "./VcardSocialForm";
+import { Form, Formik } from "formik";
 import {
     TbBrandInstagram,
     TbEdit,
@@ -19,29 +17,29 @@ import {
     TbUserQuestion,
     TbVideo,
 } from "react-icons/tb";
+import VcardGeneralForm from "./VcardGeneralForm";
+import VcardSocialForm from "./VcardSocialForm";
 // import VcardJobForm from './VcardJobForm';
 
-import VcardLinksForm from "./VcardLinksForm";
-import VcardVideosForm from "./VcardVideosForm";
-import { customButtonTheme } from "@/app/_styles/flowbite/button";
-import VcardConfigsForm from "./VcardConfigsForm";
-import { customTabsTheme } from "@/app/_styles/flowbite/tabs";
-import { UrlVcardInterface } from "../../../_core/interfaces/vcardInterfaces";
+import ApiErrorsManagement from "@/app/_core/api/errors/apiErrorsManagement";
+import { UserService } from "@/app/_core/api/services/UserService";
+import { AUTH_TOKEN_NAME } from "@/app/_core/config/constants";
 import VcardConfigInterface from "@/app/_core/interfaces/vconfigInterfaces";
 import { User } from "@/app/_core/models/User";
 import VcardConfig from "@/app/_core/models/vcard/VcardConfig";
-import { AUTH_TOKEN_NAME, ROOT_FILES_URL } from "@/app/_core/config/constants";
-import { UserService } from "@/app/_core/api/services/UserService";
-import { getCookie } from "cookies-next";
-import { useEffect } from "react";
-import Swal from "sweetalert2";
-import { customFileInputTheme } from "@/app/_styles/flowbite/form";
-import LoadingLayout from "../../Layouts/LoadingLayout";
-import { useTranslations } from "next-intl";
-import { customAvatarTheme } from "@/app/_styles/flowbite/avatar";
 import { ucfirst } from "@/app/_core/utils/functions";
-import ApiErrorsManagement from "@/app/_core/api/errors/apiErrorsManagement";
+import { customButtonTheme } from "@/app/_styles/flowbite/button";
+import { customTabsTheme } from "@/app/_styles/flowbite/tabs";
+import { getCookie } from "cookies-next";
+import { useTranslations } from "next-intl";
+import Swal from "sweetalert2";
+import { UrlVcardInterface } from "../../../_core/interfaces/vcardInterfaces";
+import LoadingLayout from "../../Layouts/LoadingLayout";
 import ErrorsViewer from "../Errors/ErrorsViewer";
+import ImageCropper from "../Image/ImageCroper";
+import VcardConfigsForm from "./VcardConfigsForm";
+import VcardLinksForm from "./VcardLinksForm";
+import VcardVideosForm from "./VcardVideosForm";
 
 interface VcardEditorProps extends React.PropsWithChildren {
     user: User;
@@ -58,10 +56,6 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
     const videos: unknown = vcard.videoLinks;
     const phones: unknown = vcard.phones;
 
-    const [selectedImage, setSelectedImage] = useState<
-        string | ArrayBuffer | null
-    >(null);
-    const [file, setFile] = useState<Blob | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const TAction = useTranslations("Actions");
     const Ttext = useTranslations("Text");
@@ -99,14 +93,15 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
         },
         phones: phones as PhoneVcardInterface[],
         config: vconfig,
+        profilImage: null,
     };
     const handleSubmitForm = (values: UserVcardInterface) => {
         setIsLoading(true);
         const formData = new FormData();
         formData.append("data", JSON.stringify(values));
 
-        if (file) {
-            formData.append("img", file);
+        if (values.profilImage != null) {
+            formData.append("img", values.profilImage);
         }
 
         var token = getCookie(AUTH_TOKEN_NAME);
@@ -137,17 +132,6 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
         }
     };
 
-    useEffect(() => {
-        // console.log(initialValues);
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setSelectedImage(reader.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    }, [file]);
-
     return (
         <LoadingLayout isLoading={isLoading}>
             <Formik initialValues={initialValues} onSubmit={handleSubmitForm}>
@@ -164,66 +148,9 @@ const VcardEditor: React.FC<VcardEditorProps> = ({
                                     title={Ttext("general_infos")}
                                     icon={TbUserQuestion}
                                 >
-                                    <div className='flex md:flex-row md:justify-start justify-center flex-col items-center md:space-x-8 space-x-0 px-8 pb-8 pt-5'>
-                                        <div className='w-40 h-40 flex justify-center rounded-xl overflow-hidden'>
-                                            {user.profile_photo_url ||
-                                            selectedImage ? (
-                                                <Avatar
-                                                    img={
-                                                        selectedImage
-                                                            ? (selectedImage as string)
-                                                            : ROOT_FILES_URL +
-                                                              "/" +
-                                                              user.profile_photo_url!
-                                                    }
-                                                    size={"pxl"}
-                                                    alt='Kuser Image'
-                                                    theme={customAvatarTheme}
-                                                />
-                                            ) : (
-                                                <Avatar
-                                                    theme={customAvatarTheme}
-                                                    size={"pxl"}
-                                                />
-                                            )}
-                                        </div>
-
-                                        <div className='md:mt-0 mt-4'>
-                                            <div className='flex flex-col md:items-start items-center'>
-                                                <div className='cursor-pointer rounded-md flex items-center space-x-1 bg-gray-50 text-gray-500 w-max px-4 py-1 border border-gray-300/40 hover:text-gray-600 transition-colors'>
-                                                    <TbEdit />
-                                                    <Label
-                                                        className='text-gray-500 font-normal cursor-pointer hover:text-gray-600 transition-colors'
-                                                        htmlFor='file-upload-helper-text'
-                                                        value={TAction(
-                                                            "choose_image",
-                                                        )}
-                                                    />
-                                                </div>
-                                                <FileInput
-                                                    className='hidden'
-                                                    accept='.jpg,.jpeg,.png'
-                                                    theme={customFileInputTheme}
-                                                    color={"gray"}
-                                                    id='file-upload-helper-text'
-                                                    helperText='PNG, JPG or GIF (MAX. 800x400px).'
-                                                    onChange={(
-                                                        e: React.ChangeEvent<HTMLInputElement>,
-                                                    ) => {
-                                                        setFile(
-                                                            e.target.files![0],
-                                                        );
-                                                        if (file) {
-                                                            formProps.setFieldValue(
-                                                                "img",
-                                                                file,
-                                                            );
-                                                        }
-                                                    }}
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <ImageCropper
+                                        initialImage={user.profile_photo_url}
+                                    />
                                     <div className='px-8 pb-8 md:pt-5 pt-2'>
                                         <h2 className='pb-6 font-semibold text-xl '>
                                             {Ttext("general_infos")}

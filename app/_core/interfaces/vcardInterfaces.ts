@@ -93,4 +93,5 @@ export interface UserVcardInterface {
     // work: WorkVcardInterface;
     location: LocationVcardInterface;
     phones: PhoneVcardInterface[];
+    profilImage: null | Blob;
 }
