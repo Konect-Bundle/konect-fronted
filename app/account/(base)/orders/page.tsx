@@ -63,7 +63,9 @@ export default function OrderHistoryPage(props: OrderHistoryProps) {
                         const gadget = user.gadgets![i];
 
                         return (
-                            order.payload.session_id &&
+                            (order.paymentMethod == "other"
+                                ? true
+                                : order.payload.session_id) &&
                             order.isClosed === true && (
                                 <div
                                     className='grid grid-cols-12 md:gap-4 gap-3 border bg-white px-0 py-12 rounded-lg'
