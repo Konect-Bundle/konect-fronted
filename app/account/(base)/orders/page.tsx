@@ -23,8 +23,7 @@ export interface OrderHistoryProps {}
 export default function OrderHistoryPage(props: OrderHistoryProps) {
     const user = useAppSelector((state) => state.auth.currentUser);
     const __ = useTranslations("Text");
-    console.log(user?.orders);
-
+    // console.log(user?.orders);
     if (!user)
         return (
             <div className='w-screen h-screen flex justify-center items-center'>
@@ -62,9 +61,10 @@ export default function OrderHistoryPage(props: OrderHistoryProps) {
                 <div className='lg:col-span-6 col-span-8 md:space-y-6 space-y-4'>
                     {user.orders?.map((order, i) => {
                         const gadget = user.gadgets![i];
+
                         return (
-                            (order.payload.session_id &&
-                                order.isClosed === true) ?? (
+                            order.payload.session_id &&
+                            order.isClosed === true && (
                                 <div
                                     className='grid grid-cols-12 md:gap-4 gap-3 border bg-white px-0 py-12 rounded-lg'
                                     key={i}

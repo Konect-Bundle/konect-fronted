@@ -430,7 +430,9 @@
         "total_connection_month": "Connexions accumulées comparé au dernier mois",
         "total_connection_months": "Connexions accumulées comparé aux 3 derniers mois",
         "contact_saved_title": "Contact enregistré",
-        "contact_saved_description": "Le contact a été ajouté avec succès à votre téléphone."
+        "contact_saved_description": "Le contact a été ajouté avec succès à votre téléphone.",
+        "payment_done_title": "Paiement effectué",
+        "payment_done_description": "Votre achat a bien été effectué."
     },
     "konectCardStatus": {
         "title": "Attention!",

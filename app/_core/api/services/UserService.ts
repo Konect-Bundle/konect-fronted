@@ -58,7 +58,7 @@ export class UserService {
                         order.created_at,
                         order.paymentMethod,
                         JSON.parse(order.payload) as PayloadOrderInterface,
-                        !order.is_active,
+                        order.is_closed === 1,
                     ),
                 );
 

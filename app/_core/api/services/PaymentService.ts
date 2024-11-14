@@ -28,7 +28,7 @@ export class PaymentService {
             formData.append("img", currentFile);
         }
         return await fetchData(
-            "/api/payment/stripe/" + kGadgetCode,
+            "/api/payment/" + kGadgetCode,
             formData,
             {},
             "POST",
@@ -39,7 +39,7 @@ export class PaymentService {
 
     static async retreiveSuccessPayment(idSession: string, token: string) {
         return await fetchData(
-            "/api/payment/stripe/success?session_id=" + idSession,
+            "/api/payment/success/" + idSession,
             {},
             {},
             "GET",
