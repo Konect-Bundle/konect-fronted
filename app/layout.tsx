@@ -3,13 +3,13 @@ import { ROOT_ASSETS_URL } from "@/app/_core/config/constants";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
-import { Outfit } from "next/font/google";
+import { Figtree } from "next/font/google";
 import ReduxInitLayout from "./_components/Layouts/ReduxInit";
 import "./globals.scss";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-const inter = Outfit({
+const inter = Figtree({
     subsets: ["latin"],
 });
 
