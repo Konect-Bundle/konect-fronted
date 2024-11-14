@@ -428,7 +428,9 @@
         "total_connection": "Total de Connexions accumulées",
         "total_connection_week": "Connexions accumulées comparé à la semaine dernière",
         "total_connection_month": "Connexions accumulées comparé au dernier mois",
-        "total_connection_months": "Connexions accumulées comparé aux 3 derniers mois"
+        "total_connection_months": "Connexions accumulées comparé aux 3 derniers mois",
+        "contact_saved_title": "Contact enregistré",
+        "contact_saved_description": "Le contact a été ajouté avec succès à votre téléphone."
     },
     "konectCardStatus": {
         "title": "Attention!",

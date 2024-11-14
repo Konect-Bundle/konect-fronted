@@ -14,6 +14,11 @@ export class KonectService {
         );
     }
 
+    static async getConnect(uuid: string) {
+        // return await  fetchData("/sanctum/csrf-cookie")
+        return await fetchData("/api/get-konect/" + uuid);
+    }
+
     static async makeFeed(
         uuid: string,
         name: string,

@@ -428,7 +428,9 @@
         "total_connection": "Total accumulated connections",
         "total_connection_week": "Accumulated connections compared to last week",
         "total_connection_month": "Accumulated connections compared to last month",
-        "total_connection_months": "Accumulated connections compared to last 3 months"
+        "total_connection_months": "Accumulated connections compared to last 3 months",
+        "contact_saved_title": "Contact saved",
+        "contact_saved_description": "The contact has been successfully added to your phone."
     },
     "konectCardStatus": {
         "title": "Attention!",
