@@ -56,7 +56,7 @@ export class UserService {
                     new Order(
                         order.id,
                         order.created_at,
-                        order.paymentMethod,
+                        order.payment_method,
                         JSON.parse(order.payload) as PayloadOrderInterface,
                         order.is_closed === 1,
                     ),
