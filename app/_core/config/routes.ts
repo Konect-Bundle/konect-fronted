@@ -61,10 +61,10 @@ export const dashboardRoute: RouteNameInterface = {
     path: "/account/dashboard",
 };
 
-export const vcardRoute: RouteNameInterface = {
-    name: "vcard",
-    path: "/account/vcard",
-};
+// export const vcardRoute: RouteNameInterface = {
+//     name: "vcard",
+//     path: "/account/vcard",
+// };
 
 export const konectsListRoute: RouteNameInterface = {
     name: "konects-list",

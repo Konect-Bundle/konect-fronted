@@ -432,7 +432,8 @@
         "contact_saved_title": "Contact saved",
         "contact_saved_description": "The contact has been successfully added to your phone.",
         "payment_done_title": "Payment Done",
-        "payment_done_description": "Your purchase has been successfully made."
+        "payment_done_description": "Your purchase has been successfully made.",
+        "profil_settings": "Profil Settings"
     },
     "konectCardStatus": {
         "title": "Attention!",
