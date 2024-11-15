@@ -6,20 +6,13 @@ import Header from "@/app/_components/Common/Headers/Header";
 import LoadingLayout from "@/app/_components/Layouts/LoadingLayout";
 import ApiErrorsManagement from "@/app/_core/api/errors/apiErrorsManagement";
 import { UserService } from "@/app/_core/api/services/UserService";
-import {
-    AUTH_TOKEN_NAME,
-    INTENT_COOKIE_NAME,
-} from "@/app/_core/config/constants";
-import { loginRoute, vcardRoute } from "@/app/_core/config/routes";
-import { IntentInterface } from "@/app/_core/interfaces/appInterfaces";
-import { intent_processor } from "@/app/_core/utils/functions";
+import { loginRoute } from "@/app/_core/config/routes";
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
-import { getCookie, setCookie } from "cookies-next";
 import { Button } from "flowbite-react";
 import { Form, Formik } from "formik";
 import $ from "jquery";
 import { useTranslations } from "next-intl";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { TbEye, TbEyeOff } from "react-icons/tb";
 import Swal from "sweetalert2";

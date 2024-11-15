@@ -1,36 +1,27 @@
 "use client";
-import dd from "dump-die";
-import { useEffect, useState } from "react";
-import { Button, Checkbox, Label, TextInput } from "flowbite-react";
-import { TbEyeOff, TbEye } from "react-icons/tb";
-import $ from "jquery";
-import { UserService } from "@/app/_core/api/services/UserService";
-import {
-    homeRoute,
-    loginRoute,
-    registerRoute,
-    vcardRoute,
-} from "@/app/_core/config/routes";
-import { cookies } from "next/headers";
-import LoadingLayout from "@/app/_components/Layouts/LoadingLayout";
-import { Form, Formik } from "formik";
-import InputWithLabel from "@/app/_components/Common/Form/InputWithLabel";
+import ErrorsViewer from "@/app/_components/Common/Errors/ErrorsViewer";
 import InputField from "@/app/_components/Common/Form/InputField";
-import { useTranslations } from "next-intl";
-import * as Yup from "yup";
-import CheckBoxField from "@/app/_components/Common/Form/CheckBoxField";
-import { customButtonTheme } from "@/app/_styles/flowbite/button";
-import Swal from "sweetalert2";
-import { IntentInterface } from "@/app/_core/interfaces/appInterfaces";
+import InputWithLabel from "@/app/_components/Common/Form/InputWithLabel";
+import LoadingLayout from "@/app/_components/Layouts/LoadingLayout";
+import ApiErrorsManagement from "@/app/_core/api/errors/apiErrorsManagement";
+import { UserService } from "@/app/_core/api/services/UserService";
 import {
     AUTH_TOKEN_NAME,
     INTENT_COOKIE_NAME,
 } from "@/app/_core/config/constants";
-import { getCookie, setCookie } from "cookies-next";
+import { loginRoute, settingsProfilRoute } from "@/app/_core/config/routes";
+import { IntentInterface } from "@/app/_core/interfaces/appInterfaces";
 import { intent_processor } from "@/app/_core/utils/functions";
-import ApiErrorsManagement from "@/app/_core/api/errors/apiErrorsManagement";
-import ErrorsViewer from "@/app/_components/Common/Errors/ErrorsViewer";
-import Link from "next/link";
+import { customButtonTheme } from "@/app/_styles/flowbite/button";
+import { getCookie, setCookie } from "cookies-next";
+import { Button } from "flowbite-react";
+import { Form, Formik } from "formik";
+import $ from "jquery";
+import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
+import { TbEye, TbEyeOff } from "react-icons/tb";
+import Swal from "sweetalert2";
+import * as Yup from "yup";
 
 export interface IRegisterFormPageProps {
     referal_code: string | null;
@@ -143,7 +134,7 @@ export default function RegisterFormPage({
                                 window.location.href = urlIntent;
                             });
                         } else {
-                            window.location.href = vcardRoute.path;
+                            window.location.href = settingsProfilRoute.path;
                         }
                     });
                 } else {
