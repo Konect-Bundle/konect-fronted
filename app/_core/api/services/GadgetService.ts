@@ -5,7 +5,8 @@ import { fetchData } from "@/app/_core/api/functions";
 export class GadgetService {
     static async getAll(filter = "all") {
         return await fetch(SERVER_API_URL + "/gadgets", {
-            cache: "force-cache",
+            // cache: "force-cache",
+            next: { revalidate: 60 },
         });
     }
 

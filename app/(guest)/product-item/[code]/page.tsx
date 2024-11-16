@@ -3,23 +3,23 @@
 import { useState } from "react";
 
 import Header from "@/app/_components/Common/Headers/Header";
-import { useEffect } from "react";
+import ProductItemBlock from "@/app/_components/Inc/ProductItemBlock";
+import LoadingLayout from "@/app/_components/Layouts/LoadingLayout";
+import ApiErrorsManagement from "@/app/_core/api/errors/apiErrorsManagement";
 import { GadgetService } from "@/app/_core/api/services/GadgetService";
-import { KoGadgetItem } from "@/app/_core/models/KoGadgetItem";
+import { PaymentService } from "@/app/_core/api/services/PaymentService";
 import {
     AUTH_TOKEN_NAME,
     INTENT_COOKIE_NAME,
 } from "@/app/_core/config/constants";
-import { OrderSchema } from "@/app/_core/schemas/orderSchema";
-import { useTranslations } from "next-intl";
-import { getCookie } from "cookies-next";
-import LoadingLayout from "@/app/_components/Layouts/LoadingLayout";
-import { Formik } from "formik";
-import ProductItemBlock from "@/app/_components/Inc/ProductItemBlock";
 import { loginRoute, productItemRoute } from "@/app/_core/config/routes";
 import { IntentInterface } from "@/app/_core/interfaces/appInterfaces";
-import { PaymentService } from "@/app/_core/api/services/PaymentService";
-import ApiErrorsManagement from "@/app/_core/api/errors/apiErrorsManagement";
+import { KoGadgetItem } from "@/app/_core/models/KoGadgetItem";
+import { OrderSchema } from "@/app/_core/schemas/orderSchema";
+import { getCookie } from "cookies-next";
+import { Formik, FormikHelpers } from "formik";
+import { useTranslations } from "next-intl";
+import { useEffect } from "react";
 
 export interface KwidgetItemProps {}
 export interface CustomConfigInterface {
@@ -58,7 +58,7 @@ export default function KwidgetItemPage({
     useEffect(() => {
         GadgetService.getKwidget(params.code).then((rs) => {
             // console.log(rs);
-            var gadget = new KoGadgetItem(
+            var gadget: KoGadgetItem = new KoGadgetItem(
                 "",
                 JSON.parse(rs.data.kg_details).name,
                 rs.data.kg_code,
@@ -69,14 +69,23 @@ export default function KwidgetItemPage({
                 JSON.parse(rs.data.kg_details).material,
                 JSON.parse(rs.data.kg_details).type,
                 JSON.parse(rs.data.kg_details).imageURL,
+                null,
+                JSON.parse(rs.data.kg_details).oldPrice,
             );
             setGadget(gadget);
         });
     }, [params.code]);
 
-    const handleMakePayment = (values: CustomConfigInterface) => {
+    const handleMakePayment = (
+        values: CustomConfigInterface,
+        formikHelpers: FormikHelpers<CustomConfigInterface>,
+    ) => {
         // console.log(values);
-
+        if (gadgetItem!.code == "CRD-002" && values.file == null) {
+            alert("Logo is required")
+            formikHelpers.setFieldError("file", "Logo is required");
+            return;
+        }
         setIsLoading(true);
 
         var token = getCookie(AUTH_TOKEN_NAME);

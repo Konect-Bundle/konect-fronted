@@ -1,33 +1,14 @@
-import React, { useEffect, useState } from "react";
 import Header from "@/app/_components/Common/Headers/Header";
-import ContainerLayout from "@/app/_components/Layouts/Container";
-import {
-    Breadcrumb,
-    Badge,
-    Button,
-    Dropdown,
-    DropdownItem,
-} from "flowbite-react";
-import { productsRoute, productItemRoute } from "@/app/_core/config/routes";
-import Image from "next/image";
-import Link from "next/link";
-import { customButtonTheme } from "@/app/_styles/flowbite/button";
-import {
-    TbFilter,
-    TbFilterDown,
-    TbFilterFilled,
-    TbHome,
-    TbHome2,
-    TbHomeFilled,
-    TbShoppingBag,
-} from "react-icons/tb";
-import { GadgetService } from "@/app/_core/api/services/GadgetService";
-import { ROOT_FILES_URL } from "@/app/_core/config/constants";
-import { ucfirst } from "@/app/_core/utils/functions";
-import { customBreadCrumbTheme } from "@/app/_styles/flowbite/breadcrumb";
-import { customBadgeTheme } from "@/app/_styles/flowbite/badge";
-import { KoGadgetItem } from "@/app/_core/models/KoGadgetItem";
 import ProductsListBlock from "@/app/_components/Inc/ProductsListBlock";
+import { GadgetService } from "@/app/_core/api/services/GadgetService";
+import { productsRoute } from "@/app/_core/config/routes";
+import { customBreadCrumbTheme } from "@/app/_styles/flowbite/breadcrumb";
+import {
+    Breadcrumb
+} from "flowbite-react";
+import {
+    TbHomeFilled
+} from "react-icons/tb";
 
 export interface KwidgetListProps {}
 
@@ -38,14 +19,13 @@ export default async function KwidgetListPage(props: KwidgetListProps) {
     try {
         let rq = await GadgetService.getAll();
         res = await rq.json();
-
         isLoading = false;
     } catch (e) {
         console.log(e);
     } finally {
     }
     return (
-        <div className='min-h-screen'>
+        <div className='min-h-screen bg-white'>
             <Header />
             <main>
                 <section className='py-6 h-max'>

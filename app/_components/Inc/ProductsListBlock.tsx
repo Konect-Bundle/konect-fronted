@@ -1,39 +1,19 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import Header from "@/app/_components/Common/Headers/Header";
-import ContainerLayout from "@/app/_components/Layouts/Container";
-import {
-    Breadcrumb,
-    Badge,
-    Button,
-    Dropdown,
-    DropdownItem,
-} from "flowbite-react";
-import { productsRoute, productItemRoute } from "@/app/_core/config/routes";
-import Image from "next/image";
-import Link from "next/link";
-import { customButtonTheme } from "@/app/_styles/flowbite/button";
-import {
-    TbFilter,
-    TbFilterDown,
-    TbFilterFilled,
-    TbHome,
-    TbHome2,
-    TbHomeFilled,
-    TbShoppingBag,
-} from "react-icons/tb";
-import { GadgetService } from "@/app/_core/api/services/GadgetService";
-import { ROOT_FILES_URL } from "@/app/_core/config/constants";
-import { ucfirst } from "@/app/_core/utils/functions";
-import { customBreadCrumbTheme } from "@/app/_styles/flowbite/breadcrumb";
-import { customBadgeTheme } from "@/app/_styles/flowbite/badge";
-import { KoGadgetItem } from "@/app/_core/models/KoGadgetItem";
-import Footer from "@/app/_components/Common/Footers/Footer";
-import { customDropdownTheme } from "@/app/_styles/flowbite/dropdown";
+import NoResultFound from "@/app/_components/Common/NoResultFound";
 import ImageSkeleton from "@/app/_components/Common/Skeleton/ImageSkeleton";
 import TextSkeleton from "@/app/_components/Common/Skeleton/TextSkeleton";
-import NoResultFound from "@/app/_components/Common/NoResultFound";
-import useSWR from "swr";
+import { ROOT_FILES_PROD } from "@/app/_core/config/constants";
+import { productItemRoute } from "@/app/_core/config/routes";
+import { KoGadgetItem } from "@/app/_core/models/KoGadgetItem";
+import { ucfirst } from "@/app/_core/utils/functions";
+import { customBadgeTheme } from "@/app/_styles/flowbite/badge";
+import { customButtonTheme } from "@/app/_styles/flowbite/button";
+import { customDropdownTheme } from "@/app/_styles/flowbite/dropdown";
+import { Badge, Button, Dropdown } from "flowbite-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { TbFilterFilled, TbShoppingBag } from "react-icons/tb";
 
 export interface ProductsListBlockProps {
     data: any;
@@ -61,6 +41,8 @@ export default function ProductsListBlock({
                 JSON.parse(gadget.kg_details).material,
                 JSON.parse(gadget.kg_details).type,
                 JSON.parse(gadget.kg_details).imageURL,
+                null,
+                JSON.parse(gadget.kg_details).oldPrice
             );
             ga.push(g);
         });
@@ -107,71 +89,55 @@ export default function ProductsListBlock({
                             </div>
                         ) : (
                             gadgets?.map((gadget, index) => {
-                                console.log(
-                                    (
-                                        ROOT_FILES_URL + gadget.imageURL[0]
-                                    ).toString(),
-                                );
+                                // console.log(
+                                //     (
+                                //         ROOT_FILES_URL + gadget.imageURL[0]
+                                //     ).toString(),
+                                // );
 
                                 return (
-                                    <span
+                                    <Link
+                                        href={
+                                            productItemRoute.path +
+                                            "/" +
+                                            gadget.code
+                                        }
                                         key={index}
-                                        className='mx-auto sm:mr-0 group cursor-pointer lg:mx-auto transition-all duration-500 rounded-xl p-3'
+                                        className='mx-auto sm:mr-0 group cursor-pointer lg:mx-auto transition-all duration-500 rounded-xl border border-gray-200 overflow-hidden'
                                     >
-                                        <div className='bg-white border rounded-3xl overflow-hidden border-noir-medium/25'>
+                                        <div className='rounded-b-lg overflow-hidden'>
                                             <Image
                                                 width={500}
                                                 height={500}
                                                 src={
-                                                    ROOT_FILES_URL +
-                                                    gadget.imageURL[0]
+                                                    ROOT_FILES_PROD +
+                                                    gadget.imageURL[2]
                                                 }
                                                 alt='Carte NFC QR pour échanges de contacts | Digital NFC business card by Konect for modern networking'
                                                 className=''
                                             />
                                         </div>
-                                        <div className='mt-5'>
-                                            <div className='flex items-center justify-between'>
-                                                <h6 className='font-semibold text-md leading-8 text-black transition-all duration-500 group-hover:text-gray-800'>
+                                        <div className='py-4 px-3'>
+                                            <div className='flex flex-col items-start justify-between'>
+                                                <h6 className='font-normal text-lg leading-8 text-black transition-all duration-500 group-hover:text-gray-800'>
                                                     {ucfirst(
-                                                        gadget.color.name,
-                                                    ) +
-                                                        " " +
-                                                        gadget.name}
+                                                        gadget.name.toLocaleLowerCase(),
+                                                    )}
                                                 </h6>
                                                 <div className='flex space-x-2 items-center'>
-                                                    <h6 className='font-semibold text-md leading-8 text-gray-700'>
-                                                        ${gadget.price}
+                                                    <h6 className='font-normal leading-8 text-gray-700'>
+                                                        {gadget.price}$
                                                     </h6>
-                                                    <div className='flex justify-end'>
-                                                        <Link
-                                                            href={
-                                                                productItemRoute.path +
-                                                                "/" +
-                                                                gadget.code
-                                                            }
-                                                        >
-                                                            <Button
-                                                                size={"xs"}
-                                                                color='dark'
-                                                                className='px-5 py-3'
-                                                                theme={
-                                                                    customButtonTheme
-                                                                }
-                                                            >
-                                                                <span className='flex items-center space-x-1'>
-                                                                    <TbShoppingBag className='text-lg' />
-                                                                    <span>
-                                                                        {"Get"}
-                                                                    </span>
-                                                                </span>
-                                                            </Button>
-                                                        </Link>
-                                                    </div>
+                                                    {gadget.oldPrice !=
+                                                        null && (
+                                                        <h6 className='font-normal line-through leading-8 text-gray-300/65'>
+                                                            {gadget.oldPrice}$
+                                                        </h6>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
-                                    </span>
+                                    </Link>
                                 );
                             })
                         )

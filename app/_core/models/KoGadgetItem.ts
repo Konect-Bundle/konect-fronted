@@ -9,6 +9,7 @@ interface Gadget {
     code: string;
     description: string;
     price: number;
+    oldPrice?: number | null;
     weightDimensions: number;
     color: Color;
     material: string;
@@ -30,6 +31,7 @@ export class KoGadgetItem implements Gadget {
     code: string;
     description: string;
     price: number;
+    oldPrice?: number | null;
     weightDimensions: number;
     color: Color;
     material: string;
@@ -49,12 +51,15 @@ export class KoGadgetItem implements Gadget {
         type: string,
         imageURL: string[],
         cardCustomDetails?: CardCustomDetails | null,
+        oldPrice?: number | null,
     ) {
         this.uuid = uuid;
         this.name = name;
         this.code = code;
         this.description = description;
         this.price = price;
+        this.oldPrice = oldPrice;
+        console.log(oldPrice)
         this.weightDimensions = weightDimensions;
         this.color = color;
         this.material = material;
@@ -76,6 +81,7 @@ export class KoGadgetItem implements Gadget {
             "",
             [],
             null,
+            null
         );
         return ko;
     }

@@ -18,20 +18,20 @@ import Image from "next/image";
 
 import ReactCardFlip from "react-card-flip";
 
+import { CustomConfigInterface } from "@/app/(guest)/product-item/[code]/page";
+import { ROOT_FILES_PROD } from "@/app/_core/config/constants";
+import { productsRoute } from "@/app/_core/config/routes";
 import { KoGadgetItem } from "@/app/_core/models/KoGadgetItem";
+import { ucfirst } from "@/app/_core/utils/functions";
+import { customBreadCrumbTheme } from "@/app/_styles/flowbite/breadcrumb";
+import { customButtonTheme } from "@/app/_styles/flowbite/button";
+import { customFileInputTheme } from "@/app/_styles/flowbite/form";
 import { Form, FormikProps } from "formik";
 import { useTranslations } from "next-intl";
-import ContainerLayout from "../Layouts/Container";
-import { customBreadCrumbTheme } from "@/app/_styles/flowbite/breadcrumb";
-import { CustomConfigInterface } from "@/app/(guest)/product-item/[code]/page";
-import InputWithLabel from "../Common/Form/InputWithLabel";
-import InputField from "../Common/Form/InputField";
-import { customFileInputTheme } from "@/app/_styles/flowbite/form";
-import { ucfirst } from "@/app/_core/utils/functions";
-import { customButtonTheme } from "@/app/_styles/flowbite/button";
-import { productsRoute } from "@/app/_core/config/routes";
-import { ROOT_FILES_URL } from "@/app/_core/config/constants";
 import ErrorsViewer from "../Common/Errors/ErrorsViewer";
+import InputField from "../Common/Form/InputField";
+import InputWithLabel from "../Common/Form/InputWithLabel";
+import ContainerLayout from "../Layouts/Container";
 
 interface productItemInterface {
     formProps: FormikProps<CustomConfigInterface>;
@@ -127,8 +127,7 @@ export default function ProductItemBlock({
                                             </div>
                                             <Image
                                                 src={
-                                                    ROOT_FILES_URL +
-                                                    "/" +
+                                                    ROOT_FILES_PROD +
                                                     gadgetItem?.imageURL[1]
                                                 }
                                                 alt='Carte NFC QR pour échanges de contacts | Digital NFC business card by Konect for modern networking'
@@ -143,8 +142,7 @@ export default function ProductItemBlock({
                                                 width={500}
                                                 height={500}
                                                 src={
-                                                    ROOT_FILES_URL +
-                                                    "/" +
+                                                    ROOT_FILES_PROD +
                                                     gadgetItem?.imageURL[0]
                                                 }
                                                 alt='Yellow Tropical Printed Shirt image'
@@ -217,180 +215,188 @@ export default function ProductItemBlock({
                                 </div>
                             </div>
 
-                            <div className='mb-8'>
-                                <h5
-                                    className='md:pt-6 py-3 font-semibold md:text-lg text-md'
-                                    id='customizeSection'
-                                >
-                                    {__("customized_logo")}
-                                </h5>
-
-                                <p className='text-gray-300 pb-3'>
-                                    {__("visible_on_white")}
-                                </p>
-
-                                <div className='rounded-lg bg-white p-4'>
-                                    <FileInput
-                                        className='hidden text-gray-300'
-                                        accept='.jpg,.jpeg,.png'
-                                        theme={customFileInputTheme}
-                                        hidden
-                                        ref={fileInputRef}
-                                        color={"gray"}
-                                        id='file-upload-helper-text'
-                                        helperText='PNG or JPG'
-                                        onChange={(
-                                            e: React.ChangeEvent<HTMLInputElement>,
-                                        ) => {
-                                            // setFile(
-                                            //     e.target.files![0],
-                                            // );
-                                            formProps.setFieldValue(
-                                                "file",
-                                                e.target.files![0],
-                                            );
-                                            formProps.setFieldValue(
-                                                "withCustomLogo",
-                                                true,
-                                            );
-                                            // if (file) {
-                                            //     formProps.setFieldValue(
-                                            //         "img",
-                                            //         file,
-                                            //     );
-                                            // }
-                                        }}
-                                    />
-
-                                    <div
-                                        className='mt-3 bg-white border-2 border-dashed flex flex-col items-center py-4 cursor-pointer text-gray-500'
-                                        onClick={handleAddCustomLogo}
+                            {gadgetItem.code == "CRD-002" && (
+                                <div className='mb-8'>
+                                    <h5
+                                        className='md:pt-6 py-3 font-semibold md:text-lg text-md'
+                                        id='customizeSection'
                                     >
-                                        <TbFileUpload className='text-xl' />
-                                        <p className='pt-2'>
-                                            {__A("choose_file")}
-                                        </p>
-                                    </div>
+                                        {__("customized_logo")}
+                                    </h5>
 
-                                    {formProps.values.file && (
-                                        <div className='mt-6'>
-                                            {/* File Uploading Progress Form */}
-                                            <div className='flex flex-col'>
-                                                <div className='flex justify-end py-2'>
-                                                    <Badge
-                                                        size='sm'
-                                                        className='w-max px-4'
-                                                        color='gray'
-                                                        href='#'
-                                                    >
-                                                        +$35
-                                                    </Badge>
-                                                </div>
-                                                {/* Uploading File Content */}
-                                                <div className='mb-2 flex justify-between items-center'>
-                                                    <div className='flex items-center gap-x-3'>
-                                                        <span className='size-8 flex justify-center items-center border border-gray-200 text-gray-500 rounded-lg dark:border-neutral-700 dark:text-neutral-500'>
-                                                            <TbFileImport />
-                                                        </span>
-                                                        <div>
-                                                            <p className='text-sm font-medium text-gray-800 dark:text-white'>
-                                                                {
-                                                                    formProps
-                                                                        .values
-                                                                        .file
-                                                                        .name
-                                                                }
-                                                            </p>
-                                                            <p className='text-xs text-gray-500 dark:text-neutral-500'>
-                                                                {(
-                                                                    formProps
-                                                                        .values
-                                                                        .file
-                                                                        .size /
-                                                                    (1024 *
-                                                                        1000)
-                                                                ).toFixed(2)}
-                                                                MB
-                                                            </p>
+                                    <p className='text-gray-300 pb-3'>
+                                        {__("visible_on_white")}
+                                    </p>
+
+                                    <div className='rounded-lg bg-white p-4'>
+                                        <FileInput
+                                            className='hidden text-gray-300'
+                                            accept='.jpg,.jpeg,.png'
+                                            theme={customFileInputTheme}
+                                            hidden
+                                            ref={fileInputRef}
+                                            color={"gray"}
+                                            id='file-upload-helper-text'
+                                            helperText='PNG or JPG'
+                                            onChange={(
+                                                e: React.ChangeEvent<HTMLInputElement>,
+                                            ) => {
+                                                // setFile(
+                                                //     e.target.files![0],
+                                                // );
+                                                formProps.setFieldValue(
+                                                    "file",
+                                                    e.target.files![0],
+                                                );
+                                                formProps.setFieldValue(
+                                                    "withCustomLogo",
+                                                    true,
+                                                );
+                                                // if (file) {
+                                                //     formProps.setFieldValue(
+                                                //         "img",
+                                                //         file,
+                                                //     );
+                                                // }
+                                            }}
+                                        />
+
+                                        <div
+                                            className='mt-3 bg-white border-2 border-dashed flex flex-col items-center py-4 cursor-pointer text-gray-500'
+                                            onClick={handleAddCustomLogo}
+                                        >
+                                            <TbFileUpload className='text-xl' />
+                                            <p className='pt-2'>
+                                                {__A("choose_file")}
+                                            </p>
+                                        </div>
+
+                                        {formProps.values.file && (
+                                            <div className='mt-6'>
+                                                {/* File Uploading Progress Form */}
+                                                <div className='flex flex-col'>
+                                                    {/* <div className='flex justify-end py-2'>
+                                                        <Badge
+                                                            size='sm'
+                                                            className='w-max px-4'
+                                                            color='gray'
+                                                            href='#'
+                                                        >
+                                                            +$35
+                                                        </Badge>
+                                                    </div> */}
+                                                    {/* Uploading File Content */}
+                                                    <div className='mb-2 flex justify-between items-center'>
+                                                        <div className='flex items-center gap-x-3'>
+                                                            <span className='size-8 flex justify-center items-center border border-gray-200 text-gray-500 rounded-lg dark:border-neutral-700 dark:text-neutral-500'>
+                                                                <TbFileImport />
+                                                            </span>
+                                                            <div>
+                                                                <p className='text-sm font-medium text-gray-800 dark:text-white'>
+                                                                    {
+                                                                        formProps
+                                                                            .values
+                                                                            .file
+                                                                            .name
+                                                                    }
+                                                                </p>
+                                                                <p className='text-xs text-gray-500 dark:text-neutral-500'>
+                                                                    {(
+                                                                        formProps
+                                                                            .values
+                                                                            .file
+                                                                            .size /
+                                                                        (1024 *
+                                                                            1000)
+                                                                    ).toFixed(
+                                                                        2,
+                                                                    )}
+                                                                    MB
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div className='inline-flex items-center gap-x-2'>
+                                                            <span
+                                                                onClick={(
+                                                                    e,
+                                                                ) => {
+                                                                    e.preventDefault();
+                                                                    formProps.setFieldValue(
+                                                                        "file",
+                                                                        null,
+                                                                    );
+                                                                    formProps.setFieldValue(
+                                                                        "withCustomLogo",
+                                                                        false,
+                                                                    );
+                                                                }}
+                                                                className='relative text-gray-500 hover:text-gray-800 focus:outline-none focus:text-gray-800 disabled:opacity-50 disabled:pointer-events-none dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus:text-neutral-200'
+                                                            >
+                                                                <svg
+                                                                    className='shrink-0 size-4'
+                                                                    xmlns='http://www.w3.org/2000/svg'
+                                                                    width={24}
+                                                                    height={24}
+                                                                    viewBox='0 0 24 24'
+                                                                    fill='none'
+                                                                    stroke='currentColor'
+                                                                    strokeWidth={
+                                                                        2
+                                                                    }
+                                                                    strokeLinecap='round'
+                                                                    strokeLinejoin='round'
+                                                                >
+                                                                    <path d='M3 6h18' />
+                                                                    <path d='M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6' />
+                                                                    <path d='M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2' />
+                                                                    <line
+                                                                        x1={10}
+                                                                        x2={10}
+                                                                        y1={11}
+                                                                        y2={17}
+                                                                    />
+                                                                    <line
+                                                                        x1={14}
+                                                                        x2={14}
+                                                                        y1={11}
+                                                                        y2={17}
+                                                                    />
+                                                                </svg>
+                                                                <span className='sr-only'>
+                                                                    Delete
+                                                                </span>
+                                                            </span>
                                                         </div>
                                                     </div>
-                                                    <div className='inline-flex items-center gap-x-2'>
-                                                        <span
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-                                                                formProps.setFieldValue(
-                                                                    "file",
-                                                                    null,
-                                                                );
-                                                                formProps.setFieldValue(
-                                                                    "withCustomLogo",
-                                                                    false,
-                                                                );
-                                                            }}
-                                                            className='relative text-gray-500 hover:text-gray-800 focus:outline-none focus:text-gray-800 disabled:opacity-50 disabled:pointer-events-none dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus:text-neutral-200'
-                                                        >
-                                                            <svg
-                                                                className='shrink-0 size-4'
-                                                                xmlns='http://www.w3.org/2000/svg'
-                                                                width={24}
-                                                                height={24}
-                                                                viewBox='0 0 24 24'
-                                                                fill='none'
-                                                                stroke='currentColor'
-                                                                strokeWidth={2}
-                                                                strokeLinecap='round'
-                                                                strokeLinejoin='round'
-                                                            >
-                                                                <path d='M3 6h18' />
-                                                                <path d='M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6' />
-                                                                <path d='M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2' />
-                                                                <line
-                                                                    x1={10}
-                                                                    x2={10}
-                                                                    y1={11}
-                                                                    y2={17}
-                                                                />
-                                                                <line
-                                                                    x1={14}
-                                                                    x2={14}
-                                                                    y1={11}
-                                                                    y2={17}
-                                                                />
-                                                            </svg>
-                                                            <span className='sr-only'>
-                                                                Delete
-                                                            </span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                {/* End Uploading File Content */}
-                                                {/* Progress Bar */}
+                                                    {/* End Uploading File Content */}
+                                                    {/* Progress Bar */}
 
-                                                {/* <div className="flex items-center gap-x-3 whitespace-nowrap">
-                                                <div
-                                                    className="flex w-full h-2 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700"
-                                                    role="progressbar"
-                                                    aria-valuenow={1}
-                                                    aria-valuemin={0}
-                                                    aria-valuemax={100}
-                                                >
-                                                    <div
-                                                        className="flex flex-col justify-center rounded-full overflow-hidden bg-blue-600 text-xs text-white text-center whitespace-nowrap transition duration-500 dark:bg-blue-500"
-                                                        style={{ width: "1%" }}
-                                                    />
-                                                </div>
-                                                <div className="w-6 text-end">
-                                                    <span className="text-sm text-gray-800 dark:text-white">0%</span>
-                                                </div>
-                                            </div> */}
+                                                    {/* <div className="flex items-center gap-x-3 whitespace-nowrap">
+                 <div
+                     className="flex w-full h-2 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700"
+                     role="progressbar"
+                     aria-valuenow={1}
+                     aria-valuemin={0}
+                     aria-valuemax={100}
+                 >
+                     <div
+                         className="flex flex-col justify-center rounded-full overflow-hidden bg-blue-600 text-xs text-white text-center whitespace-nowrap transition duration-500 dark:bg-blue-500"
+                         style={{ width: "1%" }}
+                     />
+                 </div>
+                 <div className="w-6 text-end">
+                     <span className="text-sm text-gray-800 dark:text-white">0%</span>
+                 </div>
+             </div> */}
 
-                                                {/* End Progress Bar */}
+                                                    {/* End Progress Bar */}
+                                                </div>
+                                                {/* End File Uploading Progress Form */}
                                             </div>
-                                            {/* End File Uploading Progress Form */}
-                                        </div>
-                                    )}
+                                        )}
+                                    </div>
                                 </div>
-                            </div>
+                            )}
                         </div>
                         <div className='data w-full lg:pr-8 pr-8 xl:justify-start justify-center flex items-center xl:my-2 lg:my-5 my-0 bg-white rounded-lg ps-6 pe-6 lg:pt-6 pt-6 border border-gray-300/25 h-min'>
                             <div className='data w-full max-w-xl'>
@@ -401,7 +407,7 @@ export default function ProductItemBlock({
                                     <h6 className='font-manrope font-semibold text-2xl leading-9 text-gray-900 pr-5 sm:border-r border-gray-200 mr-5'>
                                         $
                                         {formProps.values.withCustomLogo
-                                            ? gadgetItem?.price + 35
+                                            ? gadgetItem?.price + 0
                                             : gadgetItem?.price}
                                     </h6>
                                     <div className='flex items-center gap-2'>

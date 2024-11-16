@@ -56,6 +56,7 @@
         }
     },
     "Kgadgets": {
+        "white_card_custom_logo_desc": "Customize your contact-sharing experience with our white Konect card. In addition to simplifying the exchange of your contact information with NFC technology, this compact card allows you to add your own logo to reflect your personal brand. Slip it into your wallet or attach it to your bag to stay connected in style at all times.",
         "white_card_desc": "Simplify sharing your contact information with our white NFC card. Designed for ease of use, this compact card utilizes NFC technology to enable instant exchange of contact information. Slip it into your wallet or attach it to your bag to stay connected at all times.",
         "black_card_desc": "Stylish and functional, our black NFC card is the perfect accessory for modern networking. With its bold color and advanced technology, this card allows you to share your contact information with style and simplicity. Perfect for image-conscious professionals and technology enthusiasts.",
         "white_ring_desc": "Carry connectivity on your finger with our black NFC ring. Made of sturdy iron and equipped with integrated NFC technology, this ring allows you to exchange contact information with a simple tap. Perfect for those seeking an innovative approach to networking, this ring combines style and functionality.",
@@ -386,7 +387,7 @@
         "quantity": "Quantity",
         "title_or_company": "Job title or company",
         "card_customization": "Customize your card",
-        "customized_logo": "Customized logo (Optional)",
+        "customized_logo": "Customized logo (Required)",
         "visible_on_white": "Please drop visible logo on white color",
         "your_message": "Your message",
         "email_success": "Email successfully sent",

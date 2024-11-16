@@ -56,6 +56,7 @@
         }
     },
     "Kgadgets": {
+        "white_card_custom_logo_desc": "Personnalisez votre expérience de partage de contacts avec notre carte Konect blanche. En plus de simplifier l'échange de vos coordonnées grâce à la technologie NFC, cette carte compacte vous permet d'ajouter votre propre logo pour refléter votre image. Glissez-la dans votre portefeuille ou attachez-la à votre sac pour rester connecté, avec style, en tout temps.",
         "white_card_desc": "Simplifiez le partage de vos coordonnées avec notre carte NFC blanche. Conçue pour être facile à utiliser, cette carte compacte utilise la technologie NFC pour permettre un échange instantané de coordonnées. Glissez-la dans votre portefeuille ou attachez-la à votre sac pour rester connecté en tout temps.",
         "black_card_desc": "Stylée et fonctionnelle, notre carte NFC noire est l'accessoire parfait pour le réseautage moderne. Avec sa couleur audacieuse et sa technologie avancée, cette carte vous permet de partager vos coordonnées avec style et simplicité. Parfait pour les professionnels soucieux de leur image et les passionnés de technologie.",
         "white_ring_desc": "Portez la connectivité à votre doigt avec notre bague NFC noire. Fabriquée en fer robuste et équipée de la technologie NFC intégrée, cette bague vous permet d'échanger des coordonnées d'un simple tapotement. Parfait pour ceux qui recherchent une approche innovante du réseautage, cette bague allie style et fonctionnalité.",
@@ -386,7 +387,7 @@
         "quantity": "Quantité",
         "title_or_company": "Titre du poste ou entreprise",
         "card_customization": "Personaliser la carte",
-        "customized_logo": "Logo personalisé (Optionnel)",
+        "customized_logo": "Logo personalisé (Réquis)",
         "visible_on_white": "Veuillez déposer un logo visible sur la couleur blanche",
         "your_message": "Votre message",
         "email_success": "Email envoyé avec succès",
