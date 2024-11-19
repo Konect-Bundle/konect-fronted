@@ -15,7 +15,7 @@ export async function generateMetadata(
             ? "4fb07f74-a2aa-43b0-8be5-855f0fe16c20"
             : params.uuid;
 
-    var gadget = (await UserService.getGadget(params.uuid)).data;
+    var gadget = (await UserService.getGadget(uuid)).data;
 
     // fetch data
     var kuser = gadget.owner;
@@ -61,7 +61,7 @@ export default async function KuserPage({
     params.uuid == "k"
         ? "4fb07f74-a2aa-43b0-8be5-855f0fe16c20"
         : params.uuid;
-        
+
     try {
         var gadget = (await UserService.getGadget(uid)).data;
         if (gadget.company == null) {
