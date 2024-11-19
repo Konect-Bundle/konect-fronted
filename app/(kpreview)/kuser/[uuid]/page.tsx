@@ -10,7 +10,10 @@ export async function generateMetadata(
     parent: ResolvingMetadata,
 ): Promise<Metadata> {
     // read route params
-    const uuid = params.uuid;
+    const uuid =
+        params.uuid == "k"
+            ? "4fb07f74-a2aa-43b0-8be5-855f0fe16c20"
+            : params.uuid;
 
     var gadget = (await UserService.getGadget(params.uuid)).data;
 
