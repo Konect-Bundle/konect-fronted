@@ -55,7 +55,11 @@ export default async function KuserPage({
     params: { uuid: string };
 }) {
     try {
-        var gadget = (await UserService.getGadget(params.uuid)).data;
+        var uuid: string =
+            params.uuid == "k"
+                ? "4fb07f74-a2aa-43b0-8be5-855f0fe16c20"
+                : params.uuid;
+        var gadget = (await UserService.getGadget(uuid)).data;
         if (gadget.company == null) {
             // console.log("PERSONAL");
             return (
