@@ -1,13 +1,12 @@
-import StoreProvider from "@/app/_components/Store/StoreProvider";
 import { ROOT_ASSETS_URL } from "@/app/_core/config/constants";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
-import { Figtree, Outfit } from "next/font/google";
-import ReduxInitLayout from "./_components/Layouts/ReduxInit";
+import { Outfit } from "next/font/google";
 import "./globals.scss";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import StoreProvider from "./_components/Store/StoreProvider";
 
 const inter = Outfit({
     subsets: ["latin"],
@@ -72,14 +71,13 @@ export default async function RootLayout({
         <html lang={locale}>
             <body className={inter.className}>
                 <NextIntlClientProvider messages={messages}>
-                    <StoreProvider>
-                        <ReduxInitLayout>
-                            <main className='bg-gray-50 min-h-[100vh] w-full'>
-                                {children}
-                                <Analytics />
-                                <SpeedInsights />
-                            </main>
-                        </ReduxInitLayout>
+                <StoreProvider>
+                    <main className='bg-gray-50 min-h-[100vh] w-full'>
+                        {children}
+                        <Analytics />
+                        <SpeedInsights />
+                    </main>
+
                     </StoreProvider>
                 </NextIntlClientProvider>
             </body>

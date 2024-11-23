@@ -27,7 +27,7 @@ import { useEffect, useState } from "react";
 import { TbEye, TbEyeOff } from "react-icons/tb";
 import Swal from "sweetalert2";
 import * as Yup from "yup";
-import CheckBoxField from "../../_components/Common/Form/CheckBoxField";
+import CheckBoxField from "../../../_components/Common/Form/CheckBoxField";
 import { useParams, useSearchParams } from "next/navigation";
 
 export interface ILoginFormPageProps {}

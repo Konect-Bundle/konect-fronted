@@ -18,7 +18,7 @@ import Image from "next/image";
 
 import ReactCardFlip from "react-card-flip";
 
-import { CustomConfigInterface } from "@/app/(guest)/product-item/[code]/page";
+import { CustomConfigInterface } from "@/app/(with_store)/(guest)/product-item/[code]/page";
 import { ROOT_FILES_PROD } from "@/app/_core/config/constants";
 import { productsRoute } from "@/app/_core/config/routes";
 import { KoGadgetItem } from "@/app/_core/models/KoGadgetItem";

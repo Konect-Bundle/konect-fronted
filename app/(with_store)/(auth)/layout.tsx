@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ROOT_ASSETS_URL } from "../_core/config/constants";
+import { ROOT_ASSETS_URL } from "../../_core/config/constants";
 
 export default function AuthLayout({
     children, // will be a page or nested layout
