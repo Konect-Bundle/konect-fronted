@@ -42,7 +42,7 @@ export default function ProductsListBlock({
                 JSON.parse(gadget.kg_details).type,
                 JSON.parse(gadget.kg_details).imageURL,
                 null,
-                JSON.parse(gadget.kg_details).oldPrice
+                JSON.parse(gadget.kg_details).oldPrice,
             );
             ga.push(g);
         });

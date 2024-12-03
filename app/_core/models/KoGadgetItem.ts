@@ -59,7 +59,7 @@ export class KoGadgetItem implements Gadget {
         this.description = description;
         this.price = price;
         this.oldPrice = oldPrice;
-        console.log(oldPrice)
+        console.log(oldPrice);
         this.weightDimensions = weightDimensions;
         this.color = color;
         this.material = material;
@@ -81,7 +81,7 @@ export class KoGadgetItem implements Gadget {
             "",
             [],
             null,
-            null
+            null,
         );
         return ko;
     }
