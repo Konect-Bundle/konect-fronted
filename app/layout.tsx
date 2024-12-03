@@ -71,13 +71,12 @@ export default async function RootLayout({
         <html lang={locale}>
             <body className={inter.className}>
                 <NextIntlClientProvider messages={messages}>
-                <StoreProvider>
-                    <main className='bg-gray-50 min-h-[100vh] w-full'>
-                        {children}
-                        <Analytics />
-                        <SpeedInsights />
-                    </main>
-
+                    <StoreProvider>
+                        <main className='bg-gray-50 min-h-[100vh] w-full'>
+                            {children}
+                            <Analytics />
+                            <SpeedInsights />
+                        </main>
                     </StoreProvider>
                 </NextIntlClientProvider>
             </body>

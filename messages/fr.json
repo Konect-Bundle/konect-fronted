@@ -434,7 +434,20 @@
         "contact_saved_description": "Le contact a été ajouté avec succès à votre téléphone.",
         "payment_done_title": "Paiement effectué",
         "payment_done_description": "Votre achat a bien été effectué.",
-        "profil_settings": "Paramètres du profil"
+        "profil_settings": "Paramètres du profil",
+        "how_to_save": "Comment enregistrer",
+        "your_new_contact": "Votre nouveau contact",
+        "scroll_down": "Faites défiler",
+        "ios_scroll_desc": "Faites défiler jusqu'en bas de l'écran de votre iPhone, puis cliquez sur",
+        "create_new_contact": "Créer un nouveau contact",
+        "step": "Étape",
+        "android_01_des": "Une fois le fichier téléchargé sur votre téléphone Android, cliquez sur",
+        "open": "Ouvrir",
+        "android_02_des": "Autorisez l'accès à votre application Contacts simplement en cliquant sur",
+        "allow": "Autoriser",
+        "android_03_des": "Et ensuite cliquez sur",
+        "import": "Importer",
+        "yes_got_it": "Oui, j'ai compris!"
     },
     "konectCardStatus": {
         "title": "Attention!",

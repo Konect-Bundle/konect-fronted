@@ -434,7 +434,20 @@
         "contact_saved_description": "The contact has been successfully added to your phone.",
         "payment_done_title": "Payment Done",
         "payment_done_description": "Your purchase has been successfully made.",
-        "profil_settings": "Profil Settings"
+        "profil_settings": "Profil Settings",
+        "how_to_save": "How to save",
+        "your_new_contact": "Your new contact",
+        "scroll_down": "Scroll down",
+        "ios_scroll_desc": "Scroll to the bottom of your iPhone screen, then tap on",
+        "create_new_contact": "Create New Contact",
+        "step": "Step",
+        "android_01_des": "After the file has been downloaded to your Android phone, tap on",
+        "open": "Open",
+        "android_02_des": "Allow access to your Contacts application simply by tapping on",
+        "allow": "Allow",
+        "android_03_des": "And then click on",
+        "import": "Import",
+        "yes_got_it": "Yes, got it!"
     },
     "konectCardStatus": {
         "title": "Attention!",

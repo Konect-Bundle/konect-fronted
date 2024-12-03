@@ -50,7 +50,7 @@ export default function KuserBlock({
 }: KuserBlockProps) {
     const aRef = useRef<HTMLAnchorElement>(null);
     const [isCompleted, setIsCompleted] = useState<boolean>(false);
-    const [showHowTo, setShowHowTo] = useState<boolean>(false);
+    const [showHowTo, setShowHowTo] = useState<boolean>(true);
 
     const user: User = UserService.buildObjectParser(kuser);
     const vinfo: UserVcard = user && new UserVcard(user.vinfo);
@@ -152,14 +152,14 @@ export default function KuserBlock({
     function __buildTuto() {
         return (
             <div className='fixed bottom-0 left-0 w-screen h-screen bg-black-light/25 z-50 flex items-end'>
-                <div className='h-[70%] rounded-t-2xl shadow-md bg-white w-full px-4 py-8 flex flex-col justify-between'>
-                    <div className='overflow-auto'>
+                <div className='h-[70%] rounded-t-2xl shadow-md bg-white w-full px-4 py-4 flex flex-col justify-between'>
+                    <div className='overflow-auto py-4'>
                         <div className='flex justify-between'>
                             <h3 className='text-3xl font-bold'>
-                                <span>How to save</span>
+                                <span>{__("how_to_save")}</span>
                                 <br />
                                 <span className='text-yellow-900'>
-                                    Your new Contact
+                                    {__("your_new_contact")}
                                 </span>
                             </h3>
 
@@ -198,14 +198,13 @@ export default function KuserBlock({
                                     icon={FaApple}
                                 >
                                     <h4 className='text-xl font-bold mb-2 -mt-2'>
-                                        <span>Scroll down</span>
+                                        <span> {__("scroll_down")}</span>
                                         <br />
                                     </h4>
                                     <span className='py-3 text-gray-500'>
-                                        Scroll until the end of your IPhone
-                                        Screen, and then click on{" "}
+                                        {__("ios_scroll_desc")}{" "}
                                         <span className='font-bold'>
-                                            Create New Contact.
+                                            {__("create_new_contact")}.
                                         </span>
                                     </span>
                                     <div className='mt-2'>
@@ -227,14 +226,13 @@ export default function KuserBlock({
                                 >
                                     <div className='mb-6'>
                                         <h4 className='text-xl font-bold mb-2 -mt-2'>
-                                            <span>Step 1</span>
+                                            <span>{__("step")} 1</span>
                                             <br />
                                         </h4>
                                         <span className='py-3 text-gray-500'>
-                                            After the file downloaded on your
-                                            Android phone then click on{" "}
+                                            {__("android_01_des")}{" "}
                                             <span className='font-bold'>
-                                                Open.
+                                                {__("open")}.{" "}
                                             </span>
                                         </span>
                                         <div className='mt-2'>
@@ -251,14 +249,13 @@ export default function KuserBlock({
 
                                     <div className='mb-6'>
                                         <h4 className='text-xl font-bold mb-2 -mt-2'>
-                                            <span>Step 2</span>
+                                            <span>{__("step")} 2</span>
                                             <br />
                                         </h4>
                                         <span className='py-3 text-gray-500'>
-                                            Allow the access to your contact
-                                            application simply by clicking on{" "}
+                                            {__("android_02_des")}{" "}
                                             <span className='font-bold'>
-                                                Allow.
+                                                {__("allow")}.
                                             </span>
                                         </span>
                                         <div className='mt-2'>
@@ -275,13 +272,13 @@ export default function KuserBlock({
 
                                     <div className='mb-6'>
                                         <h4 className='text-xl font-bold mb-2 -mt-2'>
-                                            <span>Step 3</span>
+                                            <span>{__("step")} 3</span>
                                             <br />
                                         </h4>
                                         <span className='py-3 text-gray-500'>
-                                            And then click on{" "}
+                                            {__("android_03_des")}{" "}
                                             <span className='font-bold'>
-                                                Import.
+                                                {__("import")}.{" "}
                                             </span>
                                         </span>
                                         <div className='mt-2'>
@@ -307,7 +304,7 @@ export default function KuserBlock({
                         className='w-full py-2'
                         onClick={handleSaveContact}
                     >
-                        Yes, Got it!
+                        {__("yes_got_it")}
                     </Button>
                 </div>
             </div>
