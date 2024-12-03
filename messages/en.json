@@ -447,7 +447,9 @@
         "allow": "Allow",
         "android_03_des": "And then click on",
         "import": "Import",
-        "yes_got_it": "Yes, got it!"
+        "yes_got_it": "Yes, got it!",
+        "tell_me_more": "Tell me more about you",
+        "to_know_more": "To know more about you"
     },
     "konectCardStatus": {
         "title": "Attention!",

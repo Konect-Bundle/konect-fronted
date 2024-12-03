@@ -447,7 +447,9 @@
         "allow": "Autoriser",
         "android_03_des": "Et ensuite cliquez sur",
         "import": "Importer",
-        "yes_got_it": "Oui, j'ai compris!"
+        "yes_got_it": "Oui, j'ai compris!",
+        "tell_me_more": "Dites-moi plus sur vous",
+        "to_know_more": "À en savoir plus sur vous"
     },
     "konectCardStatus": {
         "title": "Attention!",

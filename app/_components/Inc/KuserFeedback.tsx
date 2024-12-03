@@ -17,6 +17,7 @@ import Swal from "sweetalert2";
 import $ from "jquery";
 import { KonectService } from "@/app/_core/api/services/KonectService";
 import { User } from "@/app/_core/models/User";
+import { useTranslations } from "next-intl";
 
 interface KuserBlockProps {
     kuser: User;
@@ -32,6 +33,7 @@ export default function KuserFeedback({ kuser, callback }: KuserBlockProps) {
 
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
+    const __ = useTranslations("Text");
 
     const handleShareInfo = (e: any) => {
         e.preventDefault();
@@ -63,12 +65,12 @@ export default function KuserFeedback({ kuser, callback }: KuserBlockProps) {
                 delay: 0.3,
                 ease: [0, 0.71, 0.2, 1.01],
             }}
-            className='fixed top-0 left-0 z-[100] h-screen w-screen flex justify-center items-center'
+            className='fixed top-0 left-0 z-[100] h-screen w-screen flex justify-center items-center overflow-y-auto'
         >
-            <div className='bg-gray-700 opacity-30 h-full w-full'></div>
-            <div className='md:py-6 md:px-0 absolute w-full h-full md:w-3/4 flex justify-center items-center'>
-                <div className='w-full h-full md:w-2/4 bg-white md:rounded-md min-w-fit overflow-hidden overflow-y-scroll p-8 md:p-14'>
-                    <span className='flex justify-between py-4  md:mb-24 mb-5'>
+            <div className='bg-gray-700 opacity-30 h-screen w-screen'></div>
+            <div className='md:py-6 md:px-0 absolute w-screen h-screen md:w-3/4 flex justify-center items-center'>
+                <div className='w-screen h-screen md:w-2/4 bg-white md:rounded-md min-w-fit overflow-hidden overflow-y-scroll px-8 py-4 md:p-14'>
+                    <span className='flex justify-between py-4  md:mb-24 mb-0'>
                         <Link
                             href={homeRoute.path}
                             className='flex items-center space-x-1 rtl:space-x-reverse'
@@ -95,17 +97,17 @@ export default function KuserFeedback({ kuser, callback }: KuserBlockProps) {
                         </span>
                     </span>
                     <div className='flex flex-col justify-center'>
-                        <h2 className=' text-2xl font-bold mb-4 text-gray-800'>
-                            {"Tell me about you"}
+                        <h2 className=' text-xl font-bold mb-4 text-gray-800'>
+                            {__("tell_me_more")}
                         </h2>
                         <div className='text-gray-400 font-thin text-sm flex space-x-4 p-4 items-center bg-gray-200 rounded-md'>
                             <MdOutlineConnectWithoutContact className='w-6 h-6 text-gray-600' />
                             <p>
-                                Aidez{" "}
+                                {__("help")}{" "}
                                 <span className='font-bold text-gray-600'>
                                     {ucfirst(kuser.firstname!) + "!"}
                                 </span>{" "}
-                                à en savoir plus sur vous.
+                                {__("to_know_more")}
                             </p>
                         </div>
                         <form

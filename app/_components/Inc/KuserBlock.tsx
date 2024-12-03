@@ -50,7 +50,7 @@ export default function KuserBlock({
 }: KuserBlockProps) {
     const aRef = useRef<HTMLAnchorElement>(null);
     const [isCompleted, setIsCompleted] = useState<boolean>(false);
-    const [showHowTo, setShowHowTo] = useState<boolean>(true);
+    const [showHowTo, setShowHowTo] = useState<boolean>(false);
 
     const user: User = UserService.buildObjectParser(kuser);
     const vinfo: UserVcard = user && new UserVcard(user.vinfo);
@@ -151,163 +151,174 @@ export default function KuserBlock({
 
     function __buildTuto() {
         return (
-            <div className='fixed bottom-0 left-0 w-screen h-screen bg-black-light/25 z-50 flex items-end'>
-                <div className='h-[70%] rounded-t-2xl shadow-md bg-white w-full px-4 py-4 flex flex-col justify-between'>
-                    <div className='overflow-auto py-4'>
-                        <div className='flex justify-between'>
-                            <h3 className='text-3xl font-bold'>
-                                <span>{__("how_to_save")}</span>
-                                <br />
-                                <span className='text-yellow-900'>
-                                    {__("your_new_contact")}
-                                </span>
-                            </h3>
+            <motion.div
+                className='box z-[100] relative top-0 left-0'
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                    duration: 0.2,
+                    delay: 0.1,
+                    ease: [0, 0.71, 0.2, 1.0],
+                }}
+            >
+                <div className='fixed bottom-0 left-0 w-screen h-screen bg-black-light/25 z-50 flex items-end'>
+                    <div className='h-[70%] rounded-t-2xl shadow-md bg-white w-full px-4 py-4 flex flex-col justify-between'>
+                        <div className='overflow-auto py-4'>
+                            <div className='flex justify-between'>
+                                <h3 className='text-3xl font-bold'>
+                                    <span>{__("how_to_save")}</span>
+                                    <br />
+                                    <span className='text-yellow-900'>
+                                        {__("your_new_contact")}
+                                    </span>
+                                </h3>
 
-                            <TbCircleX
-                                className='text-2xl text-gray-600'
-                                onClick={() => setShowHowTo(false)}
-                            />
-                        </div>
+                                <TbCircleX
+                                    className='text-2xl text-gray-600'
+                                    onClick={() => setShowHowTo(false)}
+                                />
+                            </div>
 
-                        <div className='mt-4'>
-                            <Tabs
-                                aria-label='Default tabs'
-                                variant='default'
-                                theme={{
-                                    ...customTabsTheme,
-                                    tablist: {
-                                        variant: {
-                                            default: "border-0",
-                                        },
-                                        tabitem: {
+                            <div className='mt-4'>
+                                <Tabs
+                                    aria-label='Default tabs'
+                                    variant='default'
+                                    theme={{
+                                        ...customTabsTheme,
+                                        tablist: {
                                             variant: {
-                                                default: {
-                                                    active: {
-                                                        on: "bg-gray-50 text-black-bold ring-opacity-0 dark:bg-gray-800 dark:text-yellow-500",
+                                                default: "border-0",
+                                            },
+                                            tabitem: {
+                                                variant: {
+                                                    default: {
+                                                        active: {
+                                                            on: "bg-gray-50 text-black-bold ring-opacity-0 dark:bg-gray-800 dark:text-yellow-500",
+                                                        },
                                                     },
                                                 },
                                             },
                                         },
-                                    },
-                                }}
-                            >
-                                <Tabs.Item
-                                    className=''
-                                    active
-                                    title='IPhone'
-                                    icon={FaApple}
+                                    }}
                                 >
-                                    <h4 className='text-xl font-bold mb-2 -mt-2'>
-                                        <span> {__("scroll_down")}</span>
-                                        <br />
-                                    </h4>
-                                    <span className='py-3 text-gray-500'>
-                                        {__("ios_scroll_desc")}{" "}
-                                        <span className='font-bold'>
-                                            {__("create_new_contact")}.
-                                        </span>
-                                    </span>
-                                    <div className='mt-2'>
-                                        <Image
-                                            width={500}
-                                            height={500}
-                                            src={`${ROOT_ASSETS_URL}/images/tuto/scroll-save-ios.png`}
-                                            className='mt-3 border-gray-100 rounded-[1rem]'
-                                            alt='scroll-ios-save'
-                                            priority={true}
-                                        />
-                                    </div>
-                                </Tabs.Item>
-                                <Tabs.Item
-                                    className=''
-                                    active
-                                    title='Android'
-                                    icon={FaAndroid}
-                                >
-                                    <div className='mb-6'>
+                                    <Tabs.Item
+                                        className=''
+                                        active
+                                        title='IPhone'
+                                        icon={FaApple}
+                                    >
                                         <h4 className='text-xl font-bold mb-2 -mt-2'>
-                                            <span>{__("step")} 1</span>
+                                            <span> {__("scroll_down")}</span>
                                             <br />
                                         </h4>
                                         <span className='py-3 text-gray-500'>
-                                            {__("android_01_des")}{" "}
+                                            {__("ios_scroll_desc")}{" "}
                                             <span className='font-bold'>
-                                                {__("open")}.{" "}
+                                                {__("create_new_contact")}.
                                             </span>
                                         </span>
                                         <div className='mt-2'>
                                             <Image
                                                 width={500}
                                                 height={500}
-                                                src={`${ROOT_ASSETS_URL}/images/tuto/download-file-android.png`}
+                                                src={`${ROOT_ASSETS_URL}/images/tuto/scroll-save-ios.png`}
                                                 className='mt-3 border-gray-100 rounded-[1rem]'
                                                 alt='scroll-ios-save'
                                                 priority={true}
                                             />
                                         </div>
-                                    </div>
+                                    </Tabs.Item>
+                                    <Tabs.Item
+                                        className=''
+                                        active
+                                        title='Android'
+                                        icon={FaAndroid}
+                                    >
+                                        <div className='mb-6'>
+                                            <h4 className='text-xl font-bold mb-2 -mt-2'>
+                                                <span>{__("step")} 1</span>
+                                                <br />
+                                            </h4>
+                                            <span className='py-3 text-gray-500'>
+                                                {__("android_01_des")}{" "}
+                                                <span className='font-bold'>
+                                                    {__("open")}.{" "}
+                                                </span>
+                                            </span>
+                                            <div className='mt-2'>
+                                                <Image
+                                                    width={500}
+                                                    height={500}
+                                                    src={`${ROOT_ASSETS_URL}/images/tuto/download-file-android.png`}
+                                                    className='mt-3 border-gray-100 rounded-[1rem]'
+                                                    alt='scroll-ios-save'
+                                                    priority={true}
+                                                />
+                                            </div>
+                                        </div>
 
-                                    <div className='mb-6'>
-                                        <h4 className='text-xl font-bold mb-2 -mt-2'>
-                                            <span>{__("step")} 2</span>
-                                            <br />
-                                        </h4>
-                                        <span className='py-3 text-gray-500'>
-                                            {__("android_02_des")}{" "}
-                                            <span className='font-bold'>
-                                                {__("allow")}.
+                                        <div className='mb-6'>
+                                            <h4 className='text-xl font-bold mb-2 -mt-2'>
+                                                <span>{__("step")} 2</span>
+                                                <br />
+                                            </h4>
+                                            <span className='py-3 text-gray-500'>
+                                                {__("android_02_des")}{" "}
+                                                <span className='font-bold'>
+                                                    {__("allow")}.
+                                                </span>
                                             </span>
-                                        </span>
-                                        <div className='mt-2'>
-                                            <Image
-                                                width={500}
-                                                height={500}
-                                                src={`${ROOT_ASSETS_URL}/images/tuto/allow-contact-android`}
-                                                className='mt-3 border-gray-100 rounded-[1rem]'
-                                                alt='scroll-ios-save'
-                                                priority={true}
-                                            />
+                                            <div className='mt-2'>
+                                                <Image
+                                                    width={500}
+                                                    height={500}
+                                                    src={`${ROOT_ASSETS_URL}/images/tuto/allow-contact-android`}
+                                                    className='mt-3 border-gray-100 rounded-[1rem]'
+                                                    alt='scroll-ios-save'
+                                                    priority={true}
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div className='mb-6'>
-                                        <h4 className='text-xl font-bold mb-2 -mt-2'>
-                                            <span>{__("step")} 3</span>
-                                            <br />
-                                        </h4>
-                                        <span className='py-3 text-gray-500'>
-                                            {__("android_03_des")}{" "}
-                                            <span className='font-bold'>
-                                                {__("import")}.{" "}
+                                        <div className='mb-6'>
+                                            <h4 className='text-xl font-bold mb-2 -mt-2'>
+                                                <span>{__("step")} 3</span>
+                                                <br />
+                                            </h4>
+                                            <span className='py-3 text-gray-500'>
+                                                {__("android_03_des")}{" "}
+                                                <span className='font-bold'>
+                                                    {__("import")}.{" "}
+                                                </span>
                                             </span>
-                                        </span>
-                                        <div className='mt-2'>
-                                            <Image
-                                                width={500}
-                                                height={500}
-                                                src={`${ROOT_ASSETS_URL}/images/tuto/import-contact-android`}
-                                                className='mt-3 border-gray-100 rounded-[1rem]'
-                                                alt='scroll-ios-save'
-                                                priority={true}
-                                            />
+                                            <div className='mt-2'>
+                                                <Image
+                                                    width={500}
+                                                    height={500}
+                                                    src={`${ROOT_ASSETS_URL}/images/tuto/import-contact-android`}
+                                                    className='mt-3 border-gray-100 rounded-[1rem]'
+                                                    alt='scroll-ios-save'
+                                                    priority={true}
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
-                                </Tabs.Item>
-                            </Tabs>
+                                    </Tabs.Item>
+                                </Tabs>
+                            </div>
                         </div>
-                    </div>
 
-                    <Button
-                        color='dark'
-                        theme={customButtonTheme}
-                        size={"mdm"}
-                        className='w-full py-2'
-                        onClick={handleSaveContact}
-                    >
-                        {__("yes_got_it")}
-                    </Button>
+                        <Button
+                            color='dark'
+                            theme={customButtonTheme}
+                            size={"mdm"}
+                            className='w-full py-2'
+                            onClick={handleSaveContact}
+                        >
+                            {__("yes_got_it")}
+                        </Button>
+                    </div>
                 </div>
-            </div>
+            </motion.div>
         );
     }
 
