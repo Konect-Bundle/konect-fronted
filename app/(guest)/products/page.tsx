@@ -3,12 +3,8 @@ import ProductsListBlock from "@/app/_components/Inc/ProductsListBlock";
 import { GadgetService } from "@/app/_core/api/services/GadgetService";
 import { productsRoute } from "@/app/_core/config/routes";
 import { customBreadCrumbTheme } from "@/app/_styles/flowbite/breadcrumb";
-import {
-    Breadcrumb
-} from "flowbite-react";
-import {
-    TbHomeFilled
-} from "react-icons/tb";
+import { Breadcrumb } from "flowbite-react";
+import { TbHomeFilled } from "react-icons/tb";
 
 export interface KwidgetListProps {}
 

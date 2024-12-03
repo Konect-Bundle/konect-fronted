@@ -3,7 +3,7 @@ import TextSkeleton from "@/app/_components/Common/Skeleton/TextSkeleton";
 import KuserFeedback from "@/app/_components/Inc/KuserFeedback";
 import { KonectService } from "@/app/_core/api/services/KonectService";
 import { UserService } from "@/app/_core/api/services/UserService";
-import { ROOT_FILES_URL } from "@/app/_core/config/constants";
+import { ROOT_ASSETS_URL, ROOT_FILES_URL } from "@/app/_core/config/constants";
 import { User } from "@/app/_core/models/User";
 import UserVcard from "@/app/_core/models/vcard/UserVcard";
 import VcardConfig from "@/app/_core/models/vcard/VcardConfig";
@@ -15,7 +15,7 @@ import {
     ucfirst,
 } from "@/app/_core/utils/functions";
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
-import { Button, Card } from "flowbite-react";
+import { Button, Card, Tabs } from "flowbite-react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -23,6 +23,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { MdOutlineConnectWithoutContact } from "react-icons/md";
 import {
+    TbCircleX,
     TbDownload,
     TbMail,
     TbMapPin,
@@ -35,6 +36,8 @@ import LinkPreviewBlock from "../Common/LinkPreview";
 import { KPreviewThemeMode, KPreviewZoom } from "@/app/_core/utils/enums";
 import KuserHeader from "../Common/Headers/KuserHeader";
 import { parsePhoneNumberFromString } from "libphonenumber-js";
+import { FaAndroid, FaApple } from "react-icons/fa6";
+import { customTabsTheme } from "@/app/_styles/flowbite/tabs";
 
 interface KuserBlockProps {
     kuser: any;
@@ -47,6 +50,8 @@ export default function KuserBlock({
 }: KuserBlockProps) {
     const aRef = useRef<HTMLAnchorElement>(null);
     const [isCompleted, setIsCompleted] = useState<boolean>(false);
+    const [showHowTo, setShowHowTo] = useState<boolean>(false);
+
     const user: User = UserService.buildObjectParser(kuser);
     const vinfo: UserVcard = user && new UserVcard(user.vinfo);
     const vconfig: VcardConfig = user && new VcardConfig(user.vconfig);
@@ -99,6 +104,7 @@ export default function KuserBlock({
     };
 
     const handleSaveContact = (e: any) => {
+        setShowHowTo(false);
         e.preventDefault();
         if (kuser) {
             KonectService.makeConnect(user.uuid!, 1)
@@ -110,11 +116,12 @@ export default function KuserBlock({
                             clearInterval(int);
                         }, 2000);
                     }
-                    window.location.href = aRef.current?.href!;
                 })
                 .catch((err) => {
                     console.log(err);
                 });
+
+            window.location.href = aRef.current?.href!;
         }
         // aRef.current?.click();
         // setIsSaved(true)
@@ -134,11 +141,178 @@ export default function KuserBlock({
                 {scrollPercent > 5 && _buildStickyHeader()}
                 {_buildImageCard()}
                 {_builBottomContent()}
+
+                {showHowTo && __buildTuto()}
             </div>
         </div>
     ) : (
         <DesactivatedCard />
     );
+
+    function __buildTuto() {
+        return (
+            <div className='fixed bottom-0 left-0 w-screen h-screen bg-black-light/25 z-50 flex items-end'>
+                <div className='h-[70%] rounded-t-2xl shadow-md bg-white w-full px-4 py-8 flex flex-col justify-between'>
+                    <div className='overflow-auto'>
+                        <div className='flex justify-between'>
+                            <h3 className='text-3xl font-bold'>
+                                <span>How to save</span>
+                                <br />
+                                <span className='text-yellow-900'>
+                                    Your new Contact
+                                </span>
+                            </h3>
+
+                            <TbCircleX
+                                className='text-2xl text-gray-600'
+                                onClick={() => setShowHowTo(false)}
+                            />
+                        </div>
+
+                        <div className='mt-4'>
+                            <Tabs
+                                aria-label='Default tabs'
+                                variant='default'
+                                theme={{
+                                    ...customTabsTheme,
+                                    tablist: {
+                                        variant: {
+                                            default: "border-0",
+                                        },
+                                        tabitem: {
+                                            variant: {
+                                                default: {
+                                                    active: {
+                                                        on: "bg-gray-50 text-black-bold ring-opacity-0 dark:bg-gray-800 dark:text-yellow-500",
+                                                    },
+                                                },
+                                            },
+                                        },
+                                    },
+                                }}
+                            >
+                                <Tabs.Item
+                                    className=''
+                                    active
+                                    title='IPhone'
+                                    icon={FaApple}
+                                >
+                                    <h4 className='text-xl font-bold mb-2 -mt-2'>
+                                        <span>Scroll down</span>
+                                        <br />
+                                    </h4>
+                                    <span className='py-3 text-gray-500'>
+                                        Scroll until the end of your IPhone
+                                        Screen, and then click on{" "}
+                                        <span className='font-bold'>
+                                            Create New Contact.
+                                        </span>
+                                    </span>
+                                    <div className='mt-2'>
+                                        <Image
+                                            width={500}
+                                            height={500}
+                                            src={`${ROOT_ASSETS_URL}/images/tuto/scroll-save-ios.png`}
+                                            className='mt-3 border-gray-100 rounded-[1rem]'
+                                            alt='scroll-ios-save'
+                                            priority={true}
+                                        />
+                                    </div>
+                                </Tabs.Item>
+                                <Tabs.Item
+                                    className=''
+                                    active
+                                    title='Android'
+                                    icon={FaAndroid}
+                                >
+                                    <div className='mb-6'>
+                                        <h4 className='text-xl font-bold mb-2 -mt-2'>
+                                            <span>Step 1</span>
+                                            <br />
+                                        </h4>
+                                        <span className='py-3 text-gray-500'>
+                                            After the file downloaded on your
+                                            Android phone then click on{" "}
+                                            <span className='font-bold'>
+                                                Open.
+                                            </span>
+                                        </span>
+                                        <div className='mt-2'>
+                                            <Image
+                                                width={500}
+                                                height={500}
+                                                src={`${ROOT_ASSETS_URL}/images/tuto/download-file-android.png`}
+                                                className='mt-3 border-gray-100 rounded-[1rem]'
+                                                alt='scroll-ios-save'
+                                                priority={true}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className='mb-6'>
+                                        <h4 className='text-xl font-bold mb-2 -mt-2'>
+                                            <span>Step 2</span>
+                                            <br />
+                                        </h4>
+                                        <span className='py-3 text-gray-500'>
+                                            Allow the access to your contact
+                                            application simply by clicking on{" "}
+                                            <span className='font-bold'>
+                                                Allow.
+                                            </span>
+                                        </span>
+                                        <div className='mt-2'>
+                                            <Image
+                                                width={500}
+                                                height={500}
+                                                src={`${ROOT_ASSETS_URL}/images/tuto/allow-contact-android`}
+                                                className='mt-3 border-gray-100 rounded-[1rem]'
+                                                alt='scroll-ios-save'
+                                                priority={true}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className='mb-6'>
+                                        <h4 className='text-xl font-bold mb-2 -mt-2'>
+                                            <span>Step 3</span>
+                                            <br />
+                                        </h4>
+                                        <span className='py-3 text-gray-500'>
+                                            And then click on{" "}
+                                            <span className='font-bold'>
+                                                Import.
+                                            </span>
+                                        </span>
+                                        <div className='mt-2'>
+                                            <Image
+                                                width={500}
+                                                height={500}
+                                                src={`${ROOT_ASSETS_URL}/images/tuto/import-contact-android`}
+                                                className='mt-3 border-gray-100 rounded-[1rem]'
+                                                alt='scroll-ios-save'
+                                                priority={true}
+                                            />
+                                        </div>
+                                    </div>
+                                </Tabs.Item>
+                            </Tabs>
+                        </div>
+                    </div>
+
+                    <Button
+                        color='dark'
+                        theme={customButtonTheme}
+                        size={"mdm"}
+                        className='w-full py-2'
+                        onClick={handleSaveContact}
+                    >
+                        Yes, Got it!
+                    </Button>
+                </div>
+            </div>
+        );
+    }
 
     function _buildStickyHeader() {
         return (
@@ -179,7 +353,7 @@ export default function KuserBlock({
                     color='dark'
                     theme={customButtonTheme}
                     size={"mds"}
-                    onClick={handleSaveContact}
+                    onClick={() => setShowHowTo(true)}
                     style={{
                         background: base,
                         color: text,
@@ -300,7 +474,7 @@ export default function KuserBlock({
                         color='dark'
                         theme={customButtonTheme}
                         size={"mdm"}
-                        onClick={handleSaveContact}
+                        onClick={() => setShowHowTo(true)}
                     >
                         <TbDownload className='mr-3 h-4 w-4' />
                         {__a("save")}

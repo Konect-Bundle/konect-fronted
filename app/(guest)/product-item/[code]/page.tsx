@@ -82,7 +82,7 @@ export default function KwidgetItemPage({
     ) => {
         // console.log(values);
         if (gadgetItem!.code == "CRD-002" && values.file == null) {
-            alert("Logo is required")
+            alert("Logo is required");
             formikHelpers.setFieldError("file", "Logo is required");
             return;
         }
