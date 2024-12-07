@@ -121,7 +121,9 @@ export default function KuserBlock({
                 });
 
             window.location.href = aRef.current?.href!;
-            setIsCompleted(true);
+            setTimeout(() => {
+                setIsCompleted(true);
+            }, 2000);
         }
         // aRef.current?.click();
         // setIsSaved(true)
