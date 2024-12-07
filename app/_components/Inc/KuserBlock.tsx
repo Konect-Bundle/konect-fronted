@@ -112,7 +112,6 @@ export default function KuserBlock({
                     if (rs.state) {
                         setKonectCount(konectsCount + 1);
                         const int = setInterval(() => {
-                            setIsCompleted(true);
                             clearInterval(int);
                         }, 2000);
                     }
@@ -122,6 +121,7 @@ export default function KuserBlock({
                 });
 
             window.location.href = aRef.current?.href!;
+            setIsCompleted(true);
         }
         // aRef.current?.click();
         // setIsSaved(true)
