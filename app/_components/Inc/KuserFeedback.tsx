@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ROOT_ASSETS_URL } from "@/app/_core/config/constants";
 import { homeRoute } from "@/app/_core/config/routes";
 import Image from "next/image";
@@ -46,14 +46,23 @@ export default function KuserFeedback({ kuser, callback }: KuserBlockProps) {
                 email,
                 phone,
             ).then((rs) => {
-                Swal.fire({
-                    title: "Sent!",
-                    text: "You successfully sent your informations",
-                    icon: "success",
-                    timer: 1500,
-                }).then(() => {
-                    callback();
-                });
+                // Swal.fire({
+                //     title: "Sent!",
+                //     text: "You successfully sent your informations",
+                //     icon: "success",
+                //     timer: 1500,
+                // }).then(() => {
+                //     callback();
+                // });
+            });
+
+            Swal.fire({
+                title: "Sent!",
+                text: "You successfully sent your informations",
+                icon: "success",
+                timer: 1500,
+            }).then(() => {
+                callback();
             });
         }
     };
