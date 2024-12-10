@@ -8,6 +8,11 @@ import { User } from "@/app/_core/models/User";
 import UserVcard from "@/app/_core/models/vcard/UserVcard";
 import VcardConfig from "@/app/_core/models/vcard/VcardConfig";
 import {
+    KPreviewThemeMode,
+    KPreviewZoom,
+    LoarderStyle,
+} from "@/app/_core/utils/enums";
+import {
     convertYouTubeLinkToEmbed,
     esser,
     generateColorVariants,
@@ -15,12 +20,15 @@ import {
     ucfirst,
 } from "@/app/_core/utils/functions";
 import { customButtonTheme } from "@/app/_styles/flowbite/button";
+import { customTabsTheme } from "@/app/_styles/flowbite/tabs";
 import { Button, Card, Tabs } from "flowbite-react";
 import { motion } from "framer-motion";
+import { parsePhoneNumberFromString } from "libphonenumber-js";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { FaAndroid, FaApple } from "react-icons/fa6";
 import { MdOutlineConnectWithoutContact } from "react-icons/md";
 import {
     TbCircleX,
@@ -32,12 +40,9 @@ import {
 } from "react-icons/tb";
 import CardBlock from "../Common/CardBlock";
 import DesactivatedCard from "../Common/DesactivatedCard";
-import LinkPreviewBlock from "../Common/LinkPreview";
-import { KPreviewThemeMode, KPreviewZoom } from "@/app/_core/utils/enums";
 import KuserHeader from "../Common/Headers/KuserHeader";
-import { parsePhoneNumberFromString } from "libphonenumber-js";
-import { FaAndroid, FaApple } from "react-icons/fa6";
-import { customTabsTheme } from "@/app/_styles/flowbite/tabs";
+import LinkPreviewBlock from "../Common/LinkPreview";
+import LoadingLayout from "../Layouts/LoadingLayout";
 
 interface KuserBlockProps {
     kuser: any;
@@ -51,6 +56,7 @@ export default function KuserBlock({
     const aRef = useRef<HTMLAnchorElement>(null);
     const [isCompleted, setIsCompleted] = useState<boolean>(false);
     const [showHowTo, setShowHowTo] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const user: User = UserService.buildObjectParser(kuser);
     const vinfo: UserVcard = user && new UserVcard(user.vinfo);
@@ -105,6 +111,7 @@ export default function KuserBlock({
 
     const handleSaveContact = (e: any) => {
         setShowHowTo(false);
+        setLoading(true);
         e.preventDefault();
         if (kuser) {
             KonectService.makeConnect(user.uuid!, 1)
@@ -118,7 +125,8 @@ export default function KuserBlock({
                 })
                 .catch((err) => {
                     console.log(err);
-                });
+                })
+                .finally(() => setLoading(false));
 
             window.location.href = aRef.current?.href!;
             setTimeout(() => {
@@ -136,16 +144,21 @@ export default function KuserBlock({
                 backgroundColor: vconfig.configTheme.primaryColor,
             }}
         >
-            {isCompleted && _buildKuserFeedback()}
+            <LoadingLayout
+                isLoading={loading}
+                loaderStyle={LoarderStyle.TAILSPIN}
+            >
+                {isCompleted && _buildKuserFeedback()}
 
-            <div>
-                <KuserHeader />
-                {scrollPercent > 5 && _buildStickyHeader()}
-                {_buildImageCard()}
-                {_builBottomContent()}
+                <div>
+                    <KuserHeader />
+                    {scrollPercent > 5 && _buildStickyHeader()}
+                    {_buildImageCard()}
+                    {_builBottomContent()}
 
-                {showHowTo && __buildTuto()}
-            </div>
+                    {showHowTo && __buildTuto()}
+                </div>
+            </LoadingLayout>
         </div>
     ) : (
         <DesactivatedCard />

@@ -2,9 +2,6 @@
 import { useAppDispatch, useAppSelector } from "@/app/_store/hooks";
 import { getCurrentUser } from "@/app/_store/slices/authSlice";
 import React, { useEffect } from "react";
-import { ucfirst } from "../../_core/utils/functions";
-import { Spinner } from "flowbite-react";
-import { customSpinnerTheme } from "@/app/_styles/flowbite/spinner";
 import { MutatingDots } from "react-loader-spinner";
 
 interface ReduxInitLayoutProps extends React.PropsWithChildren {

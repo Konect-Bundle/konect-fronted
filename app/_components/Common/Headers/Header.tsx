@@ -36,6 +36,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
+    TbAddressBook,
     TbChevronDown,
     TbDiamondFilled,
     TbHistory,
@@ -43,7 +44,6 @@ import {
     TbPower,
     TbSettings,
     TbShare3,
-    TbUsers,
 } from "react-icons/tb";
 
 export interface IAppProps {}
@@ -189,12 +189,18 @@ function _buildAuthenticatedMenuItems(
                             />
                         </span>
                     ) : (
-                        <Avatar
-                            theme={customAvatarTheme}
-                            rounded
-                            className='w-full'
-                            size='md'
-                        />
+                        <span className='flex items-center space-x-1 rounded-full p-1 border-2 border-gray-500'>
+                            <Avatar
+                                theme={customAvatarTheme}
+                                rounded
+                                className='w-full'
+                                size='md'
+                            />
+                            <TbChevronDown
+                                size={28}
+                                className='text-gray-300'
+                            />
+                        </span>
                     )
                 }
             >
@@ -225,7 +231,7 @@ function _buildAuthenticatedMenuItems(
                 <Dropdown.Item>
                     <Link href={konectsListRoute.path} className='w-full block'>
                         <span className='flex items-center space-x-1'>
-                            <TbUsers />
+                            <TbAddressBook className='text-lg' />
                             <span>{__("my_connections")}</span>
                         </span>
                     </Link>

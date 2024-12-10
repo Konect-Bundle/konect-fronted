@@ -11,17 +11,19 @@ import { formatNumber } from "../../utils/functions";
 import { json } from "stream/consumers";
 import { KoUserInfoInterface } from "../../interfaces/appInterfaces";
 import { date } from "yup";
+import { ContactFeed } from "../../models/ContactFeed";
 
 export class UserService {
     static buildObjectParser(data: any) {
         var user: User = new User();
         var konects: Konect[] = [];
+        var contact_feeds: ContactFeed[] = [];
+
         var orders: Order[] = [];
         var gadgets: KoGadgetItem[] = [];
 
         var base = data.data ? data.data : data;
 
-        // console.log(data.data);
         if (base.konects) {
             base.konects.forEach((konect: any) => {
                 konects.push(
@@ -39,6 +41,20 @@ export class UserService {
             });
         }
 
+        if (base.contact_feeds) {
+            base.contact_feeds.forEach((contact_feed: any) => {
+                contact_feeds.push(
+                    new ContactFeed(
+                        contact_feed.id,
+                        contact_feed.user_to.uuid,
+                        contact_feed.created_at,
+                        JSON.parse(
+                            contact_feed.feed_info,
+                        ) as KoUserInfoInterface,
+                    ),
+                );
+            });
+        }
         // console.log(data.data);
         if (base.gadgets) {
             base.gadgets.forEach((gadget: any) => {
@@ -80,7 +96,6 @@ export class UserService {
             });
         }
 
-        //  console.log(base.companies)
         user.uuid = base.uuid;
         user.name = base.name;
         user.firstname = base.firstname;
@@ -94,6 +109,7 @@ export class UserService {
         user.gadgets = gadgets;
         user.points = formatNumber(base.kpoint);
         user.referal_code = base.referal_code;
+        user.contact_feeds = contact_feeds;
         return user;
     }
 

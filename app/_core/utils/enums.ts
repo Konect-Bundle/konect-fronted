@@ -20,3 +20,8 @@ export enum MemberRequestStatus {
     DECLINED = "DECLINED",
     ACCEPTED = "ACCEPTED",
 }
+
+export enum LoarderStyle {
+    TAILSPIN = "TAILSPIN",
+    MUTATINGSDOT = "MUTATINGSDOT",
+}

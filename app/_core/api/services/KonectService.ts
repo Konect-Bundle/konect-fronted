@@ -16,7 +16,7 @@ export class KonectService {
 
     static async getConnect(uuid: string) {
         // return await  fetchData("/sanctum/csrf-cookie")
-        return await fetchData("/api/get-konect/" + uuid);
+        return await fetchData("/api/contact_feed/" + uuid);
     }
 
     static async makeFeed(
@@ -27,12 +27,13 @@ export class KonectService {
         phone: string,
     ) {
         return await fetchData(
-            "/api/add-feed/" + uuid,
+            "/api/contact_feed/",
             serialize({
                 name: name,
                 firstname: firstname,
                 email: email,
                 phone: phone,
+                user_to: uuid,
             }),
             {},
             "POST",

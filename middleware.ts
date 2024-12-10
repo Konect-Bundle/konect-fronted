@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { UserService } from "./app/_core/api/services/UserService";
 import { AUTH_TOKEN_NAME } from "./app/_core/config/constants";
-import { loginRoute } from "./app/_core/config/routes";
+import { settingsProfilRoute } from "./app/_core/config/routes";
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
-    // const { pathname } = request.nextUrl;
+    const { pathname } = request.nextUrl;
     const redirectUrl = new URL("/login", request.url);
     redirectUrl.searchParams.set(
         "redirectTo",
@@ -15,6 +15,13 @@ export async function middleware(request: NextRequest) {
     //   if (pathname === '/admin') {
     //     return NextResponse.redirect(new URL('/login', req.url));
     //   }
+
+    if (pathname === "/account/vcard") {
+        return NextResponse.redirect(
+            new URL(settingsProfilRoute.path, request.url),
+        );
+    }
+
     let cookie = request.cookies;
 
     if (cookie.has(AUTH_TOKEN_NAME)) {

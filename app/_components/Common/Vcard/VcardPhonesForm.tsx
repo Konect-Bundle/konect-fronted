@@ -7,10 +7,9 @@ import { useTranslations } from "next-intl";
 import { Inter } from "next/font/google";
 import React, { ReactNode } from "react";
 import { TbLink, TbPlus, TbX } from "react-icons/tb";
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/bootstrap.css";
 import InputField from "../Form/InputField";
 import InputWithLabel from "../Form/InputWithLabel";
+import CustomPhoneInput from "../Form/CustomPhoneInput";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -70,32 +69,15 @@ const VcardPhonesForm: React.FC<
                                                 labelClassName=' text-xs'
                                             >
                                                 <div className='flex items-center'>
-                                                    <div className='w-full'>
-                                                        <PhoneInput
-                                                            country={"us"}
-                                                            value={phone.text}
-                                                            onChange={(val) => {
-                                                                form.setFieldValue(
-                                                                    `phones[${index}].text`,
-                                                                    val,
-                                                                );
-                                                            }}
-                                                            inputClass={
-                                                                "!py-3.5 !border-gray-300/40 !text-gray-900 !focus:border-gray-200 focus:ring-gray-200 !focus:shadow-none " +
-                                                                inter.className
-                                                            }
-                                                            inputStyle={{
-                                                                width: "100%",
-                                                                boxShadow:
-                                                                    "none",
-                                                            }}
-                                                        />
-                                                        {/* <InputPrefixedIcon
-                                                            icon={icon}
-                                                            name={`phones[${index}].text`}
-                                                            labelFor="phone"
-                                                        /> */}
-                                                    </div>
+                                                    <CustomPhoneInput
+                                                        value={phone.text}
+                                                        onChange={(val) => {
+                                                            form.setFieldValue(
+                                                                `phones[${index}].text`,
+                                                                val,
+                                                            );
+                                                        }}
+                                                    />
                                                 </div>
                                             </InputWithLabel>
                                         </div>

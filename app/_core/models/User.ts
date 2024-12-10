@@ -1,5 +1,6 @@
 import { formatNumber } from "../utils/functions";
 import Company from "./Company";
+import { ContactFeed } from "./ContactFeed";
 import { KoGadgetItem } from "./KoGadgetItem";
 import { Konect } from "./Konect";
 import { Order } from "./Order";
@@ -8,6 +9,7 @@ export class User {
     name?: string;
     konects_count?: number;
     konects?: Array<Konect>;
+    contact_feeds?: Array<ContactFeed>;
     orders?: Array<Order>;
     gadgets?: Array<KoGadgetItem>;
     firstname?: string;
@@ -27,6 +29,7 @@ export class User {
         vinfo?: string,
         vconfig?: string,
         konects?: Array<Konect>,
+        contact_feeds?: Array<ContactFeed>,
         orders?: Array<Order>,
         gadgets?: Array<KoGadgetItem>,
         profile_photo_url?: string,
@@ -46,5 +49,6 @@ export class User {
         this.points = formatNumber(points);
         this.profile_photo_url = profile_photo_url;
         this.referal_code = referal_code;
+        this.contact_feeds = contact_feeds;
     }
 }

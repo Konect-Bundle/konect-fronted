@@ -9,7 +9,7 @@ export default async function Invitation({
     params: { konect: string };
 }) {
     var feed = JSON.parse(
-        (await KonectService.getConnect(params.konect)).data.ko_user_info,
+        (await KonectService.getConnect(params.konect)).data.feed_info,
     );
     return (
         <FeedbackClient

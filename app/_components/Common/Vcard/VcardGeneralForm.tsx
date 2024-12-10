@@ -1,18 +1,16 @@
-import UserVcard from "@/app/_core/models/vcard/UserVcard";
-import React, { ReactElement, ReactNode, useEffect, useState } from "react";
-import { Field, useFormik } from "formik";
+import { Field } from "formik";
+import React from "react";
 
 import { Country } from "country-state-city";
 
-import InputWithLabel from "../Form/InputWithLabel";
-import InputField from "../Form/InputField";
-import InputPrefixedIcon from "../Form/InputPrefixedIcon";
-import { TbMail, TbPhone } from "react-icons/tb";
-import Script from "next/script";
+import { UserVcardInterface } from "@/app/_core/interfaces/vcardInterfaces";
 import { useTranslations } from "next-intl";
+import { TbMail } from "react-icons/tb";
 import SelectCountryField from "../Form/Country/SelectCountryField";
 import SelectStateFromCountryField from "../Form/Country/SelectStateFromCountryField";
-import { UserVcardInterface } from "@/app/_core/interfaces/vcardInterfaces";
+import InputField from "../Form/InputField";
+import InputPrefixedIcon from "../Form/InputPrefixedIcon";
+import InputWithLabel from "../Form/InputWithLabel";
 import VcardPhonesForm from "./VcardPhonesForm";
 
 interface VcardGeneralFormProps extends React.PropsWithChildren {

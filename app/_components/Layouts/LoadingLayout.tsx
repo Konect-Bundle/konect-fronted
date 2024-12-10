@@ -1,18 +1,21 @@
 import React from "react";
-import { MutatingDots } from "react-loader-spinner";
+import { MutatingDots, RotatingLines, TailSpin } from "react-loader-spinner";
 import { motion } from "framer-motion";
+import { LoarderStyle } from "@/app/_core/utils/enums";
 
 interface LoadingLayoutProps {
     isLoading?: boolean;
     isMinified?: boolean;
+    loaderStyle?: LoarderStyle;
     children: React.ReactNode;
 }
 
-const LoadingLayout: React.FC<LoadingLayoutProps> = ({
+const LoadingLayout = ({
     isLoading = false,
     isMinified = false,
+    loaderStyle = LoarderStyle.MUTATINGSDOT,
     children,
-}) => {
+}: LoadingLayoutProps) => {
     return (
         <div className='w-full h-full'>
             <div className='w-full h-full'>{children}</div>
@@ -29,19 +32,33 @@ const LoadingLayout: React.FC<LoadingLayoutProps> = ({
                 }}
                 transition={{ duration: 0.4 }}
             >
-                <div className='transition-all w-screen h-screen fixed flex justify-center items-center bg-black-light/30 left-0 top-0 z-20'>
+                <div className='transition-all w-screen h-screen fixed flex justify-center items-center bg-black-light/25 left-0 top-0 z-20'>
                     <div className='flex justify-center items-center'>
-                        <MutatingDots
-                            visible={true}
-                            height='80'
-                            width='80'
-                            color='#e4dc1a'
-                            secondaryColor='#e4dc1a'
-                            radius='12.5'
-                            ariaLabel='mutating-dots-loading'
-                            wrapperStyle={{}}
-                            wrapperClass=''
-                        />
+                        {loaderStyle == LoarderStyle.MUTATINGSDOT && (
+                            <MutatingDots
+                                visible={true}
+                                height='70'
+                                width='70'
+                                color='#e4dc1a'
+                                secondaryColor='#e4dc1a'
+                                radius='12.5'
+                                ariaLabel='mutating-dots-loading'
+                                wrapperStyle={{}}
+                                wrapperClass=''
+                            />
+                        )}
+                        {loaderStyle == LoarderStyle.TAILSPIN && (
+                            <TailSpin
+                                visible={true}
+                                height='50'
+                                width='50'
+                                color='#e4dc1a'
+                                ariaLabel='tail-spin-loading'
+                                radius='1'
+                                wrapperStyle={{}}
+                                wrapperClass=''
+                            />
+                        )}
                     </div>
                 </div>
             </motion.div>
